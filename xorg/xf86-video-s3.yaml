@@ -1,0 +1,51 @@
+name      : xf86-video-s3
+version   : 0.6.5
+category  : x-window
+summary   : Xorg driver for S3 video cards
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:s3
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: e9d715fbcddd7bef32b0216e1b7fd976c7538be2
+
+bdeps: [util-macros, xorg-server-dev]
+
+prepare:
+  patches:
+  # https://git.alpinelinux.org/cgit/aports/tree/main/xf86-video-s3
+  - name: mibstore.patch
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: [Xorg, display]
+
+files:
+- name: mibstore.patch
+  content: |
+  --- ./src/s3_driver.c.orig	2013-03-07 10:10:59.468190736 +0000
+  +++ ./src/s3_driver.c	2013-03-07 10:11:57.695325050 +0000
+  @@ -52,7 +52,6 @@
+   #include "compiler.h"
+   #include "mipointer.h"
+   #include "micmap.h"
+  -#include "mibstore.h"
+   #include "fb.h"
+   #include "inputstr.h"
+   #include "shadowfb.h"
+  @@ -822,7 +821,6 @@
+   	fbPictureInit (pScreen, 0, 0);
+   	S3DGAInit(pScreen);
+   
+  -        miInitializeBackingStore(pScreen);
+           xf86SetBackingStore(pScreen);
+   
+   	/* framebuffer manager setup */

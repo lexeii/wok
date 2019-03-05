@@ -1,0 +1,22 @@
+name      : xcmsdb
+version   : 1.0.5
+category  : x-window
+summary   : Device Color Characterization utility for X Color Management System
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: b1d09b1a9a4324fa86c85340ae47cc34743423a9
+
+bdeps: [util-macros, libx11-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: libx11
+  tags: Xorg

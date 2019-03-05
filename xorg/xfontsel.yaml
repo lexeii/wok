@@ -1,0 +1,22 @@
+name      : xfontsel
+version   : 1.0.6
+category  : x-window
+summary   : Point and click selection of X11 font names
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 3fd8d78cc270030b41298170c3e5222065dd1cfd
+
+bdeps: [util-macros, libxaw-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxaw, libxmu, libxt]
+  tags: Xorg
+  conf: /etc/X11/app-defaults/XFontSel

@@ -1,0 +1,24 @@
+name      : xf86-video-i740
+version   : 1.4.0
+category  : x-window
+summary   : Xorg driver for Intel i740 video cards
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/i740/
+repology  : xdrv:i740
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: acbbc042f18d796b39588516b6cbb03684d99cd6
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: [Xorg, display]

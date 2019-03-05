@@ -1,0 +1,25 @@
+name      : xf86-input-evdev
+version   : 2.10.6
+category  : x-window
+summary   : Generic Linux input driver
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7driver.html#xorg-evdev-driver
+repology  : xdrv:evdev
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 660de292d5a40e2b8f385965c6a4e149c981ba59
+
+bdeps: [util-macros, xorg-server-dev, xorgproto, eudev-dev, libevdev-dev,
+        mtdev-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [eudev, libevdev, mtdev]
+  tags: Xorg
+- pkg:  dev

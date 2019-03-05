@@ -1,0 +1,50 @@
+name      : xf86-video-ark
+version   : 0.7.5
+category  : x-window
+summary   : Xorg driver for ark video cards
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:ark
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 6abadee761f1a49b399361ecbcecef4e4a097c0d
+
+bdeps: [util-macros, xorg-server-dev]
+
+prepare:
+  patches:
+  - name: mibstore.patch # https://git.alpinelinux.org/cgit/aports/tree/main/xf86-video-ark
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: [Xorg, display]
+
+files:
+- name: mibstore.patch
+  content: |
+  --- ./src/ark_driver.c.orig	2013-03-07 10:16:06.584081552 +0000
+  +++ ./src/ark_driver.c	2013-03-07 10:16:23.270892075 +0000
+  @@ -39,7 +39,6 @@
+   #include "compiler.h"
+   #include "mipointer.h"
+   #include "micmap.h"
+  -#include "mibstore.h"
+   #include "fb.h"
+   #include "ark.h"
+   
+  @@ -538,7 +537,6 @@
+   
+   	fbPictureInit (pScreen, 0, 0);
+   
+  -	miInitializeBackingStore(pScreen);
+   	xf86SetBackingStore(pScreen);
+   
+   	if (!pARK->NoAccel) {

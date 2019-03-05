@@ -1,0 +1,22 @@
+name      : xf86-input-void
+version   : 1.4.1
+category  : x-window
+summary   : Dummy/null Xorg input driver
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:void
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 40c4e9aa7997ee24626aa0b8ecd9e7ac82a5fd63
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: Xorg

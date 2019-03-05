@@ -1,0 +1,27 @@
+name      : xf86-input-vmmouse
+version   : 13.1.0
+category  : x-window
+summary   : Xorg input driver for VMware Mouse
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7driver.html#xorg-vmmouse-driver
+repology  : xdrv:vmmouse
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: c00fbf985b22a86901fa905a8037005bca96d805
+
+bdeps: [util-macros, xorg-server-dev, eudev-dev]
+
+make:
+  type: gnu
+  args:
+  - --without-hal-fdi-dir
+  - --without-hal-callouts-dir
+  - --with-udev-rules-dir=/lib/udev/rules.d
+
+pkgs:
+- pkg:  main
+  deps: [xorg-server, eudev]
+  tags: Xorg

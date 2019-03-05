@@ -1,0 +1,22 @@
+name      : xf86-input-penmount
+version   : 1.5.0
+category  : x-window
+summary   : Xorg input driver for PenMount devices
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:penmount
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 39ed2dd2b22f8bf9366b187e4d7801a24c24cb31
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: Xorg

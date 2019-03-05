@@ -1,0 +1,25 @@
+name      : xf86-video-qxl
+version   : 0.1.5
+category  : x-window
+summary   : Xorg driver for QXL virtual GPU
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:qxl
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 150bbd8bf2218e33c30ca6e88422870ae08ff1af
+
+bdeps: [util-macros, xorg-server-dev, libxfont2-dev, xorgproto, eudev-dev,
+        spice-protocol]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: [xorg-server, eudev]
+  tags: [Xorg, display]

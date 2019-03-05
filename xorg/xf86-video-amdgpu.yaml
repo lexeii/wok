@@ -1,0 +1,25 @@
+name      : xf86-video-amdgpu
+version   : 18.1.0
+category  : x-window
+summary   : AMD Rx/HDxxxx video driver
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7driver.html#xorg-amdgpu-driver
+repology  : xdrv:amdgpu
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: d3097af7da3b56396721e214f348e7ceb5f3a358
+
+bdeps: [util-macros, xorg-server-dev, libdrm-dev, expat-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: [libdrm-amdgpu, mesa-libgbm]
+  tags: [Xorg, display]

@@ -1,0 +1,24 @@
+name      : xf86-video-suncg14
+version   : 1.1.2
+category  : x-window
+summary   : Xorg driver for Sun CG14 video cards
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:suncg14
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 8335f275f89ff0801313739f4c7f58a986198053
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: [Xorg, display]

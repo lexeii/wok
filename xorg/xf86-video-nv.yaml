@@ -1,0 +1,24 @@
+name      : xf86-video-nv
+version   : 2.1.21
+category  : x-window
+summary   : Xorg driver for NVIDIA video cards
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:nv
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 708cab4a59649fc0b9816ffda580a9b7e57236be
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: [Xorg, display]

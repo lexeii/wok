@@ -1,0 +1,21 @@
+name      : sessreg
+version   : 1.1.1
+category  : x-window
+summary   : Register X sessions in system utmp/utmpx databases
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 09437d9da0b88acde6ca67e231870899023cc3d2
+
+bdeps: [util-macros, xorgproto]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  tags: Xorg

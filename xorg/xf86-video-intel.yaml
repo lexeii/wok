@@ -1,0 +1,53 @@
+name      : xf86-video-intel
+version   : 2.99.917
+category  : x-window
+summary   : Xorg driver for Intel integrated graphics chipsets
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/intel/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7driver.html#xorg-intel-driver
+repology  : xdrv:intel
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 9af9ded7a29026c211e5eb50a547e3e33976301d
+
+bdeps: [util-macros, eudev-dev, libx11-dev, libxcomposite-dev, libxdamage-dev,
+        libxrender-dev, libxrandr-dev, cairo-dev, libxshmfence-dev,
+        libxxf86vm-dev, libdrm-dev, libxinerama-dev, libxcursor-dev,
+        libxtst-dev, libxscrnsaver-dev, xorg-server-dev, libxvmc-dev,
+        xcb-util-dev, libxfont2-dev, automake, libtool, git]
+
+prepare:
+  patches:
+  # https://git.alpinelinux.org/cgit/aports/tree/main/xf86-video-intel
+  - name: xf86-video-intel-git.patch
+  rules: autoreconf -vif
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+  args:
+  - --enable-kms-only
+  - --enable-uxa
+  - --enable-xvmc
+  - --disable-selective-werror
+  - --with-default-dri=3
+
+post:
+  rules: chmod o-x $install/usr/libexec/xf86-video-intel-backlight-helper
+
+pkgs:
+- pkg:  main
+  deps: [eudev, libdrm, libdrm-intel, libx11, libxscrnsaver, libxcursor,
+         libxdamage, libxext, libxfixes, libxinerama, libxrandr, libxrender,
+         libxtst, libxv, libxvmc, libxcb, libxshmfence, pixman, xcb-util]
+  tags: [Xorg, display]
+  overrides:
+  - file: /usr/libexec/xf86-video-intel-backlight-helper
+    mode: 4754
+
+files:
+- name: xf86-video-intel-git.patch
+  link: xf86-video-intel-git.patch

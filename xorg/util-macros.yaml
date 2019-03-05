@@ -1,0 +1,22 @@
+name      : util-macros
+version   : 1.19.2
+category  : development
+summary   : Autoconf macros used in X modular configure.ac files
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/util-macros.html
+target    : noarch
+
+src:
+- url:  xorg://util/<n>-<v>.tar.bz2
+  sha1: e8b3a6f2bfde22440fca0974da53da18821a4ee6
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  copy: @dev
+  deps: m4
+  tags: Xorg

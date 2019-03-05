@@ -1,0 +1,25 @@
+name      : xcb-util-keysyms
+version   : 0.4.0
+category  : x-window
+summary   : Utility libraries for XC Binding
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://xcb.freedesktop.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/xcb-util-keysyms.html
+
+src:
+- url:  xorg://xcb/<n>-<v>.tar.bz2
+  sha1: ff02ee8ac22c53848af50c0a6a6b00feb002c1cb
+
+bdeps: libxcb-dev
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: libxcb
+  tags: Xorg
+- pkg:  dev
+  deps: [main, libxcb-dev]

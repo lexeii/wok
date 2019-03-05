@@ -1,0 +1,23 @@
+name      : xf86-video-suntcx
+version   : 1.1.2
+category  : x-window
+summary   : Xorg driver for Sun TCX video cards
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:suntcx
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 6c86212b104647e239e24b33078406fa15fdbdba
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg: main
+  deps: xorg-server
+  tags: [Xorg, display]

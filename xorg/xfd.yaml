@@ -1,0 +1,22 @@
+name      : xfd
+version   : 1.1.2
+category  : x-window
+summary   : Display all the characters in an X font
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: cac5ca0f5fb6044840b15cf6fb9c541bd4fbce4a
+
+bdeps: [util-macros, libxaw-dev, fontconfig-dev, libxft-dev, libxrender-dev,
+        libxmu-dev, xorgproto, gettext-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [fontconfig, freetype, libx11, libxaw, libxft, libxmu, libxrender, libxt]
+  tags: Xorg

@@ -1,0 +1,25 @@
+name      : xfs
+version   : 1.2.0
+category  : x-window
+summary   : X Font Server
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 00848fcc2915ed8b00e75ac311c4727327324f57
+
+bdeps: [util-macros, font-util-dev, xorgproto, libxfont2-dev, xtrans]
+
+prepare:
+  rules: touch /root/missing /missing
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: libxfont2
+  conf: /etc/X11/fs/config
+  tags: Xorg

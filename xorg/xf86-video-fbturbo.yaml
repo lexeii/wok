@@ -1,0 +1,29 @@
+name      : xf86-video-fbturbo
+version   : 0.4.0.postgit20151006
+subversion: ['.+', 'f9a6ed7']
+category  : x-window
+summary   : Xorg DDX driver for ARM devices (Allwinner, RPi and others)
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://github.com/ssvb/xf86-video-fbturbo
+repology  : xdrv:fbturbo
+
+src:
+- url:  github://ssvb/xf86-video-fbturbo/<s>.tar.gz
+  file: <n>-<v>.tar.gz
+  sha1: 947fa3d5db6431ef281e1fa475618c1228b38c52
+
+bdeps: [util-macros, xorg-server-dev, automake, autoconf, libtool]
+
+prepare:
+  rules: autoreconf -vi
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: [Xorg, display]

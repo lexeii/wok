@@ -1,0 +1,27 @@
+name      : xf86-video-vmware
+version   : 13.3.0
+category  : x-window
+summary   : Xorg driver for VMware virtual video cards
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/vmware/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7driver.html#xorg-vmware-driver
+repology  : xdrv:vmware
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: f01335fe6bdb507e749571bfcd69163aed97312a
+
+bdeps: [util-macros, xorg-server-dev, libxrandr-dev, libxrender-dev,
+        libxinerama-dev, libxv-dev, xorgproto, libgcrypt-dev, expat-dev,
+        eudev-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: [eudev, libdrm, mesa-libxatracker]
+  tags: [Xorg, display]

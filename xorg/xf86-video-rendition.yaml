@@ -1,0 +1,24 @@
+name      : xf86-video-rendition
+version   : 4.2.7
+category  : x-window
+summary   : Xorg driver for Rendition/Micron based video cards
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:rendition
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 0330d69006c5cad96a5a5448d2bdf129d4c5c8fd
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: [Xorg, display]

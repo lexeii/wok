@@ -1,0 +1,22 @@
+name      : xf86-input-elographics
+version   : 1.4.1
+category  : x-window
+summary   : Xorg input driver for Elographics touchscreen devices
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:elographics
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 78455583a34ccd209edc1aba5538926df4faf47f
+
+bdeps: [xorg-server-dev, xorgproto]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: Xorg

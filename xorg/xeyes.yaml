@@ -1,0 +1,22 @@
+name      : xeyes
+version   : 1.1.2
+category  : x-window
+summary   : Follow the mouse/SHAPE extension X demo
+maintainer: pascal.bellard@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 458987f8accdbd8abf993ee51030391cf584d2e8
+
+bdeps: [util-macros, libx11-dev, libxt-dev, libxext-dev, libxmu-dev, 
+        libxrender-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxext, libxmu, libxrender, libxt]
+  tags: Xorg

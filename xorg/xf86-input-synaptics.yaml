@@ -1,0 +1,25 @@
+name      : xf86-input-synaptics
+version   : 1.9.1
+category  : x-window
+summary   : Xorg input driver for touchpads
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7driver.html#xorg-synaptics-driver
+repology  : xdrv:synaptics
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 07eeef716820105cae959bbc3aa103e2fcfd0084
+
+bdeps: [util-macros, xorg-server-dev, xorgproto, libevdev-dev, libxi-dev,
+        libxtst-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libevdev, libx11, libxi, libxtst]
+  tags: Xorg
+- pkg:  dev

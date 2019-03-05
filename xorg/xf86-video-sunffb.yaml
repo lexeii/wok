@@ -1,0 +1,24 @@
+name      : xf86-video-sunffb
+version   : 1.2.2
+category  : x-window
+summary   : Xorg driver for Sun Creator, Creator 3D and Elite 3D video cards
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:sunffb
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 6391d795b6bb1fa5f38c81e0a46fbc003c9a941e
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: [Xorg, display]

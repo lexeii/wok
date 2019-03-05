@@ -1,0 +1,23 @@
+name      : x11perf
+version   : 1.6.0
+category  : x-window
+summary   : Utility who runs one or more performance tests and reports
+maintainer: paul@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: de4960357e077fddd3d3a33f72f579981efc7fa4
+
+bdeps: [util-macros, libx11-dev, libxmu-dev, xorgproto, libxrender-dev,
+        libxft-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxext, libxft, libxmu, libxrender]
+  tags: Xorg

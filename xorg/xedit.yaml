@@ -1,0 +1,24 @@
+name      : xedit
+version   : 1.2.2
+category  : x-window
+summary   : Simple text editor for X
+maintainer: pascal.bellard@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: f37b5d0f8ec461955f0419dbb1890d8cf63d179d
+
+bdeps: [util-macros, libxaw-dev, libxmu-dev, libxt-dev, libx11-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxaw, libxmu, libxt]
+  tags: [Xorg, text-editor]
+  conf:
+  - /etc/X11/app-defaults/Xedit
+  - /etc/X11/app-defaults/Xedit-color

@@ -1,0 +1,25 @@
+name      : xcb-util-wm
+version   : 0.4.1
+category  : x-window
+summary   : Utility libraries for XC Binding - client and window-manager helpers for ICCCM
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://xcb.freedesktop.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/xcb-util-wm.html
+
+src:
+- url:  xorg://xcb/<n>-<v>.tar.bz2
+  sha1: 7006c52b961c123355320bfc30477cdf90c8bbb7
+
+bdeps: libxcb-dev
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: libxcb
+  tags: Xorg
+- pkg:  dev
+  deps: [main, libxcb-dev]

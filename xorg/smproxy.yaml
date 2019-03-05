@@ -1,0 +1,22 @@
+name      : smproxy
+version   : 1.0.6
+category  : x-window
+summary   : Session Manager Proxy
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: bbb374ad7e184af7bcada70b90df81f82b9b71ad
+
+bdeps: [util-macros, libsm-dev, libice-dev, libxt-dev, libxmu-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libice, libsm, libx11, libxmu, libxt]
+  tags: Xorg

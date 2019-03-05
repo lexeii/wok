@@ -1,0 +1,24 @@
+name      : xcalc
+version   : 1.0.6
+category  : x-window
+summary   : Scientific calculator for X
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 4f9e14b9ff91e3976b702bdad92f639df80cf406
+
+bdeps: [util-macros, libxaw-dev, libxt-dev, libx11-dev, xorgproto]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxaw, libxt]
+  tags: Xorg
+  conf:
+  - /etc/X11/app-defaults/XCalc
+  - /etc/X11/app-defaults/XCalc-color

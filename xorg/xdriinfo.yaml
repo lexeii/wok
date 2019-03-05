@@ -1,0 +1,23 @@
+name      : xdriinfo
+version   : 1.0.6
+category  : x-window
+summary   : Query configuration information of DRI drivers
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 11682ae1f04a311b832651d78bbf4c6ac77f0ed9
+
+bdeps: [util-macros, libx11-dev, xorgproto, mesa-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [mesa, libx11]
+  suggested: nvidia
+  tags: Xorg

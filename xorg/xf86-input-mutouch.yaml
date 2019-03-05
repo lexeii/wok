@@ -1,0 +1,22 @@
+name      : xf86-input-mutouch
+version   : 1.3.0
+category  : x-window
+summary   : Xorg input driver for Microtouch devices
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:mutouch
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 55702932f9ecef29bf9b096b9fdc45aa45614db5
+
+bdeps: xorg-server-dev
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: Xorg

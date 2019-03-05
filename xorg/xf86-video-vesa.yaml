@@ -1,0 +1,24 @@
+name      : xf86-video-vesa
+version   : 2.4.0
+category  : x-window
+summary   : Xorg driver for generic VESA video cards
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/vesa/
+repology  : xdrv:vesa
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 99b69044c34292ba062e365c07dcd024462e794b
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: xorg-server # We can use xorg-server-light with evdev and vesa driver.
+  tags: [Xorg, display]

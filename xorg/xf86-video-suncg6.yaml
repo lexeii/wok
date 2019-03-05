@@ -1,0 +1,24 @@
+name      : xf86-video-suncg6
+version   : 1.1.2
+category  : x-window
+summary   : Xorg driver for Sun GX and Turbo GX (also known as cgsix) video cards
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:suncg6
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: f23daaa1bffb9ebe168c6c6fc101743becf113ac
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: [Xorg, display]

@@ -1,0 +1,41 @@
+name      : xf86-video-nouveau
+version   : 1.0.15
+category  : x-window
+summary   : Xorg driver for NVIDIA video cards
+maintainer: devl547@gmail.com
+license   : GPL
+home      : https://nouveau.freedesktop.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7driver.html#xorg-nouveau-driver
+repology  : xdrv:nouveau
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: ed699a59ea509550f60019eef1e092ed0ccdea08
+
+bdeps: [util-macros, xorg-server-dev, libxrandr-dev, libxrender-dev, libxv-dev,
+        eudev-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+post:
+  file:
+  - from: nvidia.conf
+    to:   /etc/X11/xorg.conf.d/nvidia.conf
+    mode: 644
+
+pkgs:
+- pkg:  main
+  deps: [eudev, libdrm, libdrm-nouveau]
+  tags: [Xorg, display]
+
+files:
+- name: nvidia.conf
+  content: |
+  Section "Device"
+          Identifier "nvidia"
+          Driver "nouveau"
+          Option "AccelMethod" "glamor"
+  EndSection

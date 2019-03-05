@@ -1,0 +1,22 @@
+name      : xev
+version   : 1.2.2
+category  : x-window
+summary   : Print contents of X events
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: e737bc46c58b9bb10f0af9883dce203bbed708aa
+
+bdeps: [util-macros, libx11-dev, libxrandr-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxrandr]
+  tags: [Xorg, debug]

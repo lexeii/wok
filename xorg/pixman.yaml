@@ -1,0 +1,28 @@
+name      : pixman
+version   : 0.36.0
+category  : x-window
+summary   : Pixel-manipulation library for X and Cairo
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.cairographics.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/general/pixman.html
+
+src:
+- url:  xorg://lib/<n>-<v>.tar.bz2
+  sha1: 10d85590beee287a508a148297808a66d1ce11cd
+
+bdeps: libpng-dev
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  tags: Xorg
+  description: |
+  A library for manipulating pixel regions -- a set of Y-X banded rectangles,
+  image compositing using the Porter/Duff model and implicit mask generation
+  for geometric primitives including trapezoids, triangles, and rectangles.
+
+- pkg:  dev

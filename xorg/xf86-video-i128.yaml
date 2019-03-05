@@ -1,0 +1,24 @@
+name      : xf86-video-i128
+version   : 1.4.0
+category  : x-window
+summary   : Xorg driver for Number 9 I128 video cards
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:i128
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 56d5b897b2695222c13e59d2ade74620a99e1011
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: [Xorg, display]

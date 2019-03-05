@@ -1,0 +1,22 @@
+name      : xauth
+version   : 1.0.10
+category  : x-window
+summary   : X authority file utility
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 87946b2af3ff13705d8eb60adae5c0bcdf839967
+
+bdeps: libxmu-dev
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxau, libxext, libxmu]
+  tags: Xorg

@@ -1,0 +1,24 @@
+name      : xf86-video-openchrome
+version   : 0.6.0
+category  : x-window
+summary   : Xorg driver for VIA chipsets that have an integrated Unichrome graphics engine
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:openchrome
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 2077181ded4d86e9cbe6d3e9b1245339692e848d
+
+bdeps: [xorg-server-dev, libxvmc-dev, eudev-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: [xorg-server, eudev, libdrm, libx11, libxext, libxv, libxvmc]
+  tags: [Xorg, display]

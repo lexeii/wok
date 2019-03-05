@@ -1,0 +1,22 @@
+name      : xf86-input-acecad
+version   : 1.5.0
+category  : x-window
+summary   : Xorg input driver for Acecad Flair devices
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:acecad
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 410cee68e4435dc95774fb389fcefae1b2ffe3d1
+
+bdeps: [util-macros, xorg-server-dev, sysfsutils-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [sysfsutils, xorg-server]
+  tags: Xorg

@@ -1,0 +1,23 @@
+name      : xf86-video-sunleo
+version   : 1.2.2
+category  : x-window
+summary   : Xorg driver for Sun Leo (ZX) video cards
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:sunleo
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 9a24e61435b7f8ddc9f0ba69f503dfe849fd66b7
+
+bdeps: [util-macros, xorg-server-dev, libxfont2-dev]
+
+make:
+  type: gnu
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: [Xorg, display]

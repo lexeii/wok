@@ -1,0 +1,21 @@
+name      : showfont
+version   : 1.0.5
+category  : x-window
+summary   : Show information about X font from font server
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 203f4e655333723af7b2c47a85dfba8258f22ebc
+
+bdeps: [util-macros, libfs-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: libfs
+  tags: Xorg

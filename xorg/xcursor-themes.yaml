@@ -1,0 +1,26 @@
+name      : xcursor-themes
+version   : 1.0.5
+category  : x-window
+summary   : Standard set of X cursors
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/xcursor-themes.html
+target    : any
+
+src:
+- url:  xorg://data/<n>-<v>.tar.bz2
+  sha1: 6caae6cdb441003a42305f964c32bac21c34626f
+
+bdeps: [util-macros, xcursorgen, libxcursor-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  tags: Xorg
+  description: |
+  This is a default set of cursor themes for use with libXcursor, originally
+  created for the XFree86 Project, and now shipped as part of the X.Org software
+  distribution.

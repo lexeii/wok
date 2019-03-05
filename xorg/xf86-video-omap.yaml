@@ -1,0 +1,24 @@
+name      : xf86-video-omap
+version   : 0.4.5
+category  : x-window
+summary   : Xorg driver for OMAP SoCs
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:omap
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: b2bc385cc778f53396d61dcfecfb3ca4a608392e
+
+bdeps: [util-macros, xorg-server-dev, eudev-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: [xorg-server, libdrm, libdrm-omap]
+  tags: [Xorg, display]

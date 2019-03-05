@@ -1,0 +1,24 @@
+name      : xf86-video-neomagic
+version   : 1.2.9
+category  : x-window
+summary   : Xorg driver for the Neomagic graphics chipsets found in many laptop computers
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/neomagic/
+repology  : xdrv:neomagic
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 63762e9144926c0071f86a5a3c2bc88c02db5a4b
+
+bdeps: [util-macros, xorg-server-dev, xorgproto]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: [Xorg, display]

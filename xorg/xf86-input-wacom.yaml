@@ -1,0 +1,29 @@
+name      : xf86-input-wacom
+version   : 0.36.1
+category  : x-window
+summary   : X input driver for Wacom and Wacom-like tablets
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://linuxwacom.github.io/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7driver.html#xorg-wacom-driver
+repology  : xdrv:wacom
+
+src:
+- url:  github-rel://linuxwacom/<n>/<n>-<v>/<n>-<v>.tar.bz2
+  sha1: 51d1b198f86bf7609b0464ce34a93c90f1ef557c
+
+bdeps: [util-macros, xorg-server-dev, libxext-dev, xorgproto, libxi-dev,
+        libxrandr-dev, libxinerama-dev, eudev-dev]
+
+make:
+  type: gnu
+  args: --with-systemd-unit-dir=no
+
+pkgs:
+- pkg:  main
+  deps: [eudev, libx11, libxau, libxdmcp, libxext, libxi, libxinerama,
+         libxrandr, libxrender, libxcb]
+  tags: Xorg
+
+- pkg:  dev
+  deps: [main, xorg-server-dev]

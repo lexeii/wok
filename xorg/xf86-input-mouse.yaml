@@ -1,0 +1,24 @@
+name      : xf86-input-mouse
+version   : 1.9.3
+category  : x-window
+summary   : Xorg mouse input driver
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:mouse
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: b3982998808ba43117fc066c4ecc94ce67c5818e
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: xorg-server # implicit
+  tags: Xorg
+- pkg:  dev
+  deps: [main, xorg-server-dev] # implicit

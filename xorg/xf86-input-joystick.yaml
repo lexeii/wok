@@ -1,0 +1,24 @@
+name      : xf86-input-joystick
+version   : 1.6.3
+category  : x-window
+summary   : Xorg input driver for controlling the pointer with a joystick device
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:joystick
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: b8664249d50ed266556877e15e3782c40614459c
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: Xorg
+- pkg:  dev
+  deps: [main, xorg-server-dev]

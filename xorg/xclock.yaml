@@ -1,0 +1,26 @@
+name      : xclock
+version   : 1.0.7
+category  : x-window
+summary   : X clock
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/xclock.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 1b54b96e057469f90a00a9f1ca79ed056cbde271
+
+bdeps: [util-macros, libxaw-dev, libxmu-dev, libx11-dev, libxrender-dev,
+        libxft-dev, libxkbfile-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxaw, libxft, libxmu, libxrender, libxt, libxkbfile]
+  tags: Xorg
+  conf:
+  - /etc/X11/app-defaults/XClock
+  - /etc/X11/app-defaults/XClock-color

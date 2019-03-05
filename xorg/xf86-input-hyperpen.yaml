@@ -1,0 +1,22 @@
+name      : xf86-input-hyperpen
+version   : 1.4.1
+category  : x-window
+summary   : Xorg input driver for Aiptek HyperPen 6000
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:hyperpen
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 4a3555310e812dc895b7493b11f7377314c36a75
+
+bdeps: xorg-server-dev
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: Xorg

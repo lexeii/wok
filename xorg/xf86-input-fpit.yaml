@@ -1,0 +1,22 @@
+name      : xf86-input-fpit
+version   : 1.4.0
+category  : x-window
+summary   : Xorg input driver for Fujitsu Stylistic Tablet PCs
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:fpit
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 9305d30ae22d37c6b5bb975adc8ecda9b1d6c5e6
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: Xorg

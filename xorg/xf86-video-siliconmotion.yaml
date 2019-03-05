@@ -1,0 +1,24 @@
+name      : xf86-video-siliconmotion
+version   : 1.7.9
+category  : x-window
+summary   : Xorg driver for Silicon Motion based video cards
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:siliconmotion
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 8b694bf2b64a1c6808708ed8cb4b013493ea5ffa
+
+bdeps: xorg-server-dev
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: [Xorg, display]

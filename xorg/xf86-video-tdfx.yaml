@@ -1,0 +1,24 @@
+name      : xf86-video-tdfx
+version   : 1.4.7
+category  : x-window
+summary   : Xorg driver for 3Dfx video cards
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:tdfx
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 536e3136b85e44deab36be3bf24983453ac0422a
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg: main
+  deps: xorg-server
+  tags: [Xorg, display]

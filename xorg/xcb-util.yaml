@@ -1,0 +1,33 @@
+name      : xcb-util
+version   : 0.4.0
+category  : x-window
+summary   : XCB Utilites
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://xcb.freedesktop.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/xcb-util.html
+
+src:
+- url:  xorg://xcb/<n>-<v>.tar.bz2
+  sha1: 7f2e9b7efcc2c34eb1d6ae312c3d73b075832e46
+
+bdeps: [libxcb-dev, gperf]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: libxcb
+  tags: Xorg
+  description: |
+  The XCB util modules provides a number of libraries which sit on top of
+  libxcb, the core X protocol library, and some of the extension libraries.
+  These experimental libraries provide convenience functions and interfaces
+  which make the raw X protocol more usable. Some of the libraries also provide
+  client-side code which is not strictly part of the X protocol but which have
+  traditionally been provided by Xlib.
+
+- pkg:  dev
+  deps: [main, libxcb-dev]

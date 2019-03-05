@@ -1,0 +1,25 @@
+name      : xf86-video-geode
+version   : 2.11.19
+category  : x-window
+summary   : Xorg video driver for AMD Geode GX and LX video cards
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/GeodeDriver/
+repology  : xdrv:geode
+target    : i486
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: aaa8bc5be88f22b802c01cad813c259f02a46945
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: [Xorg, display]

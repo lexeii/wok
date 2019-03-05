@@ -1,0 +1,22 @@
+name      : xcursorgen
+version   : 1.0.7
+category  : x-window
+summary   : Create an X cursor file from PNG images
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 109367eb23b0ad52cf5de15f50c02ebe872698ae
+
+bdeps: [util-macros, libx11-dev, libxcursor-dev, libpng-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libpng, libx11, libxcursor]
+  tags: Xorg

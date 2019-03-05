@@ -1,0 +1,24 @@
+name      : xf86-video-sisusb
+version   : 0.9.7
+category  : x-window
+summary   : Xorg driver for SiS (Silicon Integrated Systems) video chips that are connected via a Net2280-based USB dongle
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:sisusb
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: b747632eca72ed685a160ad16481ace5404c7828
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: [Xorg, display]

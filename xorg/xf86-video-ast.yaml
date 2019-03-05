@@ -1,0 +1,24 @@
+name      : xf86-video-ast
+version   : 1.1.5
+category  : x-window
+summary   : Xorg driver for ASpeed Technologies video cards
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:ast
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 34a610e506079f32b240335520200457aa72d4c2
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: [Xorg, display]

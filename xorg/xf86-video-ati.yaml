@@ -1,0 +1,26 @@
+name      : xf86-video-ati
+version   : 18.1.0
+category  : x-window
+summary   : Xorg wrapper driver for ATI video cards
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/ati/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7driver.html#xorg-ati-driver
+repology  : xdrv:ati
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: 87beb7d09f5b722570adda9a5a1822cbd19e7059
+
+bdeps: [util-macros, xorg-server-dev, libxrandr-dev, libxrender-dev, libxv-dev,
+        libdrm-dev, eudev-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: [eudev, libdrm-radeon, libpciaccess]
+  tags: [Xorg, display]

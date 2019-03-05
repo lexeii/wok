@@ -1,0 +1,24 @@
+name      : xbitmaps
+version   : 1.1.2
+category  : development
+summary   : Standard set of X bitmaps
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/xbitmaps.html
+target    : noarch
+
+src:
+- url:  xorg://data/<n>-<v>.tar.bz2
+  sha1: 1cb0e485a66280e9a64b48426140b8a0de9cf169
+
+bdeps: util-macros
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  copy: @dev
+  deps: util-macros
+  tags: Xorg

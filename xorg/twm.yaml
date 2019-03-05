@@ -1,0 +1,26 @@
+name      : twm
+version   : 1.0.10
+category  : x-window
+summary   : Simple window manager
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://en.wikipedia.org/wiki/Twm
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/twm.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: f632a47620dfe6d75b003839d269b14fa22b262e
+
+bdeps: [util-macros, libx11-dev, libxext-dev, libxt-dev, libxmu-dev]
+
+prepare:
+  rules: sed -i '/^rcdir =/s,^\(rcdir = \).*,\1/etc/X11/app-defaults,' src/Makefile.in
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libice, libsm, libx11, libxext, libxmu, libxt]
+  conf: /etc/X11/app-defaults/system.twmrc
+  tags: Xorg

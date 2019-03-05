@@ -1,0 +1,24 @@
+name      : xf86-video-chips
+version   : 1.2.7
+category  : x-window
+summary   : Xorg driver for Chips and Technologies video processors
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+repology  : xdrv:chips
+
+src:
+- url:  xorg://driver/<n>-<v>.tar.bz2
+  sha1: ec0944c94b50a0b2078af6a025226e5f383422ce
+
+bdeps: [util-macros, xorg-server-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -Wl,-z,lazy
+
+pkgs:
+- pkg:  main
+  deps: xorg-server
+  tags: [Xorg, display]

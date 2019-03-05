@@ -1,0 +1,23 @@
+name      : rgb
+version   : 1.0.6
+category  : x-window
+summary   : X colorname to RGB mapping database
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 542fade81a74f8a6beaea8cb517bdf1033fc6b71
+
+bdeps: xorgproto
+
+prepare:
+  rules: touch /root/missing /missing
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  tags: Xorg

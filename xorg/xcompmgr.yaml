@@ -1,0 +1,75 @@
+name      : xcompmgr
+version   : 1.1.7
+category  : x-window
+summary   : X composite manager
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 5590d1bdd2669f083e4c2bb25edd89cce8abbd58
+
+bdeps: [util-macros, libxcomposite-dev, libxfixes-dev, libxdamage-dev,
+        libxrender-dev, libxext-dev]
+
+prepare:
+  patches:
+  - name: xcompmgr-46285.diff # bugs.freedesktop.org/show_bug.cgi?id=46285
+
+make:
+  type: gnu
+
+post:
+  file:
+  - from: xcompmgr.desktop
+    to  : /etc/xdg/autostart/xcompmgr.desktop
+    mode: 644
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxcomposite, libxdamage, libxext, libxfixes, libxrender]
+  tags: Xorg
+
+files:
+- name: xcompmgr-46285.diff
+  content: |
+  --- a/xcompmgr.c	2011-11-19 01:49:52.000000000 -0600
+  +++ b/xcompmgr.c	2012-08-11 21:58:58.000000000 -0500
+  @@ -1028,7 +1028,6 @@
+   	{
+   	    w->borderClip = XFixesCreateRegion (dpy, NULL, 0);
+   	    XFixesCopyRegion (dpy, w->borderClip, region);
+  -	    XFixesIntersectRegion(dpy, w->borderClip, w->borderClip, w->borderSize);
+   	}
+   	w->prev_trans = t;
+   	t = w;
+  @@ -1080,6 +1079,8 @@
+   	if (w->mode == WINDOW_TRANS)
+   	{
+   	    int	x, y, wid, hei;
+  +	    XFixesIntersectRegion(dpy, w->borderClip, w->borderClip, w->borderSize);
+  +	    XFixesSetPictureClipRegion(dpy, rootBuffer, 0, 0, w->borderClip);
+   #if HAS_NAME_WINDOW_PIXMAP
+   	    x = w->a.x;
+   	    y = w->a.y;
+  @@ -1099,6 +1100,8 @@
+   	else if (w->mode == WINDOW_ARGB)
+   	{
+   	    int	x, y, wid, hei;
+  +	    XFixesIntersectRegion(dpy, w->borderClip, w->borderClip, w->borderSize);
+  +	    XFixesSetPictureClipRegion(dpy, rootBuffer, 0, 0, w->borderClip);
+   #if HAS_NAME_WINDOW_PIXMAP
+   	    x = w->a.x;
+   	    y = w->a.y;
+
+- name: xcompmgr.desktop
+  content: |
+  [Desktop Entry]
+  Type=Application
+  Name=Desktop effects with Xcompmgr
+  Name[fr]=Effects de bureau avec Xcompmgr
+  Name[pt]=Efeitos do desktop com Xcompmgr
+  Name[pt_BR]=Efeitos do desktop com Xcompmgr
+  Exec=xcompmgr -c -r 10 -o 0.5
+  NotShowIn=LXDE;XFCE;Razor;
