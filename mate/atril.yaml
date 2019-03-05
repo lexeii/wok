@@ -1,0 +1,68 @@
+name      : atril
+version   : 1.20.2
+category  : office
+summary   : A document viewer for MATE
+maintainer: yuripourre@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/atril
+
+src:
+- url:  http://pub.mate-desktop.org/releases/<V>/<n>-<v>.tar.xz
+
+bdeps: [mate-common, yelp-tools-dev, gtk-doc, gtk3-dev, libsecret-dev, caja-dev,
+        gobject-introspection-dev, poppler-dev, libspectre-dev, tiff-dev,
+        djvulibre-dev, webkit2gtk-dev, itstool, libsm-dev]
+
+make:
+  type: gnu
+  args:
+  - --enable-pixbuf
+  - --enable-comix
+  - --disable-static
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg:  -caja
+  copy: caja/extensions-2.0/*.so
+  note: Caja extension
+  deps: [main, caja, glib, gtk3]
+
+- pkg:  -comics
+  copy: [comicsdocument.atril-backend, libcomicsdocument.so]
+  note: comix book backend
+  deps: [main, gdk-pixbuf, glib, gtk3]
+
+- pkg:  -djvu
+  copy: [djvudocument.atril-backend, libdjvudocument.so]
+  note: DjVu backend
+  deps: [main, libcairo, djvulibre, gdk-pixbuf, glib, gtk3]
+
+- pkg:  -epub
+  copy: [epubdocument.atril-backend, libepubdocument.so]
+  note: ePub backend
+  deps: main
+
+- pkg:  -pdf
+  copy: [pdfdocument.atril-backend, libpdfdocument.so]
+  note: PDF backend
+  deps: [main, libcairo, gdk-pixbuf, glib, gtk3, libxml2, pango, libpoppler]
+
+- pkg:  -psd
+  copy: [psdocument.atril-backend, libpsdocument.so]
+  note: PSD backend
+  deps: [main, libcairo, glib, libspectre]
+
+- pkg:  -tiff
+  copy: [tiffdocument.atril-backend, libtiffdocument.so]
+  note: TIFF backend
+  deps: [main, libcairo, gdk-pixbuf, glib, libtiff]
+
+- pkg:  main
+  deps: [atk, libcairo, gdk-pixbuf, glib, gtk3, libsecret, libxml2, pango,
+         libice, libsm, zlib]
+  tags: [MATE, PDF, DjVu]
+
+- pkg:  dev
+  deps: [-caja, -comics, -djvu, -epub, -pdf, -psd, -tiff, glib-dev, gtk3-dev]
