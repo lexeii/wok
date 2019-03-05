@@ -1,0 +1,59 @@
+name      : mate-common
+version   : 1.20.0
+category  : development
+summary   : Common scripts and macros to develop with MATE
+maintainer: yuripourre@gmail.com
+license   : GPL3
+home      : https://github.com/mate-desktop/mate-common
+
+src:
+- url:  https://github.com/mate-desktop/mate-common/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: automake
+
+prepare:
+  patches:
+  - name: fix-coloring.patch # for SliTaz cookutils
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  make &&
+  make install
+
+pkgs:
+- pkg:  main
+  copy: [@std, @dev]
+  deps: [automake, libtool, gettext-dev, intltool]
+  tags: MATE
+
+files:
+- name: fix-coloring.patch
+  content: |
+  Fix coloring - previously it made the logs broken and weird in the web interface
+  because bold-on and bold-off was on the diffelent lines of the log.
+
+  --- a/macros/mate-autogen
+  +++ b/macros/mate-autogen
+  @@ -49,16 +49,14 @@
+   
+   # some terminal codes ...
+   if tty 1>/dev/null 2>&1; then
+  -    boldface="`tput bold 2>/dev/null`"
+  -    normal="`tput sgr0 2>/dev/null`"
+  +    boldface=$'\e'[1m
+  +    normal=$'\e'[0m
+   else
+       boldface=
+       normal=
+   fi
+   printbold() {
+  -    echo $ECHO_N "$boldface" $ECHO_C
+  -    echo "$@"
+  -    echo $ECHO_N "$normal" $ECHO_C
+  +    printf "$boldface%s$normal\n" "$@"
+   }
+   printerr() {
+       echo "$@" >&2

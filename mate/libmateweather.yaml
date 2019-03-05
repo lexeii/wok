@@ -1,0 +1,45 @@
+name      : libmateweather
+version   : 1.20.1
+category  : x-window
+summary   : Library to access weather information from online services
+maintainer: yuripourre@gmail.com
+license   : LGPL2.1
+home      : https://github.com/mate-desktop/libmateweather
+
+src:
+- url:  https://github.com/mate-desktop/libmateweather/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, gtk-doc, gtk3-dev, libsoup-dev, tzdata]
+
+make:
+  rules: |
+  ./autogen.sh \
+    --enable-locations-compression \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+pkgs:
+- pkg:  -misc-icons
+  copy: [22x22/, 24x24/, 32x32/, scalable/]
+  cat:  customization
+  note: big icons
+  deps: main
+
+- pkg:  -misc-locales
+  copy: [Locations.*.xml.gz, @rm=Locations.de.xml.gz, @rm=Locations.es.xml.gz,
+         @rm=Locations.fr.xml.gz, @rm=Locations.pt_BR.xml.gz,
+         @rm=Locations.ru.xml.gz]
+  cat:  localization
+  note: different locales
+  deps: main
+
+- pkg:  main
+  deps: [gdk-pixbuf, glib, gtk3, libsoup, libxml2]
+  tags: MATE
+
+- pkg:  dev
+  deps: [main, -misc-icons, -misc-locales, gdk-pixbuf-dev, glib-dev, gtk3-dev,
+         libsoup-dev, libxml2-dev]

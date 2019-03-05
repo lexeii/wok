@@ -1,0 +1,30 @@
+name      : mate-terminal
+version   : 1.20.1
+category  : system-tools
+summary   : The MATE Terminal Emulator
+maintainer: yuripourre@gmail.com
+license   : GPL3
+home      : https://github.com/mate-desktop/mate-terminal
+
+src:
+- url:  https://github.com/mate-desktop/mate-terminal/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, yelp-tools-dev, vte-dev, gtk3-dev, dconf-dev, libx11-dev,
+        itstool, libsm-dev]
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg:  main
+  deps: [atk, dconf, gdk-pixbuf, glib, gtk3, pango, vte, libice, libsm, libx11]
+  tags: MATE

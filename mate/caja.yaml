@@ -1,0 +1,31 @@
+name      : caja
+version   : 1.20.2
+category  : utilities
+summary   : Caja, the file manager for the MATE desktop
+maintainer: yuripourre@gmail.com
+license   : GPL3
+home      : https://github.com/mate-desktop/caja
+
+src:
+- url:  http://pub.mate-desktop.org/releases/<V>/<n>-<v>.tar.xz
+
+bdeps: [mate-common, gtk-doc, gobject-introspection-dev, mate-desktop-dev,
+        pango-dev, gtk3-dev, libnotify-dev, libexif-dev, exempi-dev, libsm-dev]
+
+make:
+  type: gnu
+  args:
+  - --disable-packagekit
+  - --disable-update-mimedb
+  - --disable-icon-update
+
+pkgs:
+- pkg:  main
+  deps: [atk, libcairo, exempi, gdk-pixbuf, glib, gtk3, libexif, libnotify,
+         libxml2, mate-desktop, pango, libice, libsm, libx11,   
+         shared-mime-info]
+  suggested: gvfs-smb
+  tags: [MATE, file-manager]
+
+- pkg:  dev
+  deps: [main, glib-dev, gtk3-dev]

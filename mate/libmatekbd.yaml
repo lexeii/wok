@@ -1,0 +1,27 @@
+name      : libmatekbd
+version   : 1.20.2
+category  : libs
+summary   : Keyboard management library
+maintainer: yuripourre@gmail.com
+license   : LGPL2.1
+home      : https://github.com/mate-desktop/libmatekbd
+
+src:
+- url:  https://github.com/mate-desktop/libmatekbd/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, gobject-introspection-dev, gtk3-dev, libxklavier-dev]
+
+make:
+  rules: |
+  ./autogen.sh $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+pkgs:
+- pkg:  main
+  deps: [libcairo, gdk-pixbuf, glib, gtk3, libxklavier, pango, libx11]
+  tags: MATE
+- pkg:  dev
+  deps: [libmatekbd, glib-dev, gtk3-dev, libxklavier-dev]

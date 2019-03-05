@@ -1,0 +1,50 @@
+name      : python-caja
+version   : 1.20.1
+category  : python
+summary   : libcaja-extension python bindings
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/python-caja
+
+src:
+- url:  https://github.com/mate-desktop/python-caja/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [shared-mime-info, mate-common, gtk-doc, python-dev,
+        python-pygobject-dev, caja-dev]
+
+prepare:
+  patches:
+  - name: pc.patch
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+pkgs:
+- pkg:  main
+  deps: [caja, glib, gtk3, python]
+  tags: MATE
+- pkg:  dev
+
+files:
+- name: pc.patch
+  content: |
+  Placeholder "@libdir@" will be substituted by "${exec_prefix}/lib" after
+  caja-python.pc.in transformed into caja-python.pc, but ${exec_prefix} isn't
+  defined here, which leads to an error when parsing the pc file.
+
+  --- a/caja-python.pc.in
+  +++ b/caja-python.pc.in
+  @@ -3,6 +3,7 @@
+   Version: @VERSION@
+   
+   prefix=@prefix@
+  +exec_prefix=@exec_prefix@
+   datarootdir=@datarootdir@
+   libdir=@libdir@
+   pythondir=@datadir@/caja-python/extensions

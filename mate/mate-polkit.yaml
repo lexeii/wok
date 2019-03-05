@@ -1,0 +1,26 @@
+name      : mate-polkit
+version   : 1.20.1
+category  : security
+summary   : Authentication Agent for PolicyKit and MATE
+maintainer: yuripourre@gmail.com
+license   : GPL3
+home      : https://github.com/mate-desktop/mate-polkit
+
+src:
+- url:  http://pub.mate-desktop.org/releases/${VERSION%.*}/$TARBALL
+  file: <n>-<v>.tar.xz
+
+bdeps: [mate-common, gtk-doc, gtk3-dev, polkit-dev, gobject-introspection-dev]
+
+make:
+  rules: |
+  ./configure \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+pkgs:
+- pkg:  main
+  deps: [gdk-pixbuf, glib, gtk3, polkit]
+  tags: MATE

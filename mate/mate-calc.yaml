@@ -1,0 +1,25 @@
+name      : mate-calc
+version   : 1.20.2
+category  : x-window
+summary   : Calculator for MATE
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/mate-calc
+
+src:
+- url:  https://github.com/mate-desktop/mate-calc/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, yelp-tools-dev, gtk3-dev, itstool]
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  make &&
+  make install
+
+pkgs:
+- pkg:  main
+  deps: [atk, libcairo, gdk-pixbuf, glib, gtk3, libxml2, pango]
+  tags: MATE

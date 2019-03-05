@@ -1,0 +1,21 @@
+name      : caja-dropbox
+version   : 1.20.0
+category  : utilities
+summary   : Dropbox extension for Caja file manager
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://github.com/mate-desktop/caja-dropbox
+
+src:
+- url:  http://pub.mate-desktop.org/releases/<V>/<n>-<v>.tar.xz
+
+bdeps: [mate-common, caja-dev, python-pygtk-dev, python-docutils]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [caja, glib, gtk3]
+  tags: MATE
+- pkg:  dev

@@ -1,0 +1,53 @@
+name      : mate-icon-theme
+version   : 1.20.1
+category  : customization
+summary   : MATE default icon theme
+maintainer: yuripourre@gmail.com
+license   : LGPL3 CC-BY-SA-3
+home      : https://github.com/mate-desktop/mate-icon-theme
+
+src:
+- url:  https://github.com/mate-desktop/mate-icon-theme/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, icon-naming-utils]
+
+prepare:
+  patches:
+  - name: render-sizes.patch
+
+make:
+  rules: |
+  ./autogen.sh \
+    --enable-icon-mapping \
+    $CONFIGURE_ARGS &&
+  make &&
+  make install
+
+post:
+  rules: rm -r $install/usr/share/locale # remove empty folder structure
+
+pkgs:
+- pkg:  main
+  copy: mate/
+  tags: MATE
+
+- pkg:  -menta
+  copy: menta/
+  deps: main
+  note: Menta theme
+
+files:
+- name: render-sizes.patch
+  content: |
+  --- a/configure.ac
+  +++ b/configure.ac
+  @@ -25,7 +25,7 @@
+   AC_SUBST(SVGOUTDIR, "mate")
+   
+   # Icon sizes we want to install
+  -AC_SUBST([render_sizes], ["8x8 16x16 22x22 24x24 32x32 48x48 256x256"])
+  +AC_SUBST([render_sizes], ["8x8 16x16 22x22 24x24 48x48"])
+   
+   # Allow icon mapping to be disabled
+   AC_ARG_ENABLE([icon-mapping],

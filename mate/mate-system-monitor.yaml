@@ -1,0 +1,31 @@
+name      : mate-system-monitor
+version   : 1.20.1
+category  : utilities
+summary   : Process viewer and system resource monitor for MATE
+maintainer: yuripourre@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/mate-system-monitor
+
+src:
+- url:  https://github.com/mate-desktop/mate-system-monitor/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, yelp-tools-dev, libgtop-dev, libwnck3-dev, gtk3-dev,
+        gtkmm3-dev, librsvg-dev, glibmm-dev, glibmm-dev, itstool]
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg:  main
+  deps: [libcairo, gdk-pixbuf, glib, glibmm, gtk3, gtkmm3, libgiomm, libgtop,
+         librsvg, libsigc++, libwnck3, libxml2, pango]
+  tags: MATE

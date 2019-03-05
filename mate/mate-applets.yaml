@@ -1,0 +1,285 @@
+name      : mate-applets
+version   : 1.20.2
+category  : meta
+summary   : Applets for use with the MATE panel
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/mate-applets
+
+src:
+- url:  https://github.com/mate-desktop/mate-applets/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, yelp-tools-dev, libx11-dev, python-dev, gtk3-dev,
+        mate-panel-dev, libgtop-dev, libwnck3-dev, libnotify-dev, dbus-glib-dev,
+        polkit-dev, upower-dev, gucharmap3-dev, python-pygobject-dev, itstool,
+        libmateweather-dev, gtksourceview3-dev, wireless_tools-dev]
+        # + cpufrequtils-dev + libcpupower(absent)
+
+prepare:
+  patches:
+  - name: locales.patch
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg:  -accessx-status
+  copy: [accessx-status*, '*AccessxStatus*', '*accessx-status*/mate-*',
+         apps/mate-ax-applet.png]
+  deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
+         libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
+         util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
+         libxdmcp, libxext, libxrender, libxcb, pixman, zlib, libice, libsm]
+  cat:  x-window
+  note: Keyboard Accessibility Monitor
+
+- pkg:  -battstat
+  copy: ['*battstat*', '*Battstat*']
+  deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
+         libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
+         util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
+         libxdmcp, libxext, libxrender, libxcb, pixman, zlib, libnotify, upower]
+  cat:  x-window
+  note: Battery Charge Monitor
+
+- pkg:  -charpick
+  copy: ['*charpick*', '*Charpick*']
+  deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
+         libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
+         util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
+         libxdmcp, libxext, libxrender, libxcb, pixman, zlib, gucharmap3]
+  cat:  x-window
+  note: Character Palette
+
+- pkg:  -command
+  copy: ['*command*', '*Command*']
+  deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
+         libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
+         util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
+         libxdmcp, libxext, libxrender, libxcb, pixman, zlib]
+  cat:  x-window
+  note: Command Factory
+
+- pkg:  -cpufreq
+  copy: ['*cpufreq*', '*CPUFreq*', mate-cpu-frequency-*]
+  deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
+         libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
+         util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
+         libxdmcp, libxext, libxrender, libxcb, pixman, zlib, dbus, dbus-glib,
+         polkit]
+  cat:  x-window
+  note: CPU Frequency Scaling Monitor
+
+- pkg:  -drivemount
+  copy: ['*drivemount*', '*DriveMount*']
+  deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
+         libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
+         util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
+         libxdmcp, libxext, libxrender, libxcb, pixman, zlib]
+  cat:  x-window
+  note: Disk Mounter
+
+- pkg:  -geyes
+  copy: ['*geyes*', '*Geyes*', mate-eyes-applet.*]
+  deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
+         libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
+         util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
+         libxdmcp, libxext, libxrender, libxcb, pixman, zlib]
+  cat:  x-window
+  note: Geyes
+
+- pkg:  -multiload
+  copy: ['*multiload*', '*MultiLoad*']
+  deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
+         libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
+         util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
+         libxdmcp, libxext, libxrender, libxcb, pixman, zlib, libgtop]
+  cat:  x-window
+  note: System Monitor
+
+- pkg:  -netspeed
+  copy: ['*netspeed*', '*Netspeed*']
+  deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
+         libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
+         util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
+         libxdmcp, libxext, libxrender, libxcb, pixman, zlib, libgtop]
+  cat:  x-window
+  note: Netspeed Applet
+
+- pkg:  -stickynotes
+  copy: ['*stickynotes*', '*StickyNotes*', mate-sticky-notes-*]
+  deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
+         libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
+         util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
+         libxdmcp, libxext, libxrender, libxcb, pixman, zlib, gtksourceview3,
+         libwnck3, startup-notification, xcb-util]
+  cat:  x-window
+  note: Sticky Notes
+
+- pkg:  -timer
+  copy: ['*timer*', '*Timer*']
+  deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
+         libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
+         util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
+         libxdmcp, libxext, libxrender, libxcb, pixman, zlib, libnotify]
+  cat:  x-window
+  note: Sticky Notes
+
+- pkg:  -trash
+  copy: ['*trash*', '*Trash*']
+  deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
+         libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
+         util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
+         libxdmcp, libxext, libxrender, libxcb, pixman, zlib]
+  cat:  x-window
+  note: Panel Trash
+
+- pkg:  -weather
+  copy: ['*weather*', '*Weather*']
+  deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
+         libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
+         util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
+         libxdmcp, libxext, libxrender, libxcb, pixman, zlib, dbus, dbus-glib,
+         libmateweather, libnotify, libsoup, libsqlite3]
+  cat:  x-window
+  note: Panel Trash
+
+- pkg:  main
+  deps: [-accessx-status, -battstat, -charpick, -command, -cpufreq, -drivemount,
+         -geyes, -multiload, -netspeed, -stickynotes, -timer, -trash, -weather]
+  tags: MATE
+
+#  [ -d "$fs/usr/share/man" ] && rm -r $fs/usr/share/man
+
+files:
+- name: locales.patch
+  content: |
+  Remove locales that aren't used in SliTaz.
+
+  --- a/po/LINGUAS
+  +++ b/po/LINGUAS
+  @@ -1,115 +1,33 @@
+   # please keep this list sorted alphabetically
+   #
+  -af
+  -am
+   ar
+  -as
+  -ast
+  -az
+  -be
+  -bg
+  -bn_IN
+  -bn
+  -br
+  -bs
+   ca
+   ca@valencia
+  -cmn
+  -crh
+   cs
+  -cy
+   da
+   de
+  -dz
+   el
+  -en_AU
+  -en_CA
+  -en_GB
+  -eo
+   es
+  -es_AR
+  -es_CL
+  -es_CO
+  -es_CR
+  -es_DO
+  -es_EC
+  -es_ES
+  -es_MX
+  -es_NI
+  -es_PA
+  -es_PE
+  -es_PR
+  -es_SV
+  -es_UY
+  -es_VE
+  -et
+  -eu
+  -fa
+   fi
+   fr
+   fr_CA
+  -frp
+  -ga
+  -gl
+  -gu
+  -he
+  -hi
+   hr
+   hu
+  -hy
+   id
+   is
+   it
+   ja
+  -jv
+  -ka
+  -kk
+  -kn
+  -ko
+  -ku
+  -ku_IQ
+  -ky
+  -lt
+  -lv
+  -mai
+  -mg
+  -mk
+  -ml
+  -mn
+  -mr
+  -ms
+   nb
+  -ne
+   nl
+   nn
+  -oc
+  -or
+  -pa
+   pl
+  -ps
+   pt_BR
+   pt
+   ro
+   ru
+  -rw
+  -si
+  -sk
+   sl
+  -sq
+  -sr
+  -sr@latin
+   sv
+  -ta
+  -te
+  -th
+   tr
+  -ug
+   uk
+  -ur
+  -uz
+  -vi
+  -wa
+  -xh
+   zh_CN
+  -zh_HK
+   zh_TW

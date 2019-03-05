@@ -1,0 +1,30 @@
+name      : mate-user-share
+version   : 1.20.1
+category  : system-tools
+summary   : Easy to use user-level file sharing
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/mate-user-share
+
+src:
+- url:  https://github.com/mate-desktop/mate-user-share/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, yelp-tools-dev, itstool, libx11-dev, gtk3-dev,
+        dbus-glib-dev, libnotify-dev, libcanberra-dev, caja-dev]
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg:  main
+  deps: [caja, glib, gtk3, pango, libx11]
+  tags: MATE

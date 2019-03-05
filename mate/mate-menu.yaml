@@ -1,0 +1,22 @@
+name      : mate-menu
+version   : 18.04.3
+category  : x-window
+summary   : An Advanced Menu for the MATE Desktop
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://github.com/ubuntu-mate/mate-menu
+
+src:
+- url:  https://github.com/ubuntu-mate/mate-menu/archive/<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [python-distutils-extra, intltool, file]
+
+make:
+  rules: python -B setup.py install --root=$install
+
+pkgs:
+- pkg:  main
+  copy: [@std, '*.mo']
+  deps: python
+  tags: [MATE, Ubuntu, menu, GUI]

@@ -1,0 +1,40 @@
+origin    : mate-notification-daemon
+name      : mate-notification-daemon-gtk2
+version   : 1.14.1
+category  : x-window
+summary   : Fork of gnome-notification-daemon
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/mate-notification-daemon/
+repology  : mate-notification-daemon
+
+src:
+- url:  https://github.com/mate-desktop/<o>/archive/v<v>.tar.gz
+  file: <o>-<v>.tar.gz"
+
+bdeps: [autoconf, automake, libtool, gtk2-dev, dbus-dev, dbus-glib-dev,
+        libcanberra-dev, libwnck2-dev, libnotify-dev, intltool]
+
+prepare:
+  rules: |
+  sed -i '/^MATE_/d' configure.ac # build standalone without MATE
+  sed -i '/^OnlyShowIn/d' src/capplet/mate-notification-properties.desktop.in
+
+  mkdir macros; autoreconf -fi
+  intltoolize;  autoreconf
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  copy: [@std, @ico] # only 16 and 48 icons
+  deps: [atk, libcairo, dbus, dbus-glib, gdk-pixbuf, glib, gtk2,
+         libcanberra-gtk2, libnotify, libwnck2, libx11]
+  provide: notification-daemon
+  tags: MATE
+  description: |
+  mate-notification-daemon is a fork of gnome-notification-daemon.
+
+  mate-notification-properties is a utility to set up various options related to
+  desktop notifications.

@@ -1,0 +1,29 @@
+name      : caja-extensions
+version   : 1.20.1
+category  : utilities
+summary   : Set of extensions for Caja, the MATE file manager
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/caja-extensions
+
+src:
+- url:  https://github.com/mate-desktop/caja-extensions/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, gtk-doc, caja-dev, mate-desktop-dev, dbus-glib-dev,
+        glib-dev, gupnp-dev]
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+pkgs:
+- pkg:  main
+  deps: [caja, dbus-glib, gdk-pixbuf, glib, gtk3, gupnp, mate-desktop]
+  tags: MATE
+- pkg:  dev
+  deps: [main, glib-dev, gtk3-dev]

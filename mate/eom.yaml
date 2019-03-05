@@ -1,0 +1,37 @@
+name      : eom
+version   : 1.20.1
+category  : graphics
+summary   : An image viewer for MATE
+maintainer: yuripourre@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/eom
+
+src:
+- url:  https://github.com/mate-desktop/eom/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, yelp-tools-dev, gtk-doc, itstool,
+        gobject-introspection-dev, libexif-dev, lcms2-dev, exempi-dev,
+        libjpeg-turbo-dev, dbus-glib-dev, librsvg-dev, gtk3-dev,
+        mate-desktop-dev, gdk-pixbuf-dev, shared-mime-info-dev, libpeas-dev]
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg:  main
+  deps: [atk, libcairo, dbus-glib, exempi, gdk-pixbuf, glib,
+         gobject-introspection, gtk3, liblcms2, libexif, libjpeg-turbo, libpeas,
+         libpeas-gtk, librsvg, libxml2, mate-desktop, libx11, zlib]
+  tags: MATE
+
+- pkg:  dev
+  deps: [main, glib-dev, gtk3-dev]

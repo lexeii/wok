@@ -1,0 +1,28 @@
+name      : mate-netbook
+version   : 1.20.1
+category  : x-window
+summary   : A simple window management tool
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://github.com/mate-desktop/mate-netbook
+
+src:
+- url:  https://github.com/mate-desktop/mate-netbook/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, gtk3-dev, libwnck3-dev, libxtst-dev, libfakekey-dev,
+        mate-panel-dev]
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+pkgs:
+- pkg:  main
+  deps: [atk, libcairo, gdk-pixbuf, glib, gtk3, libfakekey, libwnck3,
+         mate-panel, pango, libx11]
+  tags: MATE

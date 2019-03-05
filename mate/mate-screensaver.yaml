@@ -1,0 +1,32 @@
+name      : mate-screensaver
+version   : 1.20.1
+category  : x-window
+summary   : MATE screen saver and locker
+maintainer: yuripourre@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/mate-screensaver
+
+src:
+- url:  https://github.com/mate-desktop/mate-screensaver/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, libx11-dev, libxscrnsaver-dev, gtk3-dev, dbus-glib-dev,
+        mate-desktop-dev, mate-menus-dev, xmlto, libxext-dev, mesa-dev,
+        libmatekbd-dev, libnotify-dev, expat-dev, libxshmfence-dev]
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+pkgs:
+- pkg:  main
+  deps: [libcairo, dbus, dbus-glib, gdk-pixbuf, glib, gtk3, libmatekbd,
+         libnotify, libxklavier, mate-desktop, mate-menus, mesa, pango, libx11,
+         libxscrnsaver, libxext, libxxf86vm]
+  tags: MATE
+
+- pkg:  dev

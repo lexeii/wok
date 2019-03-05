@@ -1,0 +1,50 @@
+# SliTaz package receipt v2.
+
+name      : mate-user-guide
+version   : 1.20.1
+category  : doc
+summary   : MATE Desktop User Guide
+maintainer: al.bobylev@gmail.com
+license   : FDL1.1
+home      : https://github.com/mate-desktop/mate-user-guide
+target    : noarch
+
+src:
+- url:  http://pub.mate-desktop.org/releases/<V>/<n>-<v>.tar.xz
+
+bdeps: [mate-common, yelp-tools, itstool, glib-dev, libxml2-tools]
+
+make:
+  type: gnu
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg:  main
+  copy: [@std, help/C/]
+  tags: MATE
+- pkg:  -de
+  copy: help/de/
+  note: German
+  deps: main
+- pkg:  -es
+  copy: help/es/
+  note: Spanish
+  deps: main
+- pkg:  -fr
+  copy: help/fr/
+  note: French
+  deps: main
+- pkg:  -it
+  copy: help/it/
+  note: Italian
+  deps: main
+- pkg:  -pt_BR
+  copy: help/pt_BR/
+  note: Brazilian Portuguese
+  deps: main
+- pkg:  -ru
+  copy: help/ru/
+  note: Russian
+  deps: main

@@ -1,0 +1,41 @@
+name      : pluma
+version   : 1.20.2
+category  : text
+summary   : A powerful text editor for MATE
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/pluma
+
+src:
+- url:  https://github.com/mate-desktop/pluma/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, yelp-tools-dev, gtk-doc, gobject-introspection-dev,
+        enchant-dev, iso-codes-dev, gtk3-dev, gtksourceview3-dev, libpeas-dev,
+        itstool, libsm-dev]
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg:  dev
+  deps: [main, -plugins, gtksourceview3-dev, libpeas-dev]
+
+- pkg:  -plugins
+  copy: [plugins/, @rm, @rm=*.la]
+  deps: [main, enchant, gdk-pixbuf, glib, gtk3, gtksourceview3, libpeas,
+         libpeas-gtk, libxml2, pango, python]
+  note: plugins
+
+- pkg:  main
+  deps: [atk, libcairo, gdk-pixbuf, glib, gobject-introspection, gtk3,
+         gtksourceview3, libpeas, libpeas-gtk, pango, libice, libsm, libx11]
+  tags: MATE

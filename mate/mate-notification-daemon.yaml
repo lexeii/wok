@@ -1,0 +1,32 @@
+name      : mate-notification-daemon
+version   : 1.20.1
+category  : x-window
+summary   : Daemon to display passive pop-up notifications
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/mate-notification-daemon
+
+src:
+- url:  https://github.com/mate-desktop/mate-notification-daemon/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, gtk3-dev, dbus-glib-dev, libcanberra-dev, libwnck3-dev,
+        libnotify-dev]
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+pkgs:
+- pkg:  main
+  copy: [@std, @ico] # only 16 and 48 icons
+  deps: [atk, libcairo, dbus, dbus-glib, gdk-pixbuf, glib, gtk3,
+         libcanberra-gtk3, libnotify, libwnck3, pango, libx11]
+  provide: gtk3:notification-daemon
+  tags: MATE
+
+- pkg:  dev

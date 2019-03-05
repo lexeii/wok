@@ -1,0 +1,30 @@
+name      : mate-sensors-applet
+version   : 1.20.2
+category  : x-window
+summary   : Display readings from hardware sensors in your MATE panel
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/mate-sensors-applet
+
+src:
+- url:  https://github.com/mate-desktop/mate-sensors-applet/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, yelp-tools-dev, gtk3-dev, mate-panel-dev, dbus-glib-dev,
+        libatasmart-dev, libnotify-dev, lm-sensors-dev, libxslt-dev, itstool]
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+pkgs:
+- pkg:  main
+  deps: [libcairo, dbus-glib, gdk-pixbuf, glib, gtk3, libatasmart, libnotify,
+         lm-sensors, mate-panel]
+  tags: MATE
+
+- pkg:  dev

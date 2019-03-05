@@ -1,0 +1,40 @@
+name      : mate-backgrounds
+version   : 1.20.0
+category  : meta
+summary   : Set of backgrounds packaged with the MATE desktop
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/mate-backgrounds
+
+src:
+- url:  https://github.com/mate-desktop/mate-backgrounds/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, glib-dev]
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  make &&
+  make install
+
+pkgs:
+- pkg:  main
+  deps: [-abstract, -desktop, -nature]
+  tags: MATE
+
+- pkg:  -abstract
+  copy: abstract/ mate-abstract.xml
+  cat:  customization
+  note: abstract backgrounds
+
+- pkg:  -desktop
+  copy: desktop/ mate-desktop.xml
+  cat:  customization
+  note: desktop backgrounds
+
+- pkg:  -nature
+  copy: nature/ mate-nature.xml
+  cat:  customization
+  note: nature backgrounds

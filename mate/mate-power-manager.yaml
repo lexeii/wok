@@ -1,0 +1,32 @@
+name      : mate-power-manager
+version   : 1.20.2
+category  : utilities
+summary   : Power management tool for the MATE desktop
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/mate-power-manager
+
+src:
+- url:  https://github.com/mate-desktop/mate-power-manager/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, yelp-tools-dev, itstool, libcanberra-dev, dbus-glib-dev,
+        libnotify-dev, upower-dev, libgnome-keyring3-dev, mate-panel-dev]
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg:  main
+  deps: [libcairo, dbus, dbus-glib, gdk-pixbuf, glib, gtk3, libcanberra,
+         libcanberra-gtk3, libgnome-keyring3, libnotify, mate-panel, pango,
+         upower, libx11, libxext, libxrandr]
+  tags: MATE

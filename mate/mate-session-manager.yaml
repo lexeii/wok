@@ -1,0 +1,29 @@
+name      : mate-session-manager
+version   : 1.20.1
+category  : system-tools
+summary   : MATE session manager
+maintainer: yuripourre@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/mate-session-manager
+
+src:
+- url:  https://github.com/mate-desktop/mate-session-manager/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, gtk3-dev, dbus-glib-dev, libxtst-dev, xmlto, libxslt-dev,
+        libwrap-dev, docbook-xsl, libsm-dev, xtrans]
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+pkgs:
+- pkg:  main
+  copy: [@std, @ico] # only 16 and 48 icons
+  deps: [libcairo, dbus, dbus-glib, gdk-pixbuf, glib, gtk3, libice, libsm,
+         libx11, libxau, libxext, libxrender, libxtst]
+  tags: MATE

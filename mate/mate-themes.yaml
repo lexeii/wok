@@ -1,0 +1,28 @@
+name      : mate-themes
+version   : 3.22.18
+category  : customization
+summary   : Official themes for the MATE desktop
+maintainer: yuripourre@gmail.com
+license   : LGPL2.1
+home      : https://github.com/mate-desktop/mate-themes
+
+src:
+- url:  https://github.com/mate-desktop/mate-themes/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, gtk2-dev]
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  make &&
+  make install
+
+post:
+  rules: rm -r $install/usr/share/locale/ # remove empty folder structure
+
+pkgs:
+- pkg:  main
+  suggested: [gtk2-engine-murrine, gtk3]
+  tags: MATE

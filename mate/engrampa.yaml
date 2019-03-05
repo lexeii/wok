@@ -1,0 +1,32 @@
+name      : engrampa
+version   : 1.20.1
+category  : utilities
+summary   : A file archiver for MATE
+maintainer: yuripourre@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/engrampa
+
+src:
+- url:  https://github.com/mate-desktop/engrampa/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, yelp-tools-dev, gtk3-dev, caja-dev, json-glib-dev, itstool,
+        libsm-dev]
+
+make:
+  rules: |
+  ./autogen.sh \
+    --disable-packagekit \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg:  main
+  deps: [libcairo, caja, gdk-pixbuf, glib, gtk3, json-glib, pango]
+  suggested: [unrar, unace, p7zip, zip]
+  tags: MATE

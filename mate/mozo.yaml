@@ -1,0 +1,25 @@
+name      : mozo
+version   : 1.20.1
+category  : x-window
+summary   : Menu editor for MATE using the freedesktop.org menu specification
+maintainer: yuripourre@gmail.com
+license   : GPL3
+home      : https://github.com/mate-desktop/mozo
+
+src:
+- url:  https://github.com/mate-desktop/mozo/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, mate-menus-dev, python-pygobject-dev]
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  make &&
+  make install
+
+pkgs:
+- pkg:  main
+  deps: [python,   mate-menus, gtk3-dev, python-pygobject]
+  tags: MATE

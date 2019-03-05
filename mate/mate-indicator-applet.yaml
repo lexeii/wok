@@ -1,0 +1,27 @@
+name      : mate-indicator-applet
+version   : 1.20.1
+category  : x-window
+summary   : Display information consistently in the panel
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://github.com/mate-desktop/mate-indicator-applet
+
+src:
+- url:  https://github.com/mate-desktop/mate-indicator-applet/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, gtk3-dev, libx11-dev, mate-panel-dev,
+        libindicator-gtk3-dev]
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+pkgs:
+- pkg:  main
+  deps: [atk, glib, gtk3, libindicator-gtk3, mate-panel, libx11]
+  tags: MATE

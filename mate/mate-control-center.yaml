@@ -1,0 +1,49 @@
+name      : mate-control-center
+version   : 1.20.3
+category  : system-tools
+summary   : Utilities to configure the MATE desktop
+maintainer: yuripourre@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/mate-control-center
+
+src:
+- url:  https://github.com/mate-desktop/mate-control-center/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, yelp-tools, itstool, libx11-dev, libxscrnsaver-dev,
+        libxext-dev, libcanberra-dev, libxxf86misc-dev, xorgproto, gtk3-dev,
+        mate-desktop-dev, mate-menus-dev, dbus-glib-dev, marco-dev, librsvg-dev,
+        mate-settings-daemon-dev, libappindicator-gtk3-dev, desktop-file-utils,
+        libxcursor-dev, libmatekbd-dev, libxklavier-dev]
+
+make:
+  rules: |
+  ./autogen.sh \
+    --disable-update-mimedb \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+post:
+  rules: rm $install/usr/share/applications/mimeinfo.cache
+
+pkgs:
+- pkg:  main
+  deps: [atk, libcairo, dbus-glib, dconf, fontconfig, freetype, gdk-pixbuf,
+         glib, gtk3, libappindicator-gtk3, libcanberra, libcanberra-gtk3,
+         libmatekbd, librsvg, libxklavier, libxml2, marco, mate-desktop,
+         mate-menus, pango, libx11, libxscrnsaver, libxcursor, libxi]
+  tags: MATE
+  description: |
+  mate-control-center is a graphical user interface to configure various aspects
+  of MATE.
+
+  When run without arguments, the shell displays the control center overview,
+  which shows all available configuration panels. The overview allows one to
+  open individual panels by clicking on them. It also has a search entry to find
+  panels by searching keywords.
+
+- pkg:  dev
+  deps: [main, glib-dev, gtk3-dev, librsvg-dev, mate-desktop-dev,
+         mate-menus-dev]

@@ -1,0 +1,36 @@
+name      : mate-menus
+version   : 1.20.1
+category  : x-window
+summary   : Library for the Desktop Menu freedesktop.org specification
+maintainer: yuripourre@gmail.com
+license   : GPL2
+home      : https://github.com/mate-desktop/mate-menus
+
+src:
+- url:  https://github.com/mate-desktop/mate-menus/archive/v<v>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [mate-common, gobject-introspection-dev, python-dev]
+
+make:
+  rules: |
+  ./autogen.sh \
+    --enable-python \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
+
+pkgs:
+- pkg:  -python
+  copy: [python*/*.so, '*.py']
+  deps: [glib, mate-menus, python]
+  cat:  python
+  note: Python bindings
+  tags: MATE
+
+- pkg:  main
+  deps: glib
+
+- pkg:  dev
+  deps: [main, -python, glib-dev]
