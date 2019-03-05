@@ -1,0 +1,25 @@
+name      : libxkbfile
+version   : 1.0.9
+category  : x-window
+summary   : XKB file handling routines
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<n>-<v>.tar.bz2
+  sha1: d708d3415212febbc67d4d996d02d7e3218e13ad
+
+bdeps: [libx11-dev, libxcb-dev, libxau-dev, libxdmcp-dev]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: libx11
+  tags: Xorg
+- pkg:  dev
+  deps: [main, xorgproto, libx11-dev]

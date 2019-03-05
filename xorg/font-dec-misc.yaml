@@ -1,0 +1,25 @@
+name      : font-dec-misc
+version   : 1.0.3
+category  : x-window
+summary   : DEC misc bitmap sets - cursor, session
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+target    : noarch
+
+src:
+- url:  xorg://font/<n>-<v>.tar.bz2
+  sha1: a748d35b8b0241abd3e1d85f80da318b529a74d0
+
+bdeps: [util-macros, font-util-dev, mkfontdir, bdftopcf]
+
+#cookopts: !gz # too long
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  tags: [Xorg, font]
+  post_install: chroot "$1/" fc-cache -r /usr/share/fonts/X11/misc
+  post_remove:  chroot "$1/" fc-cache -r

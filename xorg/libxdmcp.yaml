@@ -1,0 +1,25 @@
+origin    : libXdmcp
+name      : libxdmcp
+version   : 1.1.2
+category  : x-window
+summary   : X Display Manager Control Protocol routines
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/libXdmcp.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 3c09eabb0617c275b5ab09fae021d279a4832cac
+
+bdeps: xorgproto
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  tags: Xorg
+- pkg:  dev
+  deps: [main, xorgproto]

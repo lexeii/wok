@@ -1,0 +1,26 @@
+origin    : libSM
+name      : libsm
+version   : 1.2.3
+category  : x-window
+summary   : Session Management library
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 437d7b13fa2eba325df3a106f177df46ccec6546
+
+bdeps: [libice-dev, xtrans, util-linux-uuid-dev]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: [util-linux-uuid, libice]
+  tags: Xorg
+- pkg:  dev
+  deps: [main, libice-dev, xorgproto]

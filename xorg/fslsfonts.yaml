@@ -1,0 +1,21 @@
+name      : fslsfonts
+version   : 1.0.5
+category  : x-window
+summary   : List fonts served by X font server
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 0a0d37c65a8cdd3aff22d633b5ed164e864929d4
+
+bdeps: [util-macros, xorgproto, libfs-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: libfs
+  tags: Xorg

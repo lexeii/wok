@@ -1,0 +1,26 @@
+origin    : libXext
+name      : libxext
+version   : 1.3.3
+category  : x-window
+summary   : Common X Extensions library
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 43abab84101159563e68d9923353cc0b3af44f07
+
+bdeps: [libx11-dev, xorgproto]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: libx11
+  tags: Xorg
+- pkg:  dev
+  deps: [main, libx11-dev, xorgproto]

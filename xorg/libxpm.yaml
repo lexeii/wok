@@ -1,0 +1,33 @@
+origin    : libXpm
+name      : libxpm
+version   : 3.5.12
+category  : x-window
+summary   : XPM format pixmap library
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 4e22fefe61714209539b08051b5287bcd9ecfd04
+
+bdeps: [libxt-dev, libxext-dev, libsm-dev, util-linux-uuid-dev, gettext-dev]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  copy: '*.so*'
+  deps: libx11
+  tags: Xorg
+
+- pkg:  -util
+  copy: bin/
+  deps: [main, libx11, libxext, libxt]
+  note: utilities
+
+- pkg:  dev
+  deps: [main, -util, libx11-dev]

@@ -1,0 +1,27 @@
+name      : font-bh-100dpi
+version   : 1.0.3
+category  : x-window
+summary   : Bigelow & Holmes bitmap fonts Lucida and LucidaBright (100 DPI)
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+target    : noarch
+repology  : fonts:bh-100dpi
+
+src:
+- url:  xorg://font/<n>-<v>.tar.bz2
+  sha1: 47d5e50be9e78695017650a088da52bfcf1eeb40
+
+bdeps: [util-macros, font-util-dev, mkfontdir, bdftopcf]
+
+#cookopts: !gz # too long
+
+make:
+  type: gnu
+  args: --disable-all-encodings
+
+pkgs:
+- pkg:  main
+  tags: [Xorg, font]
+  post_install: chroot "$1/" fc-cache -r /usr/share/fonts/X11/100dpi
+  post_remove:  chroot "$1/" fc-cache -r

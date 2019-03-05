@@ -1,0 +1,24 @@
+origin    : libXaw3d
+name      : libxaw3d
+version   : 1.6.2
+category  : x-window
+summary   : Xorg server module
+maintainer: pascal.bellard@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 0b1db72e9d5be0edae57cda213860c0289fac12f
+
+bdeps: [libxmu-dev, util-linux-uuid-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxext, libxmu, libxt]
+  tags: Xorg
+- pkg:  dev
+  deps: [main, libx11-dev, libxext-dev, libxmu-dev, libxt-dev, xorgproto]

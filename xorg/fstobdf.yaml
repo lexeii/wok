@@ -1,0 +1,21 @@
+name      : fstobdf
+version   : 1.0.6
+category  : x-window
+summary   : Generate BDF font from X font server
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: aeafc2cd82092168d0bc4b94c5a27d7e070598fd
+
+bdeps: [util-macros, xorgproto, libx11-dev, libfs-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libfs, libx11]
+  tags: Xorg

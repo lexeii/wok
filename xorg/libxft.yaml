@@ -1,0 +1,26 @@
+origin    : libXft
+name      : libxft
+version   : 2.3.2
+category  : x-window
+summary   : Client side font rendering library
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: e025d790a7b6c4d283a78d8df06615cb10278e2d
+
+bdeps: [libxrender-dev, freetype-dev, fontconfig-dev, libxml2-dev]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: [fontconfig, freetype, libx11, libxrender]
+  tags: Xorg
+- pkg:  dev
+  deps: [main, fontconfig-dev, freetype-dev, libxrender-dev, xorgproto]

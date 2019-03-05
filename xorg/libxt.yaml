@@ -1,0 +1,28 @@
+origin    : libXt
+name      : libxt
+version   : 1.1.5
+category  : x-window
+summary   : X Toolkit Intrinsics library
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: c79e2c4f7de5259a2ade458817a139b66a043d59
+
+bdeps: [libsm-dev, libx11-dev, glib-dev, util-linux-uuid-dev]
+
+make:
+  type: gnu
+  args:
+  - --disable-static
+  - --with-appdefaultdir=/etc/X11/app-defaults
+
+pkgs:
+- pkg:  main
+  deps: [libice, libsm, libx11]
+  tags: Xorg
+- pkg:  dev
+  deps: [main, libice-dev, libsm-dev, libx11-dev, xorgproto]

@@ -1,0 +1,26 @@
+origin    : libXp
+name      : libxp
+version   : 1.0.3
+category  : development
+summary   : Allow client applications to render to non-display devices
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 9e10371ca8961b50c2d69150a88fc031455699d1
+
+bdeps: [util-macros, libx11-dev, libxext-dev, libxau-dev, xorgproto]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: [libxcb, libx11, libxau, libxdmcp, libxext]
+  tags: Xorg
+- pkg:  dev
+  deps: [main, libxcb-dev, libx11-dev, libxau-dev, libxdmcp-dev, libxext-dev,
+         xorgproto]

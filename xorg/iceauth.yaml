@@ -1,0 +1,22 @@
+name      : iceauth
+version   : 1.0.8
+category  : x-window
+summary   : ICE authority file utility
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 2ce23c40a17d98badeb8ce70d26e81a5ac0e178c
+
+bdeps: libice-dev
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: libice
+  tags: Xorg

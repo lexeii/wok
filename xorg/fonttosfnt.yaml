@@ -1,0 +1,21 @@
+name      : fonttosfnt
+version   : 1.0.5
+category  : x-window
+summary   : Wrap a bitmap font in a sfnt (TrueType) wrapper
+maintainer: pascal.bellard@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: acc1c8e47ba0fdc872442bf4fb087074b40ae618
+
+bdeps: [xorgproto, freetype-dev, libfontenc-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [freetype, libfontenc]
+  tags: Xorg

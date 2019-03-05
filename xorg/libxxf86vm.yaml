@@ -1,0 +1,26 @@
+origin    : libXxf86vm
+name      : libxxf86vm
+version   : 1.1.4
+category  : x-window
+summary   : XFree86-VidMode extension library
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 78ef18ca2be157131899e01c62679e247409a13f
+
+bdeps: [libx11-dev, libxext-dev, xorgproto]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxext]
+  tags: Xorg
+- pkg:  dev
+  deps: [main, libx11-dev, libxext-dev, xorgproto]

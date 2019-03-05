@@ -1,0 +1,23 @@
+name      : oclock
+version   : 1.0.4
+category  : x-window
+summary   : Round X clock
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 0bc8f3f44290950f60af894e20e0ceb0c5e8e862
+
+bdeps: [util-macros, libx11-dev, libxmu-dev, libxext-dev, libxt-dev,
+        libxkbfile-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxext, libxmu, libxt, libxkbfile]
+  tags: Xorg
+  conf: /etc/X11/app-defaults/Clock-color

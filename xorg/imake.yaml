@@ -1,0 +1,21 @@
+name      : imake
+version   : 1.0.7
+category  : x-window
+summary   : X imake utility
+maintainer: pascal.bellard@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://util/<n>-<v>.tar.bz2
+  sha1: 52e236776133f217d438622034b8603d201a6ec5
+
+bdeps: [util-macros, perl, xorgproto]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: xorg-cf-files
+  tags: Xorg

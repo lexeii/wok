@@ -1,0 +1,28 @@
+name      : font-adobe-75dpi
+version   : 1.0.3
+category  : x-window
+summary   : Adobe bitmap fonts Courier, Helvetica, New Century Schoolbook, Symbol, Times (75 DPI)
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7legacy.html
+target    : noarch
+repology  : fonts:adobe-75dpi
+
+src:
+- url:  xorg://font/<n>-<v>.tar.bz2
+  sha1: 6a2ec569336b5646682a14eee3c7790274beffd1
+
+bdeps: [util-macros, font-util-dev, mkfontdir, bdftopcf]
+
+#cookopts: !gz # too long
+
+make:
+  type: gnu
+  args: --disable-all-encodings
+
+pkgs:
+- pkg:  main
+  tags: [Xorg, font]
+  post_install: chroot "$1/" fc-cache -r /usr/share/fonts/X11/75dpi/
+  post_remove:  chroot "$1/" fc-cache -r

@@ -1,0 +1,26 @@
+origin    : libXfont2
+name      : libxfont2
+version   : 2.0.3
+category  : x-window
+summary   : X font2 handling library for server & utilities
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 1110f1ad4061d9e8131ecb941757480e3e32bca0
+
+bdeps: [util-macros, freetype-dev, xtrans, xorgproto, libfontenc-dev]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: [freetype, libfontenc, zlib]
+  tags: Xorg
+- pkg:  dev
+  deps: [main, freetype-dev, xorgproto, libfontenc-dev, zlib-dev]

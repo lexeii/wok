@@ -1,0 +1,35 @@
+name      : font-misc-misc
+version   : 1.1.2
+category  : x-window
+summary   : Misc bitmap fixed fonts
+maintainer: al.bobylev@gmail.com
+license   : PublicDomain
+home      : https://www.x.org/wiki/
+target    : noarch
+
+src:
+- url:  xorg://font/<n>-<v>.tar.bz2
+  sha1: c6d28c56880807963175cbbd682fb6f75a35f77d
+
+bdeps: [util-macros, font-util-dev, mkfontdir, bdftopcf]
+
+#cookopts: !gz # too long
+
+make:
+  type: gnu
+  args: --disable-all-encodings
+
+pkgs:
+- pkg:  -base
+  copy: 6x13.pcf.gz
+  note: minimal set
+  deps: ""
+  post_install: chroot "$1/" fc-cache -r /usr/share/fonts/X11/misc
+  post_remove:  chroot "$1/" fc-cache -r
+  provide: xorg-base-fonts
+
+- pkg:  main
+  deps: -base
+  tags: [Xorg, font]
+  post_install: chroot "$1/" fc-cache -r /usr/share/fonts/X11/misc
+  post_remove:  chroot "$1/" fc-cache -r

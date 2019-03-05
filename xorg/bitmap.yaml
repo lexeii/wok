@@ -1,0 +1,26 @@
+name      : bitmap
+version   : 1.0.8
+category  : x-window
+summary   : XBM format bitmap editor and converter utilities
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 84fc49daa5411677d05a134ee2f7e76301fa89d8
+
+bdeps: [util-macros, libx11-dev, libxmu-dev, xorgproto, xbitmaps, libxaw-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  copy: [@std, @dev]
+  deps: [libx11, libxaw, libxmu, libxt]
+  conf:
+  - /etc/X11/app-defaults/Bitmap
+  - /etc/X11/app-defaults/Bitmap-color
+  - /etc/X11/app-defaults/Bitmap-nocase
+  tags: Xorg

@@ -1,0 +1,26 @@
+origin    : libXi
+name      : libxi
+version   : 1.7.9
+category  : x-window
+summary   : X Input Extension library
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 70d1148c39c0eaa7d7c18370f20709383271f669
+
+bdeps: [libxext-dev, libxfixes-dev, xorgproto]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxext]
+  tags: Xorg
+- pkg: dev
+  deps: [main, xorgproto, libx11-dev, libxext-dev, libxfixes-dev]

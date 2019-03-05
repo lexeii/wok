@@ -1,0 +1,24 @@
+name      : font-bh-ttf
+version   : 1.0.3
+category  : x-window
+summary   : Bigelow & Holmes Luxi TTF fonts
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7font.html
+target    : noarch
+
+src:
+- url:  xorg://font/<n>-<v>.tar.bz2
+  sha1: f42ebd527096011040a312e0f9cdf78d64177419
+
+bdeps: [util-macros, font-util-dev, mkfontdir, fontconfig-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  tags: [Xorg, font]
+  post_install: chroot "$1/" fc-cache -r /usr/share/fonts/X11/TTF
+  post_remove:  chroot "$1/" fc-cache -r

@@ -1,0 +1,25 @@
+origin    : libXfontcache
+name      : libxfontcache
+version   : 1.0.5
+category  : x-window
+summary   : X-TrueType font cache extension client library
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 9e9bfee1a143cbe9486830d53f8f9cc0a91be472
+
+bdeps: [gfortran, libx11-dev, libxext-dev, xorgproto]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxext]
+  tags: Xorg
+- pkg:  dev
+  deps: [main, xorgproto, libx11-dev, libxext-dev]

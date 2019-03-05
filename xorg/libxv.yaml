@@ -1,0 +1,26 @@
+origin    : libXv
+name      : libxv
+version   : 1.0.11
+category  : x-window
+summary   : Xvideo extension library
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: d79f9c56faedd682f420fa68bb9d7ff755b84579
+
+bdeps: [libxext-dev, xorgproto]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxext]
+  tags: Xorg
+- pkg:  dev
+  deps: [main, libx11-dev, libxext-dev, xorgproto]

@@ -1,0 +1,26 @@
+origin    : libXrandr
+name      : libxrandr
+version   : 1.5.1
+category  : x-window
+summary   : Xrandr extension library
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/libraries/libxrandr/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 7232fe2648b96fed531208c3ad2ba0be61990041
+
+bdeps: [xorgproto, libxext-dev, libxrender-dev]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxext, libxrender]
+  tags: Xorg
+- pkg:  dev
+  deps: [main, libx11-dev, libxext-dev, libxrender-dev, xorgproto]

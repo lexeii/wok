@@ -1,0 +1,21 @@
+name      : libpciaccess
+version   : 0.14
+category  : x-window
+summary   : Xorg server module
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<n>-<v>.tar.bz2
+  sha1: f70a958bf4e744cb4ee93be64e9bc52ac05cdaeb
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  tags: Xorg
+- pkg:  dev

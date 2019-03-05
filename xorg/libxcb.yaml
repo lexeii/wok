@@ -1,0 +1,39 @@
+name      : libxcb
+version   : 1.13.1
+category  : x-window
+summary   : A C binding to the X11 protocol
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://xcb.freedesktop.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/libxcb.html
+
+src:
+- url:  xorg://xcb/<n>-<v>.tar.bz2
+  sha1: 2ab17a1bb2a44e0a9cb0b26bcf899689ba1bbb3b
+
+bdeps: [libxslt-dev, xcb-proto, libxau-dev, libxdmcp-dev]
+
+prepare:
+  rules: sed -i 's|pthread-stubs||' configure
+
+make:
+  type: gnu
+  args:
+  - --disable-static
+  - --enable-xinput
+  - --enable-xprint
+
+post:
+  rules: chown -R 0:0 $install
+
+pkgs:
+- pkg:  main
+  deps: [libxau, libxdmcp]
+  tags: Xorg
+  description: |
+  The X protocol C-language Binding (XCB) is a replacement for Xlib featuring
+  a small footprint, latency hiding, direct access to the protocol, improved
+  threading support, and extensibility.
+
+- pkg:  dev
+  deps: [main, libxau-dev, libxdmcp-dev]

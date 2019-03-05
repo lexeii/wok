@@ -1,0 +1,26 @@
+origin    : libXmu
+name      : libxmu
+version   : 1.1.2
+category  : x-window
+summary   : X miscellaneous utility routines
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 7e6aeef726743d21aa272c424e7d7996e92599eb
+
+bdeps: [libxext-dev, libxt-dev, util-linux-uuid-dev]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxext, libxt]
+  tags: Xorg
+- pkg:  dev
+  deps: [main, libx11-dev, libxext-dev, libxt-dev, xorgproto]

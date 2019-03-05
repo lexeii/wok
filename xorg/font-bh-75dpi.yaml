@@ -1,0 +1,27 @@
+name      : font-bh-75dpi
+version   : 1.0.3
+category  : x-window
+summary   : Bigelow & Holmes bitmap fonts Lucida and LucidaBright (75 DPI)
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+target    : noarch
+repology  : fonts:bh-75dpi
+
+src:
+- url:  xorg://font/<n>-<v>.tar.bz2
+  sha1: 7290567d42a0f5adb6a3ad170524bb7ed59871d7
+
+bdeps: [util-macros, font-util-dev, mkfontdir, bdftopcf]
+
+#cookopts: !gz # too long
+
+make:
+  type: gnu
+  args: --disable-all-encodings
+
+pkgs:
+- pkg:  main
+  tags: [Xorg, font]
+  post_install: chroot "$1/" fc-cache -r /usr/share/fonts/X11/75dpi
+  post_remove:  chroot "$1/" fc-cache -r

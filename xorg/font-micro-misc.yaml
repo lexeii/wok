@@ -1,0 +1,24 @@
+name      : font-micro-misc
+version   : 1.0.3
+category  : x-window
+summary   : Micro bitmap font
+maintainer: al.bobylev@gmail.com
+license   : PublicDomain
+home      : https://www.x.org/wiki/
+target    : noarch
+repology  : fonts:micro-misc
+
+src:
+- url:  xorg://font/<n>-<v>.tar.bz2
+  sha1: db3e912d41bda20f60b520c19e65bd7134ee1224
+
+bdeps: [util-macros, font-util-dev, mkfontdir, bdftopcf]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  tags: [Xorg, font]
+  post_install: chroot "$1/" fc-cache -r /usr/share/fonts/X11/misc
+  post_remove:  chroot "$1/" fc-cache -r

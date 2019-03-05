@@ -1,0 +1,25 @@
+origin    : libXxf86misc
+name      : libxxf86misc
+version   : 1.0.4
+category  : x-window
+summary   : XFree86-MISC extension library
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 2676f1b0df7ca3ed1e01a0a51420c27c25737d02
+
+bdeps: [util-macros, libx11-dev, xorgproto, libxext-dev]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxext]
+  tags: Xorg
+- pkg:  dev
+  deps: [main, libx11-dev, libxext-dev, xorgproto]

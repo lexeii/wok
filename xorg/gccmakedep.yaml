@@ -1,0 +1,22 @@
+name      : gccmakedep
+version   : 1.0.3
+category  : x-window
+summary   : X gccmakedep utility
+maintainer: pascal.bellard@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://util/<n>-<v>.tar.bz2
+  sha1: 03018e2fb9d7df4fec1623cedb1c090bc224f971
+
+#cookopts: force-arch # different gccmakedep
+
+bdeps: util-macros
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  tags: Xorg

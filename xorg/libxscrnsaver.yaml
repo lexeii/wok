@@ -1,0 +1,26 @@
+origin    : libXScrnSaver
+name      : libxscrnsaver
+version   : 1.2.3
+category  : x-window
+summary   : MIT-SCREEN-SAVER extension
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 70c791c5755a298ecf1a0823e239a24fa4b2b42f
+
+bdeps: [libxext-dev, xorgproto]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxext]
+  tags: Xorg
+- pkg:  dev
+  deps: [main, libx11-dev, libxext-dev, xorgproto]

@@ -1,0 +1,26 @@
+origin    : libXres
+name      : libxres
+version   : 1.2.0
+category  : x-window
+summary   : X Resource extension
+maintainer: pascal.bellard@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: b6996ab05460a3b7311f02da23ddf117a5442fd9
+
+bdeps: [libx11-dev, libxext-dev, xorgproto]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxext]
+  tags: Xorg
+- pkg:  dev
+  deps: [main, libx11-dev, libxext-dev, xorgproto]

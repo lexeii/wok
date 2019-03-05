@@ -1,0 +1,23 @@
+name      : evieext
+version   : 1.1.1
+category  : development
+summary   : XEvIE extension header files
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+target    : noarch
+
+src:
+- url:  xorg://proto/<n>-<v>.tar.bz2
+  sha1: 86d9545273b07961f0d5ba65c6c408371e10c0d2
+
+bdeps: util-macros
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  copy: @dev
+  deps: util-macros
+  tags: Xorg

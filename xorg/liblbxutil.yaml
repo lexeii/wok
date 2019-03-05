@@ -1,0 +1,24 @@
+name      : liblbxutil
+version   : 1.1.0
+category  : x-window
+summary   : LBX utility routines
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://lib/<n>-<v>.tar.bz2
+  sha1: 99616bab0ca0afeaa9c0a19222091b1ff4f18680
+
+bdeps: [gfortran, xorgproto, zlib-dev]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: zlib
+  tags: Xorg
+- pkg:  dev
+  deps: [main, zlib-dev]

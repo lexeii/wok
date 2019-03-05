@@ -1,0 +1,25 @@
+name      : font-ibm-type1
+version   : 1.0.3
+category  : x-window
+summary   : IBM Courier Type1 font
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7font.html
+target    : noarch
+repology  : fonts:ibm-type1
+
+src:
+- url:  xorg://font/<n>-<v>.tar.bz2
+  sha1: bfc7d0a3aa0f96bf61ea26d6b3f5afbbdd0f35f6
+
+bdeps: [util-macros, font-util-dev, mkfontdir]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  tags: [Xorg, font]
+  post_install: chroot "$1/" fc-cache -r /usr/share/fonts/X11/Type1
+  post_remove:  chroot "$1/" fc-cache -r

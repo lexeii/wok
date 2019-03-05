@@ -1,0 +1,24 @@
+name      : libfontenc
+version   : 1.1.3
+category  : x-window
+summary   : Font encoding library
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<n>-<v>.tar.bz2
+  sha1: 312116f5156d6a8a2404c59560b60d53ddf1a09f
+
+bdeps: [zlib-dev, xorgproto, font-util-dev]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: zlib
+  tags: Xorg
+- pkg:  dev

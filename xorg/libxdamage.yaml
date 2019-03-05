@@ -1,0 +1,26 @@
+origin    : libXdamage
+name      : libxdamage
+version   : 1.1.4
+category  : x-window
+summary   : Damage extension
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: c3fc0f4b02dce2239bf46c82a5f06b06585720ae
+
+bdeps: [xorgproto, libxfixes-dev]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: libx11
+  tags: Xorg
+- pkg:  dev
+  deps: [main, xorgproto, libx11-dev, libxfixes-dev]

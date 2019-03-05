@@ -1,0 +1,33 @@
+origin    : libX11
+name      : libx11
+version   : 1.6.7
+category  : x-window
+summary   : X11 Client library
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 5076f7853713d7db958a05f6fd1c18f7e111a0ad
+
+bdeps: [xtrans, libxcb-dev, xorgproto, libxau-dev, libxdmcp-dev, perl]
+
+make:
+  type: gnu
+  args: --disable-static
+
+post:
+  # strip whitespace - reduce size
+  rules: find $install -name Compose -exec sed -i 's|\t| |g; s|  *| |g; /^$/d' '{}' \+
+
+pkgs:
+- pkg:  main
+  copy: ["*.so*", XErrorDB, Xcms.txt, compose.dir, locale.alias, locale.dir,
+         C/, en_US.UTF-8/] # split -> locale-* packages
+  deps: libxcb
+  tags: Xorg
+
+- pkg:  dev
+  deps: [main, xorgproto, libxcb-dev]

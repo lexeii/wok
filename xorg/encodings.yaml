@@ -1,0 +1,22 @@
+name      : encodings
+version   : 1.0.4
+category  : x-window
+summary   : The XFree86/Xorg encoding files
+maintainer: al.bobylev@gmail.com
+license   : PublicDomain
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7font.html
+target    : noarch
+
+src:
+- url:  xorg://font/<n>-<v>.tar.bz2
+  sha1: 24ace2470403f85a0d393769204029bd8247992a
+
+bdeps: [util-macros, mkfontscale, font-util-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  tags: Xorg

@@ -1,0 +1,25 @@
+origin    : libFS
+name      : libfs
+version   : 1.0.7
+category  : x-window
+summary   : X Font Service client library
+maintainer: pascal.bellard@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 6af3035d9cbca31562e42a1060f6ce7b86a5d1d3
+
+bdeps: [xorgproto, xtrans]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  tags: Xorg
+- pkg:  dev
+  deps: [main, xorgproto]

@@ -1,0 +1,23 @@
+name      : mkfontdir
+version   : 1.0.7
+category  : x-window
+summary   : Create an index of X font files in a directory
+maintainer: pascal.bellard@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+target    : noarch
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 3c06dad8a5fbf7362b51fb7d6b1ab805eba40336
+
+bdeps: util-macros
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: mkfontscale
+  tags: [Xorg, fonts]

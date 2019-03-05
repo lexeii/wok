@@ -1,0 +1,26 @@
+origin    : libXcomposite
+name      : libxcomposite
+version   : 0.4.4
+category  : x-window
+summary   : Composite Extension
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 75fd0b996e56e12db1d84e9b63549c5c3f2631ca
+
+bdeps: [xorgproto, libxfixes-dev]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: libx11
+  tags: Xorg
+- pkg:  dev
+  deps: [main, xorgproto, libx11-dev, libxfixes-dev]

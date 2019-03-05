@@ -1,0 +1,23 @@
+name      : font-alias
+version   : 1.0.3
+category  : x-window
+summary   : X font aliases
+maintainer: al.bobylev@gmail.com
+license   : other
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7font.html
+target    : noarch
+
+src:
+- url:  xorg://font/<n>-<v>.tar.bz2
+  sha1: 96b0aa38f88a54ef32ab85d3eef6f29b0437f70d
+
+bdeps: [util-macros, font-util-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  tags: Xorg
+  provide: xorg-font-alias

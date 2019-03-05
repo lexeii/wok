@@ -1,0 +1,30 @@
+origin    : libICE
+name      : libice
+version   : 1.0.9
+category  : x-window
+summary   : Inter-Client Exchange library
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 3c3a857a117ce48a1947a16860056e77cd494fdf
+
+bdeps: [xorgproto, xtrans]
+
+prepare:
+  rules: touch /root/missing /missing
+
+make:
+  type: gnu
+  args:
+  - --disable-static
+  - ICE_LIBS=-lpthread # fixes a change in glibc which breaks pulseaudio at runtime
+
+pkgs:
+- pkg:  main
+  tags: Xorg
+- pkg:  dev
+  deps: [main, xorgproto]

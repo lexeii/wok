@@ -1,0 +1,47 @@
+name      : font-misc-meltho
+version   : 1.0.3
+category  : x-window
+summary   : Syriac fonts (OTF)
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+target    : noarch
+
+src:
+- url:  xorg://font/<n>-<v>.tar.bz2
+  sha1: f0693ea8fbc1d43177014155a0ecd2516348b51b
+
+bdeps: [util-macros, font-util-dev, mkfontdir]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  tags: [Xorg, font]
+  post_install: chroot "$1/" fc-cache -r /usr/share/fonts/X11/OTF
+  post_remove:  chroot "$1/" fc-cache -r
+  description: |
+  These fonts are designed for the display of Syriac text. They come from Beth
+  Mardutho: The Syriac Institute and are covered by a license which permits
+  redistribution but prohibits modification.
+
+  The package contains the following font families:
+
+    * East Syriac Adiabene
+    * East Syriac Ctesiphon
+    * Estrangelo Antioch
+    * Estrangelo Edessa
+    * Estrangelo Midyat
+    * Estrangelo Nisibin
+    * Estrangelo Nisibin Outline
+    * Estrangelo Quenneshrin
+    * Estrangelo Talada
+    * Estrangelo TurAbdin
+    * Serto Batnan
+    * Serto Jerusalem
+    * Serto Jerusalem Outline
+    * Serto Kharput
+    * Serto Malankara
+    * Serto Mardin
+    * Serto Urhoy

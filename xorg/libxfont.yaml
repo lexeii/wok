@@ -1,0 +1,25 @@
+origin    : libXfont
+name      : libxfont
+version   : 1.5.4
+category  : x-window
+summary   : X font handling library for server & utilities
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 9db050f63b9c4cb19e0dbb40575558ccb95719ca
+
+bdeps: [bzip2-dev, freetype-dev, zlib-dev, xtrans, xorgproto, libfontenc-dev]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: [freetype, libfontenc, zlib]
+  tags: Xorg
+- pkg:  dev
+  deps: [main, freetype-dev, xorgproto, libfontenc-dev, zlib-dev]

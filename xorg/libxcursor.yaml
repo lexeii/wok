@@ -1,0 +1,26 @@
+origin    : libXcursor
+name      : libxcursor
+version   : 1.1.15
+category  : x-window
+summary   : Cursor extension
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+
+src:
+- url:  xorg://lib/<o>-<v>.tar.bz2
+  sha1: 3e19f991f244b7fa31566adce7ead078424296cf
+
+bdeps: [libxrender-dev, libxfixes-dev]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxfixes, libxrender]
+  tags: Xorg
+- pkg:  dev
+  deps: [main, libx11-dev, libxfixes-dev, libxrender-dev, xorgproto]
