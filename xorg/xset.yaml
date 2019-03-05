@@ -1,0 +1,100 @@
+name      : xset
+version   : 1.2.4
+category  : x-window
+summary   : User preference utility for X
+maintainer: paul@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 41a857f30ff5bb0dfbda1549bb703984344ea228
+
+bdeps: [util-macros, xorgproto, libxmu-dev, libxxf86misc-dev, libxfontcache-dev]
+
+prepare:
+  rules: touch /root/missing /missing
+
+make:
+  type: gnu
+
+post:
+  desktop:
+  - from: xset.desktop
+  cmd:
+  - from: xset-screensaver.sh
+  rules: chown -R 0:0 $install
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxext, libxfontcache, libxmu, libxxf86misc]
+  tags: Xorg
+  suggested: yad
+
+files:
+- name: xset.desktop
+  content: |
+  [Desktop Entry]
+  Type=Application
+  Name=Set screensaver timeout
+  Comment=0(always on), Default settings: 10 min (600 sec)
+  Name[fr]=Règle l'économiseur d'écran
+  Comment[fr]=0(écran toujours allumé), Par défaut 10 min (600 s)
+  Name[ru]=Время отключения монитора
+  Comment[ru]=0(не выключать), По умолчанию: 10 мин.(600 ceк.)
+  Icon=preferences-desktop-screensaver
+  Exec=xset-screensaver.sh
+  Categories=GTK;Settings;HardwareSettings;
+
+- name: xset-screensaver.sh
+  content: |
+  #!/bin/sh
+  #
+  [ -z $(which yad) ] && exec yad && exit 0
+
+  case $(id -u) in
+  	0) path=/etc/xdg ;;
+  	*) path=${XDG_CONFIG_HOME:-$HOME/.config}
+  		[ -f "$path/autostart" ] && mv $path/autostart $path/autostart.bak
+  		[ -d "$path/autostart" ] || mkdir -p $path/autostart ;;
+  esac
+
+  AutostartFile="$path/autostart/xset-screensaver.desktop"
+  launcher='/usr/share/applications/xorg-xset.desktop' # Must be same as package name
+
+  exec_d()
+  {
+  	cmd=$(cat $AutostartFile | grep Exec | sed 's/Exec=//') ; $cmd
+  }
+
+  [ -f $AutostartFile ] && exec_d
+
+  case $LC_ALL in
+  	C|POSIX|en*) lang='=' ;;
+  	*) lang='\['${LC_ALL%_*}
+  	grep -q '\['${LC_ALL%_*} $launcher || lang='=' ;;
+  esac
+
+
+
+  val=$(yad --title="$(cat $launcher | grep Name$lang | cut -d'=' -f2)" \
+  	--scale --max-value=18000 --mark="1h.":3600 --buttons-layout=spread \
+  	--mark="$(cat $launcher | grep Comment$lang | cut -d'=' -f2 | cut -d',' -f1)":0 \
+  	--mark="120min.(2h.)":7200 --mark="180min.(3h.)":10800 \
+  	--mark="240min.(4h.)":14400 --mark="300min.(5h.)":18000 \
+  	--page=1800 --step=60 --geometry=630x42+10+100 \
+  	--value=$(xset q | grep timeout | cut -d' ' -f5) \
+  	--window-icon="preferences-desktop-screensaver" )
+
+  [ -z $val ] || cat > $AutostartFile <<EOT
+  [Desktop Entry]
+  Type=Application
+  Name=xset screensaver timeout
+  Exec=xset dpms $val $val $val s $val $val
+  EOT
+
+  exec_d
+
+  # Notes: 'xset s' max val is 32767, 'xset dpms' limit is unknown
+  exit 0

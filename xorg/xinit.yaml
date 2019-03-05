@@ -1,0 +1,62 @@
+name      : xinit
+version   : 1.4.0
+category  : x-window
+summary   : X Window System initializer (includes startx)
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/xinit.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: fcdca692b09a45f546016fff78718d1cf7e7852f
+
+bdeps: [util-macros, libxmu-dev]
+
+prepare:
+  patches:
+  - name: 06_move_serverauthfile_into_tmp.diff
+  rules: "sed -i '/$serverargs $vtarg/ s/serverargs/: #&/' startx.cpp"
+
+make:
+  type: gnu
+  args: --with-xinitdir=/etc/X11/app-defaults
+
+post:
+  file:
+  - from: xserverrc
+    to  : /etc/X11/app-defaults/xserverrc
+    mode: 644
+
+pkgs:
+- pkg:  main
+  deps: [libx11,   openssl, xauth]
+  tags: Xorg
+
+files:
+- name: 06_move_serverauthfile_into_tmp.diff
+  content: |
+  Move startx auth files in /tmp so they are removed on reboot.
+  http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=357736
+  The trap patch didn't seem to work on reboot.
+  ---
+   startx.cpp |    2 +-
+   1 file changed, 1 insertion(+), 1 deletion(-)
+
+  Index: xinit/startx.cpp
+  ===================================================================
+  --- xinit.orig/startx.cpp
+  +++ xinit/startx.cpp
+  @@ -273,7 +273,7 @@
+       dummy=0
+   
+       XCOMM create a file with auth information for the server. ':0' is a dummy.
+  -    xserverauthfile=$HOME/.serverauth.$$
+  +    xserverauthfile=`mktemp -p /tmp serverauth.XXXXXXXXXX`
+       trap "rm -f '$xserverauthfile'" HUP INT QUIT ILL TRAP KILL BUS TERM
+       xauth -q -f "$xserverauthfile" << EOF
+   add :$dummy . $mcookie
+
+- name: xserverrc
+  content: |
+  exec /usr/bin/X -nolisten tcp +bs

@@ -1,0 +1,40 @@
+name      : xload
+version   : 1.1.3
+category  : x-window
+summary   : System load average display for X
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: fd5053d38551883309863c2a43de2ceffa908a50
+
+bdeps: [util-macros, libxaw-dev, gettext-dev]
+
+prepare:
+  rules: touch /root/missing /missing
+
+make:
+  type: gnu
+
+post:
+  desktop:
+  - from: xload.desktop
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxaw, libxmu, libxt]
+  tags: Xorg
+  conf: /etc/X11/app-defaults/XLoad
+
+files:
+- file: xload.desktop
+  content: |
+  [Desktop Entry]
+  Type=Application
+  Name=Xload Monitor
+  Name[fr]=Moniteur Xload
+  Exec=xload -nolabel -bg black -fg lightblue -hl orange
+  Icon=applications-other
+  Categories=System;

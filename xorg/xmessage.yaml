@@ -1,0 +1,25 @@
+name      : xmessage
+version   : 1.0.5
+category  : x-window
+summary   : Display a message or query in a window
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: d3eca72c7173d0d9547c676a16bcec51ca1213a2
+
+bdeps: [util-macros, libxaw-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxaw, libxt]
+  tags: Xorg
+  conf:
+  - /etc/X11/app-defaults/Xmessage
+  - /etc/X11/app-defaults/Xmessage-color

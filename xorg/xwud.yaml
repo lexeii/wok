@@ -1,0 +1,22 @@
+name      : xwud
+version   : 1.0.5
+category  : x-window
+summary   : Display an X window dump from xwd
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: a85d84a1b81f8e667ea6ac126d447590c93eb079
+
+bdeps: [util-macros, libx11-dev, xorgproto]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: libx11
+  tags: Xorg

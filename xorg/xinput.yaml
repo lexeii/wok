@@ -1,0 +1,23 @@
+name      : xinput
+version   : 1.6.2
+category  : x-window
+summary   : Utility to configure and test X input devices
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 68367ae6cb4753eeb5fd209afe033d7c4a817748
+
+bdeps: [util-macros, libx11-dev, libxext-dev, libxi-dev, xorgproto, 
+        libxrandr-dev, libxinerama-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxi, libxinerama, libxrandr]
+  tags: Xorg

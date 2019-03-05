@@ -1,0 +1,22 @@
+name      : xhost
+version   : 1.0.7
+category  : x-window
+summary   : Server access control program for X
+maintainer: pascal.bellard@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 8abfb0554e14a074f0dbfdda4919880e088545cb
+
+bdeps: [util-macros, xorgproto, libx11-dev, libxmu-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxmu]
+  tags: Xorg

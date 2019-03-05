@@ -1,0 +1,30 @@
+name      : xorgproto
+version   : 2018.4
+category  : x-window
+summary   : X.Org combined protocol headers
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://github.com/freedesktop/xorg-xorgproto
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/xorgproto.html
+target    : noarch
+
+src:
+- url:  github://freedesktop/xorg-xorgproto/<n>-<v>.tar.gz
+  sha1: f0870dfbaa9cccac5d0acbf61ea76196b20b5ad8
+
+bdeps: [meson, ninja]
+
+make:
+  type: meson
+  args:
+  - --datadir=/usr/lib
+  - -Dlegacy=true # will install these additional .pc's:
+    # evieproto, fontcacheproto, lg3dproto, printproto, xcalibrateproto, xf86rushproto
+
+post:
+  docs: ['../[^m]*.txt', ../PM_spec]
+
+pkgs:
+- pkg:  main
+  copy: @dev
+  tags: Xorg

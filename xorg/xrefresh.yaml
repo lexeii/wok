@@ -1,0 +1,22 @@
+name      : xrefresh
+version   : 1.0.6
+category  : x-window
+summary   : Refresh all or part of an X screen
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 11eb5b3f905631281d2cedd86a0b666bab0d9bdc
+
+bdeps: [util-macros, libx11-dev, xorgproto]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: libx11
+  tags: Xorg

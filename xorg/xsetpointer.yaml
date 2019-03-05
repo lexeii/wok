@@ -1,0 +1,21 @@
+name      : xsetpointer
+version   : 1.0.1
+category  : x-window
+summary   : Set an X Input device as the main pointer
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: a8b01c6f27625a6f6943f9be17b1e5511f69d710
+
+bdeps: [libxi-dev, libx11-dev, xorgproto]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxi]
+  tags: Xorg

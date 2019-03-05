@@ -1,0 +1,24 @@
+name      : xfsinfo
+version   : 1.0.5
+category  : x-window
+summary   : X font server information utility
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 7513e16ba5c8fef31aeaff4a42bf131859e75ee0
+
+bdeps: [util-macros, xorgproto, libfs-dev]
+
+prepare:
+  rules: touch /root/missing
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: libfs
+  tags: Xorg

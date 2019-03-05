@@ -1,0 +1,26 @@
+name      : xkeyboard-config
+version   : 2.25
+category  : x-window
+summary   : Keyboard configuration database for the X Window System
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/xkeyboard-config.html
+target    : noarch
+
+src:
+- url:  xorg://data/<n>/<n>-<v>.tar.bz2
+  sha1: 1a444ceca4a4f29718771cef74c7f009b8f18f57
+
+bdeps: [libxslt, xorgproto, libx11-dev, intltool]
+
+make:
+  type: gnu
+  args:
+  - --with-xkb-base=/usr/share/X11/xkb
+  - --with-xkb-rules-symlink=xorg
+
+pkgs:
+- pkg:  main
+  tags: Xorg
+- pkg:  dev

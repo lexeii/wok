@@ -1,0 +1,22 @@
+name      : xprop
+version   : 1.2.3
+category  : x-window
+summary   : Property displayer for X
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 77062c08a23cfca76824b7e8f9860678255d6b1a
+
+bdeps: [util-macros, libx11-dev, xorgproto]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: libx11
+  tags: Xorg

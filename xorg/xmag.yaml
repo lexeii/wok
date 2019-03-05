@@ -1,0 +1,22 @@
+name      : xmag
+version   : 1.0.6
+category  : x-window
+summary   : Magnify parts of the screen
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 77c4b23765a1a30afde46a6e57afd77f20d58185
+
+bdeps: [util-macros, libxaw-dev, libxmu-dev, libxt-dev, libx11-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxaw, libxmu, libxt]
+  tags: Xorg
+  conf: /etc/X11/app-defaults/Xmag

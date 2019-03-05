@@ -1,0 +1,22 @@
+name      : xkbutils
+version   : 1.0.4
+category  : x-window
+summary   : Xorg keyboard utilities
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: b09aef7cc3853eb12dbda332f55adec3add4447b
+
+bdeps: [util-macros, libxaw-dev, libxt-dev, libx11-dev, xorgproto]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxaw, libxt]
+  tags: Xorg

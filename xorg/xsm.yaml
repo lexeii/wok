@@ -1,0 +1,24 @@
+name      : xsm
+version   : 1.0.4
+category  : x-window
+summary   : X Session Manager
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: dd41234e276fe8b2d0a853879568f73b6d98812a
+
+bdeps: [util-macros, libx11-dev, libxt-dev, libice-dev, libsm-dev, libxaw-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libice, libsm, libx11, libxaw, libxt]
+  tags: Xorg
+  conf:
+  - /etc/X11/app-defaults/XSm
+  - /etc/X11/xsm/system.xsm

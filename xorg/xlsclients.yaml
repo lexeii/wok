@@ -1,0 +1,25 @@
+name      : xlsclients
+version   : 1.1.4
+category  : x-window
+summary   : List client applications running on a display
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 175af1c216a1db3de5023ecd6cce186e7693c6e4
+
+bdeps: [util-macros, libxcb-dev]
+
+prepare:
+  rules: touch /root/missing /missing
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: libxcb
+  tags: Xorg

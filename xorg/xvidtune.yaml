@@ -1,0 +1,23 @@
+name      : xvidtune
+version   : 1.0.3
+category  : x-window
+summary   : Video mode tuner for Xorg
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 5ed9967f61cb7f6698fc6da6a2ca7afc5305468d
+
+bdeps: [util-macros, libxxf86vm-dev, libxt-dev, libxaw-dev, libxmu-dev,
+        libx11-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxaw, libxmu, libxt, libxxf86vm]
+  conf: /etc/X11/app-defaults/Xvidtune
+  tags: Xorg

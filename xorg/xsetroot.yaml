@@ -1,0 +1,23 @@
+name      : xsetroot
+version   : 1.1.2
+category  : x-window
+summary   : Root window parameter setting utility for X
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 42ab81761823b44974feab86477007c49dbace50
+
+bdeps: [util-macros, libxmu-dev, libx11-dev, xbitmaps, libxcursor-dev,
+        xorgproto]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxcursor, libxmu]
+  tags: Xorg

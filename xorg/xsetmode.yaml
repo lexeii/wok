@@ -1,0 +1,21 @@
+name      : xsetmode
+version   : 1.0.0
+category  : x-window
+summary   : Set the mode for an X Input device
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: add4e6a91c9d0e7d1a80b3534c64d6b7bf633ea0
+
+bdeps: [libxi-dev, libx11-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxi]
+  tags: Xorg

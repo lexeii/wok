@@ -1,0 +1,22 @@
+name      : xwininfo
+version   : 1.1.4
+category  : x-window
+summary   : Window information utility for X
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 7364e79d1de7bb612dd98c336c649648c6c081ca
+
+bdeps: [util-macros, libxcb-dev, libx11-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: libxcb
+  tags: Xorg

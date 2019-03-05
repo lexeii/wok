@@ -1,0 +1,22 @@
+name      : xkill
+version   : 1.0.5
+category  : x-window
+summary   : Kill a client by its X resource
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: c5ee06b33adb252a41e4f737be6bd47651ff582a
+
+bdeps: [util-macros, libx11-dev, libxmu-dev, xorgproto]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxmu]
+  tags: Xorg

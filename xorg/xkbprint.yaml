@@ -1,0 +1,21 @@
+name      : xkbprint
+version   : 1.0.4
+category  : x-window
+summary   : Print an XKB keyboard description
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: c0c1e71a32f7d8bfc40539e7f315ca7e02d99205
+
+bdeps: [util-macros, libxkbfile-dev, libx11-dev, xorgproto]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxkbfile]
+  tags: Xorg

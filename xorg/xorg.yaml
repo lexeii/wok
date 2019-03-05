@@ -1,0 +1,31 @@
+name      : xorg
+version   : 7.7
+category  : meta
+summary   : Xorg server
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+target    : noarch
+repology  : -
+
+pkgs:
+- pkg:  main
+  deps: [xauth, font-misc-misc-base, libice, libpciaccess, libsm, libx11,
+         libxau, libxcomposite, libxcursor, libxdamage, libxdmcp, libxext,
+         libxfixes, libxfont, libxft, libxi, libxinerama, libxkbfile, libxmu,
+         libxpm, libxrandr, libxrender, libxscrnsaver, libxt, libxtst,
+         libxxf86vm, xkbcomp, xkeyboard-config]
+  note: meta-package to install all Xorg modules
+  tags: Xorg
+
+- pkg:  dev
+  deps: [libxdmcp-dev, libxau-dev, libx11-dev, libxext-dev, libxrender-dev,
+         libxrandr-dev, libxfixes-dev, libfontenc-dev, libxfont-dev,
+         libxft-dev, libxcomposite-dev, libxkbfile-dev, libice-dev, libsm-dev,
+         libxt-dev, libxinerama-dev, libxmu-dev, libxpm-dev, libxaw-dev,
+         libxtst-dev, libxcursor-dev, libxdamage-dev, libxi-dev]
+  note: meta-package to install all Xorg dev packages
+
+- pkg:  -dev-proto
+  deps: [xorgproto, util-macros]
+  note: meta-package to install all Xorg protocols

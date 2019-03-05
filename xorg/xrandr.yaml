@@ -1,0 +1,22 @@
+name      : xrandr
+version   : 1.5.0
+category  : x-window
+summary   : Primitive command line interface to RandR extension
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: f402b2ed85817c2e111afafd6f5d0657328be2fa
+
+bdeps: [util-macros, libxrandr-dev, libxrender-dev, libx11-dev, xorgproto]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxrandr]
+  tags: Xorg

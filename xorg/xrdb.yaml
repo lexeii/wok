@@ -1,0 +1,25 @@
+name      : xrdb
+version   : 1.1.1
+category  : x-window
+summary   : X server resource database utility
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 0d6b1cae357574d565d6e6bc10f6ccf073e1b9dd
+
+bdeps: [util-macros, libxmu-dev, libx11-dev, xorgproto]
+
+prepare:
+  rules: touch /root/missing /missing
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxmu]
+  tags: Xorg

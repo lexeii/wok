@@ -1,0 +1,21 @@
+name      : xlsfonts
+version   : 1.0.6
+category  : x-window
+summary   : List X fonts available on X server
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: bf95e46e0897dcb9d197ce20d4fa024b8ace5148
+
+bdeps: [util-macros, libx11-dev, xorgproto]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: libx11
+  tags: Xorg

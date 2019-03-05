@@ -1,0 +1,22 @@
+name      : xpr
+version   : 1.0.5
+category  : x-window
+summary   : Print an X window dump from xwd
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 0632c7d8632ac9d23f285811aaea805a2956e155
+
+bdeps: [util-macros, libxmu-dev, libx11-dev, xorgproto]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxmu]
+  tags: Xorg

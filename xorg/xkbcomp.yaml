@@ -1,0 +1,24 @@
+name      : xkbcomp
+version   : 1.4.2
+category  : x-window
+summary   : Compile XKB keyboard description
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 9a39cf7a562c152465e04fc7cf1002c59f883870
+
+bdeps: [util-macros, libx11-dev, libxkbfile-dev, xorgproto]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxkbfile]
+  tags: Xorg
+- pkg:  dev
+  deps: [main, libx11-dev, libxkbfile-dev, xorgproto]

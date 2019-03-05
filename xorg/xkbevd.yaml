@@ -1,0 +1,22 @@
+name      : xkbevd
+version   : 1.1.4
+category  : x-window
+summary   : XKB event daemon
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 629fea940692f9d971dfae36cd697b13337caaba
+
+bdeps: [util-macros, libxkbfile-dev, libx11-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxkbfile]
+  tags: Xorg

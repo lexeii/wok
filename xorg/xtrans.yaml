@@ -1,0 +1,22 @@
+name      : xtrans
+version   : 1.3.5
+category  : development
+summary   : X Network Transport layer shared code
+maintainer: devel@slitaz.org
+license   : other
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7lib.html
+target    : noarch
+
+src:
+- url:  xorg://lib/<n>-<v>.tar.bz2
+  sha1: 2d3ae1839d841f568bc481c6116af7d2a9f9ba59
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  copy: @dev
+  deps: xorgproto
+  tags: Xorg

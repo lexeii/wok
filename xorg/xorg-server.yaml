@@ -1,0 +1,156 @@
+name      : xorg-server
+version   : 1.20.3
+category  : x-window
+summary   : X server
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/xorg-server.html
+
+src:
+- url:  xorg://xserver/<n>-<v>.tar.bz2
+  sha1: a522cd543606b4d0509d821b8061904951171c50
+
+bdeps: [patch, util-macros, pixman-dev, eudev-dev, dbus-dev, libxshmfence-dev,
+        libdrm-dev, libx11-dev, mesa-dev, libxdmcp-dev, libgcrypt-dev,
+        xorgproto, libxkbfile-dev, libxfont2-dev, libpciaccess-dev,
+        libxxf86dga-dev, libdmx-dev, libxaw-dev, libxpm-dev, libxtst-dev,
+        libxres-dev, libxmu-dev, libxext-dev, libxrender-dev, libxfixes-dev,
+        libxi-dev, libxau-dev, libxdmcp-dev, libepoxy-dev, tslib-dev,
+        xcb-util-renderutil-dev, xcb-util-dev, xcb-util-image-dev,
+        xcb-util-wm-dev, xcb-util-keysyms-dev, expat-dev, xtrans, xkbcomp-dev,
+        openssl-dev]
+
+cookopts: skip-log-errors
+
+make:
+  type: custom
+  rules: |
+  case $SET in
+    '') SET_ARGS="
+      --disable-static \
+      --enable-glamor \
+      --enable-install-setuid \
+      --enable-suid-wrapper \
+      --disable-xwayland \
+      --enable-dmx \
+      --enable-kdrive \
+      --enable-xephyr \
+      --enable-config-udev \
+      ";;
+    light) SET_ARGS="
+      --disable-screensaver \
+      --disable-glx \
+      --disable-dri \
+      --disable-dri2 \
+      --disable-dri3 \
+      --disable-xinerama \
+      --disable-config-udev \
+      --disable-libdrm \
+      --enable-xorg \
+      --disable-xvfb \
+      --disable-xnest \
+      --disable-glamor \
+      --disable-xephyr \
+      --disable-ipv6 \
+      --with-serverconfig-path=/etc/X11 \
+      ";;
+  esac
+
+  ./configure \
+    --enable-install-setuid \
+    --disable-systemd-logind \
+    --disable-docs \
+    --disable-devel-docs \
+    --with-xkb-output=/var/lib/xkb \
+    --with-fontrootdir=/usr/share/fonts/X11 \
+    --with-os-name="SliTaz GNU/Linux" \
+    --with-vendor-web="http://www.slitaz.org/" \
+    --with-builder-addr="devel@slitaz.org" \
+    $SET_ARGS \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make DESTDIR=$install install || return 1
+
+  mkdir -pv $install/etc/X11/xorg.conf.d
+
+  # chmod 4711 $install/usr/bin/Xdmx
+  # chmod 4711 $install/usr/bin/Xephyr
+  # chmod 4711 $install/usr/bin/Xnest
+  # chmod 4711 $install/usr/bin/Xvfb
+
+testsuite: readelf -h $install/usr/bin/Xorg
+
+pkgs:
+- pkg:  -xdmx
+  copy: Xdmx
+  note: DMX X server
+  deps: [libgcrypt, libx11, libxau, libxdmcp, libxext, libxfixes, libxfont2,
+         libxi, libxmu, libxrender, pixman]
+  post_install: install -dm1777 "$1/tmp/.ICE-unix" "$1/tmp/.X11-unix"
+
+- pkg:  -xephyr
+  copy: Xephyr
+  note: Xephyr X server
+  deps: [eudev, libepoxy, libgcrypt, mesa, libx11, libxau, libxdmcp, libxfont2,
+         libxcb, libxshmfence, pixman, xcb-util, xcb-util-image,
+         xcb-util-keysyms, xcb-util-renderutil, xcb-util-wm]
+  post_install: install -dm1777 "$1/tmp/.ICE-unix" "$1/tmp/.X11-unix"
+
+- pkg:  -xnest
+  copy: Xnest
+  note: Xnest X server
+  deps: [libgcrypt, libx11, libxau, libxdmcp, libxext, libxfont2, pixman]
+  post_install: install -dm1777 "$1/tmp/.ICE-unix" "$1/tmp/.X11-unix"
+
+- pkg:  -xvfb
+  copy: Xvfb
+  note: Xvfb X server
+  deps: [libgcrypt, mesa, libxau, libxdmcp, libxfont2, pixman]
+  post_install: install -dm1777 "$1/tmp/.ICE-unix" "$1/tmp/.X11-unix"
+
+- pkg:  -module-glamor
+  copy: [libglamoregl.so, libglx.so]
+  note: Glamor DIX (Device Independent X) module
+  deps: [libepoxy, mesa, mesa-libgbm]
+
+- pkg:  dev
+  copy: ["@dev", protocol.txt]
+  deps: [main, -xdmx, -xephyr, -xnest, -xvfb, -module-glamor,
+         mesa-dev, xorgproto, libpciaccess-dev, pixman-dev]
+
+- pkg:  main
+  copy: ["@std", var/log/, xorg.conf.d/, "@rm"]
+  note: core X server
+  deps: [eudev, libdrm, libgcrypt, libx11, libxau, libxaw, libxdmcp, libxfont2,
+         libxt, libdmx, libpciaccess, libxshmfence, pixman,   xkeyboard-config,
+         xkbcomp]
+  suggested: [xf86-input-evdev, xf86-video-vesa]
+  post_install: install -dm1777 "$1/tmp/.ICE-unix" "$1/tmp/.X11-unix"
+  tags: Xorg
+  overrides:
+  - file: /usr/libexec/Xorg
+    mode: 4755
+  - file: /usr/libexec/Xorg.wrap
+    mode: 4755
+  - file: /usr/bin/Xorg
+    mode: 4755
+
+  description: |
+    X.Org default places are moved:
+
+    Description |      Previously      |            Now
+    ------------|----------------------|---------------------------
+    xorg.conf.d | /etc/X11/xorg.conf.d | /usr/share/X11/xorg.conf.d
+    modules     | /usr/lib/X11/modules | /usr/lib/xorg/modules
+
+- pkg:  -light
+  set:  light
+  copy: "@std"
+  note: light version without DRI, GL, and friends
+  deps: [libgcrypt, libxau, libxdmcp, libxfont2, libpciaccess, libxshmfence,
+         pixman]
+  suggested: [xf86-video-vesa, xf86-video-fbdev]
+  provide: main
+  post_install: chmod 1777 "$1/var/tmp" # We need /var/tmp rw to let xkbcomp build XKB definition.

@@ -1,0 +1,22 @@
+name      : xwd
+version   : 1.0.7
+category  : x-window
+summary   : Dump current contents of X window or screen to file
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: 65ce0617be29687cf6082c3a0e85d15a0dcccda9
+
+bdeps: [util-macros, libx11-dev, xorgproto, libxkbfile-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxkbfile]
+  tags: Xorg

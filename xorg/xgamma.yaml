@@ -1,0 +1,22 @@
+name      : xgamma
+version   : 1.0.6
+category  : x-window
+summary   : Alter a monitor's gamma correction through the X server
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://www.x.org/wiki/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/x7app.html
+
+src:
+- url:  xorg://app/<n>-<v>.tar.bz2
+  sha1: af1484d0d70bc71dc9d3b7b95645881b7165c41b
+
+bdeps: [util-macros, libx11-dev, libxxf86vm-dev, xorgproto]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg:  main
+  deps: [libx11, libxxf86vm]
+  tags: Xorg
