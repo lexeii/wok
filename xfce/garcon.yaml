@@ -1,0 +1,29 @@
+name      : garcon
+version   : 0.4.0
+category  : misc
+summary   : Xfce menu library
+maintainer: devel@slitaz.org
+license   : LGPL2
+home      : https://www.xfce.org/
+
+src:
+- url:  http://archive.xfce.org/src/xfce/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, libxfce4util-dev, gtk2-dev, libxfce4ui-dev, libsm-dev,
+        startup-notification-dev, xcb-util-dev]
+
+make:
+  type: gnu
+  args:
+  - --disable-debug
+  - --disable-gtk-doc
+
+post:
+  rules: find $install -type f -name '*.so*' -exec chmod 755 '{}' \; # 644->755
+
+pkgs:
+- pkg : main
+  deps: [gdk-pixbuf, glib, gtk2, libxfce4ui, libxfce4util]
+  tags: Xfce
+- pkg : dev
+  deps: [main, glib-dev, gtk2-dev, libxfce4ui-dev]
