@@ -1,0 +1,22 @@
+name      : mousepad
+version   : 0.4.0
+category  : x-window
+summary   : Xfce text editor
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.xfce.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/postlfs/mousepad.html
+
+src:
+- url:  http://archive.xfce.org/src/apps/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, gtk2-dev, gtksourceview-dev, dbus-glib-dev]
+
+make:
+  type: gnu
+  args: --disable-debug
+
+pkgs:
+- pkg : main
+  deps: [dbus, dbus-glib, glib, gtk2, gtksourceview, pango]
+  tags: [Xfce, text-editor]

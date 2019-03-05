@@ -1,0 +1,33 @@
+name      : thunar-vfs
+version   : 1.2.0
+category  : x-window
+summary   : Thunar File Manager Libraries
+maintainer: devel@slitaz.org
+license   : LGPL2
+home      : https://www.xfce.org/
+
+src:
+- url:  http://archive.xfce.org/xfce/4.8/src/<n>-<v>.tar.bz2
+
+bdeps: [libpng-dev, libjpeg-turbo-dev, libxfce4util-dev, dbus-dev,
+        startup-notification-dev, xfce4-panel-dev, zlib-dev, intltool, exo-dev,
+        dbus-glib-dev, util-linux-uuid-dev, hal-dev, xcb-util-dev]
+
+
+make:
+  type: gnu
+  args:
+  - --enable-dbus
+  - --enable-startup-notification
+  - --disable-gnome-thumbnailers
+  - --enable-debug=no
+  destdir: keep
+
+pkgs:
+- pkg : main
+  deps: [dbus, dbus-glib, libexo, freetype, gdk-pixbuf, glib, gtk2, hal,
+         libjpeg-turbo, libpng, libxfce4util, startup-notification, libx11]
+  tags: Xfce
+
+- pkg : dev
+  deps: [main, exo-dev, glib-dev]

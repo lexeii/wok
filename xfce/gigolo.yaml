@@ -1,0 +1,24 @@
+name      : gigolo
+version   : 0.4.2
+category  : network
+summary   : Frontend to manage connections to filesystems using GIO/GVfs
+maintainer: pascal.bellard@slitaz.org
+license   : GPL2
+home      : https://goodies.xfce.org/projects/applications/gigolo
+
+src:
+- url:  http://archive.xfce.org/src/apps/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [xfce4-dev-tools, gtk2-dev, libx11-dev]
+
+make:
+  rules: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  make &&
+  make install
+
+pkgs:
+- pkg : main
+  deps: [glib, gtk2, libx11]
+  tags: Xfce

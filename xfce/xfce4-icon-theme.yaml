@@ -1,0 +1,20 @@
+name      : xfce4-icon-theme
+version   : 4.4.3
+category  : customization
+summary   : Icon theme for Xfce Desktop Environment
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.xfce.org/
+
+src:
+- url:  http://archive.xfce.org/src/art/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: intltool
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  tags: Xfce
+- pkg : dev

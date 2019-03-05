@@ -1,0 +1,29 @@
+name      : xfdesktop
+version   : 4.12.0
+category  : x-window
+summary   : Xfce desktop
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.xfce.org/
+
+src:
+- url:  http://archive.xfce.org/src/xfce/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, libx11-dev, libice-dev, libsm-dev, dbus-glib-dev, gtk2-dev,
+        libxfce4util-dev, libxfce4ui-dev, libwnck2-dev, exo-dev, thunar-dev,
+        garcon-dev, libnotify-dev]
+
+make:
+  type: gnu
+  args: --disable-debug
+
+pkgs:
+- pkg : -extras
+  copy: backgrounds/
+  note: backgrounds
+
+- pkg : main
+  deps: [libcairo, dbus, dbus-glib, libexo, garcon, gdk-pixbuf, glib, gtk2,
+         libnotify, libwnck2, libxfce4ui, libxfce4util, pango, thunar, xfconf,
+         libx11]
+  tags: Xfce

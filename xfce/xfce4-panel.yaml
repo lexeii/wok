@@ -1,0 +1,28 @@
+name      : xfce4-panel
+version   : 4.12.0
+category  : x-window
+summary   : Xfce panel
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.xfce.org/
+
+src:
+- url:  http://archive.xfce.org/src/xfce/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, libx11-dev, libice-dev, libxfce4util-dev, garcon-dev, exo-dev,
+        libwnck2-dev, libsm-dev]
+
+make:
+  type: gnu
+  args:
+  - --disable-debug
+  - --disable-gtk-doc
+
+pkgs:
+- pkg : main
+  deps: [atk, libcairo, dbus, dbus-glib, libexo, garcon, gdk-pixbuf, glib, gtk2,
+         libwnck2, libxfce4ui, libxfce4util, pango, xfconf, libx11, libxext]
+  tags: Xfce
+
+- pkg : dev
+  deps: [main, glib-dev, gtk2-dev, libxfce4util-dev]

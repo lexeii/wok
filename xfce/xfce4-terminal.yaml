@@ -1,0 +1,27 @@
+name      : xfce4-terminal
+version   : 0.6.3
+category  : x-window
+summary   : Terminal emunaltor for Xfce Desktop Environment
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://goodies.xfce.org/projects/applications/terminal
+
+src:
+- url:  http://archive.xfce.org/src/apps/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, libx11-dev, libice-dev, gtk2-dev, vte-gtk2-dev,
+        libxfce4ui-dev, libsm-dev, startup-notification-dev, xcb-util-dev]
+
+prepare:
+  # warning: internationalized messages should not contain the '\r' escape sequence
+  rules: sed -i 's|\\r||g' po/hr.po po/sv.po
+
+make:
+  type: gnu
+  args: --disable-debug
+
+pkgs:
+- pkg : main
+  deps: [atk, gdk-pixbuf, glib, gtk2, libxfce4ui, libxfce4util, pango, vte-gtk2,
+         libx11]
+  tags: [Xfce, terminal]

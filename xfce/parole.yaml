@@ -1,0 +1,29 @@
+name      : parole
+version   : 0.5.4
+category  : multimedia
+summary   : Media player for Xfce
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://docs.xfce.org/apps/parole/start
+
+src:
+- url:  http://archive.xfce.org/src/apps/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, dbus-dev, dbus-glib-dev, libxfce4util-dev, xfconf-dev,
+        libxfce4ui-dev, gstreamer0-dev, gst0-plugins-base-dev, taglib-dev,
+        libnotify-dev]
+
+make:
+  type: gnu
+  args:
+  - --disable-debug
+  - --disable-gtk-doc
+
+pkgs:
+- pkg : main
+  deps: [libcairo, dbus, dbus-glib, gdk-pixbuf, glib, gst0-plugins-base,
+         gstreamer0, gtk2, libnotify, libxfce4ui, libxfce4util, taglib, xfconf,
+         libx11]
+  tags: Xfce
+
+- pkg : dev

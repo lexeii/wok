@@ -1,0 +1,25 @@
+name      : xfce4-mixer
+version   : 4.11.0
+category  : sound
+summary   : Xfce audio mixer
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.xfce.org/
+
+src:
+- url:  http://archive.xfce.org/src/apps/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, dbus-glib-dev, gst0-plugins-base-dev, gtk2-dev, libunique-dev,
+        libxfce4util-dev, libxfce4ui-dev, xfce4-panel-dev, keybinder-dev,
+        startup-notification-dev, xcb-util-dev]
+
+make:
+  type: gnu
+  args: --disable-debug
+
+pkgs:
+- pkg : main
+  deps: [libcairo, dbus-glib, gdk-pixbuf, glib, gst0-plugins-base, gstreamer0,
+         gtk2, keybinder, libunique, libxfce4ui, libxfce4util, xfce4-panel,
+         xfconf]
+  tags: Xfce

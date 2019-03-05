@@ -1,0 +1,25 @@
+name      : xfce4-power-manager
+version   : 1.4.3
+category  : x-window
+summary   : Xfce power manager
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://www.xfce.org/
+
+src:
+- url:  http://archive.xfce.org/src/xfce/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, gtk2-dev, dbus-dev, dbus-glib-dev, xfconf-dev, libxfce4ui-dev,
+        libnotify-dev, upower-dev, libxrandr-dev, xfce4-panel-dev, libsm-dev,
+        startup-notification-dev, xcb-util-dev]
+
+make:
+  type: gnu
+  args: --disable-debug
+
+pkgs:
+- pkg : main
+  deps: [libcairo, dbus, dbus-glib, gdk-pixbuf, glib, gtk2, libnotify,
+         libxfce4ui, libxfce4util, pango, upower, xfce4-panel, xfconf, libx11,
+         libxext, libxrandr]
+  tags: Xfce

@@ -1,0 +1,286 @@
+name      : xfmedia
+version   : 0.9.2
+category  : multimedia
+summary   : Xfce Media Player
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.spurint.org/projects/xfmedia/
+
+src:
+- url:  http://spuriousinterrupt.org/files/xfmedia/<n>-<v>.tar.bz2
+
+bdeps: [shared-mime-info, exo-dev, util-linux-uuid-dev, xine-lib-dev, intltool,
+        libxfcegui4-dev, startup-notification-dev, libxcb-dev, libx11-dev,
+        libxt-dev, libxtst-dev, xcb-util-dev]
+
+prepare:
+  patches:
+  - name: xfmedia-dbus-0.6-support.patch
+  - name: xfmedia-empty-prev-next-fix.patch
+  - name: xfmedia-exo-0.6.patch
+
+make:
+  rules: |
+  export LDFLAGS="$LDFLAGS -lXext -lm -lgmodule-2.0"
+  sed -i 's/return xine_trick_mode.*/return 0;/' src/xfmedia-xine.c
+
+  ./configure \
+    --enable-exo \
+    --disable-startup-notification \
+    $CONFIGURE_ARGS || return 1
+  sed -i 's/define HAVE_XSCREENSAVER_EXTENSION .*/undef HAVE_XSCREENSAVER_EXTENSION/' config.h
+  fix libtool &&
+  make &&
+  make install
+
+pkgs:
+- pkg : main
+  copy: @std # rm -r $fs/usr/share/xfmedia/doc/
+  deps: [libexo, gdk-pixbuf, glib, gtk2, libxfce4util, libxfcegui4, pango,
+         xine-lib, libx11, libxext, libxtst]
+  tags: Xfce
+
+files:
+- name: xfmedia-dbus-0.6-support.patch
+  content: |
+  diff -Naur xfmedia-0.9.1.orig/src/remote.c xfmedia-0.9.1/src/remote.c
+  --- xfmedia-0.9.1.orig/src/remote.c	2005-09-05 00:56:37.000000000 -0400
+  +++ xfmedia-0.9.1/src/remote.c	2006-04-08 00:27:18.000000000 -0400
+  @@ -55,6 +55,10 @@
+   #define DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER DBUS_SERVICE_REPLY_PRIMARY_OWNER
+   #endif
+   
+  +#ifndef DBUS_NAME_FLAG_PROHIBIT_REPLACEMENT
+  +#define DBUS_NAME_FLAG_PROHIBIT_REPLACEMENT DBUS_NAME_FLAG_DO_NOT_QUEUE
+  +#endif
+  +
+   #endif  /* HAVE_DBUS */
+   
+   #include <libxfce4util/libxfce4util.h>
+
+- name: xfmedia-empty-prev-next-fix.patch
+  content: |
+  diff -wbBur xfmedia-0.9.2/src/mainwin.c xfmedia-0.9.2.my/src/mainwin.c
+  --- xfmedia-0.9.2/src/mainwin.c	2006-11-27 07:21:23.000000000 +0000
+  +++ xfmedia-0.9.2.my/src/mainwin.c	2010-11-01 13:01:17.000000000 +0000
+  @@ -1865,6 +1865,10 @@
+       gboolean use_playlist_q  = xfmedia_playlist_queue_n_entries(mwin->playlist_q);
+       gboolean ret = FALSE;
+       
+  +    if(xfmedia_playlist_get_n_entries(mwin->plist) == 0)
+  +//    if(xfmedia_playlist_queue_is_empty(mwin->plist))
+  +	return;
+  +
+       if(mwin->cur_playing
+          && xfmedia_settings_get_bool("/xfmedia/playlist/shuffle")
+          && !use_playlist_q )
+  @@ -1899,6 +1903,10 @@
+   {
+       gint tot_items, idx = -1;
+       
+  +    if(xfmedia_playlist_get_n_entries(mwin->plist) == 0)
+  +//    if(xfmedia_playlist_queue_is_empty(mwin->plist))
+  +	return;
+  +
+       if(xfmedia_settings_get_bool("/xfmedia/playlist/shuffle")) {
+           XfmediaPlaylistEntryRef *ref = NULL;
+           gboolean playing = FALSE;
+
+- name: xfmedia-exo-0.6.patch
+  content: |
+  diff -wbBur xfmedia-0.9.2/configure xfmedia-0.9.2.my/configure
+  --- xfmedia-0.9.2/configure	2006-11-27 20:20:59.000000000 +0000
+  +++ xfmedia-0.9.2.my/configure	2011-01-31 17:15:58.000000000 +0000
+  @@ -27417,7 +27417,7 @@
+   
+   
+     if test x"$xdt_cv_EXO_check" = x"yes"; then
+  -    if $PKG_CONFIG --exists "exo-0.3 >= 0.3.0" >/dev/null 2>&1; then
+  +    if $PKG_CONFIG --exists "exo-1 >= 0.3.0" >/dev/null 2>&1; then
+   
+   
+     # minimum supported version of pkg-config
+  @@ -27501,22 +27501,22 @@
+     fi
+   
+   
+  -  { echo "$as_me:$LINENO: checking for exo-0.3 >= 0.3.0" >&5
+  -echo $ECHO_N "checking for exo-0.3 >= 0.3.0... $ECHO_C" >&6; }
+  -  if $PKG_CONFIG "--atleast-version=0.3.0" "exo-0.3" >/dev/null 2>&1; then
+  -    EXO_VERSION=`$PKG_CONFIG --modversion "exo-0.3"`
+  +  { echo "$as_me:$LINENO: checking for exo-1 >= 0.3.0" >&5
+  +echo $ECHO_N "checking for exo-1 >= 0.3.0... $ECHO_C" >&6; }
+  +  if $PKG_CONFIG "--atleast-version=0.3.0" "exo-1" >/dev/null 2>&1; then
+  +    EXO_VERSION=`$PKG_CONFIG --modversion "exo-1"`
+       { echo "$as_me:$LINENO: result: $EXO_VERSION" >&5
+   echo "${ECHO_T}$EXO_VERSION" >&6; }
+   
+       { echo "$as_me:$LINENO: checking EXO_CFLAGS" >&5
+   echo $ECHO_N "checking EXO_CFLAGS... $ECHO_C" >&6; }
+  -    EXO_CFLAGS=`$PKG_CONFIG --cflags "exo-0.3"`
+  +    EXO_CFLAGS=`$PKG_CONFIG --cflags "exo-1"`
+       { echo "$as_me:$LINENO: result: $EXO_CFLAGS" >&5
+   echo "${ECHO_T}$EXO_CFLAGS" >&6; }
+   
+       { echo "$as_me:$LINENO: checking EXO_LIBS" >&5
+   echo $ECHO_N "checking EXO_LIBS... $ECHO_C" >&6; }
+  -    EXO_LIBS=`$PKG_CONFIG --libs "exo-0.3"`
+  +    EXO_LIBS=`$PKG_CONFIG --libs "exo-1"`
+       { echo "$as_me:$LINENO: result: $EXO_LIBS" >&5
+   echo "${ECHO_T}$EXO_LIBS" >&6; }
+   
+  @@ -27535,15 +27535,15 @@
+   
+           EXO_FOUND="yes"
+   
+  -  elif $PKG_CONFIG --exists "exo-0.3" >/dev/null 2>&1; then
+  -    xdt_cv_version=`$PKG_CONFIG --modversion "exo-0.3"`
+  +  elif $PKG_CONFIG --exists "exo-1" >/dev/null 2>&1; then
+  +    xdt_cv_version=`$PKG_CONFIG --modversion "exo-1"`
+       { echo "$as_me:$LINENO: result: found, but $xdt_cv_version" >&5
+   echo "${ECHO_T}found, but $xdt_cv_version" >&6; }
+   
+   
+  -      echo "*** The required package exo-0.3 was found on your system,"
+  +      echo "*** The required package exo-1 was found on your system,"
+         echo "*** but the installed version ($xdt_cv_version) is too old."
+  -      echo "*** Please upgrade exo-0.3 to atleast version 0.3.0, or adjust"
+  +      echo "*** Please upgrade exo-1 to atleast version 0.3.0, or adjust"
+         echo "*** the PKG_CONFIG_PATH environment variable if you installed"
+         echo "*** the new version of the package in a nonstandard prefix so"
+         echo "*** pkg-config is able to find it."
+  @@ -27554,8 +27554,8 @@
+   echo "${ECHO_T}not found" >&6; }
+   
+   
+  -      echo "*** The required package exo-0.3 was not found on your system."
+  -      echo "*** Please install exo-0.3 (atleast version 0.3.0) or adjust"
+  +      echo "*** The required package exo-1 was not found on your system."
+  +      echo "*** Please install exo-1 (atleast version 0.3.0) or adjust"
+         echo "*** the PKG_CONFIG_PATH environment variable if you"
+         echo "*** installed the package in a nonstandard prefix so that"
+         echo "*** pkg-config is able to find it."
+  @@ -27564,14 +27564,14 @@
+     fi
+   
+       else
+  -      { echo "$as_me:$LINENO: checking for optional package exo-0.3 >= 0.3.0" >&5
+  -echo $ECHO_N "checking for optional package exo-0.3 >= 0.3.0... $ECHO_C" >&6; }
+  +      { echo "$as_me:$LINENO: checking for optional package exo-1 >= 0.3.0" >&5
+  +echo $ECHO_N "checking for optional package exo-1 >= 0.3.0... $ECHO_C" >&6; }
+         { echo "$as_me:$LINENO: result: not found" >&5
+   echo "${ECHO_T}not found" >&6; }
+       fi
+     else
+  -    { echo "$as_me:$LINENO: checking for optional package exo-0.3" >&5
+  -echo $ECHO_N "checking for optional package exo-0.3... $ECHO_C" >&6; }
+  +    { echo "$as_me:$LINENO: checking for optional package exo-1" >&5
+  +echo $ECHO_N "checking for optional package exo-1... $ECHO_C" >&6; }
+       { echo "$as_me:$LINENO: result: disabled" >&5
+   echo "${ECHO_T}disabled" >&6; }
+     fi
+  diff -wbBur xfmedia-0.9.2/src/main.c xfmedia-0.9.2.my/src/main.c
+  --- xfmedia-0.9.2/src/main.c	2006-11-27 07:21:23.000000000 +0000
+  +++ xfmedia-0.9.2.my/src/main.c	2011-02-01 11:08:02.000000000 +0000
+  @@ -388,6 +388,23 @@
+       return optind;
+   }
+   
+  +/**
+  + * exo_str_get_md5_str:
+  + * @contents : The string to create a digest of.
+  + *
+  + * Creates a character array MD5 digestof the string
+  + * @contents.
+  + *
+  + * Return value: A newly-allocated character array which
+  + *               should be free with g_free() when no
+  + *               longer needed.
+  + **/
+  +gchar*
+  +exo_str_get_md5_str (const gchar *contents)
+  +{
+  +  return g_compute_checksum_for_string (G_CHECKSUM_MD5, contents, -1);
+  +}
+  +
+   int
+   main(int argc, char **argv)
+   {
+  diff -wbBur xfmedia-0.9.2/src/mediamarks.c xfmedia-0.9.2.my/src/mediamarks.c
+  --- xfmedia-0.9.2/src/mediamarks.c	2006-11-27 07:21:23.000000000 +0000
+  +++ xfmedia-0.9.2.my/src/mediamarks.c	2011-02-01 11:04:42.000000000 +0000
+  @@ -684,9 +684,9 @@
+       
+       render = exo_cell_renderer_ellipsized_text_new();
+       if(gtk_major_version == 2 && gtk_minor_version >= 6)
+  -		g_object_set(G_OBJECT(render), "ellipsize", EXO_PANGO_ELLIPSIZE_END, NULL);
+  +		g_object_set(G_OBJECT(render), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
+   	else {
+  -		g_object_set(G_OBJECT(render), "ellipsize", EXO_PANGO_ELLIPSIZE_END,
+  +		g_object_set(G_OBJECT(render), "ellipsize", PANGO_ELLIPSIZE_END,
+   				"ellipsize-set", TRUE, NULL);
+   	}
+       gtk_tree_view_column_pack_start(col, render, TRUE);
+  @@ -1693,9 +1693,9 @@
+       
+       render = exo_cell_renderer_ellipsized_text_new();
+       if(gtk_major_version == 2 && gtk_minor_version >= 6)
+  -		g_object_set(G_OBJECT(render), "ellipsize", EXO_PANGO_ELLIPSIZE_END, NULL);
+  +		g_object_set(G_OBJECT(render), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
+   	else {
+  -		g_object_set(G_OBJECT(render), "ellipsize", EXO_PANGO_ELLIPSIZE_END,
+  +		g_object_set(G_OBJECT(render), "ellipsize", PANGO_ELLIPSIZE_END,
+   				"ellipsize-set", TRUE, NULL);
+   	}
+       gtk_tree_view_column_pack_start(col, render, TRUE);
+  @@ -1705,9 +1705,9 @@
+       
+       render = exo_cell_renderer_ellipsized_text_new();
+       if(gtk_major_version == 2 && gtk_minor_version >= 6)
+  -		g_object_set(G_OBJECT(render), "ellipsize", EXO_PANGO_ELLIPSIZE_END, NULL);
+  +		g_object_set(G_OBJECT(render), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
+   	else {
+  -		g_object_set(G_OBJECT(render), "ellipsize", EXO_PANGO_ELLIPSIZE_END,
+  +		g_object_set(G_OBJECT(render), "ellipsize", PANGO_ELLIPSIZE_END,
+   				"ellipsize-set", TRUE, NULL);
+   	}
+       col = gtk_tree_view_column_new_with_attributes(_("Location"), render,
+  diff -wbBur xfmedia-0.9.2/src/playlist.c xfmedia-0.9.2.my/src/playlist.c
+  --- xfmedia-0.9.2/src/playlist.c	2006-11-27 07:21:22.000000000 +0000
+  +++ xfmedia-0.9.2.my/src/playlist.c	2011-02-01 11:04:47.000000000 +0000
+  @@ -1409,9 +1409,9 @@
+       
+       render = exo_cell_renderer_ellipsized_text_new();
+   	if(gtk_major_version == 2 && gtk_minor_version >= 6)
+  -		g_object_set(G_OBJECT(render), "ellipsize", EXO_PANGO_ELLIPSIZE_END, NULL);
+  +		g_object_set(G_OBJECT(render), "ellipsize", PANGO_ELLIPSIZE_END, NULL);
+   	else {
+  -		g_object_set(G_OBJECT(render), "ellipsize", EXO_PANGO_ELLIPSIZE_END,
+  +		g_object_set(G_OBJECT(render), "ellipsize", PANGO_ELLIPSIZE_END,
+   				"ellipsize-set", TRUE, NULL);
+   	}
+       col = gtk_tree_view_column_new_with_attributes(_("Title"), render, "text",
+  diff -wbBur xfmedia-0.9.2/src/settings-dialog.c xfmedia-0.9.2.my/src/settings-dialog.c
+  --- xfmedia-0.9.2/src/settings-dialog.c	2006-11-27 07:21:23.000000000 +0000
+  +++ xfmedia-0.9.2.my/src/settings-dialog.c	2011-02-01 11:04:53.000000000 +0000
+  @@ -552,7 +552,7 @@
+       render = exo_cell_renderer_ellipsized_text_new();
+       col = gtk_tree_view_column_new_with_attributes("name", render,
+               "text", PLUGINS_NAME, NULL);
+  -    g_object_set(G_OBJECT(render), "ellipsize", EXO_PANGO_ELLIPSIZE_END,
+  +    g_object_set(G_OBJECT(render), "ellipsize", PANGO_ELLIPSIZE_END,
+               "ellipsize-set", TRUE, NULL);
+       gtk_tree_view_append_column(GTK_TREE_VIEW(treeview), col);
+       
+  diff -wbBur xfmedia-0.9.2/src/xfmedia-playlist-queue.c xfmedia-0.9.2.my/src/xfmedia-playlist-queue.c
+  --- xfmedia-0.9.2/src/xfmedia-playlist-queue.c	2006-11-27 07:21:22.000000000 +0000
+  +++ xfmedia-0.9.2.my/src/xfmedia-playlist-queue.c	2011-02-01 11:04:57.000000000 +0000
+  @@ -171,7 +171,7 @@
+       
+       render = exo_cell_renderer_ellipsized_text_new();
+       g_object_set(G_OBJECT(render),
+  -                 "ellipsize", EXO_PANGO_ELLIPSIZE_END,
+  +                 "ellipsize", PANGO_ELLIPSIZE_END,
+                    "ellipsize-set", TRUE,
+                    NULL);
+       col = gtk_tree_view_column_new_with_attributes("display-name", render,

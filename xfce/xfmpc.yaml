@@ -1,0 +1,25 @@
+name      : xfmpc
+version   : 0.2.3
+category  : x-window
+summary   : MPD client for Xfce
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://goodies.xfce.org/projects/applications/xfmpc
+
+src:
+- url:  http://archive.xfce.org/src/apps/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, libx11-dev, libice-dev, gtk2-dev, libxfce4ui-dev, libmpd-dev,
+        libsm-dev, startup-notification-dev, xcb-util-dev]
+
+prepare:
+  rules: sed -i 's|\\r||' po/es.po # tiny patch
+
+make:
+  type: gnu
+  args: --disable-debug
+
+pkgs:
+- pkg : main
+  deps: [gdk-pixbuf, glib, gtk2, libmpd, libxfce4ui, libxfce4util, pango]
+  tags: Xfce

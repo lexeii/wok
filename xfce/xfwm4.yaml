@@ -1,0 +1,29 @@
+name      : xfwm4
+version   : 4.12.0
+category  : x-window
+summary   : Xfce window manager
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.xfce.org/
+
+src:
+- url:  http://archive.xfce.org/src/xfce/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, libx11-dev, libice-dev, libsm-dev, libxext-dev, gtk2-dev,
+        libxfce4util-dev, libxfce4ui-dev, libwnck2-dev, libdrm-dev,
+        libxrandr-dev, libxcomposite-dev, libxfixes-dev, libxdamage-dev]
+
+make:
+  type: gnu
+  rules: --disable-debug
+
+pkgs:
+- pkg : -themes
+  copy: themes/
+  deps: main
+
+- pkg : main
+  deps: [libcairo, dbus-glib, gdk-pixbuf, glib, gtk2, libwnck2, libxfce4ui,
+         libxfce4util, pango, startup-notification, xfconf, libx11,
+         libxcomposite, libxdamage, libxext, libxfixes, libxrandr, libxrender]
+  tags: [Xfce, window-manager]

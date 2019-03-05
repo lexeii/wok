@@ -1,0 +1,28 @@
+name      : xfce4-settings
+version   : 4.12.0
+category  : x-window
+summary   : Xfce settings manager
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.xfce.org/
+
+arc:
+- url:  http://archive.xfce.org/src/xfce/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, exo-dev, garcon-dev, libxi-dev, libxrandr-dev, upower-dev,
+        libnotify-dev, libxcursor-dev, xf86-input-libinput-dev, libxklavier-dev]
+
+make:
+  type: gnu
+  args:
+  - --disable-debug
+  - --enable-pluggable-dialogs
+  - --enable-sound-settings
+
+pkgs:
+- pkg : main
+  copy: [@std, hicolor/] # only 128 icons here
+  deps: [libcairo, dbus, dbus-glib, libexo, fontconfig, garcon, gdk-pixbuf,
+         glib, gtk2, libnotify, libxfce4ui, libxfce4util, libxklavier, pango,
+         upower, xfconf, libx11, libxcursor, libxi, libxrandr]
+  tags: Xfce

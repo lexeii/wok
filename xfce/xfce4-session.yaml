@@ -1,0 +1,42 @@
+name      : xfce4-session
+version   : 4.12.0
+category  : x-window
+summary   : Xfce session manager
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.xfce.org/
+
+src:
+- url:  http://archive.xfce.org/src/xfce/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, libx11-dev, libxfce4util-dev, libxfce4ui-dev, libwnck2-dev,
+        polkit-dev, upower-dev, iceauth, libsm-dev]
+
+prepare:
+  rules: touch libtoolT
+
+make:
+  type: gnu
+  args: --disable-debug
+
+post:
+  file: # xfce4-session-logout workarround
+  - from: shutdown
+    to  : /sbin/shutdown
+    mode: 755
+
+pkgs:
+- pkg : main
+  deps: [atk, libcairo, dbus, dbus-glib, gdk-pixbuf, glib, gtk2, libwnck2,
+         libxfce4ui, libxfce4util, pango, polkit, xfconf, libice, libsm, libx11,
+         iceauth]
+  tags: Xfce
+
+- pkg : dev
+  deps: [main, libxfce4ui-dev, xfconf-dev]
+
+files:
+- name: shutdown
+  content: |
+  #!/bin/sh
+  /sbin/poweroff

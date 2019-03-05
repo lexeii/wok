@@ -1,0 +1,23 @@
+name      : ristretto
+version   : 0.8.2
+category  : graphics
+summary   : Xfce image viewer
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://docs.xfce.org/apps/ristretto/start
+
+src:
+- url:  http://archive.xfce.org/src/apps/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, libexif-dev, gtk2-dev, dbus-glib-dev, libxfce4util-dev,
+        libxfce4ui-dev, libmagic-dev]
+
+make:
+  type: gnu
+  args: --disable-debug
+
+pkgs:
+- pkg : main
+  deps: [libcairo, dbus-glib, gdk-pixbuf, glib, gtk2, libexif, libmagic,
+         libxfce4ui, libxfce4util, pango, xfconf, libx11]
+  tags: Xfce

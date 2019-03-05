@@ -1,0 +1,75 @@
+name      : tumbler
+version   : 0.1.31
+category  : graphics
+summary   : D-Bus thumbnailing service
+maintainer: al.bobylev@gmail.com
+license   : GPL2 LGPL2.1
+home      : https://docs.xfce.org/xfce/thunar/tumbler
+
+src:
+- url:  http://archive.xfce.org/src/xfce/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, dbus-glib, dbus-dev, dbus-glib-dev, gdk-pixbuf-dev, curl-dev,
+        freetype-dev, libjpeg-turbo-dev, ffmpegthumbnailer-dev,
+        gst1-plugins-base-dev, libgsf-dev, poppler-dev, libopenraw-dev,
+        lcms2-dev]
+
+prepare:
+  # openraw v.0.0.9 - libopenraw-gnome-1.0.pc;
+  # openraw v.0.1.2 - libopenraw-gnome-0.1.pc (current, latest)
+  rules: sed -i 's|libopenraw-gnome-1\.0|libopenraw-gnome-0.1|g' configure
+
+make:
+  type: gnu
+  args: --disable-debug
+
+pkgs:
+- pkg : -plugin-cover
+  copy: tumbler-cover-thumbnailer.so
+  deps: [main, gdk-pixbuf, glib, libcurl]
+  note: cover video thumbnailer
+
+- pkg : -plugin-ffmpeg
+  copy: tumbler-ffmpeg-thumbnailer.so
+  deps: [main, ffmpegthumbnailer, gdk-pixbuf, glib]
+  note: FFmpeg video thumbnailer
+
+- pkg : -plugin-font
+  copy: tumbler-font-thumbnailer.so
+  deps: [main, freetype, gdk-pixbuf, glib]
+  note: font thumbnailer
+
+- pkg : -plugin-gst
+  copy: tumbler-gst-thumbnailer.so
+  deps: [main, gdk-pixbuf, glib, gst1-plugins-base, gstreamer1]
+  note: GStreamer video thumbnailer
+
+- pkg : -plugin-jpeg
+  copy: tumbler-jpeg-thumbnailer.so
+  deps: [main, gdk-pixbuf, glib, libjpeg-turbo]
+  note: JPEG thumbnailer
+
+- pkg : -plugin-odf
+  copy: tumbler-odf-thumbnailer.so
+  deps: [main, gdk-pixbuf, glib, libgsf]
+  note: ODF thumbnailer
+
+- pkg : -plugin-poppler
+  copy: tumbler-poppler-thumbnailer.so
+  deps: [main, libcairo, gdk-pixbuf, glib, libpoppler]
+  note: Poppler PDF/PS thumbnailer
+
+- pkg : -plugin-raw
+  copy: tumbler-raw-thumbnailer.so
+  deps: [main, gdk-pixbuf, glib, libopenraw-gnome]
+  note: RAW thumbnailer
+
+- pkg : main
+  deps: [dbus, dbus-glib, gdk-pixbuf, glib, libpng]
+  note: main package
+  conf: /etc/xdg/tumbler/tumbler.rc
+  tags: Xfce
+
+- pkg : dev
+  deps: [main, -plugin-cover, -plugin-ffmpeg, -plugin-font, -plugin-gst,
+         -plugin-jpeg, -plugin-odf, -plugin-poppler, -plugin-raw, glib-dev]

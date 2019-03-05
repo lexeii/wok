@@ -1,0 +1,21 @@
+name      : xfce4-taskmanager
+version   : 1.0.1
+category  : x-window
+summary   : Simple taskmanager for Xfce
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://goodies.xfce.org/projects/applications/xfce4-taskmanager
+
+src:
+- url:  http://archive.xfce.org/src/apps/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, gtk2-dev, libwnck2-dev]
+
+make:
+  type: gnu
+  args: --disable-debug
+
+pkgs:
+- pkg : main
+  deps: [libcairo, gdk-pixbuf, glib, gtk2, libwnck2]
+  tags: Xfce

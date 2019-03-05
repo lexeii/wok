@@ -1,0 +1,23 @@
+name      : xfce4-dict
+version   : 0.7.2
+category  : text
+summary   : Xfce dictionary
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://goodies.xfce.org/projects/applications/xfce4-dict
+
+src:
+- url:  http://archive.xfce.org/src/apps/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, gtk2-dev, libxfce4ui-dev, xfce4-panel-dev, libsm-dev,
+        startup-notification-dev, xcb-util-dev]
+
+make:
+  type: gnu
+  args: --disable-debug
+
+pkgs:
+- pkg : main
+  deps: [gdk-pixbuf, glib, gtk2, libxfce4ui, libxfce4util, pango, xfce4-panel,
+         libx11]
+  tags: Xfce

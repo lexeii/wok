@@ -1,0 +1,40 @@
+name      : xfce4-volumed
+version   : 0.1.13
+category  : x-window
+summary   : Volume keys daemon
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://launchpad.net/xfce4-volumed/
+
+src:
+- url:  http://archive.xfce.org/src/apps/xfce4-volumed/<V>/<n>-<v>.tar.bz2
+
+bdeps: [xfconf-dev, gstreamer0-dev, gst0-plugins-base-dev, keybinder-dev,
+        libxml2-dev, libnotify-dev]
+
+make:
+  type: gnu
+
+post:
+  desktop:
+  - from: xfce4-volumed.desktop
+
+pkgs:
+- pkg : main
+  deps: [glib, gst0-plugins-base, gstreamer0, gtk2, keybinder, libnotify,
+         xfconf]
+  tags: Xfce
+
+files:
+- name: xfce4-volumed.desktop
+  content: |
+  [Desktop Entry]
+  Type=Application
+  Name=XFCE Volume Daemon
+  Name[fr_FR]=Démon de volume XFCE
+  Name[ru]=Служба регулятора громкости
+  Comment=Daemon managing the volume multimedia keys and displaying volume notifications
+  Comment[fr_FR]=Démon gérant les touches multimédia liées au volume et affichant des notifications de volume
+  Comment[ru]=Служба управляет мультимедийными кнопками громкости и показывает уведомления
+  Exec=xfce4-volumed
+  Terminal=false

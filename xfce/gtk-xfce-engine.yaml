@@ -1,0 +1,21 @@
+name      : gtk-xfce-engine
+version   : 2.10.0
+category  : customization
+summary   : GTK engine for Xfce
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.xfce.org/
+
+src:
+- url:  http://archive.xfce.org/src/xfce/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: gtk2-dev
+
+make:
+  type: gnu
+  args: --disable-debug
+
+pkgs:
+- pkg : main
+  deps: [libcairo, glib, gtk2]
+  tags: Xfce

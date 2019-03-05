@@ -1,0 +1,25 @@
+name      : xfce4-battery-plugin
+version   : 1.0.5
+category  : x-window
+summary   : Xfce panel battery plugin
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://goodies.xfce.org/projects/panel-plugins/xfce4-battery-plugin
+
+src:
+- url:  http://archive.xfce.org/src/panel-plugins/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, gtk2-dev, libxfce4util-dev, libxfce4ui-dev, xfce4-panel-dev,
+        libsm-dev, startup-notification-dev, xcb-util-dev]
+
+make:
+  type: gnu
+  args: --disable-debug
+
+post:
+  rules: find $install -name '*.so' -exec chmod 755 '{}' \; # 644
+
+pkgs:
+- pkg : main
+  deps: [glib, gtk2, libxfce4ui, libxfce4util, xfce4-panel]
+  tags: Xfce
