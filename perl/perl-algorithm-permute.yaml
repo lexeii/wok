@@ -1,0 +1,21 @@
+origin    : Algorithm-Permute
+name      : perl-algorithm-permute
+version   : 0.16
+category  : perl
+summary   : Algorithm::Permute - Handy and fast permutation with object oriented interface
+maintainer: pascal.bellard@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/Algorithm-Permute
+repology  : perl:algorithm-permute
+
+src:
+- url:  cpan://SLOYD/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl
