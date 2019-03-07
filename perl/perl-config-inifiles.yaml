@@ -1,0 +1,22 @@
+origin    : Config-IniFiles
+name      : perl-config-inifiles
+version   : 3.000000
+category  : perl
+summary   : Config::IniFiles - A module for reading .ini-style configuration files
+maintainer: pascal.bellard@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/Config-IniFiles
+target    : noarch
+repology  : perl:config-inifiles
+
+src:
+- url:  cpan://SHLOMIF/<o>-<v>.tar.gz
+
+bdeps: [perl-io-stringy, perl-module-build]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-io-stringy

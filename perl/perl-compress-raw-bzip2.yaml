@@ -1,0 +1,22 @@
+origin    : Compress-Raw-Bzip2
+name      : perl-compress-raw-bzip2
+version   : 2.084
+category  : perl
+summary   : Compress::Raw::Bzip2 - Low-Level Interface to bzip2 compression library
+maintainer: devel@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/Compress-Raw-Bzip2
+repology  : perl:compress-raw-bzip2
+
+src:
+- url:  cpan://PMQS/<o>-<v>.tar.gz
+  sha1: f7df9af0e779e07348485813fd4382031b06adfb
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,22 @@
+origin    : Digest-Perl-MD5
+name      : perl-digest-perl-md5
+version   : 1.9
+category  : perl
+summary   : Digest::Perl::MD5 - Perl implementation of Ron Rivests MD5 Algorithm
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Digest-Perl-MD5
+target    : noarch
+repology  : perl:digest-perl-md5
+
+src:
+- url:  cpan://DELTA/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

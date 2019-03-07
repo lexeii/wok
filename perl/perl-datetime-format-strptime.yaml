@@ -1,0 +1,26 @@
+origin    : DateTime-Format-Strptime
+name      : perl-datetime-format-strptime
+version   : 1.75
+category  : perl
+summary   : DateTime::Format::Strptime - Parse and format strp and strf time patterns
+maintainer: pascal.bellard@slitaz.org
+license   : GPL2
+home      : https://metacpan.org/release/DateTime-Format-Strptime
+target    : noarch
+repology  : perl:datetime-format-strptime
+
+src:
+- url:  cpan://DROLSKY/<o>-<v>.tar.gz
+
+bdeps: [perl-datetime, perl-datetime-locale, perl-datetime-timezone,
+        perl-package-deprecationmanager, perl-params-validationcompiler,
+        perl-specio, perl-try-tiny, perl-test-warnings]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-datetime, perl-datetime-locale, perl-datetime-timezone,
+         perl-package-deprecationmanager, perl-params-validationcompiler,
+         perl-specio, perl-try-tiny]

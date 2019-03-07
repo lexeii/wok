@@ -1,0 +1,22 @@
+origin    : File-ShareDir
+name      : perl-file-sharedir
+version   : 1.116
+category  : perl
+summary   : File::ShareDir - Locate per-dist and per-module shared files
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/File-ShareDir
+target    : noarch
+repology  : perl:file-sharedir
+
+src:
+- url:  cpan://REHSACK/<o>-<v>.tar.gz
+
+bdeps: perl-class-inspector
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-class-inspector

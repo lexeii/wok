@@ -1,0 +1,22 @@
+origin    : Class-Data-Inheritable
+name      : perl-class-data-inheritable
+version   : 0.08
+category  : perl
+summary   : Class::Data::Inheritable - Inheritable, overridable class data
+maintainer: al.bobylev@gmail.com
+license   : Perl
+home      : https://metacpan.org/release/Class-Data-Inheritable
+target    : noarch
+repology  : perl:class-data-inheritable
+
+src:
+- url:  cpan://TMTM/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,22 @@
+origin    : Date-Manip
+name      : perl-date-manip
+version   : 6.75
+category  : perl
+summary   : Date::Manip - Date manipulation routines
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Date-Manip
+target    : noarch
+repology  : perl:date-manip
+
+src:
+- url:  cpan://SBECK/<o>-<v>.tar.gz
+
+bdeps: [perl, perl-test-inter]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

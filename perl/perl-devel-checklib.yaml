@@ -1,0 +1,22 @@
+origin    : Devel-CheckLib
+name      : perl-devel-checklib
+version   : 1.13
+category  : perl
+summary   : Devel::CheckLib - check that a library is available
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Devel-CheckLib
+target    : noarch
+repology  : perl:devel-checklib
+
+src:
+- url:  cpan://MATTN/<o>-<v>.tar.gz
+
+bdeps: [perl-io-captureoutput, perl-mock-config]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-io-captureoutput, perl-mock-config]

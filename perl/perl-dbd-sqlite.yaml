@@ -1,0 +1,23 @@
+origin    : DBD-SQLite
+name      : perl-dbd-sqlite
+version   : 1.60
+category  : perl
+summary   : DBD::SQLite - Self-contained RDBMS in a DBI Driver
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/DBD-SQLite
+repology  : perl:dbd-sqlite
+
+src:
+- url:  cpan://ISHIGAKI/<o>-<v>.tar.gz
+
+# FIXME: sqlite3-dev and libsqlite3 aren't detected as (b)deps
+bdeps: [perl-dbi, perl-dev, sqlite3-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  copy: [@std, @dev]
+  deps: [perl-dbi, libsqlite3]

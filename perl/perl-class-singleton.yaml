@@ -1,0 +1,22 @@
+origin    : Class-Singleton
+name      : perl-class-singleton
+version   : 1.5
+category  : perl
+summary   : Class::Singleton - Implementation of a 'Singleton' class
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Class-Singleton
+target    : noarch
+repology  : perl:class-singleton
+
+src:
+- url:  cpan://SHAY/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

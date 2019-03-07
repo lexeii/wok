@@ -1,0 +1,21 @@
+origin    : Digest-MD4
+name      : perl-digest-md4
+version   : 1.9
+category  : perl
+summary   : Digest::MD4 - Perl interface to the MD4 Algorithm
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Digest-MD4
+repology  : perl:digest-md4
+
+src:
+- url:  cpan://MIKEM/DigestMD4/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

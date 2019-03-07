@@ -1,0 +1,22 @@
+origin    : Archive-Extract
+name      : perl-archive-extract
+version   : 0.80
+category  : perl
+summary   : Archive::Extract - A generic archive extracting mechanism
+maintainer: al.bobylev@gmail.com
+license   : Perl
+home      : https://metacpan.org/release/Archive-Extract
+target    : noarch
+repology  : perl:archive-extract
+
+src:
+- url:  cpan://BINGOS/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

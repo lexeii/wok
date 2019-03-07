@@ -1,0 +1,22 @@
+origin    : ExtUtils-InstallPaths
+name      : perl-extutils-installpaths
+version   : 0.012
+category  : perl
+summary   : ExtUtils::InstallPaths - Build.PL install path logic made easy
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/ExtUtils-InstallPaths
+target    : noarch
+repology  : perl:extutils-installpaths
+
+src:
+- url:  cpan://LEONT/<o>-<v>.tar.gz
+
+bdeps: perl-extutils-config
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-extutils-config

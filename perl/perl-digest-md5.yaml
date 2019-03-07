@@ -1,0 +1,22 @@
+origin    : Digest-MD5
+name      : perl-digest-md5
+version   : 2.55
+category  : perl
+summary   : Digest::MD5 - Perl interface to the MD5 Algorithm
+maintainer: devel@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/Digest-MD5
+repology  : perl:digest-md5
+
+src:
+- url:  cpan://GAAS/<o>-<v>.tar.gz
+  sha1: 59dc31b43c84d5e18ba60f25f513929c2f05ad51
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,21 @@
+origin    : FCGI
+name      : perl-fcgi
+version   : 0.78
+category  : perl
+summary   : FCGI - Fast CGI module
+maintainer: devel@slitaz.org
+license   : unknown
+home      : https://metacpan.org/release/FCGI
+repology  : perl:fcgi
+
+src:
+- url:  cpan://ETHER/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

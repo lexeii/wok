@@ -1,0 +1,35 @@
+origin    : Alien-SDL
+name      : perl-alien-sdl
+version   : 1.446
+category  : perl
+summary   : Alien::SDL - building, finding and using SDL binaries
+maintainer: al.bobylev@gmail.com
+license   : Perl
+home      : https://metacpan.org/release/Alien-SDL
+target    : noarch
+repology  : perl:alien-sdl
+
+src:
+- url:  cpan://FROGGS/<o>-<v>.tar.gz
+
+bdeps: [perl, perl-capture-tiny, perl-file-sharedir, perl-file-which,
+        perl-module-build, perl-archive-extract, perl-text-patch,
+        perl-archive-zip, sdl-dev]
+
+# TODO: rebuild if sdl-config in sdl-dev changed
+
+prepare:
+  rules: sed -i '/^GetOptions/d' Build.PL # Workaround bug with --with-sdl-config
+
+make:
+  rules: |
+  perl Build.PL --with-sdl-config &&
+  perl Build &&
+  perl Build install installdirs=vendor destdir=$install
+
+post:
+  rules: chmod -R u+w $install
+
+pkgs:
+- pkg : main
+  deps: [perl, perl-capture-tiny, perl-file-sharedir, perl-file-which,   sdl]

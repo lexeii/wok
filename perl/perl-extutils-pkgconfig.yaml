@@ -1,0 +1,22 @@
+origin    : ExtUtils-PkgConfig
+name      : perl-extutils-pkgconfig
+version   : 1.16
+category  : perl
+summary   : ExtUtils::PkgConfig - simplistic interface to pkg-config
+maintainer: claudinei@slitaz.org
+license   : LGPL2.1
+home      : https://metacpan.org/release/ExtUtils-PkgConfig
+target    : noarch
+repology  : perl:extutils-pkgconfig
+
+src:
+- url:  cpan://XAOC/<o>-<v>.tar.gz
+
+bdeps: [perl, pkg-config]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl, pkg-config]

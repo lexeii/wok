@@ -1,0 +1,22 @@
+origin    : File-Find-Rule
+name      : perl-file-find-rule
+version   : 0.34
+category  : perl
+summary   : File::Find::Rule - Alternative interface to File::Find
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/File-Find-Rule
+target    : noarch
+repology  : perl:file-find-rule
+
+src:
+- url:  cpan://RCLAMP/<o>-<v>.tar.gz
+
+bdeps: [perl-number-compare, perl-text-glob]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-number-compare, perl-text-glob]

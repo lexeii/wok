@@ -1,0 +1,21 @@
+origin    : Digest-SHA1
+name      : perl-digest-sha1
+version   : 2.13
+category  : perl
+summary   : Digest::SHA1 - Perl interface to the SHA-1 algorithm
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Digest-SHA1
+repology  : perl:digest-sha1
+
+src:
+- url:  cpan://GAAS/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,22 @@
+origin    : Archive-Zip
+name      : perl-archive-zip
+version   : 1.64
+category  : perl
+summary   : Archive::Zip - Provide an interface to ZIP archive files
+maintainer: devel@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/Archive-Zip
+target    : noarch
+repology  : perl:archive-zip
+
+src:
+- url:  cpan://PHRED/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

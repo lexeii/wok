@@ -1,0 +1,21 @@
+origin    : Bit-Vector
+name      : perl-bit-vector
+version   : 7.4
+category  : perl
+summary   : Bit::Vector - Efficient bit vector, set of integers and 'big int' math library
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Bit-Vector
+repology  : perl:bit-vector
+
+src:
+- url:  cpan://STBEY/<o>-<v>.tar.gz
+
+bdeps: [perl-carp-clan, perl-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-carp-clan

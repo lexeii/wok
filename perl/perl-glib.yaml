@@ -1,0 +1,23 @@
+origin    : Glib
+name      : perl-glib
+version   : 1.328
+category  : perl
+summary   : Glib - Perl wrappers for the GLib utility and Object libraries
+maintainer: claudinei@slitaz.org
+license   : LGPL2.1
+home      : https://metacpan.org/release/Glib
+repology  : perl:glib
+
+src:
+- url:  cpan://XAOC/<o>-<v>.tar.gz
+
+bdeps: [perl, glib, perl-dev, perl-extutils-depends, perl-extutils-pkgconfig,
+        glib-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  copy: [@std, @dev]
+  deps: [perl, glib]

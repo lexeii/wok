@@ -1,0 +1,22 @@
+origin    : ExtUtils-Depends
+name      : perl-extutils-depends
+version   : 0.405
+category  : perl
+summary   : ExtUtils::Depends - Easily build XS extensions that depend on XS extensions
+maintainer: claudinei@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/ExtUtils-Depends
+target    : noarch
+repology  : perl:extutils-depends
+
+src:
+- url:  cpan://XAOC/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

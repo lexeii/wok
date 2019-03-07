@@ -1,0 +1,22 @@
+origin    : Crypt-RC4
+name      : perl-crypt-rc4
+version   : 2.02
+category  : perl
+summary   : Crypt::RC4 - Perl implementation of the RC4 encryption algorithm
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Crypt-RC4
+target    : noarch
+repology  : perl:crypt-rc4
+
+src:
+- url:  cpan://SIFUKURT/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

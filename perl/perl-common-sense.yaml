@@ -1,0 +1,23 @@
+origin    : common-sense
+name      : perl-common-sense
+version   : 3.74
+category  : perl
+summary   : common::sense - save a tree AND a kitten, use common::sense!
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/common-sense
+repology  : perl:common-sense
+
+src:
+- url:  cpan://MLEHMANN/<o>-<v>.tar.gz
+
+bdeps: perl
+
+#cookopts: force-arch # architecture-dependent paths
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

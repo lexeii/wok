@@ -1,0 +1,22 @@
+origin    : File-Copy-Recursive
+name      : perl-file-copy-recursive
+version   : 0.44
+category  : perl
+summary   : File::Copy::Recursive - Perl extension for recursively copying files and directories
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/File-Copy-Recursive
+target    : noarch
+repology  : perl:file-copy-recursive
+
+src:
+- url:  cpan://DMUEY/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

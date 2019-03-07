@@ -1,0 +1,22 @@
+origin    : Email-Date-Format
+name      : perl-email-date-format
+version   : 1.005
+category  : perl
+summary   : Email::Date::Format - produce RFC 2822 date strings
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Email-Date-Format
+target    : noarch
+repology  : perl:email-date-format
+
+src:
+- url:  cpan://RJBS/<o>-<v>.tar.gz"
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,23 @@
+origin    : Date-Calc
+name      : perl-date-calc
+version   : 6.4
+category  : perl
+summary   : Date::Calc - Gregorian calendar date calculations
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Date-Calc
+target    : noarch
+repology  : perl:date-calc
+
+src:
+- url:  cpan://STBEY/<o>-<v>.tar.gz
+
+bdeps: [perl-bit-vector, perl-carp-clan]
+
+make:
+  type: perl
+  args: UNINST=1 # cook_perl "" "" "UNINST=1"
+
+pkgs:
+- pkg : main
+  deps: [perl-bit-vector, perl-carp-clan]

@@ -1,0 +1,22 @@
+origin    : Exporter-Tiny
+name      : perl-exporter-tiny
+version   : 1.002001
+category  : perl
+summary   : Exporter::Tiny - an exporter with the features of Sub::Exporter but only core dependencies
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Exporter-Tiny
+target    : noarch
+repology  : perl:exporter-tiny
+
+src:
+- url:  cpan://TOBYINK/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

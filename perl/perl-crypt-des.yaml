@@ -1,0 +1,21 @@
+origin    : Crypt-DES
+name      : perl-crypt-des
+version   : 2.07
+category  : perl
+summary   : Crypt::DES - Perl DES encryption module
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Crypt-DES
+repology  : perl:crypt-des
+
+src:
+- url:  cpan://DPARIS/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

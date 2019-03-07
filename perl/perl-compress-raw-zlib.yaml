@@ -1,0 +1,22 @@
+origin    : Compress-Raw-Zlib
+name      : perl-compress-raw-zlib
+version   : 2.084
+category  : perl
+summary   : Compress::Raw::Zlib - Low-Level Interface to zlib compression library
+maintainer: devel@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/Compress-Raw-Zlib
+repology  : perl:compress-raw-zlib
+
+src:
+- url:  cpan://PMQS/<o>-<v>.tar.gz
+  sha1: ecc2ce83d18113f063ccfe21b6af32aebd64af8d
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

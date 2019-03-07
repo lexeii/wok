@@ -1,0 +1,22 @@
+origin    : Crypt-SmbHash
+name      : perl-crypt-smbhash
+version   : 0.12
+category  : perl
+summary   : Crypt::SmbHash - Perl-only implementation of lanman and nt md4 hash functions, for use in Samba style smbpasswd entries
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Crypt-SmbHash
+target    : noarch
+repology  : perl:crypt-smbhash
+
+src:
+- url:  cpan://BJKUIT/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

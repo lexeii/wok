@@ -1,0 +1,22 @@
+origin    : ExtUtils-Helpers
+name      : perl-extutils-helpers
+version   : 0.026
+category  : perl
+summary   : ExtUtils::Helpers - Various portability utilities for module builders
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/ExtUtils-Helpers
+target    : noarch
+repology  : perl:extutils-helpers
+
+src:
+- url:  cpan://LEONT/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

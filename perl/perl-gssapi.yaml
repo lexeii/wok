@@ -1,0 +1,21 @@
+origin    : GSSAPI
+name      : perl-gssapi
+version   : 0.28
+category  : perl
+summary   : GSSAPI - Perl extension providing access to the GSSAPIv2 library
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/GSSAPI
+repology  : perl:gssapi
+
+src:
+- url:  cpan://AGROLMS/<o>-<v>.tar.gz
+
+bdeps: [libcomerr3, libkrb5, perl-dev, krb5-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [libcomerr3, libkrb5, perl]

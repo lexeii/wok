@@ -1,0 +1,23 @@
+origin    : Getopt-Long
+name      : perl-getopt-long
+version   : 2.50
+category  : perl
+summary   : Getopt::Long - Extended processing of command line options
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Getopt-Long
+target    : noarch
+repology  : perl:getopt-long
+
+src:
+- url:  cpan://JV/<o>-<v>.tar.gz
+  sha1: e25d194a7b2d5c25a4c926b60c4580e640173297
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

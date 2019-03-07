@@ -1,0 +1,21 @@
+origin    : GD
+name      : perl-gd
+version   : 2.69
+category  : perl
+summary   : GD - Interface to Gd Graphics Library
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/GD
+repology  : perl:gd
+
+src:
+- url:  cpan://RURBAN/<o>-<v>.tar.gz
+
+bdeps: [perl-dev, libgd-dev, perl-extutils-pkgconfig]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl, libgd]

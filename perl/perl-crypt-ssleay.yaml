@@ -1,0 +1,25 @@
+origin    : Crypt-SSLeay
+name      : perl-crypt-ssleay
+version   : 0.72
+category  : perl
+summary   : Crypt::SSLeay - OpenSSL support for LWP
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Crypt-SSLeay
+repology  : perl:crypt-ssleay
+
+src:
+- url:  cpan://NANIS/<o>-<v>.tar.gz
+
+bdeps: [perl-lwp-protocol-https, perl-dev, openssl-dev, perl-path-class,
+        perl-io-interactive-tiny]
+
+prepare:
+  rules: sed -i 's|inc::||' Makefile.PL
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl, openssl, perl-lwp-protocol-https]

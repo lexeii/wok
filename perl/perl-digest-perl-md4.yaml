@@ -1,0 +1,22 @@
+origin    : Digest-Perl-MD4
+name      : perl-digest-perl-md4
+version   : 1.4
+category  : perl
+summary   : Digest::Perl::MD4 - Perl implementation of Ron Rivests MD4 Algorithm
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Digest-Perl-MD4
+target    : any
+repology  : perl:digest-perl-md4
+
+src:
+- url:  cpan://OTAKA/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

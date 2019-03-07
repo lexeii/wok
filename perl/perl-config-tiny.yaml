@@ -1,0 +1,22 @@
+origin    : Config-Tiny
+name      : perl-config-tiny
+version   : 2.23
+category  : perl
+summary   : Config::Tiny - Read/Write .ini style files with as little code as possible
+maintainer: pascal.bellard@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/Config-Tiny
+target    : noarch
+repology  : perl:config-tiny
+
+src:
+- url:  cpan://RSAVAGE/<o>-<v>.tgz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

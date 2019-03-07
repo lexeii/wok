@@ -1,0 +1,23 @@
+origin    : B-Hooks-EndOfScope
+name      : perl-b-hooks-endofscope
+version   : 0.24
+category  : perl
+summary   : B::Hooks::EndOfScope - Execute code after a scope finished compilation
+maintainer: al.bobylev@gmail.com
+license   : Perl
+home      : https://metacpan.org/release/B-Hooks-EndOfScope
+target    : noarch
+repology  : perl:b-hooks-endofscope
+
+src:
+- url:  cpan://ETHER/<o>-<v>.tar.gz
+
+bdeps: [perl-module-implementation, perl-sub-exporter-progressive, perl-dev,
+        perl-variable-magic]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-module-implementation, perl-sub-exporter-progressive]

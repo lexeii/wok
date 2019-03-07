@@ -1,0 +1,22 @@
+origin    : DBI
+name      : perl-dbi
+version   : 1.642
+category  : perl
+summary   : DBI - Database independent interface for Perl
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/DBI
+repology  : perl:dbi
+
+src:
+- url:  cpan://TIMB/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  copy: [@std, @dev]
+  deps: perl

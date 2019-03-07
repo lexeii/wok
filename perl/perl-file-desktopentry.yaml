@@ -1,0 +1,22 @@
+origin    : File-DesktopEntry
+name      : perl-file-desktopentry
+version   : 0.22
+category  : perl
+summary   : File::DesktopEntry - Object to handle .desktop files
+maintainer: paul@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/File-DesktopEntry
+target    : noarch
+repology  : perl:file-desktopentry
+
+src:
+- url:  cpan://MICHIELB/<o>-<v>.tar.gz
+
+bdeps: [perl-file-basedir, perl-uri]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-file-basedir, perl-uri]

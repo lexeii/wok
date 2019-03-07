@@ -1,0 +1,22 @@
+origin    : Geo-IPfree
+name      : perl-geo-ipfree
+version   : 1.151940
+category  : perl
+summary   : Geo::IPfree - Look up the country of an IPv4 address
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Geo-IPfree
+target    : noarch
+repology  : perl:geo-ipfree
+
+src:
+- url:  cpan://BRICAS/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

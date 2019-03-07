@@ -1,0 +1,22 @@
+origin    : CGI-Session
+name      : perl-cgi-session
+version   : 4.48
+category  : perl
+summary   : CGI::Session - persistent session data in CGI applications
+maintainer: pascal.bellard@slitaz.org
+license   : Artistic1
+home      : https://metacpan.org/release/CGI-Session
+target    : noarch
+repology  : perl:cgi-session
+
+src:
+- url:  cpan://MARKSTOS/<o>-<v>.tar.gz
+
+bdeps: perl-cgi
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-cgi

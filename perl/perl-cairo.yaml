@@ -1,0 +1,23 @@
+origin    : Cairo
+name      : perl-cairo
+version   : 1.106
+category  : perl
+summary   : Cairo - Perl interface to the cairo 2d vector graphics library
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://metacpan.org/release/Cairo
+repology  : perl:cairo
+
+src:
+- url:  cpan://XAOC/<o>-<v>.tar.gz
+
+bdeps: [freetype, perl-extutils-depends, perl-extutils-pkgconfig, perl-dev,
+        cairo-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  copy: [@std, '*.h']
+  deps: [libcairo, freetype, perl-extutils-depends, perl-extutils-pkgconfig]

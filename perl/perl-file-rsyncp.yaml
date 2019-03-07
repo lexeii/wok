@@ -1,0 +1,22 @@
+origin    : File-RsyncP
+name      : perl-file-rsyncp
+version   : 0.74
+category  : perl
+summary   : File::RsyncP - Perl Rsync client
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/File-RsyncP
+repology  : perl:file-rsyncp
+
+src:
+- url:  cpan://CBARRATT/<o>-<v>.tar.gz
+
+bdeps: [perl-dev, rsync]
+
+make:
+  type: perl
+  jobs: 1
+
+pkgs:
+- pkg : main
+  deps: [perl, rsync]

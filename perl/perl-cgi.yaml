@@ -1,0 +1,22 @@
+origin    : CGI
+name      : perl-cgi
+version   : 4.40
+category  : perl
+summary   : CGI - Handle Common Gateway Interface requests and responses
+maintainer: pascal.bellard@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/CGI
+target    : noarch
+repology  : perl:cgi
+
+src:
+- url:  cpan://LEEJO/<o>-<v>.tar.gz
+
+bdeps: [perl-html-parser, perl-test-deep, perl-test-nowarnings, perl-test-warn]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-html-parser

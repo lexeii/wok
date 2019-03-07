@@ -1,0 +1,23 @@
+origin    : Event
+name      : perl-event
+version   : 1.27
+category  : perl
+summary   : Event - Event loop processing
+maintainer: pascal.bellard@slitaz.org
+license   : unknown
+home      : https://metacpan.org/release/Event
+repology  : perl:event
+
+src:
+- url:  cpan://ETJ/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  copy: [@std, @dev]
+  deps: perl
+  suggested: perl-time-hires

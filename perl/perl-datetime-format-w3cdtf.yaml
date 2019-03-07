@@ -1,0 +1,22 @@
+origin    : DateTime-Format-W3CDTF
+name      : perl-datetime-format-w3cdtf
+version   : 0.07
+category  : perl
+summary   : DateTime::Format::W3CDTF - Parse and format W3CDTF datetime strings
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/DateTime-Format-W3CDTF
+target    : noarch
+repology  : perl:datetime-format-w3cdtf
+
+src:
+- url:  cpan://GWILLIAMS/<o>-<v>.tar.gz
+
+bdeps: perl-datetime
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-datetime

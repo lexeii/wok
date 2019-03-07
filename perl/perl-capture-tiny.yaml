@@ -1,0 +1,22 @@
+origin    : Capture-Tiny
+name      : perl-capture-tiny
+version   : 0.48
+category  : perl
+summary   : Capture::Tiny - Capture STDOUT and STDERR from Perl, XS or external programs
+maintainer: al.bobylev@gmail.com
+license   : Apache2
+home      : https://metacpan.org/release/Capture-Tiny
+target    : noarch
+repology  : perl:capture-tiny
+
+src:
+- url:  cpan://DAGOLDEN/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,22 @@
+origin    : Class-Accessor
+name      : perl-class-accessor
+version   : 0.51
+category  : perl
+summary   : Class::Accessor - Automated accessor generation
+maintainer: devel@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/Class-Accessor
+target    : noarch
+repology  : perl:class-accessor
+
+src:
+- url:  cpan://KASEI/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

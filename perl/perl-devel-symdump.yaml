@@ -1,0 +1,22 @@
+origin    : Devel-Symdump
+name      : perl-devel-symdump
+version   : 2.18
+category  : perl
+summary   : Devel::Symdump - dump symbol names or the symbol table
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Devel-Symdump
+target    : noarch
+repology  : perl:devel-symdump
+
+src:
+- url:  cpan://ANDK/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

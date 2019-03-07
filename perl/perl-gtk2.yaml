@@ -1,0 +1,25 @@
+origin    : Gtk2
+name      : perl-gtk2
+version   : 1.24992
+category  : perl
+summary   : Gtk2 - Perl interface to the 2.x series of the Gimp Toolkit library
+maintainer: claudinei@slitaz.org
+license   : LGPL2.1
+home      : https://metacpan.org/release/Gtk2
+repology  : perl:gtk2
+
+src:
+- url:  cpan://XAOC/<o>-<v>.tar.gz
+
+bdeps: [perl-glib, perl-pango, atk, libcairo, fontconfig, freetype, gdk-pixbuf,
+        glib, gtk2, pango, perl-dev, perl-extutils-depends,
+        perl-extutils-pkgconfig, gtk2-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  copy: [@std, @dev]
+  deps: [perl-glib, perl-pango, atk, libcairo, fontconfig, freetype, gdk-pixbuf,
+         glib, gtk2, pango]

@@ -1,0 +1,22 @@
+origin    : Class-Tiny
+name      : perl-class-tiny
+version   : 1.006
+category  : perl
+summary   : Class::Tiny - Minimalist class construction
+maintainer: al.bobylev@gmail.com
+license   : Apache2
+home      : https://metacpan.org/release/Class-Tiny
+target    : noarch
+repology  : perl:class-tiny
+
+src:
+- url:  cpan://DAGOLDEN/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,21 @@
+origin    : DBD-Pg
+name      : perl-dbd-pg
+version   : 3.7.4
+category  : perl
+summary   : DBD::Pg - PostgreSQL database driver for the DBI module
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/DBD-Pg
+repology  : perl:dbd-pg
+
+src:
+- url:  cpan://TURNSTEP/<o>-<v>.tar.gz
+
+bdeps: [perl-dbi, perl-dev, postgresql-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-dbi, libpostgresqlclient]

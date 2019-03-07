@@ -1,0 +1,22 @@
+origin    : ExtUtils-Config
+name      : perl-extutils-config
+version   : 0.008
+category  : perl
+summary   : ExtUtils::Config - A wrapper for perl's configuration
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/ExtUtils-Config
+target    : noarch
+repology  : perl:extutils-config
+
+src:
+- url:  cpan://LEONT/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

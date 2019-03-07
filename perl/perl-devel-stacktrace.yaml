@@ -1,0 +1,22 @@
+origin    : Devel-StackTrace
+name      : perl-devel-stacktrace
+version   : 2.03
+category  : perl
+summary   : Devel::StackTrace - An object representing a stack trace
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Devel-StackTrace
+target    : noarch
+repology  : perl:devel-stacktrace
+
+src:
+- url:  cpan://DROLSKY/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

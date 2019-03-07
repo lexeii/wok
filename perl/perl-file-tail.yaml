@@ -1,0 +1,22 @@
+origin    : File-Tail
+name      : perl-file-tail
+version   : 1.3
+category  : perl
+summary   : File::Tail - Perl extension for reading from continously updated files
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/File-Tail
+target    : noarch
+repology  : perl:file-tail
+
+src:
+- url:  cpan://MGRABNAR/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,22 @@
+origin    : Crypt-CBC
+name      : perl-crypt-cbc
+version   : 2.33
+category  : perl
+summary   : Crypt::CBC - Encrypt Data with Cipher Block Chaining Mode
+maintainer: devel@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/Crypt-CBC
+target    : noarch
+repology  : perl:crypt-cbc
+
+src:
+- url:  cpan://LDS/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

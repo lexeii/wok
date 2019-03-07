@@ -1,0 +1,23 @@
+origin    : Expect
+name      : perl-expect
+version   : 1.35
+category  : perl
+summary   : Expect - automate interactions with command line programs that expose a text terminal interface
+maintainer: pascal.bellard@slitaz.org
+license   : unknown
+home      : https://metacpan.org/release/Expect
+target    : noarch
+repology  : perl:expect
+
+src:
+- url:  cpan://JACOBY/<o>-<v>.tar.gz
+
+bdeps: [perl, perl-io-tty]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl
+  suggested: perl-io-stty

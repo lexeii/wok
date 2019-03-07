@@ -1,0 +1,21 @@
+origin    : BerkeleyDB
+name      : perl-berkeleydb
+version   : 0.55
+category  : perl
+summary   : BerkeleyDB - Perl extension for Berkeley DB version 2, 3, 4 or 5
+maintainer: pascal.bellard@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/BerkeleyDB
+repology  : perl:berkeleydb
+
+src:
+- url:  cpan://PMQS/<o>-<v>.tar.gz
+
+bdeps: [perl-dev, db-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl, db]

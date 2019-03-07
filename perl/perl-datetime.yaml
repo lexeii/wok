@@ -1,0 +1,25 @@
+origin    : DateTime
+name      : perl-datetime
+version   : 1.50
+category  : perl
+summary   : DateTime - A date and time object for Perl
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/DateTime
+repology  : perl:datetime
+
+src:
+- url:  cpan://DROLSKY/<o>-<v>.tar.gz
+
+bdeps: [perl-datetime-locale, perl-datetime-timezone, perl-dist-checkconflicts,
+        perl-namespace-autoclean, perl-params-validationcompiler, perl-specio,
+        perl-try-tiny, perl-dev, perl-cpan-meta-check, perl-test-warnings]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-datetime-locale, perl-datetime-timezone, perl-dist-checkconflicts,
+         perl-namespace-autoclean, perl-params-validationcompiler, perl-specio,
+         perl-try-tiny]

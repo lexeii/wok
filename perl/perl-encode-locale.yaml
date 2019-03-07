@@ -1,0 +1,22 @@
+origin    : Encode-Locale
+name      : perl-encode-locale
+version   : 1.05
+category  : perl
+summary   : Encode::Locale - Determine the locale encoding
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Encode-Locale
+target    : noarch
+repology  : perl:encode-locale
+
+src:
+- url:  cpan://GAAS/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,22 @@
+origin    : File-BaseDir
+name      : perl-file-basedir
+version   : 0.08
+category  : perl
+summary   : File::BaseDir - Use the Freedesktop.org base directory specification
+maintainer: paul@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/File-BaseDir
+target    : noarch
+repology  : perl:file-basedir
+
+src:
+- url:  cpan://KIMRYAN/<o>-<v>.tar.gz
+
+bdeps: [perl-ipc-system-simple, perl-module-build, perl-file-which]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-ipc-system-simple

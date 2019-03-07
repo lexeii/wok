@@ -1,0 +1,22 @@
+origin    : Authen-SASL
+name      : perl-authen-sasl
+version   : 2.16
+category  : perl
+summary   : Authen::SASL - SASL Authentication framework
+maintainer: pascal.bellard@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/Authen-SASL
+target    : noarch
+repology  : perl:authen-sasl
+
+src:
+- url:  cpan://GBARR/<o>-<v>.tar.gz
+
+bdeps: [perl-digest-hmac, perl-gssapi, perl-module-install]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-digest-hmac

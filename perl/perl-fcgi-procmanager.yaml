@@ -1,0 +1,22 @@
+origin    : FCGI-ProcManager
+name      : perl-fcgi-procmanager
+version   : 0.28
+category  : perl
+summary   : FCGI::ProcManager - functions for managing FastCGI applications
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/FCGI-ProcManager
+target    : noarch
+repology  : perl:fcgi-procmanager
+
+src:
+- url:  cpan://ARODLAND/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

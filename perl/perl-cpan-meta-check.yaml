@@ -1,0 +1,22 @@
+origin    : CPAN-Meta-Check
+name      : perl-cpan-meta-check
+version   : 0.014
+category  : perl
+summary   : CPAN::Meta::Check - Verify requirements in a CPAN::Meta object
+maintainer: al.bobylev@gmail.com
+license   : Perl
+home      : https://metacpan.org/release/CPAN-Meta-Check
+target    : noarch
+repology  : perl:cpan-meta-check
+
+src:
+- url:  cpan://LEONT/<o>-<v>.tar.gz
+
+bdeps: [perl, perl-test-deep]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

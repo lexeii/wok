@@ -1,0 +1,22 @@
+origin    : Dist-CheckConflicts
+name      : perl-dist-checkconflicts
+version   : 0.11
+category  : perl
+summary   : Dist::CheckConflicts - declare version conflicts for your dist
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Dist-CheckConflicts
+target    : noarch
+repology  : perl:dist-checkconflicts
+
+src:
+- url:  cpan://DOY/<o>-<v>.tar.gz
+
+bdeps: perl-module-runtime
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-module-runtime

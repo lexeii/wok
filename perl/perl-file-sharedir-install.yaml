@@ -1,0 +1,22 @@
+origin    : File-ShareDir-Install
+name      : perl-file-sharedir-install
+version   : 0.13
+category  : perl
+summary   : File::ShareDir::Install - Install shared files
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/File-ShareDir-Install
+target    : noarch
+repology  : perl:file-sharedir-install
+
+src:
+- url:  cpan://ETHER/<o>-<v>.tar.gz
+
+bdeps: [perl, perl-module-build-tiny]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

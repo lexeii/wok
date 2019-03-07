@@ -1,0 +1,22 @@
+origin    : Apache-DBI
+name      : perl-apache-dbi
+version   : 1.12
+category  : perl
+summary   : Apache::DBI - Initiate a persistent database connection
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Apache-DBI
+target    : noarch
+repology  : perl:apache-dbi
+
+src:
+- url:  cpan://PHRED/<o>-<v>.tar.gz
+
+bdeps: [perl-dbi, perl-digest-sha1]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-dbi, perl-digest-sha1]

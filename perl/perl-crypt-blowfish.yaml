@@ -1,0 +1,21 @@
+origin    : Crypt-Blowfish
+name      : perl-crypt-blowfish
+version   : 2.14
+category  : perl
+summary   : Crypt::Blowfish - Perl Blowfish encryption module
+maintainer: devel@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/Crypt-Blowfish
+repology  : perl:crypt-blowfish
+
+src:
+- url:  cpan://DPARIS/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,22 @@
+origin    : Config-General
+name      : perl-config-general
+version   : 2.63
+category  : perl
+summary   : Config::General - Generic Config Module
+maintainer: pascal.bellard@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/Config-General
+target    : noarch
+repology  : perl:config-general
+
+src:
+- url:  cpan://TLINDEN/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

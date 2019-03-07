@@ -1,0 +1,22 @@
+origin    : AppConfig
+name      : perl-appconfig
+version   : 1.71
+category  : perl
+summary   : AppConfig - Perl5 module for reading configuration files and parsing command line arguments
+maintainer: devel@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/AppConfig
+target    : noarch
+repology  : perl:appconfig
+
+src:
+- url:  cpan://NEILB/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

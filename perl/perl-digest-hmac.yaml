@@ -1,0 +1,22 @@
+origin    : Digest-HMAC
+name      : perl-digest-hmac
+version   : 1.03
+category  : perl
+summary   : Digest::HMAC - Keyed-Hashing for Message Authentication
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Digest-HMAC
+target    : noarch
+repology  : perl:digest-hmac
+
+src:
+- url:  cpan://GAAS/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

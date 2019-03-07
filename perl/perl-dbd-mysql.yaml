@@ -1,0 +1,21 @@
+origin    : DBD-mysql
+name      : perl-dbd-mysql
+version   : 4.049
+category  : perl
+summary   : DBD::mysql - MySQL driver for the Perl5 Database Interface (DBI)
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/DBD-mysql
+repology  : perl:dbd-mysql
+
+src:
+- url:  cpan://DVEEDEN/<o>-<v>.tar.gz
+
+bdeps: [perl-dbi, zlib, perl-dev, mysql-dev, perl-devel-checklib]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl, perl-dbi, libmysqlclient, zlib]

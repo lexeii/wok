@@ -1,0 +1,62 @@
+origin    : Curses
+name      : perl-curses
+version   : 1.36
+category  : perl
+summary   : Curses - terminal screen handling and optimization
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Curses
+repology  : perl:curses
+
+src:
+- url:  cpan://GIRAFFED/<o>-<v>.tar.gz
+
+bdeps: [perl-dev, ncurses-dev]
+
+prepare:
+  patches:
+  - name: include-ncurses-form-h.patch
+
+make:
+  type: perl
+  args: PANELS MENUS FORMS # cook_perl "PANELS MENUS FORMS"
+
+pkgs:
+- pkg : main
+  deps: [perl, ncurses, ncurses-libform, ncurses-libmenu, ncurses-libpanel]
+
+files:
+- name: include-ncurses-form-h.patch
+  content: |
+  As described in the INSTALL file:
+
+  --- a/dev/null
+  +++ b/c-config.h
+  @@ -0,0 +1,27 @@
+  +/*  Hint file for the Linux platform, ncurses version of libcurses.
+  + *
+  + *  If this configuration doesn't work, look at the file "c-none.h"
+  + *  for how to set the configuration options.
+  + */
+  +
+  +#include <ncurses.h>
+  +
+  +#ifdef C_PANELFUNCTION
+  +#include <panel.h>
+  +#endif
+  +
+  +#ifdef C_MENUFUNCTION
+  +#include <menu.h>
+  +#endif
+  +
+  +#ifdef C_FORMFUNCTION
+  +#include "/usr/include/form.h"
+  +#endif
+  +
+  +#define C_LONGNAME
+  +#define C_LONG0ARGS
+  +#undef  C_LONG2ARGS
+  +
+  +#define C_TOUCHLINE
+  +#define C_TOUCH3ARGS
+  +#undef  C_TOUCH4ARGS

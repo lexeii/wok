@@ -1,0 +1,22 @@
+origin    : Carp-Clan
+name      : perl-carp-clan
+version   : 6.07
+category  : perl
+summary   : Carp::Clan - Report errors from perspective of caller of a 'clan' of modules
+maintainer: devel@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/Carp-Clan
+target    : noarch
+repology  : perl:carp-clan
+
+src:
+- url:  cpan://ETHER/<o>-<v>.tar.gz
+
+bdeps: perl-test-exception
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-test-exception

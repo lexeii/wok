@@ -1,0 +1,22 @@
+origin    : DateTime-Format-Mail
+name      : perl-datetime-format-mail
+version   : 0.403
+category  : perl
+summary   : DateTime::Format::Mail - Convert between DateTime and RFC2822/822 formats
+maintainer: pascal.bellard@slitaz.org
+license   : GPL2
+home      : https://metacpan.org/release/DateTime-Format-Mail
+target    : noarch
+repology  : perl:datetime-format-mail
+
+src:
+- url:  cpan://BOOK/<o>-<v>.tar.gz
+
+bdeps: [perl-datetime, perl-params-validate]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-datetime, perl-params-validate]

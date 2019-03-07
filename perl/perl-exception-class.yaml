@@ -1,0 +1,22 @@
+origin    : Exception-Class
+name      : perl-exception-class
+version   : 1.44
+category  : perl
+summary   : Exception::Class - A module that allows you to declare real exception classes in Perl
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Exception-Class
+target    : noarch
+repology  : perl:exception-class
+
+src:
+- url:  cpan://DROLSKY/<o>-<v>.tar.gz
+
+bdeps: [perl-class-data-inheritable, perl-devel-stacktrace]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-class-data-inheritable, perl-devel-stacktrace]

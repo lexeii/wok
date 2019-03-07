@@ -1,0 +1,25 @@
+origin    : DateTime-TimeZone
+name      : perl-datetime-timezone
+version   : 2.21
+category  : perl
+summary   : DateTime::TimeZone - Time zone object base class and factory
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/DateTime-TimeZone
+target    : noarch
+repology  : perl:datetime-timezone
+
+src:
+- url:  cpan://DROLSKY/<o>-<v>.tar.gz
+
+bdeps: [perl-class-singleton, perl-module-runtime, perl-namespace-autoclean,
+        perl-params-validationcompiler, perl-specio, perl-try-tiny,
+        perl-test-requires]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-class-singleton, perl-module-runtime, perl-namespace-autoclean,
+         perl-params-validationcompiler, perl-specio, perl-try-tiny]

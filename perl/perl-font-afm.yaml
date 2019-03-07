@@ -1,0 +1,22 @@
+origin    : Font-AFM
+name      : perl-font-afm
+version   : 1.20
+category  : perl
+summary   : Font::AFM - Interface to Adobe Font Metrics files
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Font-AFM
+target    : noarch
+repology  : perl:font-afm
+
+src:
+- url:  cpan://GAAS/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

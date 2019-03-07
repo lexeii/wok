@@ -1,0 +1,22 @@
+origin    : Class-Inspector
+name      : perl-class-inspector
+version   : 1.32
+category  : perl
+summary   : Class::Inspector - Get information about a class and its structure
+maintainer: al.bobylev@gmail.com
+license   : Perl
+home      : https://metacpan.org/release/Class-Inspector
+target    : noarch
+repology  : perl:class-inspector
+
+src:
+- url:  cpan://PLICEASE/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

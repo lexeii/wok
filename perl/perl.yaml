@@ -1,0 +1,62 @@
+name      : perl
+version   : 5.28.1
+category  : development
+summary   : Perl interpreter and modules
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://www.perl.org/
+lfs       : http://www.linuxfromscratch.org/lfs/view/stable/chapter06/perl.html
+
+# WARNING
+# Due to Perl libraries use versioned paths like
+#   /usr/lib/perl5/$VERSION/
+#   /usr/lib/perl5/site_perl/$VERSION/
+# etc., you need to update ALL the Perl related packages on ANY change
+# of the Perl version!
+
+src:
+- url:  http://www.cpan.org/src/5.0/<n>-<v>.tar.xz
+  # Integrity check: http://www.cpan.org/src/5.0/
+  sha256: fea7162d4cca940a387f0587b93f6737d884bf74d8a9d7cfd978bc12cd0b202d
+
+# force-arch: architecture-dependent paths here,
+# perl-dev contains /usr/lib/perl5/5.28.1/i486-linux-thread-multi/CORE/EXTERN.h
+# and so on
+cookopts: !perlz force-arch
+
+bdeps: [zlib-dev, bzip2-dev, less, gdbm-dev]
+
+make:
+  type: custom
+  env:
+  - BUILD_ZLIB: False
+  - BUILD_BZIP2: 0
+  rules: |
+    sh Configure -des \
+      -Dprefix=/usr \
+      -Dvendorprefix=/usr \
+      -Dman1dir=/usr/share/man/man1 \
+      -Dman3dir=/usr/share/man/man3 \
+      -Dpager="/usr/bin/less -isR" \
+      -Duseshrplib \
+      -Dusethreads &&
+    make &&
+    make install
+
+post:
+  rules: find $install -type f -exec chmod u+w '{}' \; # 444->644, 555->755
+
+pkgs:
+- pkg:  -core
+  copy: [perl, perl<v>, libperl.so] # NOTE <v> here!!!
+  deps: glibc-base
+  note: minimal interpreter
+  pre_install: rm -f "$1/usr/bin/perl" # Remove perl link to microperl if any.
+
+- pkg:  main
+  copy: [@std, @rm]
+  deps: [libbzip2, libgdbm, zlib, perl-core]
+  provide: microperl
+  tags: LFS
+
+- pkg:  dev

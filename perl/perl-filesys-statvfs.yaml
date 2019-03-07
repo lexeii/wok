@@ -1,0 +1,21 @@
+origin    : Filesys-Statvfs
+name      : perl-filesys-statvfs
+version   : 0.82
+category  : perl
+summary   : Filesys::Statvfs - Perl extension for statvfs() and fstatvfs()
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Filesys-Statvfs
+repology  : perl:filesys-statvfs
+
+src:
+- url:  cpan://IGUTHRIE/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl
