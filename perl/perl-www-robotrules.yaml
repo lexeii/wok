@@ -1,0 +1,22 @@
+origin    : WWW-RobotRules
+name      : perl-www-robotrules
+version   : 6.02
+category  : perl
+summary   : WWW::RobotRules - database of robots.txt-derived permissions
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/WWW-RobotRules
+target    : noarch
+repology  : perl:www-robotrules
+
+src:
+- url:  cpan://GAAS/<o>-<v>.tar.gz
+
+bdeps: perl-uri
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-uri

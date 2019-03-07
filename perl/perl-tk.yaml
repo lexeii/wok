@@ -1,0 +1,29 @@
+origin    : Tk
+name      : perl-tk
+version   : 804.034
+category  : perl
+summary   : Tk - a graphical user interface toolkit for Perl
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Tk
+repology  : perl:tk
+
+src:
+- url:  cpan://SREZIC/<o>-<v>.tar.gz
+
+bdeps: [perl-dev, libx11-dev, freetype-dev, libxft-dev, fontconfig-dev,
+        libpng-dev, zlib-dev, libjpeg-turbo-dev, tk-dev]
+
+#cookopts: force-arch # arch-specific paths for .h
+
+prepare:
+  # The Xlib header is wrong...
+  rules: sed -i 's/XKeycodeToKeysym\(.*\)unsigned int/XKeycodeToKeysym\1KeyCode/' pTk/Xlib.h
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl, fontconfig, libjpeg-turbo, libpng, libx11, libxft, zlib, tk]
+- pkg : dev

@@ -1,0 +1,22 @@
+origin    : XML-NamespaceSupport
+name      : perl-xml-namespacesupport
+version   : 1.12
+category  : perl
+summary   : XML::NamespaceSupport - A simple generic namespace processor
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/XML-NamespaceSupport
+target    : noarch
+repology  : perl:xml-namespacesupport
+
+src:
+- url:  cpan://PERIGRIN/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

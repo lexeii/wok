@@ -1,0 +1,22 @@
+origin    : Sub-Info
+name      : perl-sub-info
+version   : 0.002
+category  : perl
+summary   : Sub::Info - Tool for inspecting subroutines
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Sub-Info
+target    : noarch
+repology  : perl:sub-info
+
+src:
+- url:  cpan://EXODIST/<o>-<v>.tar.gz
+
+bdeps: perl-importer
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-importer

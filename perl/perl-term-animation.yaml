@@ -1,0 +1,22 @@
+origin    : Term-Animation
+name      : perl-term-animation
+version   : 2.6
+category  : perl
+summary   : Term::Animation - ASCII sprite animation framework
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Term-Animation
+target    : noarch
+repology  : perl:term-animation
+
+src:
+- url:  cpan://KBAUCOM/<o>-<v>.tar.gz
+
+bdeps: perl-curses
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-curses

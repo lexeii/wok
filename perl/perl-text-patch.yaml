@@ -1,0 +1,22 @@
+origin    : Text-Patch
+name      : perl-text-patch
+version   : 1.8
+category  : perl
+summary   : Text::Patch - Patches text with given patch
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Text-Patch
+target    : noarch
+repology  : perl:text-patch
+
+src:
+- url:  cpan://CADE/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

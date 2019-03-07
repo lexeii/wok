@@ -1,0 +1,22 @@
+origin    : Text-Glob
+name      : perl-text-glob
+version   : 0.11
+category  : perl
+summary   : Text::Glob - match globbing patterns against text
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Text-Glob
+target    : noarch
+repology  : perl:text-glob
+
+src:
+- url:  cpan://RCLAMP/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

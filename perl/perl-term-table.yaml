@@ -1,0 +1,22 @@
+origin    : Term-Table
+name      : perl-term-table
+version   : 0.013
+category  : perl
+summary   : Term::Table - Format a header and rows into a table
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Term-Table
+target    : noarch
+repology  : perl:term-table
+
+src:
+- url:  cpan://EXODIST/<o>-<v>.tar.gz
+
+bdeps: perl-importer
+
+make:
+  type: perl
+
+deps:
+- pkg : main
+  deps: perl-importer

@@ -1,0 +1,21 @@
+origin    : Unicode-Map
+name      : perl-unicode-map
+version   : 0.112
+category  : perl
+summary   : Unicode::Map - An utility to map texts from and to Unicode
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Unicode-Map
+repology  : perl:unicode-map
+
+src:
+- url:  cpan://MSCHWARTZ/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

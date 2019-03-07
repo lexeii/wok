@@ -1,0 +1,22 @@
+origin    : Task-Weaken
+name      : perl-task-weaken
+version   : 1.06
+category  : perl
+summary   : Task::Weaken - Ensure that a platform has weaken support
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Task-Weaken
+target    : noarch
+repology  : perl:task-weaken
+
+src:
+- url:  cpan://ETHER/<o>-<v>.tar.gz
+
+bdeps: perl-module-install
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,22 @@
+origin    : Test-Exception
+name      : perl-test-exception
+version   : 0.43
+category  : perl
+summary   : Test::Exception - Test exception-based code
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Test-Exception
+target    : noarch
+repology  : perl:test-exception
+
+src:
+- url:  cpan://EXODIST/<o>-<v>.tar.gz
+
+bdeps: perl-sub-uplevel
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-sub-uplevel

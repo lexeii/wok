@@ -1,0 +1,23 @@
+origin    : XSLoader
+name      : perl-xsloader
+version   : 0.24
+category  : perl
+summary   : XSLoader - Dynamically load C libraries into Perl code
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/XSLoader
+repology  : perl:xsloader
+
+src:
+- url:  cpan://SAPER/<o>-<v>.tar.gz
+
+#cookopts: force-arch # arch-specific paths for .pm
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

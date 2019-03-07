@@ -1,0 +1,24 @@
+origin    : Test-File-ShareDir
+name      : perl-test-file-sharedir
+version   : 1.001002
+category  : perl
+summary   : Test::File::ShareDir - Create a Fake ShareDir for your modules for testing
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Test-File-ShareDir
+target    : noarch
+repology  : perl:test-file-sharedir
+
+src:
+- url:  cpan://KENTNL/<o>-<v>.tar.gz
+
+bdeps: [perl-class-tiny, perl-file-copy-recursive, perl-file-sharedir,
+        perl-path-tiny, perl-scope-guard, perl-test-fatal]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-class-tiny, perl-file-copy-recursive, perl-file-sharedir,
+         perl-path-tiny, perl-scope-guard]

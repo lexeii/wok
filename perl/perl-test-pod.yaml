@@ -1,0 +1,22 @@
+origin    : Test-Pod
+name      : perl-test-pod
+version   : 1.52
+category  : perl
+summary   : Test::Pod - check for POD errors in files
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Test-Pod
+target    : noarch
+repology  : perl:test-pod
+
+src:
+- url:  cpan://ETHER/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

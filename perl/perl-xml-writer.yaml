@@ -1,0 +1,22 @@
+origin    : XML-Writer
+name      : perl-xml-writer
+version   : 0.625
+category  : perl
+summary   : XML::Writer - Perl extension for writing XML documents
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/XML-Writer
+target    : noarch
+repology  : perl:xml-writer
+
+src:
+- url:  cpan://JOSEPHW/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,22 @@
+origin    : Test-Without-Module
+name      : perl-test-without-module
+version   : 0.20
+category  : perl
+summary   : Test::Without::Module - Test fallback behaviour in absence of modules
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Test-Without-Module
+target    : noarch
+repology  : perl:test-without-module
+
+src:
+- url:  cpan://CORION/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

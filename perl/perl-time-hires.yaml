@@ -1,0 +1,22 @@
+origin    : Time-HiRes
+name      : perl-time-hires
+version   : 1.9758
+category  : perl
+summary   : Time::HiRes - High resolution alarm, sleep, gettimeofday, interval timers
+maintainer: pascal.bellard@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/Time-HiRes
+repology  : perl:time-hires
+
+src:
+- url:  cpan://JHI/<o>-<v>.tar.gz
+  sha1: 8b29088f796abca62af07c8db1bb818f0a822579
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

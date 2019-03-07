@@ -1,0 +1,21 @@
+origin    : Sub-Name
+name      : perl-sub-name
+version   : 0.21
+category  : perl
+summary   : Sub::Name - (Re)name a sub
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Sub-Name
+repology  : perl:sub-name
+
+src:
+- url:  cpan://ETHER/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

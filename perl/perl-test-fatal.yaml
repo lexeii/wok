@@ -1,0 +1,22 @@
+origin    : Test-Fatal
+name      : perl-test-fatal
+version   : 0.014
+category  : perl
+summary   : Test::Fatal - incredibly simple helpers for testing code with exceptions
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Test-Fatal
+target    : noarch
+repology  : perl:test-fatal
+
+src:
+- url:  cpan://RJBS/<o>-<v>.tar.gz
+
+bdeps: perl-try-tiny
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-try-tiny

@@ -1,0 +1,22 @@
+origin    : Test-NoWarnings
+name      : perl-test-nowarnings
+version   : 1.04
+category  : perl
+summary   : Test::NoWarnings - Make sure you didn't emit any warnings while testing
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://metacpan.org/release/Test-NoWarnings
+target    : noarch
+repology  : perl:test-nowarnings
+
+src:
+- url:  cpan://ADAMK/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,22 @@
+origin    : Test2-Plugin-NoWarnings
+name      : perl-test2-plugin-nowarnings
+version   : 0.06
+category  : perl
+summary   : Test2::Plugin::NoWarnings - Fail if tests warn
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Test2-Plugin-NoWarnings
+target    : noarch
+repology  : perl:test2-plugin-nowarnings
+
+src:
+- url:  cpan://DROLSKY/<o>-<v>.tar.gz
+
+bdeps: [perl, perl-ipc-run3, perl-test2-suite]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

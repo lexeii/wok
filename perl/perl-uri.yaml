@@ -1,0 +1,22 @@
+origin    : URI
+name      : perl-uri
+version   : 1.74
+category  : perl
+summary   : URI - Uniform Resource Identifiers (absolute and relative)
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/URI
+target    : noarch
+repology  : perl:uri
+
+src:
+- url:  cpan://ETHER/<o>-<v>.tar.gz
+
+bdeps: [perl, perl-test-needs]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl, perl-test-needs]

@@ -1,0 +1,21 @@
+origin    : Text-Iconv
+name      : perl-text-iconv
+version   : 1.7
+category  : perl
+summary   : Text::Iconv - Perl interface to iconv() codeset conversion function
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Text-Iconv
+repology  : perl:text-iconv
+
+src:
+- url:  cpan://MPIOTR/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

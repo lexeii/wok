@@ -1,0 +1,21 @@
+origin    : Variable-Magic
+name      : perl-variable-magic
+version   : 0.62
+category  : perl
+summary   : Variable::Magic - Associate user-defined magic to variables from Perl
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Variable-Magic
+repology  : perl:variable-magic
+
+src:
+- url:  cpan://VPIT/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

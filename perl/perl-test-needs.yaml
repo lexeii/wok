@@ -1,0 +1,22 @@
+origin    : Test-Needs
+name      : perl-test-needs
+version   : 0.002005
+category  : perl
+summary   : Test::Needs - Skip tests when modules not available
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Test-Needs
+target    : noarch
+repology  : perl:test-needs
+
+src:
+- url:  cpan://HAARG/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

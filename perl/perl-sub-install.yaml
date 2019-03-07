@@ -1,0 +1,22 @@
+origin    : Sub-Install
+name      : perl-sub-install
+version   : 0.928
+category  : perl
+summary   : Sub::Install - install subroutines into packages easily
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Sub-Install
+target    : noarch
+repology  : perl:sub-install
+
+src:
+- url:  cpan://RJBS/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,21 @@
+origin    : Unicode-Map8
+name      : perl-unicode-map8
+version   : 0.13
+category  : perl
+summary   : Unicode::Map8 - Mapping table between 8-bit chars and Unicode
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Unicode-Map8
+repology  : perl:unicode-map8
+
+src:
+- url:  cpan://GAAS/<o>-<v>.tar.gz
+
+bdeps: [perl-unicode-string, perl-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-unicode-string

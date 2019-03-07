@@ -1,0 +1,21 @@
+origin    : Text-Soundex
+name      : perl-text-soundex
+version   : 3.05
+category  : perl
+summary   : Text::Soundex - Implementation of the soundex algorithm
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Text-Soundex
+repology  : perl:text-soundex
+
+src:
+- url:  cpan://RJBS/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

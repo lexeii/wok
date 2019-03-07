@@ -1,0 +1,21 @@
+origin    : version
+name      : perl-version
+version   : 0.9924
+category  : perl
+summary   : version - Perl extension for Version Objects
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/version
+repology  : perl:version
+
+src:
+- url:  cpan://JPEACOCK/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

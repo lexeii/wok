@@ -1,0 +1,22 @@
+origin    : Unicode-MapUTF8
+name      : perl-unicode-maputf8
+version   : 1.11
+category  : perl
+summary   : Unicode::MapUTF8 - Conversions to and from arbitrary character sets and UTF8
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Unicode-MapUTF8
+target    : noarch
+repology  : perl:unicode-maputf8
+
+src:
+- url:  cpan://SNOWHARE/<o>-<v>.tar.gz
+
+bdeps: [perl-jcode, perl-unicode-map, perl-unicode-map8, perl-unicode-string]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-jcode, perl-unicode-map, perl-unicode-map8, perl-unicode-string]

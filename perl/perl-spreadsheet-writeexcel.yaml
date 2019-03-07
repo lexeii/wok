@@ -1,0 +1,22 @@
+origin    : Spreadsheet-WriteExcel
+name      : perl-spreadsheet-writeexcel
+version   : 2.40
+category  : perl
+summary   : Spreadsheet::WriteExcel - Write to a cross-platform Excel binary file
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Spreadsheet-WriteExcel
+target    : noarch
+repology  : perl:spreadsheet-writeexcel
+
+src:
+- url:  cpan://JMCNAMARA/<o>-<v>.tar.gz
+
+bdeps: [perl-ole-storage-lite, perl-parse-recdescent]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-ole-storage-lite, perl-parse-recdescent]

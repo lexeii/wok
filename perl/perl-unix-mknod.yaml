@@ -1,0 +1,21 @@
+origin    : Unix-Mknod
+name      : perl-unix-mknod
+version   : 0.04
+category  : perl
+summary   : Unix::Mknod - Perl extension for mknod, major, minor, and makedev
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Unix-Mknod
+repology  : perl:unix-mknod
+
+src:
+- url:  cpan://PIRZYK/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,22 @@
+origin    : Template-Toolkit
+name      : perl-template-toolkit
+version   : 2.28
+category  : perl
+summary   : Template::Toolkit - Template Processing System
+maintainer: devel@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/Template-Toolkit
+repology  : perl:template-toolkit
+
+src:
+- url:  cpan://ATOOMIC/<o>-<v>.tar.gz
+
+bdeps: [perl-appconfig, perl-dev]
+
+make:
+  # ???
+  rules: cook_perl "TT_XS_ENABLE=y TT_XS_DEFAULT=y TT_ACCEPT=y TT_QUIET=n"
+
+pkgs:
+- pkg : main
+  deps: [perl, perl-appconfig]

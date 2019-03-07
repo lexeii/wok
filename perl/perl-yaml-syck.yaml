@@ -1,0 +1,22 @@
+origin    : YAML-Syck
+name      : perl-yaml-syck
+version   : 1.31
+category  : perl
+summary   : YAML::Syck - Fast, lightweight YAML loader and dumper
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://metacpan.org/release/YAML-Syck
+repology  : perl:yaml-syck
+
+src:
+- url:  cpan://TODDR/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+  args: -y # cook_perl "-y"
+
+pkgs:
+- pkg : main
+  deps: perl

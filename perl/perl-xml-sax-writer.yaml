@@ -1,0 +1,24 @@
+origin    : XML-SAX-Writer
+name      : perl-xml-sax-writer
+version   : 0.57
+category  : perl
+summary   : XML::SAX::Writer - SAX2 XML Writer
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/XML-SAX-Writer
+target    : noarch
+repology  : perl:xml-sax-writer
+
+src:
+- url:  cpan://PERIGRIN/<o>-<v>.tar.gz
+
+bdeps: [perl-xml-filter-buffertext, perl-xml-namespacesupport,
+        perl-xml-sax-base]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-xml-filter-buffertext, perl-xml-namespacesupport,
+         perl-xml-sax-base]

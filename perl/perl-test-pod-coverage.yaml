@@ -1,0 +1,22 @@
+origin    : Test-Pod-Coverage
+name      : perl-test-pod-coverage
+version   : 1.10
+category  : perl
+summary   : Test::Pod::Coverage - Check for pod coverage in your distribution
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Test-Pod-Coverage
+target    : noarch
+repology  : perl:test-pod-coverage
+
+src:
+- url:  cpan://NEILB/<o>-<v>.tar.gz
+
+bdeps: perl-pod-coverage
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-pod-coverage

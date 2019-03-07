@@ -1,0 +1,22 @@
+origin    : Test2-Suite
+name      : perl-test2-suite
+version   : 0.000117
+category  : perl
+summary   : Distribution with a rich set of tools built upon the Test2 framework
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Test2-Suite
+target    : noarch
+repology  : perl:test2-suite
+
+src:
+- url:  cpan://EXODIST/<o>-<v>.tar.gz
+
+bdeps: [perl-importer, perl-sub-info, perl-term-table, perl-test-simple]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-importer, perl-sub-info, perl-term-table, perl-test-simple]

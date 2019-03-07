@@ -1,0 +1,22 @@
+origin    : Test-RequiresInternet
+name      : perl-test-requiresinternet
+version   : 0.05
+category  : perl
+summary   : Test::RequiresInternet - Easily test network connectivity
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Test-RequiresInternet
+target    : noarch
+repology  : perl:test-requiresinternet
+
+src:
+- url:  cpan://MALLEN/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

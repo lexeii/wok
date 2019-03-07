@@ -1,0 +1,21 @@
+origin    : TermReadKey
+name      : perl-term-readkey
+version   : 2.37
+category  : perl
+summary   : Term::ReadKey - A perl module for simple terminal control
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/TermReadKey
+repology  : perl:term-readkey
+
+src:
+- url:  cpan://JSTOWE/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

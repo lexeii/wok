@@ -1,0 +1,22 @@
+origin    : Test-Deep
+name      : perl-test-deep
+version   : 1.128
+category  : perl
+summary   : Test::Deep - Extremely flexible deep comparison
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Test-Deep
+target    : noarch
+repology  : perl:test-deep
+
+src:
+- url:  cpan://RJBS/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

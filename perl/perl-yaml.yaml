@@ -1,0 +1,22 @@
+origin    : YAML
+name      : perl-yaml
+version   : 1.27
+category  : perl
+summary   : YAML - YAML Ain't Markup Language™
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/YAML
+target    : noarch
+repology  : perl:yaml
+
+src:
+- url:  cpan://TINITA/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

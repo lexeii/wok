@@ -1,0 +1,22 @@
+origin    : Try-Tiny
+name      : perl-try-tiny
+version   : 0.30
+category  : perl
+summary   : Try::Tiny - Minimal try/catch with proper preservation of $@
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Try-Tiny
+target    : noarch
+repology  : perl:try-tiny
+
+src:
+- url:  cpan://ETHER/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

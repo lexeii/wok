@@ -1,0 +1,22 @@
+origin    : Test-Inter
+name      : perl-test-inter
+version   : 1.07
+category  : perl
+summary   : Test::Inter - framework for more readable interactive test scripts
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Test-Inter
+target    : noarch
+repology  : perl:test-inter
+
+src:
+- url:  cpan://SBECK/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

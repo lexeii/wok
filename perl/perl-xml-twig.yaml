@@ -1,0 +1,23 @@
+origin    : XML-Twig
+name      : perl-xml-twig
+version   : 3.52
+category  : perl
+summary   : XML::Twig - A perl module for processing huge XML documents in tree mode
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/XML-Twig
+target    : noarch
+repology  : perl:xml-twig
+
+src:
+- url:  cpan://MIROD/<o>-<v>.tar.gz
+
+bdeps: perl-xml-parser
+
+make:
+  type: perl
+  args: -y # cook_perl "-y"
+
+pkgs:
+- pkg : main
+  deps: perl-xml-parser

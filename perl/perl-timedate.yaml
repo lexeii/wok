@@ -1,0 +1,22 @@
+origin    : TimeDate
+name      : perl-timedate
+version   : 2.30
+category  : perl
+summary   : Date formating subroutines
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/TimeDate
+target    : noarch
+repology  : perl:timedate
+
+src:
+- url:  cpan://GBARR/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

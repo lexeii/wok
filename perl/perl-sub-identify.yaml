@@ -1,0 +1,21 @@
+origin    : Sub-Identify
+name      : perl-sub-identify
+version   : 0.14
+category  : perl
+summary   : Sub::Identify - Retrieve names of code references
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Sub-Identify
+repology  : perl:sub-identify
+
+src:
+- url:  cpan://RGARCIA/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,22 @@
+origin    : YAML-Tiny
+name      : perl-yaml-tiny
+version   : 1.73
+category  : perl
+summary   : YAML::Tiny - Read/Write YAML files with as little code as possible
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/YAML-Tiny
+target    : noarch
+repology  : perl:yaml-tiny
+
+src:
+- url:  cpan://ETHER/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

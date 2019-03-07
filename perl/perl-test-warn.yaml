@@ -1,0 +1,22 @@
+origin    : Test-Warn
+name      : perl-test-warn
+version   : 0.36
+category  : perl
+summary   : Test::Warn - Perl extension to test methods for warnings
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Test-Warn
+target    : noarch
+repology  : perl:test-warn
+
+src:
+- url:  cpan://BIGJ/<o>-<v>.tar.gz
+
+bdeps: perl-sub-uplevel
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-sub-uplevel

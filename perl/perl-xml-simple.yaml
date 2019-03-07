@@ -1,0 +1,22 @@
+origin    : XML-Simple
+name      : perl-xml-simple
+version   : 2.25
+category  : perl
+summary   : XML::Simple module is used to read and write XML
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/XML-Simple
+target    : noarch
+repology  : perl:xml-simple
+
+src:
+- url:  cpan://GRANTM/<o>-<v>.tar.gz
+
+bdeps: [perl-xml-namespacesupport, perl-xml-sax, perl-xml-sax-expat]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-xml-namespacesupport, perl-xml-sax, perl-xml-sax-expat]

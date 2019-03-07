@@ -1,0 +1,24 @@
+origin    : XML-RSS
+name      : perl-xml-rss
+version   : 1.60
+category  : perl
+summary   : XML::RSS - creates and updates RSS files
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/XML-RSS
+target    : noarch
+repology  : perl:xml-rss
+
+src:
+- url:  cpan://SHLOMIF/<o>-<v>.tar.gz
+
+bdeps: [perl-datetime, perl-datetime-format-mail, perl-datetime-format-w3cdtf,
+        perl-html-parser, perl-xml-parser, perl-test-manifest]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-datetime, perl-datetime-format-mail, perl-datetime-format-w3cdtf,
+         perl-html-parser, perl-xml-parser]

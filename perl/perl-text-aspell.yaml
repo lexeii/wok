@@ -1,0 +1,21 @@
+origin    : Text-Aspell
+name      : perl-text-aspell
+version   : 0.09
+category  : perl
+summary   : Text::Aspell - Perl interface to the GNU Aspell library
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Text-Aspell
+repology  : perl:text-aspell
+
+src:
+- url:  cpan://HANK/<o>-<v>.tar.gz
+
+bdeps: [perl-dev, aspell-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl, aspell]

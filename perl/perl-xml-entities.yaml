@@ -1,0 +1,22 @@
+origin    : XML-Entities
+name      : perl-xml-entities
+version   : 1.0002
+category  : perl
+summary   : XML::Entities - Decode strings with XML entities
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/XML-Entities
+target    : noarch
+repology  : perl:xml-entities
+
+src:
+- url:  cpan://SIXTEASE/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

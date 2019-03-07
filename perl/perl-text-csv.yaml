@@ -1,0 +1,23 @@
+origin    : Text-CSV
+name      : perl-text-csv
+version   : 1.97
+category  : perl
+summary   : Text::CSV - comma-separated values manipulator (using XS or PurePerl)
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Text-CSV
+target    : noarch
+repology  : perl:text-csv
+
+src:
+- url:  cpan://ISHIGAKI/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl
+  suggested: perl-text-csv_xs

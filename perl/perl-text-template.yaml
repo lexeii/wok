@@ -1,0 +1,22 @@
+origin    : Text-Template
+name      : perl-text-template
+version   : 1.53
+category  : perl
+summary   : Text::Template - Expand template text with embedded Perl
+maintainer: pascal.bellard@slitaz.org
+license   : GPL2
+home      : https://metacpan.org/release/Text-Template
+target    : noarch
+repology  : perl:text-template
+
+src:
+- url:  cpan://MSCHOUT/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,32 @@
+origin    : XML-SAX-Expat
+name      : perl-xml-sax-expat
+version   : 0.51
+category  : perl
+summary   : XML::SAX::Expat - SAX2 Driver for Expat (XML::Parser)
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/XML-SAX-Expat
+target    : noarch
+repology  : perl:xml-sax-expat
+
+src:
+- url:  cpan://BJOERN/<o>-<v>.tar.gz
+
+bdeps: [perl-xml-namespacesupport, perl-xml-parser, perl-xml-sax,
+        perl-xml-sax-base]
+
+make:
+  rules: |
+  # keep installing to / and then to $install
+  PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor &&
+  make -j1 &&
+  make -j1 PERL_MM_USE_DEFAULT=1 install &&
+  make -j1 PERL_MM_USE_DEFAULT=1 DESTDIR=$install install
+
+post:
+  rules: chmod -R u+w $install
+
+pkgs:
+- pkg : main
+  deps: [perl-xml-namespacesupport, perl-xml-parser, perl-xml-sax,
+         perl-xml-sax-base]

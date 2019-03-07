@@ -1,0 +1,22 @@
+origin    : XML-Filter-BufferText
+name      : perl-xml-filter-buffertext
+version   : 1.01
+category  : perl
+summary   : XML::Filter::BufferText - Filter to put all characters() in one event
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/XML-Filter-BufferText
+target    : noarch
+repology  : perl:xml-filter-buffertext
+
+src:
+- url:  cpan://RBERJON/<o>-<v>.tar.gz
+
+bdeps: [perl-xml-sax, perl-xml-sax-base]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-xml-sax, perl-xml-sax-base]

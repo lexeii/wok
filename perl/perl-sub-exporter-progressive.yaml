@@ -1,0 +1,22 @@
+origin    : Sub-Exporter-Progressive
+name      : perl-sub-exporter-progressive
+version   : 0.001013
+category  : perl
+summary   : Sub::Exporter::Progressive - Only use Sub::Exporter if you need it
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Sub-Exporter-Progressive
+target    : noarch
+repology  : perl:sub-exporter-progressive
+
+src:
+- url:  cpan://FREW/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

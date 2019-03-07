@@ -1,0 +1,23 @@
+origin    : XML-Parser
+name      : perl-xml-parser
+version   : 2.44
+category  : perl
+summary   : XML::Parser - A Perl module for parsing XML documents
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/XML-Parser
+lfs       : http://www.linuxfromscratch.org/lfs/view/stable/chapter06/xml-parser.html
+repology  : perl:xml-parser
+
+src:
+- url:  cpan://TODDR/<o>-<v>.tar.gz
+
+bdeps: [perl-libwww-perl, perl-dev, expat-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-libwww-perl, expat]
+  tags: LFS

@@ -1,0 +1,22 @@
+origin    : Test-Warnings
+name      : perl-test-warnings
+version   : 0.026
+category  : perl
+summary   : Test::Warnings - Test for warnings and the lack of them
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Test-Warnings
+target    : noarch
+repology  : perl:test-warnings
+
+src:
+- url:  cpan://ETHER/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

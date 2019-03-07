@@ -1,0 +1,21 @@
+origin    : Unicode-String
+name      : perl-unicode-string
+version   : 2.10
+category  : perl
+summary   : Unicode::String - String of Unicode characters (UTF-16BE)
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Unicode-String
+repology  : perl:unicode-string
+
+src:
+- url:  cpan://GAAS/GAAS/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

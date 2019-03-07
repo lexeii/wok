@@ -1,0 +1,24 @@
+origin    : Spreadsheet-ParseExcel
+name      : perl-spreadsheet-parseexcel
+version   : 0.65
+category  : perl
+summary   : Spreadsheet::ParseExcel - Read information from an Excel file
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Spreadsheet-ParseExcel
+target    : noarch
+repology  : perl:spreadsheet-parseexcel
+
+src:
+- url:  cpan://DOUGW/<o>-<v>.tar.gz
+
+bdeps: [perl-crypt-rc4, perl-digest-perl-md5, perl-io-stringy,
+        perl-ole-storage-lite]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-crypt-rc4, perl-digest-perl-md5, perl-io-stringy,
+         perl-ole-storage-lite]

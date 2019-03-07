@@ -1,0 +1,22 @@
+origin    : XML-SAX-Base
+name      : perl-xml-sax-base
+version   : 1.09
+category  : perl
+summary   : XML::SAX::Base - Base class SAX Drivers and Filters
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/XML-SAX-Base
+target    : noarch
+repology  : perl:xml-sax-base
+
+src:
+- url:  cpan://GRANTM/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl
