@@ -1,0 +1,21 @@
+origin    : Lchown
+name      : perl-lchown
+version   : 1.01
+category  : perl
+summary   : Lchown - use the lchown(2) system call from Perl
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Lchown
+repology  : perl:lchown
+
+src:
+- url:  cpan://NCLEATON/<o>-<v>.tar.gz
+
+bdeps: [perl-dev, perl-module-build]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

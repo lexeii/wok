@@ -1,0 +1,23 @@
+origin    : namespace-autoclean
+name      : perl-namespace-autoclean
+version   : 0.28
+category  : perl
+summary   : namespace::autoclean - Keep imports out of your namespace
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/namespace-autoclean
+target    : noarch
+repology  : perl:namespace-autoclean
+
+src:
+- url:  cpan://ETHER/<o>-<v>.tar.gz
+
+bdeps: [perl-b-hooks-endofscope, perl-namespace-clean, perl-sub-identify,
+        perl-test-requires]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-b-hooks-endofscope, perl-namespace-clean, perl-sub-identify]

@@ -1,0 +1,22 @@
+origin    : Net-DNS
+name      : perl-net-dns
+version   : 1.19
+category  : perl
+summary   : Net::DNS - Perl Interface to the Domain Name System
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Net-DNS
+target    : noarch
+repology  : perl:net-dns
+
+src:
+- url:  cpan://NLNETLABS/<o>-<v>.tar.gz
+
+bdeps: perl-digest-hmac
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-digest-hmac

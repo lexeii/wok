@@ -1,0 +1,22 @@
+origin    : Locale-Maketext-Gettext
+name      : perl-locale-maketext-gettext
+version   : 1.28
+category  : perl
+summary   : Locale::Maketext::Gettext - Joins the gettext and Maketext frameworks
+maintainer: devel@slitaz.org
+license   : GPL3
+home      : https://metacpan.org/release/Locale-Maketext-Gettext
+target    : noarch
+repology  : perl:locale-maketext-gettext
+
+src:
+- url:  cpan://IMACAT/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

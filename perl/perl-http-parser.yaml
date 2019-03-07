@@ -1,0 +1,22 @@
+origin    : HTTP-Parser
+name      : perl-http-parser
+version   : 0.06
+category  : perl
+summary   : HTTP::Parser - parse HTTP/1.1 request into HTTP::Request/Response object
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/HTTP-Parser
+target    : noarch
+repology  : perl:http-parser
+
+src:
+- url:  cpan://EDECA/<o>-<v>.tar.gz
+
+bdeps: [perl-http-message, perl-uri]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-http-message, perl-uri]

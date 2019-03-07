@@ -1,0 +1,28 @@
+origin    : Module-Build-Tiny
+name      : perl-module-build-tiny
+version   : 0.039
+category  : perl
+summary   : Module::Build::Tiny - A tiny replacement for Module::Build
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Module-Build-Tiny
+target    : noarch
+repology  : perl:module-build-tiny
+
+src:
+- url:  cpan://LEONT/<o>-<v>.tar.gz
+
+bdeps: [perl-extutils-config, perl-extutils-helpers, perl-extutils-installpaths]
+
+make:
+  rules: |
+  perl Build.PL &&
+  ./Build &&
+  ./Build install --destdir $install
+
+post:
+  rules: chmod -R u+w $install
+
+pkgs:
+- pkg : main
+  deps: [perl-extutils-config, perl-extutils-helpers, perl-extutils-installpaths]

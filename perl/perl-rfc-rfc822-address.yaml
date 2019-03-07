@@ -1,0 +1,22 @@
+origin    : RFC-RFC822-Address
+name      : perl-rfc-rfc822-address
+version   : 2009110702
+category  : perl
+summary   : RFC::RFC822::Address - RFC 822 style address validation
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/RFC-RFC822-Address
+target    : noarch
+repology  : perl:rfc-rfc822-address
+
+src:
+- url:  cpan://ABIGAIL/<o>-<v>.tar.gz
+
+bdeps: perl-parse-recdescent
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-parse-recdescent

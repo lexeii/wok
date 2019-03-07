@@ -1,0 +1,21 @@
+origin    : Scalar-List-Utils
+name      : perl-scalar-list-utils
+version   : 1.50
+category  : perl
+summary   : Common Scalar and List utility subroutines
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Scalar-List-Utils
+repology  : perl:scalar-list-utils
+
+src:
+- url:  cpan://PEVANS/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

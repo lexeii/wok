@@ -1,0 +1,22 @@
+origin    : inc-latest
+name      : perl-inc-latest
+version   : 0.500
+category  : perl
+summary   : inc::latest - use modules bundled in inc/ if they are newer than installed ones
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/inc-latest
+target    : noarch
+repology  : perl:inc-latest
+
+src:
+- url:  cpan://DAGOLDEN/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

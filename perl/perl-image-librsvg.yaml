@@ -1,0 +1,21 @@
+origin    : Image-LibRSVG
+name      : perl-image-librsvg
+version   : 0.07
+category  : perl
+summary   : Image::LibRSVG - Perl extension for librsvg
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Image-LibRSVG
+repology  : perl:image-librsvg
+
+src:
+- url:  cpan://TOMSON/<o>-<v>.tar.gz
+
+bdeps: [perl, libcairo, gdk-pixbuf, glib, librsvg, perl-dev, librsvg-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl, libcairo, gdk-pixbuf, glib, librsvg]

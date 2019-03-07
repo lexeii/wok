@@ -1,0 +1,22 @@
+origin    : MRO-Compat
+name      : perl-mro-compat
+version   : 0.13
+category  : perl
+summary   : MRO::Compat - mro::* interface compatibility for Perls < 5.9.5
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/MRO-Compat
+target    : noarch
+repology  : perl:mro-compat
+
+src:
+- url:  cpan://HAARG/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

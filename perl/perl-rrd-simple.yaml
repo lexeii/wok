@@ -1,0 +1,49 @@
+origin    : RRD-Simple
+name      : perl-rrd-simple
+version   : 1.44
+category  : perl
+summary   : RRD::Simple - Simple interface to create and store data in RRD files
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/RRD-Simple
+target    : noarch
+repology  : perl:rrd-simple
+
+src:
+- url:  cpan://NICOLAW/<o>-<v>.tar.gz
+
+bdeps: [perl, rrdtool-perl, perl-test-pod, perl-test-deep,
+        perl-test-pod-coverage, perl-module-build]
+
+make:
+  type: perl
+
+pkgs:
+- pkg:  main
+  deps: [perl, rrdtool-perl]
+
+files:
+- name: /usr/bin/rrd_addsource
+  content: |
+  #!/usr/bin/perl
+
+  use strict;
+  use warnings;
+
+  use RRD::Simple();
+
+  if (@ARGV != 3) {
+     print "Usage: $0 rrdfile DSname DStype \n";
+     print "Example: $0 cpu.rrd nice COUNTER \n";
+     exit;
+  }
+
+  my $file = $ARGV[0];
+  my $dsname = $ARGV[1];
+  my $dstype = $ARGV[2];
+
+  my $rrd = RRD::Simple->new();
+
+  print "Add $dsname:$dstype into $file...";
+  $rrd->add_source($file, $dsname => $dstype);
+  print " ok.\n";

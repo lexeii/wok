@@ -1,0 +1,21 @@
+origin    : Linux-Inotify2
+name      : perl-linux-inotify2
+version   : 2.1
+category  : perl
+summary   : Linux::Inotify2 - scalable directory/file change notification
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Linux-Inotify2
+repology  : perl:linux-inotify2
+
+src:
+- url:  cpan://MLEHMANN/<o>-<v>.tar.gz
+
+bdeps: [perl-common-sense, perl-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-common-sense

@@ -1,0 +1,22 @@
+origin    : IO-Socket-INET6
+name      : perl-io-socket-inet6
+version   : 2.72
+category  : perl
+summary   : IO::Socket::INET6 - Object interface for AF_INET/AF_INET6 domain sockets
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/IO-Socket-INET6
+target    : noarch
+repology  : perl:io-socket-inet6
+
+src:
+- url:  cpan://SHLOMIF/<o>-<v>.tar.gz
+
+bdeps: perl-socket6
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-socket6

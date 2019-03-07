@@ -1,0 +1,22 @@
+origin    : IO-SessionData
+name      : perl-io-sessiondata
+version   : 1.03
+category  : perl
+summary   : IO::SessionData - supporting module for SOAP::Lite
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/IO-SessionData
+target    : noarch
+repology  : perl:io-sessiondata
+
+src:
+- url:  cpan://PHRED/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

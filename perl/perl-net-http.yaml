@@ -1,0 +1,22 @@
+origin    : Net-HTTP
+name      : perl-net-http
+version   : 6.18
+category  : perl
+summary   : Net::HTTP - Low-level HTTP connection (client)
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Net-HTTP
+target    : noarch
+repology  : perl:net-http
+
+src:
+- url:  cpan://OALDERS/<o>-<v>.tar.gz
+
+bdeps: perl-uri
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-uri

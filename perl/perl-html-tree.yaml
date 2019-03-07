@@ -1,0 +1,31 @@
+origin    : HTML-Tree
+name      : perl-html-tree
+version   : 5.07
+category  : perl
+summary   : HTML::Tree - build and scan parse-trees of HTML
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/HTML-Tree
+target    : noarch
+repology  : perl:html-tree
+
+src:
+- url:  cpan://KENTNL/<o>-<v>.tar.gz
+
+# BDEP loop: 'perl-html-tree' needs 'perl-html-formatter' needs 'perl-html-tree'
+bdeps: [perl-html-parser, perl-html-tagset, perl-module-build, perl-test-fatal,
+        perl-html-formatter, perl-libwww-perl]
+
+make:
+  type: custom
+  rules: |
+    perl Build.PL &&
+    ./Build &&
+    ./Build install --destdir $install
+
+post:
+  rules: chmod -R u+w $install
+
+pkgs:
+- pkg : main
+  deps: [perl-html-parser, perl-html-tagset]

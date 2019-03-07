@@ -1,0 +1,22 @@
+origin    : Net-FTP-RetrHandle
+name      : perl-net-ftp-retrhandle
+version   : 0.2
+category  : perl
+summary   : Net::FTP::RetrHandle - Tied or IO::Handle-compatible interface to a file retrieved by FTP
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Net-FTP-RetrHandle
+target    : noarch
+repology  : perl:net-ftp-retrhandle
+
+src:
+- url:  cpan://GIFF/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

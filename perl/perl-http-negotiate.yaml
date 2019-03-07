@@ -1,0 +1,22 @@
+origin    : HTTP-Negotiate
+name      : perl-http-negotiate
+version   : 6.01
+category  : perl
+summary   : HTTP::Negotiate - choose a variant to serve
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/HTTP-Negotiate
+target    : noarch
+repology  : perl:http-negotiate
+
+src:
+- url:  cpan://GAAS/<o>-<v>.tar.gz
+
+bdeps: perl-http-message
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-http-message

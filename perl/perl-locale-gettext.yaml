@@ -1,0 +1,39 @@
+origin    : gettext
+name      : perl-locale-gettext
+version   : 1.07
+category  : perl
+summary   : Locale::gettext - message handling functions
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/gettext
+repology  : perl:locale-gettext
+
+src:
+- url:  cpan://PVANDRY/<o>-<v>.tar.gz
+
+bdeps: [gettext-base, perl-dev]
+
+#prepare:
+#  patches:
+#  - name: compatibility-with-POSIX-module.patch
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl, gettext-base]
+
+files:
+- name: compatibility-with-POSIX-module.patch
+  content: |
+  --- a/gettext.pm	2005-05-31 20:11:16.000000000 -0700
+  +++ b/gettext.pm	2009-10-07 12:39:42.000000000 -0700
+  @@ -32,6 +32,7 @@
+   =cut
+   
+   use Carp;
+  +use POSIX qw(:locale_h);
+   
+   require Exporter;
+   require DynaLoader;

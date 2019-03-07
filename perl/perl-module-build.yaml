@@ -1,0 +1,22 @@
+origin    : Module-Build
+name      : perl-module-build
+version   : 0.4224
+category  : perl
+summary   : Module::Build - Build and install Perl modules
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Module-Build
+target    : noarch
+repology  : perl:module-build
+
+src:
+- url:  cpan://LEONT/<o>-<v>.tar.gz
+
+bdeps: perl-inc-latest
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

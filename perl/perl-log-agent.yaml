@@ -1,0 +1,22 @@
+origin    : Log-Agent
+name      : perl-log-agent
+version   : 1.003
+category  : perl
+summary   : Log::Agent - logging agent
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Log-Agent
+target    : noarch
+repology  : perl:log-agent
+
+src:
+- url:  cpan://MROGASKI/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

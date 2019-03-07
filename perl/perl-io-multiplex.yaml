@@ -1,0 +1,22 @@
+origin    : IO-Multiplex
+name      : perl-io-multiplex
+version   : 1.16
+category  : perl
+summary   : IO::Multiplex - Manage IO on many file handles
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/IO-Multiplex
+target    : noarch
+repology  : perl:io-multiplex
+
+src:
+- url:  cpan://BBB/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

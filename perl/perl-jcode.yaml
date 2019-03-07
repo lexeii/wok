@@ -1,0 +1,22 @@
+origin    : Jcode
+name      : perl-jcode
+version   : 2.07
+category  : perl
+summary   : Jcode - Japanese Charset Handler
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Jcode
+target    : noarch
+repology  : perl:jcode
+
+src:
+- url:  cpan://DANKOGAI/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

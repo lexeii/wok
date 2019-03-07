@@ -1,0 +1,23 @@
+origin    : libnet
+name      : perl-libnet
+version   : 3.11
+category  : perl
+summary   : Collection of network protocol modules
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/libnet
+repology  : perl:libnet
+
+src:
+- url:  cpan://SHAY/<o>-<v>.tar.gz
+
+#cookopts: force-arch # different .cfg
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

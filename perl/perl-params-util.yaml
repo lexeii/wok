@@ -1,0 +1,21 @@
+origin    : Params-Util
+name      : perl-params-util
+version   : 1.07
+category  : perl
+summary   : Params::Util - Simple, compact and correct param-checking functions
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Params-Util
+repology  : perl:params-util
+
+src:
+- url:  cpan://ADAMK/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

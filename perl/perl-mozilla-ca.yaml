@@ -1,0 +1,22 @@
+origin    : Mozilla-CA
+name      : perl-mozilla-ca
+version   : 20180117
+category  : perl
+summary   : Mozilla::CA - Mozilla's CA cert bundle in PEM format
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Mozilla-CA
+target    : noarch
+repology  : perl:mozilla-ca
+
+src:
+- url:  cpan://ABH/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,21 @@
+origin    : pcsc-perl
+name      : perl-pcsc-perl
+version   : 1.4.14
+category  : perl
+summary   : Chipcard::PCSC - Smart card reader interface library
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/pcsc-perl
+repology  : perl:pcsc-perl
+
+src:
+- url:  cpan://WHOM/<o>-<v>.tar.bz2
+
+bdeps: [perl-dev, pcsc-lite-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl, pcsc-lite]

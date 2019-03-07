@@ -1,0 +1,22 @@
+origin    : Parse-RecDescent
+name      : perl-parse-recdescent
+version   : 1.967015
+category  : perl
+summary   : Parse::RecDescent - Generate Recursive-Descent Parsers
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Parse-RecDescent
+target    : noarch
+repology  : perl:parse-recdescent
+
+src:
+- url:  cpan://JTBRAUN/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

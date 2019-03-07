@@ -1,0 +1,22 @@
+origin    : IPC-Run
+name      : perl-ipc-run
+version   : 20180523.0
+category  : perl
+summary   : IPC::Run - system() and background procs w/ piping, redirs, ptys (Unix, Win32)
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/IPC-Run
+target    : noarch
+repology  : perl:ipc-run
+
+src:
+- url:  cpan://TODDR/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

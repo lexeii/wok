@@ -1,0 +1,22 @@
+origin    : Net-MySQL
+name      : perl-net-mysql
+version   : 0.11
+category  : perl
+summary   : Net::MySQL - Pure Perl MySQL network protocol interface
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Net-MySQL
+target    : noarch
+repology  : perl:net-mysql
+
+src:
+- url:  cpan://TSUCCHI/<o>-<v>.tar.gz
+
+bdeps: [perl-digest-sha1, libmysqlclient]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-digest-sha1, libmysqlclient]

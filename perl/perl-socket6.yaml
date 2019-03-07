@@ -1,0 +1,21 @@
+origin    : Socket6
+name      : perl-socket6
+version   : 0.29
+category  : perl
+summary   : Socket6 - IPv6 related part of the C socket.h defines and structure manipulators
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Socket6
+repology  : perl:socket6
+
+src:
+- url:  cpan://UMEMOTO/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

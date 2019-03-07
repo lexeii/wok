@@ -1,0 +1,23 @@
+origin    : Gtk2-TrayIcon
+name      : perl-gtk2-trayicon
+version   : 0.06
+category  : perl
+summary   : Gtk2::TrayIcon - Perl interface to the EggTrayIcon library
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Gtk2-TrayIcon
+repology  : perl:gtk2-trayicon
+
+src:
+- url:  cpan://BORUP/<o>-<v>.tar.gz
+
+bdeps: [perl-gtk2, perl-dev, perl-extutils-depends, perl-extutils-pkgconfig,
+        gtk2-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  copy: [@std, @dev]
+  deps: perl-gtk2

@@ -1,0 +1,22 @@
+origin    : HTTP-Date
+name      : perl-http-date
+version   : 6.02
+category  : perl
+summary   : HTTP::Date - date conversion routines
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/HTTP-Date
+target    : noarch
+repology  : perl:http-date
+
+src:
+- url:  cpan://GAAS/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

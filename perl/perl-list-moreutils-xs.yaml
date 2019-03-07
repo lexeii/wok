@@ -1,0 +1,21 @@
+origin    : List-MoreUtils-XS
+name      : perl-list-moreutils-xs
+version   : 0.428
+category  : perl
+summary   : List::MoreUtils::XS - Provide compiled List::MoreUtils functions
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/List-MoreUtils-XS
+repology  : perl:list-moreutils-xs
+
+src:
+- url:  cpan://REHSACK/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

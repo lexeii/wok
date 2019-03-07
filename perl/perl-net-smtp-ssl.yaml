@@ -1,0 +1,22 @@
+origin    : Net-SMTP-SSL
+name      : perl-net-smtp-ssl
+version   : 1.04
+category  : perl
+summary   : Net::SMTP::SSL - SSL support for Net::SMTP
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Net-SMTP-SSL
+target    : noarch
+repology  : perl:net-smtp-ssl
+
+src:
+- url:  cpan://RJBS/<o>-<v>.tar.gz
+
+bdeps: perl-io-socket-ssl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-io-socket-ssl

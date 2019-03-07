@@ -1,0 +1,21 @@
+origin    : Net-SSLeay
+name      : perl-net-ssleay
+version   : 1.85
+category  : perl
+summary   : Net::SSLeay - Perl extension for using OpenSSL
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Net-SSLeay
+repology  : perl:net-ssleay
+
+src:
+- url:  cpan://MIKEM/<o>-<v>.tar.gz
+
+bdeps: [zlib, perl-dev, openssl-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl, openssl, zlib]

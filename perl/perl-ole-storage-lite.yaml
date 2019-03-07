@@ -1,0 +1,22 @@
+origin    : OLE-Storage_Lite
+name      : perl-ole-storage-lite
+version   : 0.19
+category  : perl
+summary   : OLE::Storage_Lite - Simple Class for OLE document interface
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/OLE-Storage_Lite
+target    : noarch
+repology  : perl:ole-storage-lite
+
+src:
+- url:  cpan://JMCNAMARA/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

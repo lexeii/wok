@@ -1,0 +1,29 @@
+origin    : perl-ldap
+name      : perl-perl-ldap
+version   : 0.65
+category  : perl
+summary   : LDAP client library
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/perl-ldap
+target    : noarch
+repology  : perl:perl-ldap
+
+src:
+- url:  cpan://MARSCHAP/<o>-<v>.tar.gz
+
+bdeps: [perl-convert-asn1, perl-text-soundex, perl-io-socket-inet6,
+        perl-io-socket-ssl, perl-authen-sasl, perl-digest-hmac, perl-gssapi,
+        perl-uri, perl-xml-sax-writer, perl-xml-sax-base, perl-libwww-perl,
+        perl-lwp-mediatypes, perl-http-negotiate, perl-http-message, perl-json,
+        perl-module-install]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-convert-asn1, perl-text-soundex, perl-io-socket-inet6,
+         perl-io-socket-ssl, perl-authen-sasl, perl-digest-hmac, perl-gssapi,
+         perl-uri, perl-xml-sax-writer, perl-xml-sax-base, perl-libwww-perl,
+         perl-lwp-mediatypes, perl-http-negotiate, perl-http-message, perl-json]

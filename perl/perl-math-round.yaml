@@ -1,0 +1,25 @@
+origin    : Math-Round
+name      : perl-math-round
+version   : 0.07
+category  : perl
+summary   : Math::Round - Perl extension for rounding numbers
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Math-Round
+target    : noarch
+repology  : perl:math-round
+
+src:
+- url:  cpan://GROMMEL/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+post:
+  rules: find $install -type f -exec dos2unix '{}' \;
+
+pkgs:
+- pkg : main
+  deps: perl

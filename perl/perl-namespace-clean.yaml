@@ -1,0 +1,22 @@
+origin    : namespace-clean
+name      : perl-namespace-clean
+version   : 0.27
+category  : perl
+summary   : namespace::clean - Keep imports and functions out of your namespace
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/namespace-clean
+target    : noarch
+repology  : perl:namespace-clean
+
+src:
+- url:  cpan://RIBASUSHI/<o>-<v>.tar.gz
+
+bdeps: [perl-b-hooks-endofscope, perl-package-stash]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-b-hooks-endofscope, perl-package-stash]

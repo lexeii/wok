@@ -1,0 +1,23 @@
+origin    : Package-Stash
+name      : perl-package-stash
+version   : 0.37
+category  : perl
+summary   : Package::Stash - routines for manipulating stashes
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Package-Stash
+target    : noarch
+repology  : perl:package-stash
+
+src:
+- url:  cpan://DOY/<o>-<v>.tar.gz
+
+bdeps: [perl-dist-checkconflicts, perl-module-implementation,
+        perl-package-stash-xs, perl-test-fatal, perl-test-requires]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-dist-checkconflicts, perl-module-implementation]

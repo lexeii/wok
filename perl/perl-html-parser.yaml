@@ -1,0 +1,21 @@
+origin    : HTML-Parser
+name      : perl-html-parser
+version   : 3.72
+category  : perl
+summary   : HTML::Parser - HTML parser class
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/HTML-Parser
+repology  : perl:html-parser
+
+src:
+- url:  cpan://GAAS/<o>-<v>.tar.gz
+
+bdeps: [perl-html-tagset, perl-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-html-tagset]

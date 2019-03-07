@@ -1,0 +1,22 @@
+origin    : MailTools
+name      : perl-mailtools
+version   : 2.20
+category  : perl
+summary   : Various e-mail related modules
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/MailTools
+target    : noarch
+repology  : perl:mailtools
+
+src:
+- url:  cpan://MARKOV/<o>-<v>.tar.gz
+
+bdeps: perl-timedate
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-timedate

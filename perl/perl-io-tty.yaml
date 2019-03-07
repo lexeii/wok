@@ -1,0 +1,21 @@
+origin    : IO-Tty
+name      : perl-io-tty
+version   : 1.12
+category  : perl
+summary   : IO::Tty - Low-level allocate a pseudo-Tty, import constants
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/IO-Tty
+repology  : perl:io-tty
+
+src:
+- url:  cpan://TODDR/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

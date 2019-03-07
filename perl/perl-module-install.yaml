@@ -1,0 +1,23 @@
+origin    : Module-Install
+name      : perl-module-install
+version   : 1.19
+category  : perl
+summary   : Module::Install - Standalone, extensible Perl module installer
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Module-Install
+target    : noarch
+repology  : perl:module-install
+
+src:
+- url:  cpan://ETHER/<o>-<v>.tar.gz
+
+bdeps: [perl-file-remove, perl-yaml-tiny, perl-module-scandeps,
+        perl-module-build]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-file-remove, perl-yaml-tiny, perl-module-scandeps]

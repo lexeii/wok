@@ -1,0 +1,24 @@
+origin    : Specio
+name      : perl-specio
+version   : 0.43
+category  : perl
+summary   : Specio - Type constraints and coercions for Perl
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Specio
+target    : noarch
+repology  : perl:specio
+
+src:
+- url:  cpan://DROLSKY/<o>-<v>.tar.gz
+
+bdeps: [perl-devel-stacktrace, perl-eval-closure, perl-module-runtime,
+        perl-mro-compat, perl-role-tiny, perl-test-fatal, perl-test-needs]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-devel-stacktrace, perl-eval-closure, perl-module-runtime,
+         perl-mro-compat, perl-role-tiny, perl-test-fatal]

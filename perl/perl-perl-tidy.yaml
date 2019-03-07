@@ -1,0 +1,22 @@
+origin    : Perl-Tidy
+name      : perl-perl-tidy
+version   : 20181120
+category  : perl
+summary   : Perl::Tidy - Parses and beautifies perl source
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Perl-Tidy
+target    : noarch
+repology  : perl:perl-tidy
+
+src:
+- url:  cpan://SHANCOCK/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

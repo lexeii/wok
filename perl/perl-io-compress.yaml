@@ -1,0 +1,23 @@
+origin    : IO-Compress
+name      : perl-io-compress
+version   : 2.084
+category  : perl
+summary   : IO Interface to compressed data files/buffers
+maintainer: devel@slitaz.org
+license   : Perl
+home      : https://metacpan.org/release/IO-Compress
+target    : noarch
+repology  : perl:io-compress
+
+src:
+- url:  cpan://PMQS/<o>-<v>.tar.gz
+  sha1: 6c94324147bba159136657b62127c0c4647c92db
+
+bdeps: [perl-compress-raw-bzip2, perl-compress-raw-zlib]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-compress-raw-bzip2, perl-compress-raw-zlib]

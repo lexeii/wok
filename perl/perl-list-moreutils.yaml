@@ -1,0 +1,22 @@
+origin    : List-MoreUtils
+name      : perl-list-moreutils
+version   : 0.428
+category  : perl
+summary   : List::MoreUtils - Provide the stuff missing in List::Util
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/List-MoreUtils
+target    : noarch
+repology  : perl:list-moreutils
+
+src:
+- url:  cpan://REHSACK/<o>-<v>.tar.gz
+
+bdeps: [perl-exporter-tiny, perl-list-moreutils-xs, perl-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-exporter-tiny, perl-list-moreutils-xs]

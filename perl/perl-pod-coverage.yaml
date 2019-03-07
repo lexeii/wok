@@ -1,0 +1,22 @@
+origin    : Pod-Coverage
+name      : perl-pod-coverage
+version   : 0.23
+category  : perl
+summary   : Pod::Coverage - Checks if the documentation of a module is comprehensive
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Pod-Coverage
+target    : noarch
+repology  : perl:pod-coverage
+
+src:
+- url:  cpan://RCLAMP/<o>-<v>.tar.gz
+
+bdeps: perl-devel-symdump
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-devel-symdump

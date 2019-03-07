@@ -1,0 +1,22 @@
+origin    : JSON
+name      : perl-json
+version   : 4.00
+category  : perl
+summary   : JSON - JSON (JavaScript Object Notation) encoder/decoder
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/JSON
+target    : noarch
+repology  : perl:json
+
+src:
+- url:  cpan://ISHIGAKI/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

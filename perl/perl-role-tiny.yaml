@@ -1,0 +1,22 @@
+origin    : Role-Tiny
+name      : perl-role-tiny
+version   : 2.000006
+category  : perl
+summary   : Role::Tiny - Roles. Like a nouvelle cuisine portion size slice of Moose
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Role-Tiny
+target    : noarch
+repology  : perl:role-tiny
+
+src:
+- url:  cpan://HAARG/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

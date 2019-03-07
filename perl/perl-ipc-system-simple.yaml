@@ -1,0 +1,22 @@
+origin    : IPC-System-Simple
+name      : perl-ipc-system-simple
+version   : 1.25
+category  : perl
+summary   : IPC::System::Simple - Run commands simply, with detailed diagnostics
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/IPC-System-Simple
+target    : noarch
+repology  : perl:ipc-system-simple
+
+src:
+- url:  cpan://PJF/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

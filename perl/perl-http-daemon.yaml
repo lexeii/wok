@@ -1,0 +1,22 @@
+origin    : HTTP-Daemon
+name      : perl-http-daemon
+version   : 6.01
+category  : perl
+summary   : HTTP::Daemon - a simple http server class
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/HTTP-Daemon
+target    : noarch
+repology  : perl:http-daemon
+
+src:
+- url:  cpan://GAAS/<o>-<v>.tar.gz
+
+bdeps: [perl-http-date, perl-http-message, perl-lwp-mediatypes]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-http-date, perl-http-message, perl-lwp-mediatypes]

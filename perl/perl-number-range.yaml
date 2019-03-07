@@ -1,0 +1,22 @@
+origin    : Number-Range
+name      : perl-number-range
+version   : 0.12
+category  : perl
+summary   : Number::Range - Perl extension defining ranges of numbers and testing if a number is found in the range
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Number-Range
+target    : noarch
+repology  : perl:number-range
+
+src:
+- url:  cpan://LARRYSH/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

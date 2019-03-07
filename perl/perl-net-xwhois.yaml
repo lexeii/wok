@@ -1,0 +1,22 @@
+origin    : Net-XWhois
+name      : perl-net-xwhois
+version   : 0.90
+category  : perl
+summary   : Net::XWhois - Whois Client Interface for Perl5
+maintainer: pascal.bellard@slitaz.org
+license   : unknown
+home      : https://metacpan.org/release/Net-XWhois
+target    : noarch
+repology  : perl:net-xwhois
+
+src:
+- url:  cpan://VIPUL/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

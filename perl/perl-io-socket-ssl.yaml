@@ -1,0 +1,22 @@
+origin    : IO-Socket-SSL
+name      : perl-io-socket-ssl
+version   : 2.060
+category  : perl
+summary   : IO::Socket::SSL - SSL sockets with IO::Socket interface
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/IO-Socket-SSL
+target    : noarch
+repology  : perl:io-socket-ssl
+
+src:
+- url:  cpan://SULLR/<o>-<v>.tar.gz
+
+bdeps: [perl-net-ssleay, perl-mozilla-ca, perl-uri]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-net-ssleay, perl-mozilla-ca]

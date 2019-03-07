@@ -1,0 +1,21 @@
+origin    : Proc-ProcessTable
+name      : perl-proc-processtable
+version   : 0.55
+category  : perl
+summary   : Proc::ProcessTable - Perl extension to access the unix process table
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Proc-ProcessTable
+repology  : perl:proc-processtable
+
+src:
+- url:  cpan://JWB/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

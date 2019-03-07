@@ -1,0 +1,26 @@
+origin    : SOAP-Lite
+name      : perl-soap-lite
+version   : 1.27
+category  : perl
+summary   : SOAP::Lite - Perl's Web Services Toolkit
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/SOAP-Lite
+target    : noarch
+repology  : perl:soap-lite
+
+src:
+- url:  cpan://PHRED/<o>-<v>.tar.gz
+
+bdeps: [perl-class-inspector, perl-io-sessiondata, perl-io-socket-ssl,
+        perl-lwp-protocol-https, perl-libwww-perl, perl-task-weaken, perl-uri,
+        perl-xml-parser]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-class-inspector, perl-io-sessiondata, perl-io-socket-ssl,
+         perl-lwp-protocol-https, perl-libwww-perl, perl-task-weaken, perl-uri,
+         perl-xml-parser]

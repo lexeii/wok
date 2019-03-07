@@ -1,0 +1,27 @@
+origin    : IO-Stty
+name      : perl-io-stty
+version   : 0.03
+category  : perl
+summary   : IO::Stty - Change and print terminal line settings
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/IO-Stty
+target    : noarch
+repology  : perl:io-stty
+
+src:
+- url:  cpan://TODDR/<o>-<v>.tar.gz
+
+bdeps: [perl, perl-module-build]
+
+make:
+  rules: |
+    perl Build.PL &&
+    ./Build --destdir $install install
+
+post:
+  rules: chmod -R u+w $install
+
+pkgs:
+- pkg : main
+  deps: perl

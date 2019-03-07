@@ -1,0 +1,22 @@
+origin    : HTTP-Server-Simple
+name      : perl-http-server-simple
+version   : 0.52
+category  : perl
+summary   : HTTP::Server::Simple - Lightweight HTTP server
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/HTTP-Server-Simple
+target    : noarch
+repology  : perl:http-server-simple
+
+src:
+- url:  cpan://BPS/<o>-<v>.tar.gz
+
+bdeps: perl-cgi
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-cgi

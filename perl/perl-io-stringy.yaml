@@ -1,0 +1,22 @@
+origin    : IO-stringy
+name      : perl-io-stringy
+version   : 2.111
+category  : perl
+summary   : IO::Stringy - I/O on in-core objects like strings and arrays
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/IO-stringy
+target    : noarch
+repology  : perl:io-stringy
+
+src:
+- url:  cpan://DSKOLL/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

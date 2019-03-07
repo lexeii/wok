@@ -1,0 +1,22 @@
+origin    : IO-Interactive-Tiny
+name      : perl-io-interactive-tiny
+version   : 0.2
+category  : perl
+summary   : IO::Interactive::Tiny - is_interactive() without large deps
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/IO-Interactive-Tiny
+target    : noarch
+repology  : perl:io-interactive-tiny
+
+src:
+- url:  cpan://DMUEY/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

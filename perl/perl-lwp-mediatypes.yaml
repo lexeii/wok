@@ -1,0 +1,22 @@
+origin    : LWP-MediaTypes
+name      : perl-lwp-mediatypes
+version   : 6.02
+category  : perl
+summary   : LWP::MediaTypes - guess media type for a file or a URL
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/LWP-MediaTypes
+target    : noarch
+repology  : perl:lwp-mediatypes
+
+src:
+- url:  cpan://GAAS/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

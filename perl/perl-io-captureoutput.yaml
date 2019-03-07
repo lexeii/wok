@@ -1,0 +1,22 @@
+origin    : IO-CaptureOutput
+name      : perl-io-captureoutput
+version   : 1.1104
+category  : perl
+summary   : IO::CaptureOutput - capture STDOUT and STDERR from Perl code, subprocesses or XS
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/IO-CaptureOutput
+target    : noarch
+repology  : perl:io-captureoutput
+
+src:
+- url:  cpan://DAGOLDEN/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

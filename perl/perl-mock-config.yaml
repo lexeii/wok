@@ -1,0 +1,22 @@
+origin    : Mock-Config
+name      : perl-mock-config
+version   : 0.03
+category  : perl
+summary   : Mock::Config - temporarily set Config or XSConfig values
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Mock-Config
+target    : noarch
+repology  : perl:mock-config
+
+src:
+- url:  cpan://RURBAN/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

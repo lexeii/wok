@@ -1,0 +1,27 @@
+origin    : Params-Validate
+name      : perl-params-validate
+version   : 1.29
+category  : perl
+summary   : Params::Validate - Validate method/function parameters
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Params-Validate
+repology  : perl:params-validate
+
+src:
+- url:  cpan://DROLSKY/<o>-<v>.tar.gz
+
+bdeps: [perl-module-implementation, perl-dev, perl-module-build,
+        perl-test-fatal, perl-test-requires]
+
+make:
+  rules: |
+  perl Build.PL &&
+  ./Build --destdir $install install
+
+post:
+  rules: chmod -R u+w $install
+
+pkgs:
+- pkg : main
+  deps: perl-module-implementation

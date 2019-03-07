@@ -1,0 +1,22 @@
+origin    : Module-ScanDeps
+name      : perl-module-scandeps
+version   : 1.25
+category  : perl
+summary   : Module::ScanDeps - Recursively scan Perl code for dependencies
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Module-ScanDeps
+target    : noarch
+repology  : perl:module-scandeps
+
+src:
+- url:  cpan://RSCHUPP/<o>-<v>.tar.gz
+
+bdeps: perl-test-requires
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

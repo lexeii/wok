@@ -1,0 +1,30 @@
+origin    : libwww-perl
+name      : perl-libwww-perl
+version   : 6.36
+category  : perl
+summary   : The World-Wide Web library for Perl
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/libwww-perl
+target    : noarch
+repology  : perl:libwww-perl
+
+src:
+- url:  cpan://ETHER/<o>-<v>.tar.gz
+
+bdeps: [perl-encode-locale, perl-file-listing, perl-html-parser,
+        perl-http-cookies, perl-http-daemon, perl-http-date,
+        perl-http-negotiate, perl-http-message, perl-lwp-mediatypes,
+        perl-net-http, perl-try-tiny, perl-uri, perl-www-robotrules,
+        perl-test-fatal, perl-test-requiresinternet]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-encode-locale, perl-file-listing, perl-html-parser,
+         perl-http-cookies, perl-http-daemon, perl-http-date,
+         perl-http-negotiate, perl-http-message, perl-lwp-mediatypes,
+         perl-net-http, perl-try-tiny, perl-uri, perl-www-robotrules,
+         perl-test-fatal, perl-test-requiresinternet]

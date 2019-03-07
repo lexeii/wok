@@ -1,0 +1,21 @@
+origin    : Package-Stash-XS
+name      : perl-package-stash-xs
+version   : 0.28
+category  : perl
+summary   : Package::Stash::XS - faster and more correct implementation of the Package::Stash API
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Package-Stash-XS
+repology  : perl:package-stash-xs
+
+src:
+- url:  cpan://DOY/<o>-<v>.tar.gz
+
+bdeps: perl-dev
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,23 @@
+origin    : Pango
+name      : perl-pango
+version   : 1.227
+category  : perl
+summary   : Pango - Layout and render international text
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://metacpan.org/release/Pango
+repology  : perl:pango
+
+src:
+- url:  cpan://XAOC/<o>-<v>.tar.gz
+
+bdeps: [perl-cairo, perl-glib libcairo, freetype, glib, perl-dev,
+        perl-extutils-depends, perl-extutils-pkgconfig, pango-dev]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  copy: [@std, @dev]
+  deps: [perl-cairo, perl-glib, libcairo, freetype, glib, pango]

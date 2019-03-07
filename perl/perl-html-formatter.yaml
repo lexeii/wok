@@ -1,0 +1,22 @@
+origin    : HTML-Formatter
+name      : perl-html-formatter
+version   : 2.16
+category  : perl
+summary   : HTML::Formatter - Base class for HTML formatters
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/HTML-Formatter
+target    : noarch
+repology  : perl:html-formatter
+
+src:
+- url:  cpan://NIGELM/<o>-<v>.tar.gz
+
+bdeps: [perl-font-afm, perl-html-tree, perl-file-slurper, perl-test-warnings]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-font-afm, perl-html-tree]

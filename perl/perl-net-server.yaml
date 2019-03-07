@@ -1,0 +1,22 @@
+origin    : Net-Server
+name      : perl-net-server
+version   : 2.009
+category  : perl
+summary   : Net::Server - Extensible, general Perl server engine
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Net-Server
+target    : noarch
+repology  : perl:net-server
+
+src:
+- url:  cpan://RHANDOM/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

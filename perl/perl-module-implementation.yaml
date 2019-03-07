@@ -1,0 +1,22 @@
+origin    : Module-Implementation
+name      : perl-module-implementation
+version   : 0.09
+category  : perl
+summary   : Module::Implementation - Loads one of several alternate underlying implementations for a module
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Module-Implementation
+target    : noarch
+repology  : perl:module-implementation
+
+src:
+- url:  cpan://DROLSKY/<o>-<v>.tar.gz
+
+bdeps: [perl-module-runtime, perl-try-tiny, perl-test-fatal, perl-test-requires]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-module-runtime, perl-try-tiny]

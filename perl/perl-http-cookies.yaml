@@ -1,0 +1,22 @@
+origin    : HTTP-Cookies
+name      : perl-http-cookies
+version   : 6.04
+category  : perl
+summary   : HTTP::Cookies - HTTP cookie jars
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/HTTP-Cookies
+target    : noarch
+repology  : perl:http-cookies
+
+src:
+- url:  cpan://OALDERS/<o>-<v>.tar.gz
+
+bdeps: [perl-http-date, perl-http-message]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-http-date, perl-http-message]

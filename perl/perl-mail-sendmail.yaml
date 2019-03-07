@@ -1,0 +1,22 @@
+origin    : Mail-Sendmail
+name      : perl-mail-sendmail
+version   : 0.80
+category  : perl
+summary   : Mail::Sendmail - Simple platform independent mailer
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Mail-Sendmail
+target    : noarch
+repology  : perl:mail-sendmail
+
+src:
+- url:  cpan://NEILB/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

@@ -1,0 +1,22 @@
+origin    : Net-IP
+name      : perl-net-ip
+version   : 1.26
+category  : perl
+summary   : Net::IP - Perl extension for manipulating IPv4/IPv6 addresses
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Net-IP
+target    : noarch
+repology  : perl:net-ip
+
+src:
+- url:  cpan://MANU/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

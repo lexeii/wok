@@ -1,0 +1,22 @@
+origin    : MIME-Types
+name      : perl-mime-types
+version   : 2.17
+category  : perl
+summary   : MIME::Types - Definition of MIME types
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/MIME-Types
+target    : noarch
+repology  : perl:mime-types
+
+src:
+- url:  cpan://MARKOV/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

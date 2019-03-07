@@ -1,0 +1,22 @@
+origin    : Net-SNMP
+name      : perl-net-snmp
+version   : 6.0.1
+category  : perl
+summary   : Net::SNMP - Object oriented interface to SNMP
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Net-SNMP
+target    : noarch
+repology  : perl:net-snmp
+
+src:
+- url:  cpan://DTOWN/<o>-v<v>.tar.gz
+
+bdeps: [perl-crypt-des, perl-digest-hmac, perl-digest-sha1]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-crypt-des, perl-digest-hmac, perl-digest-sha1]

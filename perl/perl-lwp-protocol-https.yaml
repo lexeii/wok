@@ -1,0 +1,22 @@
+origin    : LWP-Protocol-https
+name      : perl-lwp-protocol-https
+version   : 6.07
+category  : perl
+summary   : LWP::Protocol::https - Provide https support for LWP::UserAgent
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/LWP-Protocol-https
+target    : noarch
+repology  : perl:lwp-protocol-https
+
+src:
+- url:  cpan://OALDERS/<o>-<v>.tar.gz
+
+bdeps: [perl-io-socket-ssl, perl-libwww-perl, perl-mozilla-ca, perl-net-http]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-io-socket-ssl, perl-libwww-perl, perl-mozilla-ca, perl-net-http]

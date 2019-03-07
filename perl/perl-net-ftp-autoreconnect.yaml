@@ -1,0 +1,22 @@
+origin    : Net-FTP-AutoReconnect
+name      : perl-net-ftp-autoreconnect
+version   : 0.3
+category  : perl
+summary   : Net::FTP::AutoReconnect - FTP client class with automatic reconnect on failure
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Net-FTP-AutoReconnect
+target    : noarch
+repology  : perl:net-ftp-autoreconnect
+
+src:
+- url:  cpan://GIFF/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

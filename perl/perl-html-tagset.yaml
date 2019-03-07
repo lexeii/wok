@@ -1,0 +1,22 @@
+origin    : HTML-Tagset
+name      : perl-html-tagset
+version   : 3.20
+category  : perl
+summary   : HTML::Tagset - data tables useful in parsing HTML
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/HTML-Tagset
+target    : noarch
+repology  : perl:html-tagset
+
+src:
+- url:  cpan://PETDANCE/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

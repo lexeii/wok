@@ -1,0 +1,22 @@
+origin    : Number-Compare
+name      : perl-number-compare
+version   : 0.03
+category  : perl
+summary   : Number::Compare - numeric comparisons
+maintainer: devel@slitaz.org
+license   : unknown
+home      : https://metacpan.org/release/Number-Compare
+target    : noarch
+repology  : perl:number-compare
+
+src:
+- url:  cpan://RCLAMP/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

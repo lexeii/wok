@@ -1,0 +1,22 @@
+origin    : Scope-Guard
+name      : perl-scope-guard
+version   : 0.21
+category  : perl
+summary   : Scope::Guard - lexically-scoped resource management
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Scope-Guard
+target    : noarch
+repology  : perl:scope-guard
+
+src:
+- url:  cpan://CHOCOLATE/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

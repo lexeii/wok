@@ -1,0 +1,24 @@
+origin    : HTTP-Message
+name      : perl-http-message
+version   : 6.18
+category  : perl
+summary   : HTTP::Message - HTTP style message
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/HTTP-Message
+target    : noarch
+repology  : perl:http-message
+
+src:
+- url:  cpan://OALDERS/<o>-<v>.tar.gz
+
+bdeps: [perl-encode-locale, perl-http-date, perl-io-html, perl-lwp-mediatypes,
+        perl-uri, perl-try-tiny]
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: [perl-encode-locale, perl-http-date, perl-io-html, perl-lwp-mediatypes,
+         perl-uri, perl-try-tiny]

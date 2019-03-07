@@ -1,0 +1,22 @@
+origin    : IPC-Run3
+name      : perl-ipc-run3
+version   : 0.048
+category  : perl
+summary   : IPC::Run3 - run a subprocess with input/ouput redirection
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/IPC-Run3
+target    : noarch
+repology  : perl:ipc-run3
+
+src:
+- url:  cpan://RJBS/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

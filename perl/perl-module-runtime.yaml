@@ -1,0 +1,22 @@
+origin    : Module-Runtime
+name      : perl-module-runtime
+version   : 0.016
+category  : perl
+summary   : Module::Runtime - runtime module handling
+maintainer: devel@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Module-Runtime
+target    : noarch
+repology  : perl:module-runtime
+
+src:
+- url:  cpan://ZEFRAM/<o>-<v>.tar.gz
+
+bdeps: perl-module-build
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl

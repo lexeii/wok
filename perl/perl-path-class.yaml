@@ -1,0 +1,22 @@
+origin    : Path-Class
+name      : perl-path-class
+version   : 0.37
+category  : perl
+summary   : Path::Class - Cross-platform path specification manipulation
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://metacpan.org/release/Path-Class
+target    : noarch
+repology  : perl:path-class
+
+src:
+- url:  cpan://KWILLIAMS/<o>-<v>.tar.gz
+
+bdeps: perl-module-build
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl-module-build

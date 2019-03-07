@@ -1,0 +1,22 @@
+origin    : Net-Telnet
+name      : perl-net-telnet
+version   : 3.04
+category  : perl
+summary   : Net::Telnet - interact with TELNET port or other TCP ports
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://metacpan.org/release/Net-Telnet
+target    : noarch
+repology  : perl:net-telnet
+
+src:
+- url:  cpan://JROGERS/<o>-<v>.tar.gz
+
+bdeps: perl
+
+make:
+  type: perl
+
+pkgs:
+- pkg : main
+  deps: perl
