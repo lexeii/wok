@@ -17,6 +17,6 @@ make:
 
 pkgs:
 - pkg:  main
-  copy: [@std, '*.mo']
+  copy: ['@std', '*.mo']
   deps: python
   tags: [MATE, Ubuntu, menu, GUI]

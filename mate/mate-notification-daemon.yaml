@@ -15,15 +15,15 @@ bdeps: [mate-common, gtk3-dev, dbus-glib-dev, libcanberra-dev, libwnck3-dev,
 
 make:
   rules: |
-  ./autogen.sh \
-    $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make install
+    ./autogen.sh \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
 
 pkgs:
 - pkg:  main
-  copy: [@std, @ico] # only 16 and 48 icons
+  copy: ['@std', '@ico'] # only 16 and 48 icons
   deps: [atk, libcairo, dbus, dbus-glib, gdk-pixbuf, glib, gtk3,
          libcanberra-gtk3, libnotify, libwnck3, pango, libx11]
   provide: gtk3:notification-daemon

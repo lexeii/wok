@@ -19,5 +19,5 @@ make:
 
 pkgs:
 - pkg : main
-  copy: [@std, @dev]
+  copy: ['@std', '@dev']
   deps: [perl-dbi, libsqlite3]

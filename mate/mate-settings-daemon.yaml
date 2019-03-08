@@ -16,12 +16,12 @@ bdeps: [mate-common, gtk3-dev, dbus-glib-dev, dconf-dev, mate-desktop-dev,
 
 make:
   rules: |
-  ./autogen.sh \
-    --enable-pulse \
-    $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make install
+    ./autogen.sh \
+      --enable-pulse \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
 
 pkgs:
 - pkg:  main
@@ -29,7 +29,7 @@ pkgs:
          libcanberra-gtk3, libmatekbd, libmatemixer, libnotify, libxklavier,
          mate-desktop, nspr, nss, polkit, pulseaudio, libx11, libxi,
          libxxf86misc]
-tags: MATE
+  tags: MATE
 
 - pkg:  dev
   deps: [main, dbus-dev, dbus-glib-dev, glib-dev]

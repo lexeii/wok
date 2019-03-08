@@ -15,6 +15,7 @@ bdeps: [util-macros, xorg-server-dev, libxfont2-dev]
 
 make:
   type: gnu
+  env:
     LDFLAGS: $LDFLAGS -Wl,-z,lazy
 
 pkgs:

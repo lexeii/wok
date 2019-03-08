@@ -16,8 +16,8 @@ bdeps: [perl-module-implementation, perl-dev, perl-module-build,
 
 make:
   rules: |
-  perl Build.PL &&
-  ./Build --destdir $install install
+    perl Build.PL &&
+    ./Build --destdir $install install
 
 post:
   rules: chmod -R u+w $install

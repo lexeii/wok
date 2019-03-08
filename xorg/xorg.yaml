@@ -6,7 +6,7 @@ maintainer: devel@slitaz.org
 license   : MIT
 home      : https://www.x.org/wiki/
 target    : noarch
-repology  : -
+repology  : '-'
 
 pkgs:
 - pkg:  main

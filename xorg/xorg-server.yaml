@@ -26,59 +26,59 @@ cookopts: skip-log-errors
 make:
   type: custom
   rules: |
-  case $SET in
-    '') SET_ARGS="
-      --disable-static \
-      --enable-glamor \
+    case $SET in
+      '') SET_ARGS="
+        --disable-static \
+        --enable-glamor \
+        --enable-install-setuid \
+        --enable-suid-wrapper \
+        --disable-xwayland \
+        --enable-dmx \
+        --enable-kdrive \
+        --enable-xephyr \
+        --enable-config-udev \
+        ";;
+      light) SET_ARGS="
+        --disable-screensaver \
+        --disable-glx \
+        --disable-dri \
+        --disable-dri2 \
+        --disable-dri3 \
+        --disable-xinerama \
+        --disable-config-udev \
+        --disable-libdrm \
+        --enable-xorg \
+        --disable-xvfb \
+        --disable-xnest \
+        --disable-glamor \
+        --disable-xephyr \
+        --disable-ipv6 \
+        --with-serverconfig-path=/etc/X11 \
+        ";;
+    esac
+
+    ./configure \
       --enable-install-setuid \
-      --enable-suid-wrapper \
-      --disable-xwayland \
-      --enable-dmx \
-      --enable-kdrive \
-      --enable-xephyr \
-      --enable-config-udev \
-      ";;
-    light) SET_ARGS="
-      --disable-screensaver \
-      --disable-glx \
-      --disable-dri \
-      --disable-dri2 \
-      --disable-dri3 \
-      --disable-xinerama \
-      --disable-config-udev \
-      --disable-libdrm \
-      --enable-xorg \
-      --disable-xvfb \
-      --disable-xnest \
-      --disable-glamor \
-      --disable-xephyr \
-      --disable-ipv6 \
-      --with-serverconfig-path=/etc/X11 \
-      ";;
-  esac
+      --disable-systemd-logind \
+      --disable-docs \
+      --disable-devel-docs \
+      --with-xkb-output=/var/lib/xkb \
+      --with-fontrootdir=/usr/share/fonts/X11 \
+      --with-os-name="SliTaz GNU/Linux" \
+      --with-vendor-web="http://www.slitaz.org/" \
+      --with-builder-addr="devel@slitaz.org" \
+      $SET_ARGS \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make DESTDIR=$install install || return 1
 
-  ./configure \
-    --enable-install-setuid \
-    --disable-systemd-logind \
-    --disable-docs \
-    --disable-devel-docs \
-    --with-xkb-output=/var/lib/xkb \
-    --with-fontrootdir=/usr/share/fonts/X11 \
-    --with-os-name="SliTaz GNU/Linux" \
-    --with-vendor-web="http://www.slitaz.org/" \
-    --with-builder-addr="devel@slitaz.org" \
-    $SET_ARGS \
-    $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make DESTDIR=$install install || return 1
+    mkdir -pv $install/etc/X11/xorg.conf.d
 
-  mkdir -pv $install/etc/X11/xorg.conf.d
-
-  # chmod 4711 $install/usr/bin/Xdmx
-  # chmod 4711 $install/usr/bin/Xephyr
-  # chmod 4711 $install/usr/bin/Xnest
-  # chmod 4711 $install/usr/bin/Xvfb
+    # chmod 4711 $install/usr/bin/Xdmx
+    # chmod 4711 $install/usr/bin/Xephyr
+    # chmod 4711 $install/usr/bin/Xnest
+    # chmod 4711 $install/usr/bin/Xvfb
 
 testsuite: readelf -h $install/usr/bin/Xorg
 

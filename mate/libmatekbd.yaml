@@ -14,10 +14,10 @@ bdeps: [mate-common, gobject-introspection-dev, gtk3-dev, libxklavier-dev]
 
 make:
   rules: |
-  ./autogen.sh $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make install
+    ./autogen.sh $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
 
 pkgs:
 - pkg:  main

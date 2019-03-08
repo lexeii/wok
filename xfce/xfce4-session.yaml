@@ -38,5 +38,5 @@ pkgs:
 files:
 - name: shutdown
   content: |
-  #!/bin/sh
-  /sbin/poweroff
+    #!/bin/sh
+    /sbin/poweroff

@@ -15,11 +15,11 @@ bdeps: [mate-common, gtk3-dev, libx11-dev, mate-panel-dev,
 
 make:
   rules: |
-  ./autogen.sh \
-    $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make install
+    ./autogen.sh \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
 
 pkgs:
 - pkg:  main

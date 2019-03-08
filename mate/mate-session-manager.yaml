@@ -15,15 +15,15 @@ bdeps: [mate-common, gtk3-dev, dbus-glib-dev, libxtst-dev, xmlto, libxslt-dev,
 
 make:
   rules: |
-  ./autogen.sh \
-    $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make install
+    ./autogen.sh \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
 
 pkgs:
 - pkg:  main
-  copy: [@std, @ico] # only 16 and 48 icons
+  copy: ['@std', '@ico'] # only 16 and 48 icons
   deps: [libcairo, dbus, dbus-glib, gdk-pixbuf, glib, gtk3, libice, libsm,
          libx11, libxau, libxext, libxrender, libxtst]
   tags: MATE

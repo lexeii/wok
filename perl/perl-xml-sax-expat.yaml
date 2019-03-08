@@ -17,11 +17,11 @@ bdeps: [perl-xml-namespacesupport, perl-xml-parser, perl-xml-sax,
 
 make:
   rules: |
-  # keep installing to / and then to $install
-  PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor &&
-  make -j1 &&
-  make -j1 PERL_MM_USE_DEFAULT=1 install &&
-  make -j1 PERL_MM_USE_DEFAULT=1 DESTDIR=$install install
+    # keep installing to / and then to $install
+    PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor &&
+    make -j1 &&
+    make -j1 PERL_MM_USE_DEFAULT=1 install &&
+    make -j1 PERL_MM_USE_DEFAULT=1 DESTDIR=$install install
 
 post:
   rules: chmod -R u+w $install

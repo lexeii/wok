@@ -15,11 +15,11 @@ bdeps: [mate-common, yelp-tools-dev, libgtop-dev, libwnck3-dev, gtk3-dev,
 
 make:
   rules: |
-  ./autogen.sh \
-    $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make install
+    ./autogen.sh \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
 
 post:
   rules: fix symlinks

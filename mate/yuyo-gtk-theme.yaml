@@ -7,20 +7,21 @@ summary   : GTK theme belonging to the Ubuntu MATE project
 maintainer: yuripourre@gmail.com
 home      : https://web.archive.org/web/20150801205755/https://github.com/snwh/yuyo-gtk-theme
 
+src:
 # original github.com/snwh/yuyo-gtk-theme was removed, use 1:1 cloned fork
 - url:  https://github.com/Acidburn0zzz/yuyo-gtk-theme/archive/<s>.tar.gz
   file: <n>-<s>.tar.gz
 
 make:
   rules: |
-  mkdir -p $fs/usr/share/themes
-  rm -Rf $src/Yuyo/gtk-3.0
-  rm -Rf $src/Yuyo/unity
-  rm -Rf $src/Yuyo-Dark/gtk-3.0
-  rm -Rf $src/Yuyo-Dark/unity
+    mkdir -p $fs/usr/share/themes
+    rm -Rf $src/Yuyo/gtk-3.0
+    rm -Rf $src/Yuyo/unity
+    rm -Rf $src/Yuyo-Dark/gtk-3.0
+    rm -Rf $src/Yuyo-Dark/unity
 
-  cp -a $src/Yuyo $fs/usr/share/themes
-  cp -a $src/Yuyo-Dark $fs/usr/share/themes
+    cp -a $src/Yuyo $fs/usr/share/themes
+    cp -a $src/Yuyo-Dark $fs/usr/share/themes
 
 pkgs:
 - pkg:  main

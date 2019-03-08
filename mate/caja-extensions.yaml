@@ -15,11 +15,11 @@ bdeps: [mate-common, gtk-doc, caja-dev, mate-desktop-dev, dbus-glib-dev,
 
 make:
   rules: |
-  ./autogen.sh \
-    $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make install
+    ./autogen.sh \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
 
 pkgs:
 - pkg:  main

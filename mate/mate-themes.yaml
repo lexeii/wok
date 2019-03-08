@@ -14,10 +14,10 @@ bdeps: [mate-common, gtk2-dev]
 
 make:
   rules: |
-  ./autogen.sh \
-    $CONFIGURE_ARGS &&
-  make &&
-  make install
+    ./autogen.sh \
+      $CONFIGURE_ARGS &&
+    make &&
+    make install
 
 post:
   rules: rm -r $install/usr/share/locale/ # remove empty folder structure

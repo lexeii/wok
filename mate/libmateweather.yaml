@@ -14,12 +14,12 @@ bdeps: [mate-common, gtk-doc, gtk3-dev, libsoup-dev, tzdata]
 
 make:
   rules: |
-  ./autogen.sh \
-    --enable-locations-compression \
-    $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make install
+    ./autogen.sh \
+      --enable-locations-compression \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
 
 pkgs:
 - pkg:  -misc-icons
@@ -29,9 +29,9 @@ pkgs:
   deps: main
 
 - pkg:  -misc-locales
-  copy: [Locations.*.xml.gz, @rm=Locations.de.xml.gz, @rm=Locations.es.xml.gz,
-         @rm=Locations.fr.xml.gz, @rm=Locations.pt_BR.xml.gz,
-         @rm=Locations.ru.xml.gz]
+  copy: [Locations.*.xml.gz, '@rm=Locations.de.xml.gz', '@rm=Locations.es.xml.gz',
+         '@rm=Locations.fr.xml.gz', '@rm=Locations.pt_BR.xml.gz',
+         '@rm=Locations.ru.xml.gz']
   cat:  localization
   note: different locales
   deps: main

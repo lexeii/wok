@@ -16,12 +16,12 @@ bdeps: [mate-common, gtk-doc, yelp-tools-dev, gobject-introspection-dev,
 
 make:
   rules: |
-  ./autogen.sh \
-    --with-in-process-applets=all \
-    $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make install
+    ./autogen.sh \
+      --with-in-process-applets=all \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
 
 post:
   rules: fix symlinks

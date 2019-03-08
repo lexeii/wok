@@ -54,7 +54,7 @@ pkgs:
   pre_install: rm -f "$1/usr/bin/perl" # Remove perl link to microperl if any.
 
 - pkg:  main
-  copy: [@std, @rm]
+  copy: ['@std', '@rm']
   deps: [libbzip2, libgdbm, zlib, perl-core]
   provide: microperl
   tags: LFS

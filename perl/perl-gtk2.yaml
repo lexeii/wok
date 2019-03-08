@@ -20,6 +20,6 @@ make:
 
 pkgs:
 - pkg : main
-  copy: [@std, @dev]
+  copy: ['@std', '@dev']
   deps: [perl-glib, perl-pango, atk, libcairo, fontconfig, freetype, gdk-pixbuf,
          glib, gtk2, pango]

@@ -16,11 +16,11 @@ bdeps: [mate-common, yelp-tools-dev, gtk-doc, gobject-introspection-dev,
 
 make:
   rules: |
-  ./autogen.sh \
-    $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make install
+    ./autogen.sh \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
 
 post:
   rules: fix symlinks
@@ -30,7 +30,7 @@ pkgs:
   deps: [main, -plugins, gtksourceview3-dev, libpeas-dev]
 
 - pkg:  -plugins
-  copy: [plugins/, @rm, @rm=*.la]
+  copy: [plugins/, '@rm', '@rm=*.la']
   deps: [main, enchant, gdk-pixbuf, glib, gtk3, gtksourceview3, libpeas,
          libpeas-gtk, libxml2, pango, python]
   note: plugins

@@ -14,10 +14,10 @@ bdeps: [mate-common, glib-dev]
 
 make:
   rules: |
-  ./autogen.sh \
-    $CONFIGURE_ARGS &&
-  make &&
-  make install
+    ./autogen.sh \
+      $CONFIGURE_ARGS &&
+    make &&
+    make install
 
 pkgs:
 - pkg:  main

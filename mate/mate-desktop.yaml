@@ -16,15 +16,15 @@ bdeps: [mate-common, gtk-doc, gobject-introspection-dev, dconf-dev,
 
 make:
   rules: |
-  ./autogen.sh \
-    $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make install
+    ./autogen.sh \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
 
 pkgs:
 - pkg:  main
-  copy: [@std, @ico] # only 16 and 48 icons
+  copy: ['@std', '@ico'] # only 16 and 48 icons
   deps: [atk, libcairo, dconf, gdk-pixbuf, glib, gtk3, pango,
          startup-notification, libx11, libxrandr]
   tags: MATE

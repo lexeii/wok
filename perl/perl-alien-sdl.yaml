@@ -23,9 +23,9 @@ prepare:
 
 make:
   rules: |
-  perl Build.PL --with-sdl-config &&
-  perl Build &&
-  perl Build install installdirs=vendor destdir=$install
+    perl Build.PL --with-sdl-config &&
+    perl Build &&
+    perl Build install installdirs=vendor destdir=$install
 
 post:
   rules: chmod -R u+w $install

@@ -15,12 +15,12 @@ bdeps: [mate-common, yelp-tools-dev, gtk3-dev, caja-dev, json-glib-dev, itstool,
 
 make:
   rules: |
-  ./autogen.sh \
-    --disable-packagekit \
-    $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make install
+    ./autogen.sh \
+      --disable-packagekit \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
 
 post:
   rules: fix symlinks

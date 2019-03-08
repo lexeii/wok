@@ -14,11 +14,11 @@ bdeps: [mate-common, gtk-doc, gtk3-dev, polkit-dev, gobject-introspection-dev]
 
 make:
   rules: |
-  ./configure \
-    $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make install
+    ./configure \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
 
 pkgs:
 - pkg:  main

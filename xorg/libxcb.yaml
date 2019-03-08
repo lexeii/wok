@@ -31,9 +31,9 @@ pkgs:
   deps: [libxau, libxdmcp]
   tags: Xorg
   description: |
-  The X protocol C-language Binding (XCB) is a replacement for Xlib featuring
-  a small footprint, latency hiding, direct access to the protocol, improved
-  threading support, and extensibility.
+    The X protocol C-language Binding (XCB) is a replacement for Xlib featuring
+    a small footprint, latency hiding, direct access to the protocol, improved
+    threading support, and extensibility.
 
 - pkg:  dev
   deps: [main, libxau-dev, libxdmcp-dev]

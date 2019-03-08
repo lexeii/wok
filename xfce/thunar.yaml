@@ -26,12 +26,12 @@ pkgs:
          xfce4-panel, xfconf, libice, libsm, libx11]
   tags: [Xfce, file-manager]
   description: |
-  Thunar is a new modern file manager for the Xfce Desktop Environment. Thunar
-  has been designed from the ground up to be fast and easy-to-use. Its user
-  interface is clean and intuitive, and does not include any confusing or
-  useless options. Thunar is fast and responsive with a good start up time and
-  directory load time. Thunar is accessible using Assistive Technologies and is
-  fully standards compliant.
+    Thunar is a new modern file manager for the Xfce Desktop Environment. Thunar
+    has been designed from the ground up to be fast and easy-to-use. Its user
+    interface is clean and intuitive, and does not include any confusing or
+    useless options. Thunar is fast and responsive with a good start up time and
+    directory load time. Thunar is accessible using Assistive Technologies and is
+    fully standards compliant.
 
 - pkg : dev
   deps: [main, glib-dev, gtk2-dev]

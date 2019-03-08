@@ -17,11 +17,11 @@ bdeps: [mate-common, yelp-tools-dev, gtk-doc, itstool,
 
 make:
   rules: |
-  ./autogen.sh \
-    $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make install
+    ./autogen.sh \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
 
 post:
   rules: fix symlinks

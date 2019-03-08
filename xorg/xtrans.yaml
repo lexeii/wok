@@ -17,6 +17,6 @@ make:
 
 pkgs:
 - pkg:  main
-  copy: @dev
+  copy: '@dev'
   deps: xorgproto
   tags: Xorg

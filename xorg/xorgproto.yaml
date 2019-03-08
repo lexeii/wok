@@ -26,5 +26,5 @@ post:
 
 pkgs:
 - pkg:  main
-  copy: @dev
+  copy: '@dev'
   tags: Xorg

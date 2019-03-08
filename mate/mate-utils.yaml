@@ -15,17 +15,17 @@ bdeps: [mate-common, yelp-tools-dev, gtk-doc, gtk3-dev, mate-panel-dev,
 
 make:
   rules: |
-  ./autogen.sh $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make install
+    ./autogen.sh $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
 
 post:
   rules: fix symlinks
 
 pkgs:
 - pkg:  main
-  copy: [@std, @ico] # only 16 and 48 icons
+  copy: ['@std', '@ico'] # only 16 and 48 icons
   deps: [atk, libcairo, gdk-pixbuf, glib, gtk3, libcanberra, libcanberra-gtk3,
          libgtop, mate-panel, pango, libice, libsm, libx11, libxext, zlib]
   tags: MATE

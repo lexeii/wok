@@ -16,11 +16,11 @@ bdeps: [mate-common, libx11-dev, libxscrnsaver-dev, gtk3-dev, dbus-glib-dev,
 
 make:
   rules: |
-  ./autogen.sh \
-    $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make install
+    ./autogen.sh \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
 
 pkgs:
 - pkg:  main

@@ -22,7 +22,7 @@ post:
 
 pkgs:
 - pkg:  main
-  copy: [@std, help/C/]
+  copy: ['@std', help/C/]
   tags: MATE
 - pkg:  -de
   copy: help/de/

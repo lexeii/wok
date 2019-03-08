@@ -14,12 +14,12 @@ bdeps: [mate-common, gobject-introspection-dev, python-dev]
 
 make:
   rules: |
-  ./autogen.sh \
-    --enable-python \
-    $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make install
+    ./autogen.sh \
+      --enable-python \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
 
 pkgs:
 - pkg:  -python

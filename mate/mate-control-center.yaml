@@ -18,12 +18,12 @@ bdeps: [mate-common, yelp-tools, itstool, libx11-dev, libxscrnsaver-dev,
 
 make:
   rules: |
-  ./autogen.sh \
-    --disable-update-mimedb \
-    $CONFIGURE_ARGS &&
-  fix libtool &&
-  make &&
-  make install
+    ./autogen.sh \
+      --disable-update-mimedb \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
 
 post:
   rules: rm $install/usr/share/applications/mimeinfo.cache
@@ -36,13 +36,13 @@ pkgs:
          mate-menus, pango, libx11, libxscrnsaver, libxcursor, libxi]
   tags: MATE
   description: |
-  mate-control-center is a graphical user interface to configure various aspects
-  of MATE.
+    mate-control-center is a graphical user interface to configure various aspects
+    of MATE.
 
-  When run without arguments, the shell displays the control center overview,
-  which shows all available configuration panels. The overview allows one to
-  open individual panels by clicking on them. It also has a search entry to find
-  panels by searching keywords.
+    When run without arguments, the shell displays the control center overview,
+    which shows all available configuration panels. The overview allows one to
+    open individual panels by clicking on them. It also has a search entry to find
+    panels by searching keywords.
 
 - pkg:  dev
   deps: [main, glib-dev, gtk3-dev, librsvg-dev, mate-desktop-dev,
