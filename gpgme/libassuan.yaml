@@ -1,0 +1,30 @@
+name      : libassuan
+version   : 2.5.2
+category  : security
+summary   : IPC library used by some of the other GnuPG related packages
+maintainer: devel@slitaz.org
+license   : GPL3
+home      : https://www.gnupg.org/related_software/libassuan/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/general/libassuan.html
+
+src:
+- url:  https://www.gnupg.org/ftp/gcrypt/libassuan/<n>-<v>.tar.bz2
+  # https://www.gnupg.org/download/integrity_check.html
+  sha1: fb66bc1e8971d48ac9dbacd1cdaf6487a3e77375
+
+#cookopts: force-arch # different configs
+
+bdeps: libgpg-error-dev
+
+make:
+- type: gnu
+
+pkgs:
+- pkg : main
+  deps: libgpg-error
+  description: |
+    This is a general purpose IPC library which is for example used GnuPG, GPGME
+    and some other software.
+
+- pkg : dev
+  deps: [main, libgpg-error-dev]

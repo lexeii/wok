@@ -1,0 +1,31 @@
+name      : gpa
+version   : 0.9.10
+category  : security
+summary   : GNU Privacy Assistant
+maintainer: devel@slitaz.org
+license   : GPL3
+home      : https://www.gnupg.org/related_software/gpa/
+
+src:
+- url:  https://www.gnupg.org/ftp/gcrypt/gpa/<n>-<v>.tar.bz2
+  # Integrity check: https://www.gnupg.org/download/integrity_check.html
+  sha1: c629348725c1bf5dafd57f8a70187dc89815ce60
+
+bdeps: [gtk2-dev, libgpg-error-dev, libassuan-dev, gpgme-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [gdk-pixbuf, glib, gpgme, gtk2, libassuan, libgpg-error, zlib,   
+         pinentry-gtk]
+  description: |
+    Graphical user interface for the GnuPG
+
+    The GNU Privacy Assistant is a graphical user interface for the GNU Privacy
+    Guard (GnuPG). GnuPG is a system that provides you with privacy by encrypting
+    emails or other documents and with authentication of received files by
+    signature management.
+
+- pkg : lang

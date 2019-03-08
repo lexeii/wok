@@ -1,0 +1,56 @@
+name      : pinentry
+version   : 1.1.0
+category  : security
+summary   : Allow GnuPG to read passphrases and PIN numbers in a secure manner
+maintainer: pascal.bellard@slitaz.org
+license   : GPL2
+home      : https://www.gnupg.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/general/pinentry.html
+
+src:
+- url:  https://www.gnupg.org/ftp/gcrypt/pinentry/<n>-<v>.tar.bz2
+  # https://www.gnupg.org/download/integrity_check.html
+  sha1: 693bdf9f48dfb3e040d92f50b1bb464e268b9fb0
+
+bdeps: [libassuan-dev, libgpg-error-dev, ncurses-dev, libcap-dev, libsecret-dev,
+        libgcrypt-dev, shared-mime-info, gtk2-dev, gtk3-dev, gcr-dev, fltk-dev]
+
+make:
+  type: gnu
+  args:
+  - --enable-pinentry-curses
+  - --enable-fallback-curses
+  - --enable-pinentry-tty
+  - --enable-pinentry-gtk2
+  - --enable-pinentry-gnome3
+  - --disable-pinentry-qt
+  - --enable-pinentry-fltk
+
+post:
+  # make default pinentry the pinentry-curses
+  rules: ln -sf pinentry-curses $install/usr/bin/pinentry
+
+pkgs:
+- pkg : main
+  copy: [pinentry-tty, pinentry-curses, pinentry]
+  deps: [glib, libassuan, libcap, libgpg-error, libsecret, ncurses]
+  note: for console
+  description: |
+    This is a collection of simple PIN or passphrase entry dialogs which utilize
+    the Assuan protocol as described by the aegypten project; see
+    http://www.gnupg.org/aegypten/ for details.
+
+- pkg : -gtk
+  copy: pinentry-gtk-2
+  deps: [glib, gtk2, libassuan, libcap, libgpg-error, libsecret, ncurses,   main]
+  note: for GTK+ 2
+
+- pkg : -gnome3
+  copy: pinentry-gnome3
+  deps: [gcr-base, glib, libassuan, libcap, libgpg-error, libsecret, ncurses,   main]
+  note: for GNOME 3
+
+- pkg : -fltk
+  copy: pinentry-fltk
+  deps: [fltk, glib, libassuan, libcap, libgpg-error, libsecret, ncurses,   main]
+  note: for FLTK

@@ -1,0 +1,33 @@
+name      : dirmngr
+version   : 1.1.1
+category  : security
+summary   : DirMngr - X.509 directory manager
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://www.gnupg.org/
+
+src:
+- url:  https://www.gnupg.org/ftp/gcrypt/dirmngr/<n>-<v>.tar.bz2
+  # Integrity check: https://www.gnupg.org/download/integrity_check.html
+  sha1: e708d4aa5ce852f4de3f4b58f4e4f221f5e5c690
+
+bdeps: [pth-dev, libgpg-error-dev, libgcrypt-dev, libassuan-dev, libksba-dev,
+        openldap-dev]
+
+make:
+- type: gnu
+
+pkgs:
+- pkg : main
+  deps: [libassuan, libgcrypt, libksba, libldap, pth, zlib]
+  description: |
+    DirMngr - X.509 Directory Manager
+
+    DirMngr is a server for managing and downloading certificate revocation lists
+    (CRLs) for X.509 certificates and for downloading the certificates themselves.
+    Dirmngr also handles OCSP requests as an alternative to CRLs. Dirmngr is
+    either invoked internally by gpgsm (GnuPG-2) or when running as a system
+    daemon through the dirmngr-client tool.
+
+    Note that GnuPG includes an updated Dirmngr starting with GnuPG 2.1. Do not
+    expect that this standalone Dirmngr package will be maintained in the future.

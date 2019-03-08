@@ -1,0 +1,30 @@
+name      : libgcrypt
+version   : 1.8.4
+category  : security
+summary   : Cryptographic library based on GnuPG
+maintainer: devel@slitaz.org
+license   : [GPL2, LGPL2.1]
+home      : https://www.gnupg.org/related_software/libgcrypt/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/general/libgcrypt.html
+
+src:
+- url:  https://www.gnupg.org/ftp/gcrypt/libgcrypt/<n>-<v>.tar.bz2
+  # https://www.gnupg.org/download/integrity_check.html
+  sha1: 4a8ef9db6922f3a31992aca5640b4198a69b58fc
+
+#cookopts: force-arch # different configs
+
+bdeps: libgpg-error-dev
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: libgpg-error
+  description: |
+    Libgcrypt - The GNU Crypto Library
+    Libgcrypt is a general purpose crypto library based on the code used in GnuPG.
+
+- pkg : dev
+  deps: [main, libgpg-error-dev]

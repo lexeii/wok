@@ -1,0 +1,60 @@
+name      : gnupg
+version   : 2.2.10
+category  : security
+summary   : Free implementation of the OpenPGP
+maintainer: devel@slitaz.org
+license   : GPL3
+home      : https://www.gnupg.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/postlfs/gnupg.html
+
+src:
+- url:  https://www.gnupg.org/ftp/gcrypt/gnupg/<n>-<v>.tar.bz2
+  # https://www.gnupg.org/download/integrity_check.html
+  sha1: 3e87504e2ca317718aa9b6299947ebf7e906b54e
+
+bdeps: [libgpg-error-dev, libassuan-dev, libgcrypt-dev, libksba-dev, npth-dev,
+        perl, libusb-dev, sqlite3-dev, gettext-dev, zlib-dev, bzip2-dev,
+        readline-dev, texinfo, gnutls-dev, openldap-dev]
+
+make:
+  rules: |
+    ./configure \
+      --enable-symcryptrun \
+      --enable-maintainer-mode \
+      $CONFIGURE_ARGS &&
+    make &&
+    makeinfo --html --no-split -o doc/gnupg_nochunks.html doc/gnupg.texi &&
+    makeinfo --plaintext       -o doc/gnupg.txt           doc/gnupg.texi &&
+    make install
+
+post:
+  rules: |
+    # FIXME.
+    # Looks like functions install-exec-hook() from g10/Makefile work in
+    # an unexpected manner. It required to spend too many time in debugging, so
+    # better I'll apply here "fast and dirty hack" that will make the same:
+    install -m755 g10/gpg  $install/usr/bin/gpg2
+    install -m755 g10/gpgv $install/usr/bin/gpgv2
+    # The same "hack" for doc/Makefile
+    cook_pick_manpages doc/gpg.1 doc/gpgv.1
+
+    docdir="$install/usr/share/doc/gnupg-$VERSION"
+    install -v -m755 -d $docdir/html
+    install -v -m644    doc/gnupg_nochunks.html  $docdir/html/gnupg.html
+    install -v -m644    doc/*.texi doc/gnupg.txt $docdir
+
+    ln -svf gpg2  $install/usr/bin/gpg
+    ln -svf gpgv2 $install/usr/bin/gpgv
+
+pkgs:
+- pkg : main
+  deps: [libbzip2, libassuan, libgcrypt, libgnutls, libgpg-error, libksba,
+         libldap, libsqlite3, libusb, npth, readline, zlib,   pinentry]
+  description: |
+    The GNU Privacy Guard
+
+    GnuPG is GNU's tool for secure communication and data storage. It can be used
+    to encrypt data and to create digital signatures. It includes an advanced key
+    management facility and is compliant with the proposed OpenPGP Internet
+    standard as described in RFC4880 and the S/MIME standard as described by
+    several RFCs.
