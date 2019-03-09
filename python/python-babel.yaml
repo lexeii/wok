@@ -1,0 +1,27 @@
+origin    : Babel
+name      : python-babel
+version   : 2.6.0
+category  : python
+summary   : A collection of tools for internationalizing Python applications
+maintainer: pascal.bellard@slitaz.org
+license   : BSD
+home      : https://pypi.org/project/Babel/
+target    : noarch
+repology  : python:babel
+
+src:
+- url:  pythonhosted://<o>/<o>-<v>.tar.gz
+  sha256: 8cba50f48c529ca3fa18cf81fa9403be176d374ac4d60738b839122dfaaa3d23
+
+bdeps: [python, python-pytz,  python3, python3-pytz]
+
+make:
+  type: python2+3 # conflicting /usr/bin/pybabel
+
+pkgs:
+- pkg : main
+  copy: python2*/
+  deps: [python, python-pytz]
+- pkg : python3-babel
+  copy: python3*/
+  deps: [python3, python3-pytz]
