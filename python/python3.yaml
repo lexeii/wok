@@ -1,0 +1,63 @@
+name      : python3
+version   : 3.7.2
+category  : development
+summary   : The Python 3 programming language
+maintainer: pascal.bellard@slitaz.org
+license   : GPL
+home      : https://www.python.org/download/releases/
+lfs       : http://www.linuxfromscratch.org/lfs/view/development/chapter06/Python.html
+
+src:
+- url:  https://www.python.org/ftp/python/<v>/Python-<v>.tar.xz
+  sha1: c3dc6928516bcb934cf4740461044c79c7c35494
+
+bdeps: [readline-dev, gdbm-dev, openssl-dev, sqlite3-dev, zlib-dev, tk-dev,
+        ncurses-dev, xz-dev, bzip2-dev, expat-dev, libffi-dev]
+
+#cookopts: !zip
+
+prepare:
+  rules: mkdir -p $install/usr/lib/pkgconfig
+
+make:
+  type: gnu
+  args:
+  - --enable-shared
+  - --with-system-expat
+  - --with-system-ffi
+  - --without-ensurepip
+  destdir: keep
+
+post:
+  rules: |
+    chmod 755 $install/usr/lib/libpython<V>m.so
+    chmod 755 $install/usr/lib/libpython${VERSION%%.*}.so
+    find $install -type f -name '*.pyc' -delete
+
+pkgs:
+- pkg : -idle
+  copy: [idle3, idle<V>, idlelib/] # note <V> here!
+  note: GUI IDE using TK Toolkit
+  deps: main
+
+- pkg : -tcltk
+  copy: [_tkinter.*.so, tkinter/]
+  note: Tcl/Tk files
+  deps: [main, tcl, tk]
+
+- pkg : -ensurepip
+  copy: ensurepip/
+  note: ensurepip
+  deps: main
+
+- pkg : main
+  copy: ['@std', '@rm', pyconfig.h]
+  deps: [expat, libbzip2, libffi, libgdbm, liblzma, libsqlite3, ncurses,
+         ncurses-libpanel, openssl, readline, util-linux-uuid, zlib,   
+         python3-setuptools, python3-pip]
+  tags: LFS
+  provide: py3k
+
+- pkg : dev
+  deps: main
+  provide: py3k-dev
