@@ -1,0 +1,205 @@
+name      : python
+version   : 2.7.15
+category  : development
+summary   : The Python programming language
+maintainer: devel@slitaz.org
+license   : PSL
+home      : https://www.python.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/general/python2.html
+repology  : python2
+
+src:
+- url:  https://www.python.org/ftp/python/<v>/Python-<v>.tar.xz
+  sha1: f99348a095ec4a6411c84c0d15343d11920c9724
+
+bdeps: [openssl-dev, bzip2-dev, readline-dev, sqlite3-dev, zlib-dev,
+        ncurses-dev, tcl-dev, tk-dev, db-dev, gdbm-dev, libffi-dev, expat-dev]
+
+#cookopts: !menus !zip
+
+prepare:
+  #patches:
+  #- name: 13a39142c047.diff
+
+  rules: |
+    # Temporary workaround for FS#22322
+    # See http://bugs.python.org/issue10835 for upstream report
+    sed -i.orig "/progname =/s/python/python${_pybasever}/" Python/pythonrun.c
+
+    # Enable built-in SQLite3 module to load extensions (fix FS#22122)
+    sed -i.orig "/SQLITE_OMIT_LOAD_EXTENSION/d" setup.py
+
+make:
+  type: gnu
+  args:
+  - --prefix=/usr
+  - --enable-shared
+  - --with-system-expat
+  - --with-system-ffi
+  - --without-ensurepip
+  - --enable-unicode=ucs4
+  destdir: keep
+
+post:
+  rules: |
+    chmod -v 755 $install/usr/lib/libpython2.7.so.1.0
+    find $install -type f \( -name '*.pyc' -o -name '*.pyo' \) -delete
+  desktop:
+  - from: python.desktop
+  - from: python-idle.desktop
+  icon:
+  - from: python.png
+    size: 48
+
+pkgs:
+- pkg : dev
+  copy: ['@dev', test/, distutils/command/*.exe, ensurepip/, '@rm=pyconfig.h'] # move to python package
+  deps: main
+
+- pkg : -idle
+  copy: [idle, idlelib/, python-idle.desktop]
+  note: GUI IDE using TK Toolkit
+  deps: [-tcltk, tcl, tk]
+
+- pkg : -tcltk
+  copy: [_tkinter.so, lib-tk/, '@rm']
+  note: Tcl/Tk files
+  deps: [main, tcl, tk, libx11]
+
+- pkg : main
+  copy: ['@std', '@rm', pyconfig.h] # Now pyconfig.h is required for Mercurial.
+  deps: [python-setuptools, python-pip, libbzip2, expat, libgdbm, libffi,
+         libsqlite3, ncurses, ncurses-libpanel, openssl, readline, zlib]
+
+files:
+- name: python-idle.desktop
+  content: |
+    [Desktop Entry]
+    Type=Application
+    Name=Python IDLE
+    Exec=idle
+    Icon=python
+    Categories=Development;
+
+- name: python.desktop
+  content: |
+    [Desktop Entry]
+    Encoding=UTF-8
+    Name=Python interpreter
+    Name[fr]=Interpreteur Python
+    Name[pt]=Interpretador Python
+    Name[pt_BR]=Interpretador Python
+    Name[ru]=Интерпретатор Python
+    Terminal=false
+    Exec=terminal -e python
+    Icon=python
+    Type=Application
+    Categories=Development;
+
+- name: 13a39142c047.diff
+  content: |
+    Error in the end of the `make install`:
+
+    ```
+    Traceback (most recent call last):
+      File "${src}/Lib/runpy.py", line 163, in _run_module_as_main
+        mod_name, _Error)
+      File "${src}/Lib/runpy.py", line 111, in _get_module_details
+        __import__(mod_name)  # Do not catch exceptions initializing package
+      File "${src}/Lib/ensurepip/__init__.py", line 9, in <module>
+        import tempfile
+      File "${src}/Lib/tempfile.py", line 35, in <module>
+        from random import Random as _Random
+      File "${src}/Lib/random.py", line 885, in <module>
+        _inst = Random()
+      File "${src}/Lib/random.py", line 97, in __init__
+        self.seed(x)
+      File "${src}/Lib/random.py", line 113, in seed
+        a = long(_hexlify(_urandom(2500)), 16)
+    OSError: [Errno 38] Function not implemented
+    make: *** [Makefile:927: install] Error 1
+    ```
+
+    While the normal installing process is following:
+
+    ```
+    Collecting setuptools
+    Collecting pip
+    Installing collected packages: setuptools, pip
+    Successfully installed pip-9.0.1 setuptools-28.8.0
+    ```
+
+    Discussion found here: http://bugs.python.org/issue29188
+    Patch found in the discussion above:
+    https://hg.python.org/cpython/rev/13a39142c047
+
+    Chunk #1 is removed from the original patch because it rejected.
+
+
+    # HG changeset patch
+    # User Victor Stinner <victor.stinner@gmail.com>
+    # Date 1483956641 -3600
+    # Node ID 13a39142c0473ecb64fcd4b12a915025df6e4310
+    # Parent  cb4f73be9486d47f1dc4285998d1532d8857c59e
+    Don't use getentropy() on Linux
+
+    Issue #29188: Support glibc 2.24 on Linux: don't use getentropy() function but
+    read from /dev/urandom to get random bytes, for example in os.urandom().  On
+    Linux, getentropy() is implemented which getrandom() is blocking mode, whereas
+    os.urandom() should not block.
+
+    diff --git a/Python/random.c b/Python/random.c
+    --- a/Python/random.c
+    +++ b/Python/random.c
+    @@ -97,8 +97,15 @@ win32_urandom(unsigned char *buffer, Py_
+     }
+     
+     /* Issue #25003: Don't use getentropy() on Solaris (available since
+    - * Solaris 11.3), it is blocking whereas os.urandom() should not block. */
+    -#elif defined(HAVE_GETENTROPY) && !defined(sun)
+    +   Solaris 11.3), it is blocking whereas os.urandom() should not block.
+    +
+    +   Issue #29188: Don't use getentropy() on Linux since the glibc 2.24
+    +   implements it with the getrandom() syscall which can fail with ENOSYS,
+    +   and this error is not supported in py_getentropy() and getrandom() is called
+    +   with flags=0 which blocks until system urandom is initialized, which is not
+    +   the desired behaviour to seed the Python hash secret nor for os.urandom():
+    +   see the PEP 524 which was only implemented in Python 3.6. */
+    +#elif defined(HAVE_GETENTROPY) && !defined(sun) && !defined(linux)
+     #define PY_GETENTROPY 1
+     
+     /* Fill buffer with size pseudo-random bytes generated by getentropy().
+
+- name: python.png
+  type: base64
+  content: |
+    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
