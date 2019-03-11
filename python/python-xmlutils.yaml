@@ -1,0 +1,27 @@
+origin    : xmlutils
+name      : python-xmlutils
+version   : 1.4
+category  : python
+summary   : Processing XML documents and converting to other formats
+maintainer: pascal.bellard@slitaz.org
+license   : MIT
+home      : https://pypi.org/project/xmlutils/
+target    : noarch
+repology  : python:xmlutils
+
+src:
+- url:  pythonhosted://<o>/<o>-<v>.tar.gz
+  sha256: 1902a51ed858b7e44bcd99f2abbca15636647f9c5b599caed4731a8281ea030f
+
+bdeps: [python, python3]
+
+make:
+  type: python2+3
+  sets: 3
+
+pkgs:
+- pkg : main
+  deps: python
+- pkg : python3-xmlutils
+  set : 3
+  deps: python3
