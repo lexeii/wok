@@ -1,0 +1,20 @@
+name      : xfce4-dev-tools
+version   : 4.12.0 # Xfce release 4.12: http://archive.xfce.org/xfce/4.12/src/
+category  : development
+summary   : Xfce developpers tools
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : http://users.xfce.org/~benny/projects/xfce4-dev-tools/
+
+src:
+- url:  http://archive.xfce.org/src/xfce/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: glib-dev
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  copy: ['@std', '@dev']
+  deps: [glib,   subversion, autoconf, automake, intltool]

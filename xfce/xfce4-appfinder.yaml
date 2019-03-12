@@ -1,0 +1,20 @@
+name      : xfce4-appfinder
+version   : 4.12.0 # Xfce release 4.12: http://archive.xfce.org/xfce/4.12/src/
+category  : x-window
+summary   : Xfce application finder
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.xfce.org/
+
+src:
+- url:  http://archive.xfce.org/src/xfce/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, libxfce4util-dev, garcon-dev]
+
+make:
+  type: gnu
+  args: --disable-debug
+
+pkgs:
+- pkg : main
+  deps: [garcon, gdk-pixbuf, glib, gtk2, libxfce4ui, libxfce4util, xfconf]

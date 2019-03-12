@@ -1,0 +1,26 @@
+name      : libxfce4util
+version   : 4.13.2
+category  : x-window
+summary   : Xfce utility library
+maintainer: devel@slitaz.org
+license   : LGPL2
+home      : https://www.xfce.org/
+
+src:
+- url:  http://archive.xfce.org/src/xfce/<n>/<V>/<n>-<v>.tar.bz2
+  sha1: 8ce7bcbea1b41298f1e7f6181afd27c1bbc079b5
+
+bdeps: [intltool, glib-dev] # gobject-introspection-dev vala
+
+make:
+  type: gnu
+  args:
+  - --disable-debug
+  - --disable-gtk-doc
+
+pkgs:
+- pkg : main
+  deps: glib
+  tags: Xfce
+- pkg : dev
+  deps: [main, glib-dev]

@@ -1,0 +1,47 @@
+name      : libxfce4ui
+version   : 4.13.4
+category  : x-window
+summary   : Xfce GTK widget library
+maintainer: devel@slitaz.org
+license   : LGPL2
+home      : https://www.xfce.org/
+
+src:
+- url:  http://archive.xfce.org/src/xfce/<n>/<V>/<n>-<v>.tar.bz2
+  sha1: 480de7fa8e9cb14902ebb6af13054bfdd5bae947
+
+bdeps: [intltool, libx11-dev, libice-dev, libsm-dev, gtk3-dev, libxfce4util-dev,
+        startup-notification-dev, xfconf-dev, glade3-dev, glade-dev,
+        xcb-util-dev] # gobject-introspection-dev vala
+
+make:
+  type: gnu
+  args:
+  - --disable-debug
+  - --disable-gtk-doc
+
+pkgs:
+- pkg : dev
+  deps: [main, gtk3-dev, libxfce4util-dev, xfconf-dev]
+
+- pkg : -glade3
+  copy: [glade3/modules/*.so, glade3/catalogs/, glade3/pixmaps/]
+  name: Glade3 module
+  deps: [main, glade3, glib, gtk2]
+
+- pkg : main
+  deps: [atk, gdk-pixbuf, glib, gtk2, libcairo, libice, libsm, libx11,
+         libxfce4util, pango, startup-notification, xfconf]
+  tags: Xfce
+
+# use of "gobject-introspection-dev vala" in bdeps produce errors:
+# ** (process:5280): CRITICAL **: 02:49:10.805: Failed to get connection to xfconfd: The connection is closed
+# ** (process:5484): CRITICAL **: 02:49:14.682: Failed to get connection to xfconfd: The connection is closed
+# ** (g-ir-compiler:5507): CRITICAL **: 02:49:16.576: Failed to get connection to xfconfd: The connection is closed
+#
+# starting xfconfd using `/usr/lib/xfce4/xfconf/xfconfd` produce error:
+# (xfconfd:1150): xfconfd-CRITICAL **: 02:48:43.550: Xfconfd failed to start: The connection is closed
+# and nothing changed
+
+# use of "introspection" here require using "introspection" in the libxfce4util
+# package (add "gobject-introspection-dev vala" to bdeps there)

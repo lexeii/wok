@@ -1,0 +1,40 @@
+name      : xfconf
+version   : 4.13.6
+category  : x-window
+summary   : Xfce configuration utility
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.xfce.org/
+
+src:
+- url:  http://archive.xfce.org/src/xfce/<n>/<V>/<n>-<v>.tar.bz2
+  sha1: e972e9f24508f8a435dd1d9230e0399a39773443
+
+#cookopts: force-arch # arch-specific paths
+
+bdeps: [intltool, libxfce4util-dev, dbus-dev, perl-extutils-depends,
+        perl-extutils-pkgconfig, perl-glib perl-dev]
+
+make:
+  type: gnu
+  args:
+  - --disable-debug
+  - --disable-gtk-doc
+  - --with-perl-options='INSTALLDIRS=vendor'
+
+post:
+  rules: find $install -type f -exec chmod u+w '{}' \; # 444->644, 555->755
+
+pkgs:
+- pkg : dev
+  deps: [main, glib-dev] # use xfconf-perl separately if need
+
+- pkg : -perl
+  copy: [/usr/lib/perl5/, '@rm']
+  cat : perl
+  note: Perl bindings
+  deps: [main, glib, perl]
+
+- pkg : main
+  deps: [glib, libxfce4util,   dbus]
+  tags: Xfce

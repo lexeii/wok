@@ -1,0 +1,29 @@
+name      : xfce-utils
+version   : 4.8.3
+category  : x-window
+summary   : Xfce utilities
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.xfce.org/
+
+src:
+- url:  http://archive.xfce.org/src/xfce/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [libxfce4util-dev, libxfce4ui-dev, intltool, startup-notification-dev,
+        util-linux-uuid-dev, dbus-glib-dev]
+
+make:
+  type: gnu
+  args:
+  - --enable-dbus
+  - --disable-debug
+  - --with-browser=browser
+  - --with-terminal=xterm
+  destdir: keep
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg : main
+  deps: [libxfce4util, libxfce4ui, startup-notification, dbus-glib]

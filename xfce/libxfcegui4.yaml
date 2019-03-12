@@ -1,0 +1,31 @@
+name      : libxfcegui4
+version   : 4.10.0
+category  : x-window
+summary   : Xfce GTK Widget library
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.xfce.org/
+
+src:
+- url:  http://archive.xfce.org/src/xfce/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [gtk2-dev, libxfce4util-dev, xfconf-dev, startup-notification-dev,
+        libglade-dev, xcb-util-dev, intltool, util-linux-uuid-dev]
+
+prepare:
+  # xfce_setenv is removed in libxfce4util 4.11.0
+  rules: sed -i 's/xfce_setenv/g_setenv/' libxfcegui4/xfce-exec.c
+
+make:
+  type: gnu
+  args:
+  - --disable-static
+  - --disable-debug
+  destdir: keep
+
+pkgs:
+- pkg : main
+  deps: [gtk2, libxfce4util, xfconf, startup-notification, dbus-glib, libglade]
+  tags: Xfce
+- pkg : dev
+  deps: [main, gtk2, libxfce4util-dev]

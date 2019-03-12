@@ -1,0 +1,22 @@
+name      : thunar-archive-plugin
+version   : 0.3.0
+category  : x-window
+summary   : Thunar Archive Manager plugin
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://goodies.xfce.org/projects/thunar-plugins/thunar-archive-plugin
+
+src:
+- url:  http://archive.xfce.org/src/thunar-plugins/<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [intltool, thunar-dev, exo-dev, libxfce4ui-dev, xfconf-dev,
+        startup-notification-dev]
+
+make:
+  type: gnu
+  args: --libexecdir=/usr/lib
+
+pkgs:
+- pkg : main
+  deps: thunar
+  tags: Xfce

@@ -1,0 +1,20 @@
+name      : xfce4
+version   : 4.10.0
+category  : meta
+summary   : Xfce Desktop Environment
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.xfce.org/
+
+pkgs:
+- pkg : main
+  deps: [libxfce4util, xfconf, libxfce4ui, garcon, libexo, xfce4-panel, thunar,
+         xfce4-settings, xfce4-session, xfwm4, xfdesktop, thunar-volman,
+         thunar-archive-plugin, xfce-utils]
+  suggested: xfce4-slitaz-config
+  post_install: |
+    # Adding xfce to SLIM available sessions.
+    if ! grep -q xfce "$1/etc/slim.conf"; then
+      sed -i s/,jwm/,jwm,xfce/ "$1/etc/slim.conf"
+    fi
+    # Adding xfce support to tazx

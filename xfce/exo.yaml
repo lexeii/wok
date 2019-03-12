@@ -1,0 +1,30 @@
+name      : exo
+version   : 0.12.3
+category  : x-window
+summary   : Xfce extension library
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.xfce.org/
+
+src:
+- url:  http://archive.xfce.org/src/xfce/exo/<V>/<n>-<v>.tar.bz2
+  sha1: 1809d60eb2051b5865bd5048da7d666983511400
+
+bdeps: [intltool, gtk2-dev, libxfce4util-dev, libxfce4ui-dev]
+
+make:
+  type: gnu
+  args:
+  - --disable-debug
+  - --disable-gtk-doc
+
+pkgs:
+- pkg : lib
+  deps: [atk, gdk-pixbuf, glib, gtk2, gtk3, libcairo, libx11, libxfce4util, pango]
+
+- pkg : main
+  deps: [lib, atk, gdk-pixbuf, glib, gtk3, libxfce4ui, libxfce4util, pango]
+  tags: Xfce
+
+- pkg : dev
+  deps: [main, lib, gtk2-dev, gtk3-dev, libxfce4util-dev]
