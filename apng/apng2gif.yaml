@@ -1,0 +1,28 @@
+name      : apng2gif
+version   : 1.8
+category  : utilities
+summary   : Convert APNG animations into animated GIF format
+maintainer: al.bobylev@gmail.com
+license   : zlib/libpng
+home      : http://apng2gif.sourceforge.net/
+
+src:
+- url:  sf://<n>/<n>-<v>-src.zip
+
+bdeps: [zlib-dev, libpng-dev]
+
+make:
+  rules: make
+
+post:
+  cmd: apng2gif
+  doc: readme.txt
+
+pkgs:
+- pkg : main
+  deps: [libpng, zlib]
+  description: |
+    This program converts APNG animations into animated GIF format.
+    Wu64 quantization is used for true-color files. Transparency is handled
+    either using a threshold, or composed over chosen background color.
+    CLI version is OS-independent, GUI version is available for Windows.
