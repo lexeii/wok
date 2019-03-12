@@ -1,0 +1,27 @@
+name      : gif2apng
+version   : 1.9
+category  : utilities
+summary   : Convert GIF animations into APNG format
+maintainer: al.bobylev@gmail.com
+license   : zlib/libpng
+home      : http://gif2apng.sourceforge.net/
+
+src:
+- url:  sf://<n>/<n>-<v>-src.zip
+
+bdeps: zlib-dev
+
+make:
+  rules: make
+
+post:
+  cmd: gif2apng
+  doc: readme.txt
+
+pkgs:
+- pkg : main
+  deps: zlib
+  description: |
+    This program converts GIF animations into animated PNG format.
+    Usually it makes the files smaller. CLI version is OS-independent, GUI
+    version is available for Windows.

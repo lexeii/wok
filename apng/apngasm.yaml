@@ -1,0 +1,26 @@
+name      : apngasm
+version   : 2.91
+category  : utilities
+summary   : Creates APNG animation from PNG/TGA image sequence
+maintainer: al.bobylev@gmail.com
+license   : zlib/libpng
+home      : http://apngasm.sourceforge.net/
+
+src:
+- url:  sf://<n>/<n>-<v>-src.zip
+
+bdeps: [zlib-dev, libpng-dev]
+
+make:
+  rules: make
+
+post:
+  cmd: apngasm
+  doc: readme.txt
+
+pkgs:
+- pkg : main
+  deps: [libpng, zlib]
+  description: |
+    Standalone version of the popular APNG Assembler.
+    Simple command-line interface. No size limits.

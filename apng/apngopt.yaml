@@ -1,0 +1,25 @@
+name      : apngopt
+version   : 1.4
+category  : utilities
+summary   : Optimizes existing APNG animation
+maintainer: al.bobylev@gmail.com
+license   : zlib/libpng
+home      : https://sourceforge.net/projects/apng/
+
+src:
+- url:  sf://apng/<n>-<v>-src.zip
+
+bdeps: [zlib-dev, libpng-dev]
+
+make:
+  rules: make
+
+post:
+  cmd: apngopt
+  doc: readme.txt
+
+pkgs:
+- pkg : main
+  deps: [libpng, zlib]
+  description: |
+    Small utility to optimize existing APNG animations.
