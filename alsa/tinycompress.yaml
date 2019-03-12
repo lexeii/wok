@@ -1,0 +1,17 @@
+name      : tinycompress
+version   : 1.1.6
+category  : multimedia
+summary   : Compress audio offload in ALSA
+maintainer: al.bobylev@gmail.com
+license   : [BSD, LGPL2.1]
+home      : http://www.alsa-project.org/main/index.php/Main_Page
+
+src:
+- url:  ftp://ftp.alsa-project.org/pub/tinycompress/<n>-<v>.tar.bz2
+
+make:
+  type: gnu
+
+pkgs:
+- pkg: main
+- pkg: dev

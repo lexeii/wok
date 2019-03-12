@@ -1,0 +1,85 @@
+name      : alsa-lib
+version   : 1.1.8
+category  : multimedia
+summary   : ALSA sound libraries
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : http://www.alsa-project.org/main/index.php/Main_Page
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/multimedia/alsa-lib.html
+
+src:
+- url:  ftp://ftp.alsa-project.org/pub/lib/<n>-<v>.tar.bz2
+  sha1: 018523741f0b78ad5aa928202c11e6694a8c10c2
+
+make:
+  type: gnu
+  args: --disable-python
+  jobs: 1
+
+post:
+  file:
+  - from: asound.conf
+    to  : /etc/asound.conf
+
+pkgs:
+- pkg : main
+  conf: /etc/asound.conf
+  deps: linux
+  description: |
+    The Advanced Linux Sound Architecture (ALSA) provides audio and MIDI
+    functionality to the Linux operating system. This package provides the ALSA
+    libraries.
+
+- pkg : dev
+
+files:
+- name: asound.conf
+  content: |
+    pcm.my_card {
+       type hw
+       card 0
+       # mmap_emulation true
+    }
+
+    pcm.dmixed {
+       type dmix
+       ipc_key 1024
+       #  ipc_key_add_uid false   # let multiple users share
+       #  ipc_perm 0666           # IPC permissions for multi user sharing (octal, default 0600)
+       slave {
+       pcm "my_card"
+       #   rate 48000
+       #   period_size 512
+       }
+    }
+
+    pcm.dsnooped {
+       type dsnoop
+       ipc_key 2048
+       slave {
+       pcm "my_card"
+       #   rate 48000
+       #   period_size 128
+       }
+    }
+
+    pcm.asymed {
+       type asym
+       playback.pcm "dmixed"
+       capture.pcm "dsnooped"
+    }
+
+    pcm.pasymed {
+       type plug
+       slave.pcm "asymed"
+    }
+
+    pcm.dsp0 {
+       type plug
+       slave.pcm "asymed"
+    }
+
+    pcm.!default {
+       type plug
+       slave.pcm "asymed"
+    }

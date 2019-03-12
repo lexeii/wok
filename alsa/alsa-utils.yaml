@@ -1,0 +1,66 @@
+name      : alsa-utils
+version   : 1.1.8
+category  : multimedia
+summary   : Command line utilities for the ALSA project
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : http://www.alsa-project.org/main/index.php/Main_Page
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/multimedia/alsa-utils.html
+
+src:
+- url:  ftp://ftp.alsa-project.org/pub/utils/<n>-<v>.tar.bz2
+  sha1: 36859b70c6b09458f9f28ae63d4fc3bf754b86b8
+
+bdeps: [alsa-lib-dev, ncurses-dev, gettext-dev, eudev-dev]
+
+make:
+  type: gnu
+  args:
+  - --disable-alsaconf
+  - --disable-bat
+  - --disable-xmlto
+  - --with-curses=ncursesw
+
+post:
+  rules: |
+    # Remove empty dir
+    rmdir $install/usr/share/man/man7
+
+    # Declare asound.state
+    touch $install/var/lib/alsa/asound.state
+
+    # For conf we need /var/tmp
+    install -dm1777 $install/var/tmp
+  desktop:
+  - alsamixer.desktop
+
+pkgs:
+- pkg:  -test
+  copy: [speaker-test, speaker-test/, "*.wav"]
+  note: speaker test
+  deps: alsa-lib
+
+- pkg:  alsa-info
+  copy: alsa-info.sh
+  note: gather ALSA subsystem information
+  deps: [std, bash, dialog, ncurses-extra, pciutils, wget]
+
+- pkg:  main
+  deps: [alsa-lib, ncurses, ncurses-libform, ncurses-libmenu, ncurses-libpanel]
+  conf: /var/lib/alsa/asound.state
+  overrides:
+  - file: /var/tmp/
+    perm: 1777
+
+files:
+- name: alsamixer.desktop
+  content: |
+    [Desktop Entry]
+    Type=Application
+    Name=Alsamixer Volume mixer
+    Name[fr]=Mixer de volumes Alsamixer
+    Name[ru]=Регулятор громкости Alsamixer
+    Name[zh_CN]=Alsamixer 音量控制
+    Exec=terminal -e alsamixer
+    Icon=multimedia-volume-control
+    Categories=AudioVideo;Audio;Mixer;

@@ -1,0 +1,168 @@
+name      : alsa-tools
+version   : 1.1.7
+category  : multimedia
+summary   : ALSA sound system advanced tools
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : http://www.alsa-project.org/main/index.php/Main_Page
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/multimedia/alsa-tools.html
+
+src:
+- url:  ftp://ftp.alsa-project.org/pub/tools/<n>-<v>.tar.bz2
+
+bdeps: [alsa-lib-dev, gtk2-dev, fltk-dev, autoconf, automake, gtk3-dev]
+
+make:
+  rules: |
+    for i in *; do
+      case $i in
+        Makefile|gitcompile|qlo10k1) continue;;
+        seq) cd $src/seq/sbiload;;
+        *)   cd $src/$i;;
+      esac
+      ./configure $CONFIGURE_ARGS &&
+      make &&
+      make install
+    done
+
+post:
+  desktop:
+  - echomixer.desktop
+  - envy24control.desktop
+  - rmedigicontrol.desktop
+
+# skip qlo10k1: it requre old Qt
+# skip hdajacksensetest: sysfs-pin-configs.h: No such file or directory
+pkgs:
+- pkg : main
+  cat : meta
+  note: meta package
+  deps: alsa-lib # We don't want all card mixer as dep.
+
+- pkg : -as10k1
+  copy: as10k1
+  note: assembler for emu10k1 DSP chip
+  deps: ' '
+
+- pkg : -echomixer
+  copy: [echomixer, echomixer.desktop, echomixer.png]
+  note: control all the features of any Echoaudio soundcard
+  deps: [alsa-lib, glib, gtk2]
+
+- pkg : -envy24control
+  copy: [envy24control, envy24control.desktop, envy24control.png]
+  note: control tool for Envy24 (ice1712) based soundcards
+  deps: [alsa-lib, glib, gtk2]
+
+- pkg : -hda-verb
+  copy: [hda-verb]
+  note: send a HD-audio command
+  deps: ' '
+
+- pkg : -hdajack
+  copy: [hdajackretask, hdajacksensetest, hdajackretask.desktop,
+         hdajackretask.png]
+  note: HDA Intel tools
+  deps: [glib, gtk3]
+
+- pkg : -hdsp
+  copy: [hdspconf, hdspconf.desktop, hdspconf.png,
+         hdsploader,
+         hdspmixer, hdspmixer.desktop, hdspmixer.png]
+  note: RME Hammerfall DSP cards firmware loader, mixer and config tool
+  deps: [alsa-lib, fltk]
+
+- pkg : -hwmixvolume
+  copy: [hwmixvolume, hwmixvolume.desktop, hwmixvolume.png]
+  note: control the volume of sound cards using hardware mixing
+  deps: [alsa-lib, python, python-pygtk] #?
+
+- pkg : -ld10k1
+  copy: [init_audigy, init_audigy_eq10, init_live, lo10k1, "liblo10k1.so*",
+         dl10k1, ld10k1, ld10k1d, ld10k1/effects/]
+  note: emu10k1 (emu10k2) patch loader
+  deps: alsa-lib
+
+- pkg : -ld10k1-dev
+  copy: [lo10k1/, ld10k1.m4]
+  cat : development
+  note: ld10k1 development files
+  deps: alsa-tools-ld10k1
+
+- pkg : -mixartloader
+  copy: mixartloader
+  note: firmware loader for Digigram miXart soundcards
+  deps: alsa-lib
+
+- pkg : -pcxhrloader
+  copy: pcxhrloader
+  note: firmware loader for Digigram pcxhr compatible soundards
+  deps: alsa-lib
+
+- pkg : -rmedigicontrol
+  copy: [rmedigicontrol, rmedigicontrol.desktop]
+  note: control tool for RME Digi32 and RME Digi96 soundcards
+  deps: [alsa-lib, glib, gtk2]
+
+- pkg : -sb16_csp
+  copy: cspctl
+  note: Sound Blaster 16 ASP/CSP control program
+  deps: alsa-lib
+
+- pkg : -seq
+  copy: [sbiload, opl3/]
+  note: OPL2/3 FM instrument loader
+  deps: alsa-lib
+
+- pkg : -sscape_ctl
+  copy: sscape_ctl
+  note: SoundScape control utility
+  deps: alsa-lib
+
+- pkg : -us428control
+  copy: us428control
+  note: controller for Tascam US-X2Y
+  deps: alsa-lib
+
+- pkg : -usx2yloader
+  copy: [usx2yloader, /etc/hotplug/usb/]
+  note: firmware loader for Tascam USX2Y USB soundcards
+  deps: alsa-lib
+
+- pkg : -vxloader
+  copy: vxloader
+  note: firmware loader for Digigram VX soundcards
+  deps: alsa-lib
+
+files:
+- name: echomixer.desktop
+  content: |
+    [Desktop Entry]
+    Type=Application
+    Name=Echomixer
+    GenericName=Echoaudio soundcard tool
+    Comment=Mixer and GUI control utility for Echo Digital Audio sound cards
+    Exec=echomixer
+    Icon=audio-x-generic
+    Categories=AudioVideo;Audio;
+
+- name: envy24control.desktop
+  content: |
+    [Desktop Entry]
+    Type=Application
+    Name=Envy24 Control
+    GenericName=Envy24 Control Utility
+    Comment=Mixer and GUI control utility for Envy24-based sound cards
+    Exec=envy24control
+    Icon=audio-x-generic
+    Categories=AudioVideo;Audio;
+
+- name: rmedigicontrol.desktop
+  content: |
+    [Desktop Entry]
+    Type=Application
+    Name=RME Digi Control tool
+    Comment=Control RME Digi32 and RME Digi96 soundcards
+    Exec=rmedigicontrol
+    Icon=audio-x-generic
+    Categories=AudioVideo;Audio;

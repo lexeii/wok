@@ -1,0 +1,22 @@
+name      : alsa-oss
+version   : 1.1.6
+category  : multimedia
+summary   : ALSA OSS compatibility library
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : http://www.alsa-project.org/main/index.php/Main_Page
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/multimedia/alsa-oss.html
+
+src:
+- url:  ftp://ftp.alsa-project.org/pub/oss-lib/<n>-<v>.tar.bz2
+
+bdeps: alsa-lib-dev
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg : main
+  deps: alsa-lib
+- pkg : dev
