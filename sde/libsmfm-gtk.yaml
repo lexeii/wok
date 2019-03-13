@@ -1,0 +1,35 @@
+name      : libsmfm-gtk
+version   : git20170110
+subversion: 52cbf70 # commit
+category  : development
+summary   : File manager development library
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://github.com/sde-gui/libsmfm-gtk
+
+src:
+- url:  github://sde-gui/libsmfm-gtk/<s>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [automake, gtk-doc, libtool, gettext-dev, shared-mime-info,
+        libsmfm-core-dev, intltool, pango-dev, gtk2-dev, menu-cache-dev]
+
+# WARNING: custom actions support isn't ready yet (as for git20170110 version)
+
+prepare:
+  rules: |
+    # hardcoded to use automake-1.11 ... 1.15, but we have automake-1.16 only
+    sed -i 's|1\.15|1.16|' autogen.sh
+    ./autogen.sh
+
+make:
+  type: gnu
+
+post:
+  rules: rmdir --parents --ignore-fail-on-non-empty $install/usr/include/libsmfm-gtk/
+
+pkgs:
+- pkg : main
+  deps: [atk, libcairo, gdk-pixbuf, glib, gtk2, libsmfm-core, menu-cache, pango]
+- pkg : dev
+  deps: [main, glib-dev, gtk2-dev, libsmfm-core-dev]

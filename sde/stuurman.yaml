@@ -1,0 +1,28 @@
+name      : stuurman
+version   : git20170112
+subversion: 7cbd80e # commit
+category  : x-window
+summary   : Stuurman File Manager
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://github.com/sde-gui/stuurman
+
+src:
+- url:  github://sde-gui/stuurman/<s>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [automake, libtool, gettext-dev, glib-dev, intltool, libx11-dev,
+        pango-dev, shared-mime-info, libsmfm-core-dev, gtk2-dev, libsmfm-gtk-dev]
+
+prepare:
+  rules: |
+    # hardcoded to use automake-1.11 ... 1.15, but we have automake-1.16 only
+    sed -i 's|1\.15|1.16|' autogen.sh
+    ./autogen.sh
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [glib, gtk2, libsmfm-core, libsmfm-gtk]

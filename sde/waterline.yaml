@@ -1,0 +1,52 @@
+name      : waterline
+version   : git20171019
+subversion: c911a7b # commit
+category  : x-window
+summary   : Lightweight framework for desktop widgets and applets
+maintainer: psychomaniak@xakep.ru
+license   : GPL2
+home      : https://github.com/sde-gui/waterline
+# https://sde-gui.github.io/waterline/
+
+src:
+- url:  github://sde-gui/waterline/<s>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [automake, gettext-dev, intltool, libtool, gtk2-dev, glib-dev,
+        jansson-dev, libsde-utils-dev, libsde-utils-x11-dev,
+        libsde-utils-jansson-dev, libsde-utils-gtk-dev, libxcomposite-dev,
+        menu-cache-dev, alsa-lib-dev]
+
+#cookopts: !menus
+
+prepare:
+  rules: |
+    sed -i 's|lxsession-logout|tazbox logout|' src/defaultapplications.c
+    ./autogen.sh
+
+make:
+  type: gnu
+
+post:
+  file:
+  - from: autostart.desktop
+    to  : /etc/xdg/autostart/waterline.desktop
+
+pkgs:
+- pkg : main
+  deps: [alsa-lib, libcairo, gdk-pixbuf, glib, gtk2, jansson, libsde-utils,
+         libsde-utils-gtk, libsde-utils-jansson, libsde-utils-x11, menu-cache,
+         pango, libx11, libxcomposite]
+  tags: [desktop, panel, taskbar]
+
+- pkg : dev
+  deps: [main, glib-dev, libsde-utils-dev, libsde-utils-gtk-dev,
+         libsde-utils-x11-dev, menu-cache-dev]
+
+files:
+- name: autostart.desktop
+  content: |
+    [Desktop Entry]
+    Type=Application
+    Name=Waterline Desktop panel
+    Exec=waterline

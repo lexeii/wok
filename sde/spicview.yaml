@@ -1,0 +1,30 @@
+name      : spicview
+version   : git20180607
+subversion: c1334be
+category  : x-window
+summary   : SPicView - lightweight image viewer for SDE project
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://github.com/sde-gui/spicview
+# https://sde-gui.github.io/spicview/
+
+src:
+- url:  github://sde-gui/spicview/<s>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [automake, libtool, gettext-dev, glib-dev, intltool, gtk2-dev,
+        gdk-pixbuf-dev, libjpeg-turbo-dev, libsmfm-gtk-dev, libsmfm-core-dev]
+
+prepare:
+  rules: |
+    # hardcoded to use automake-1.11 ... 1.15, but we have automake-1.16 only
+    sed -i 's|1\.15|1.16|' autogen.sh
+    ./autogen.sh
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [libcairo, gdk-pixbuf, glib, gtk2, libjpeg-turbo, libsmfm-core,
+         libsmfm-gtk, pango]

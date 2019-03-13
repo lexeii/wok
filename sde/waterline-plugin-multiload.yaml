@@ -1,0 +1,33 @@
+name      : waterline-plugin-multiload
+version   : git20161201
+subversion: 24ccfd0 # commit
+category  : x-window
+summary   : Port of the GNOME multiload applet to SDE waterline panel
+maintainer: psychomaniak@xakep.ru
+license   : GPL2
+home      : https://github.com/sde-gui/waterline-plugin-multiload
+
+src:
+- url:  github://sde-gui/waterline-plugin-multiload/<s>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [automake, glib-dev, gtk2-dev, libtool, intltool, libgtop-dev
+        waterline-dev, libsde-utils-jansson-dev] # lxpanel-dev
+
+# cookopts: skip-log-errors
+
+prepare:
+  rules: ./autogen.sh
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  copy: waterline/plugins/*.so
+  deps: [libcairo, glib, gtk2, libgtop, libsde-utils-jansson,   waterline]
+  tags: [desktop, panel]
+
+#- pkg : lxpanel-plugin-multiload # WARNING: not compatible with LXPanel now
+#  copy: lxpanel/plugins/*.so
+#  deps: [libcairo, glib, gtk2, libgtop, libsde-utils-jansson,   lxpanel]

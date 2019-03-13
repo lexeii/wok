@@ -1,0 +1,27 @@
+name      : libsde-utils-jansson
+version   : git20161208
+subversion: 2389d86 # commit
+category  : development
+summary   : SDE Jansson Utility Library
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://github.com/sde-gui/libsde-utils-jansson
+
+src:
+- url:  github://sde-gui/libsde-utils-jansson/<s>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [automake, libtool, glib-dev, gtk2-dev, jansson-dev, libsde-utils-dev,
+        libsde-utils-gtk-dev]
+
+prepare:
+  rules: ./autogen.sh
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [glib, gtk2, jansson, libsde-utils-gtk]
+- pkg : dev
+  deps: [main,   jansson-dev]

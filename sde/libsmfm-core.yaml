@@ -1,0 +1,30 @@
+name      : libsmfm-core
+version   : git20170118
+subversion: 1ec94e4 # commit
+category  : development
+summary   : File manager development core library
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://github.com/sde-gui/libsmfm-core
+
+src:
+- url:  github://sde-gui/libsmfm-core/<s>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [automake, gtk-doc, libtool, gettext-dev, glib-dev, intltool, pango-dev,
+        menu-cache-dev,   libexif-dev]
+
+prepare:
+  rules: |
+    # hardcoded to use automake-1.11 ... 1.15, but we have automake-1.16 only
+    sed -i 's|1\.15|1.16|' autogen.sh
+    ./autogen.sh
+
+make:
+  tape: gnu
+
+pkgs:
+- pkg : main
+  deps: [glib, libexif, menu-cache]
+- pkg : dev
+  deps: [main, glib-dev]

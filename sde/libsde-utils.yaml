@@ -1,0 +1,26 @@
+name      : libsde-utils
+version   : git20161208
+subversion: e40199e # commit
+category  : development
+summary   : SDE C Utility Library
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://github.com/sde-gui/libsde-utils
+
+src:
+- url:  github://sde-gui/libsde-utils/<s>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [automake, libtool, glib-dev]
+
+prepare:
+  rules: ./autogen.sh
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: glib
+- pkg : dev
+  deps: [main, glib-dev]

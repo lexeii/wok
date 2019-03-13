@@ -1,0 +1,24 @@
+name      : rainbow-cm
+version   : git20161213
+subversion: 6a163d7 # commit
+category  : x-window
+summary   : Rainbow Clipboard Manager
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://github.com/sde-gui/rainbow-cm
+
+src:
+- url:  github://sde-gui/rainbow-cm/<s>.tar.gz
+  file: <n>-<v>.tar.gz
+
+bdeps: [automake, gettext-dev, intltool, gtk2-dev]
+
+prepare:
+  rules: ./autogen.sh
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [glib, gtk2, pango, libx11]
