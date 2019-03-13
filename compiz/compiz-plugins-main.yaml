@@ -1,0 +1,29 @@
+name      : compiz-plugins-main
+version   : 0.8.14
+category  : x-window
+summary   : Compiz main plugins
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://gitlab.com/compiz/compiz-plugins-main
+
+src:
+- url:  https://gitlab.com/compiz/<n>/-/archive/v<v>/<n>-v<v>.tar.bz2
+
+bdeps: [automake, gettext-dev, libtool, intltool, compiz-dev, compiz-bcop-dev,
+        cairo-dev, pango-dev, glu-dev, mesa-dev, libjpeg-turbo-dev]
+
+make:
+  rules: |
+    ./autogen.sh \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
+
+pkgs:
+- pkg : main
+  deps: [libcairo, glib, glu, libjpeg-turbo, libxml2, pango, libx11, libxfixes,
+         libxrender]
+  tags: compiz
+- pkg : dev
+  deps: [main, cairo-dev, compiz-dev, pango-dev]

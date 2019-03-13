@@ -1,0 +1,31 @@
+name      : emerald-themes
+version   : 0.8.14
+category  : customization
+summary   : Themes for Emerald
+maintainer: psychomaniak@xakep.ru
+license   : GPL2
+home      : https://gitlab.com/compiz/emerald-themes
+target    : noarch
+
+src:
+- url:  https://gitlab.com/compiz/<n>/-/archive/v<v>/<n>-v<v>.tar.bz2
+
+bdeps: automake
+
+make:
+  rules: |
+    ./autogen.sh \
+      $CONFIGURE_ARGS &&
+    make &&
+    make install
+
+post:
+  rules: |
+    chmod 755 \
+      $install/usr/share/emerald/themes/Mavericks/dark/ \
+      $install/usr/share/emerald/themes/Mu/dark/ # 644 -> 755
+
+pkgs:
+- pkg : main
+  deps: emerald
+  tags: compiz

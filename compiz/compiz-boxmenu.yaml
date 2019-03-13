@@ -1,0 +1,22 @@
+name      : compiz-boxmenu
+version   : 1.1.12
+category  : x-window
+summary   : Desktop menu for Compiz
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://gitlab.com/compiz/compiz-boxmenu
+
+src:
+- url:  https://gitlab.com/compiz/<n>/-/archive/<v>/<n>-<v>.tar.bz2
+
+bdeps: [dbus-glib-dev, gtk2-dev, libwnck2-dev]
+
+make:
+  rules: |
+    make &&
+    make install
+
+pkgs:
+- pkg : main
+  deps: [dbus, dbus-glib, gdk-pixbuf, glib, gtk2, libwnck2, pango, python]
+  tags: compiz

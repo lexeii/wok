@@ -1,0 +1,26 @@
+name      : compiz-bcop
+version   : 0.8.14
+category  : x-window
+summary   : Compiz option code generator
+maintainer: psychomaniak@xakep.ru
+license   : GPL2
+home      : https://gitlab.com/compiz/compiz-bcop
+target    : noarch
+
+src:
+- url:  https://gitlab.com/compiz/<n>/-/archive/v<v>/<n>-v<v>.tar.bz2
+
+bdeps: [automake, libxslt-dev]
+
+make:
+  rules: |
+    ./autogen.sh \
+      $CONFIGURE_ARGS &&
+    make &&
+    make install
+
+pkgs:
+- pkg : main
+  deps: libxslt
+  tags: compiz
+- pkg : dev

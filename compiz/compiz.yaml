@@ -1,0 +1,48 @@
+origin    : compiz-core
+name      : compiz
+version   : 0.8.14
+category  : x-window
+summary   : OpenGL window and compositing manager
+maintainer: al.bobylev@gmail.com
+license   : MIT GPL LGPL
+home      : https://gitlab.com/compiz/compiz-core
+repology  : compiz08
+
+src:
+- url:  https://gitlab.com/compiz/<o>/-/archive/v<v>/<o>-v<v>.tar.bz2
+
+bdeps: [automake, gettext-dev, libtool, intltool, libx11-dev, libxcomposite-dev,
+        libxext-dev, libxfixes-dev, libxdamage-dev, libxrandr-dev, libxi-dev,
+        libxinerama-dev, libxcursor-dev, libice-dev, libsm-dev, libxml2-dev,
+        startup-notification-dev, libxslt, libpng-dev, libjpeg-turbo-dev,
+        glu-dev, mesa-dev, glib-dev, dbus-dev, libxml2-dev, dbus-glib-dev,
+        fuse2-dev, cairo-dev, librsvg-dev, libxrender-dev, gtk3-dev,
+        libwnck3-dev, marco-dev]
+
+make:
+  rules: |
+    ./autogen.sh \
+      --disable-static \
+      --enable-menu-entries \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install || return 1
+
+    # sed 's|bash|sh|' -i $install/usr/bin/compiz-decorator
+
+pkgs:
+- pkg : std
+  deps: [atk, libcairo, dbus, fuse2, gdk-pixbuf, glib, glu, gtk3, libpng,
+         librsvg, libwnck3, libxml2, marco, mesa, pango, startup-notification,
+         libice, libsm, libx11, libxcomposite, libxcursor, libxdamage, libxext,
+         libxfixes, libxi, libxinerama, libxrandr, libxrender]
+  tags: compiz
+  provide: compiz-core
+
+- pkg : dev
+  deps: [main, libxml2-dev, startup-notification-dev, libice-dev, libsm-dev,
+         libx11-dev, libxcomposite-dev, libxcursor-dev, libxdamage-dev,
+         libxext-dev, libxfixes-dev, libxi-dev, libxinerama-dev, libxrandr-dev,
+         libxrender-dev]
+  provide: compiz-core-dev

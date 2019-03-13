@@ -1,0 +1,31 @@
+name      : compizconfig-python
+version   : 0.8.14
+category  : x-window
+summary   : Compiz Config Python module
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://gitlab.com/compiz/compizconfig-python
+
+src:
+- url:  https://gitlab.com/compiz/<n>/-/archive/v<v>/<n>-v<v>.tar.bz2
+
+bdeps: [automake, libtool, libcompizconfig-dev, glib-dev, python-cython,
+        python-dev]
+
+make:
+  rules: |
+    ./autogen.sh \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
+
+pkgs:
+- pkg : main
+  deps: [libcompizconfig,   python]
+  provide: compiz-compizconfig-python
+- pkg : dev
+  deps: [main, glib-dev, libcompizconfig-dev, libxml2-dev,
+         startup-notification-dev, libice-dev, libsm-dev, libx11-dev,
+         libxcomposite-dev, libxcursor-dev, libxdamage-dev, libxext-dev,
+         libxfixes-dev, libxi-dev, libxinerama-dev, libxrandr-dev]

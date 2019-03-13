@@ -1,0 +1,25 @@
+name      : compicc
+version   : 0.8.10
+category  : x-window
+summary   : Compiz ICC colour server
+maintainer: al.bobylev@gmail.com
+license   : BSD
+home      : https://gitlab.com/compiz/compicc
+
+src:
+- url:  https://gitlab.com/compiz/<n>/-/archive/<v>/<n>-<v>.tar.bz2
+
+bdeps: [oyranos-dev, libxcm-dev, libx11-dev, compiz-dev mesa-dev]
+
+#cookopts: skip-log-errors
+
+make:
+  type: gnu
+  args:
+  - --prefix=/usr
+  - --libdir=/usr/lib # don't want to be /usr/lib64
+
+pkgs:
+- pkg : main
+  deps: [oyranos, libx11, libxfixes, libxrandr,   compiz]
+  tags: compiz

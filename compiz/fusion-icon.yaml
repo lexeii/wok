@@ -1,0 +1,28 @@
+name      : fusion-icon
+version   : 0.2.4
+category  : x-window
+summary   : Compiz tray (indicator) icon
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://gitlab.com/compiz/fusion-icon
+target    : noarch
+
+src:
+- url:  https://gitlab.com/compiz/<n>/-/archive/v<v>/<n>-v<v>.tar.bz2
+
+bdeps: python
+
+make:
+  rules: python -B setup.py install --root=$install
+
+post:
+  rules: |
+    chmod g-w \
+      $install/usr/share/icons/hicolor/scalable/apps/fusion-icon.svg \
+      $install/usr/share/metainfo/fusion-icon.appdata.xml # 664 -> 644
+
+pkgs:
+- pkg : main
+  copy: ['@std', 22x22/, 24x24/, 32x32/] # copy 22, 24, 32 icons for tray
+  deps: python
+  tags: compiz

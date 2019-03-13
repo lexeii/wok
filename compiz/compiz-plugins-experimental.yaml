@@ -1,0 +1,28 @@
+name      : compiz-plugins-experimental
+version   : 0.8.14
+category  : x-window
+summary   : Compiz experimental plugins
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://gitlab.com/compiz/compiz-plugins-experimental
+
+src:
+- url:  https://gitlab.com/compiz/<n>/-/archive/v<v>/<n>-v<v>.tar.bz2
+
+bdeps: [automake, gettext-dev, libtool, intltool, compiz-dev, compiz-bcop-dev,
+        cairo-dev, compiz-plugins-main-dev, compiz-plugins-extra-dev,
+        libxscrnsaver-dev, glew-dev, curl-dev, mesa-dev]
+
+make:
+  rules: |
+    ./autogen.sh \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
+
+pkgs:
+- pkg : main
+  deps: [libcairo, glew, glu, libcurl, mesa, libx11, libxscrnsaver, libxext]
+  tags: compiz
+- pkg : dev

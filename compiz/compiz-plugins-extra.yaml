@@ -1,0 +1,27 @@
+name      : compiz-plugins-extra
+version   : 0.8.14
+category  : x-window
+summary   : Compiz extra plugins
+maintainer: psychomaniak@xakep.ru
+license   : GPL2
+home      : https://gitlab.com/compiz/compiz-plugins-extra
+
+src:
+- url:  https://gitlab.com/compiz/<n>/-/archive/v<v>/<n>-v<v>.tar.bz2
+
+bdeps: [automake, gettext-dev, libtool, intltool, compiz-dev, compiz-bcop-dev,
+        compiz-plugins-main-dev, libnotify-dev, gtk2-dev, mesa-dev, glu-dev]
+
+make:
+  rules: |
+    ./autogen.sh \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
+
+pkgs:
+- pkg : main
+  deps: [libcairo, glib, glu, libnotify, libx11, libxext, libxfixes]
+  tags: compiz
+- pkg : dev

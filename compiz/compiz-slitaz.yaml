@@ -1,0 +1,148 @@
+name      : compiz-slitaz
+version   : 0.8.14
+category  : meta
+summary   : Compiz 3D effect support on SliTaz
+maintainer: devel@slitaz.org
+license   : MIT GPL LGPL
+home      : http://www.compiz.org/
+target    : noarch
+
+post:
+  cmd:
+  - compiz-session
+  - compiz-startwm
+  file:
+  - from: compiz.desktop
+    to  : /usr/share/xsessions/
+
+pkgs:
+- pkg : main
+  deps: [emerald, compiz-core, compiz-plugins-main, compiz-libcompizconfig,
+         slitaz-configs, libcairo]
+  suggested: [compiz-ccsm, compiz-plugins-extra, emerald-themes]
+  tags: window-manager
+  post_install: |
+    chroot "$1/" tazx auto
+
+    res=$(cat $root/etc/slim.conf | grep ^session | sed s/"sessions. *"//)
+    # Adding WM to SLIM available sessions.
+    if ! echo "$res" | grep -q compiz; then
+      echo -n "Adding compiz to /etc/slim.conf..."
+      sed -i "s/^sessions.*/sessions            $res,compiz/" $root/etc/slim.conf
+      status
+    fi
+    for i in $(ls -d "$1"/home/* 2>/dev/null); do
+      [ -d "$i" ] && sed '/WINDOW_MANAGER=/s|"\([^"]*\)"|"compiz"|' -i \
+      "$i/.config/slitaz/applications.conf" \
+      "$1/etc/slitaz/applications.conf"
+    done
+
+  post_remove: |
+    # Remove WM from SLIM available sessions.
+    if grep -q compiz $root/etc/slim.conf; then
+      sed -i 's|,compiz||' $root/etc/slim.conf
+    fi
+    for i in $(ls -d "$1"/home/* 2>/dev/null); do
+      [ -d "$i" ] && sed '/WINDOW_MANAGER=/s|"\([^"]*\)"|"lxde-session"|' -i \
+      "$i/.config/slitaz/applications.conf" \
+      "$1/etc/slitaz/applications.conf"
+    done
+
+files:
+- name: compiz-session
+  content: |
+    #!/bin/sh
+    #
+    # Start Compiz 3D Desktop on SliTaz. We use some LXDE componment
+    # and check compiz config files exist.
+    #
+
+    export XDG_CONFIG_HOME="$HOME/.config"
+    export XDG_CACHE_HOME="$HOME/.cache"
+    export XDG_CURRENT_DESKTOP=LXDE
+    export XDG_MENU_PREFIX="lxde-"
+    export DESKTOP_SESSION=LXDE
+
+    # Start DBUS session.
+    if [ ! "$DBUS_SESSION_BUS_ADDRESS" ]; then
+    	dbus-launch --sh-syntax --exit-with-session &
+    fi
+
+    # Compiz configuration files from slitaz-configs.
+    if [ ! -f "$XDG_CONFIG_HOME/compiz/compizconfig/config" ]; then
+    	mkdir -p $XDG_CONFIG_HOME/compiz/compizconfig
+    	cp -r /usr/share/slitaz/compiz/* $XDG_CONFIG_HOME/compiz/compizconfig
+    	sed '
+    		s|imgpng|scale;scaleaddon;animation|;
+    		s|s0_|as_|;
+    		s|composite;opengl|ccp;commands;text;png|;
+    		s|as_sens|s0_sens|;
+    		s|decor;|decoration;|;
+    		s|\[decor|\[decoration|;
+    		s|as_zo|s0_zo|;
+    		s|as_acc|s0_acc|;
+    		s|as_top|s0_top|;
+    		s|as_bot|s0_bot|;
+    		s|as_sky|s0_sky|;
+    		/opacity/s/as/s0/;
+    		s|Shift>Button1|Shift>Button3|
+    	' -i $XDG_CONFIG_HOME/compiz/compizconfig/Default.ini
+
+    	cat >>$XDG_CONFIG_HOME/compiz/compizconfig/Default.ini <<-EOT
+    		[animation]
+    		s0_all_random = true
+
+    		[resize]
+    		as_mode = 2
+
+    		[commands]
+    		as_run_command0_key = <Shift>Print
+    		as_command0 = mtpaint -s
+    		as_run_command1_key = <Alt>F1
+    		as_command1 = lxpanelctl menu
+    		as_run_command2_key = <Alt>F2
+    		as_command2 = xterm
+
+    		[winrules]
+    		!s0_maximize_match = (name=Navigator) | name=mtpaint | class=TazWeb
+    		!| role = browser
+    	EOT
+    fi
+
+    # Start some LXDE componment.
+    if [ ! -d $XDG_CONFIG_HOME/lxsession/Compiz ]; then
+    	cp -a $XDG_CONFIG_HOME/lxsession/LXDE $XDG_CONFIG_HOME/lxsession/Compiz
+    	sed -i 's|window_manager=.*|window_manager=compiz-startwm|' \
+    		$XDG_CONFIG_HOME/lxsession/Compiz/desktop.conf
+    fi
+
+    exec lxsession -e LXDE -s Compiz
+
+    #hsetroot -solid '#012345'
+
+- name: compiz-startwm
+  content: |
+    #!/bin/sh
+    #
+    #Usage: compiz
+    #       [--display DISPLAY] [--bg-image PNG] [--refresh-rate RATE]
+    #       [--fast-filter] [--indirect-rendering] [--no-detection]
+    #       [--keep-desktop-hints] [--loose-binding] [--replace]
+    #       [--no-fbo] [--sm-disable] [--sm-client-id ID] [--only-current-screen]
+    #       [--use-root-window] [--debug] [--version] [--help] [PLUGIN]...
+
+    COMPIZ_OPTS='--sm-disable --loose-binding --no-fbo --ignore-desktop-hints'
+
+    (lsmod | grep -q nvidia) && COMPIZ_OPTS="$COMPIZ_OPTS --indirect-rendering"
+
+    compiz --replace $COMPIZ_OPTS
+
+- name: compiz.desktop
+  content: |
+    [Desktop Entry]
+    Type=XSession
+    Name=Compiz
+    Comment=3D Desktop
+    Comment[fr]=Bureau 3D
+    Comment[ru]=Рабочий стол 3D
+    Exec=compiz-session

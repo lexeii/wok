@@ -1,0 +1,22 @@
+name      : simple-ccsm
+version   : 0.8.14.1
+category  : x-window
+summary   : Compiz settings manager focused on simplicity for an end-user
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://gitlab.com/compiz/simple-ccsm
+target    : noarch
+
+src:
+- url:  https://gitlab.com/compiz/<n>/-/archive/v<v>/<n>-v<v>.tar.bz2
+
+bdeps: [python, intltool]
+
+make:
+  rules: python -B ./setup.py install --prefix=/usr --root=$install
+
+pkgs:
+- pkg : main
+  copy: ['@std', 22x22/, 24x24/, 32x32/]
+  deps: python
+  tags: compiz

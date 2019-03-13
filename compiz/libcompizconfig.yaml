@@ -1,0 +1,34 @@
+name      : libcompizconfig
+version   : 0.8.14
+category  : x-window
+summary   : Compiz configuration library
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://gitlab.com/compiz/libcompizconfig
+
+src:
+- url:  https://gitlab.com/compiz/<n>/-/archive/v<v>/<n>-v<v>.tar.bz2
+
+bdeps: [automake, libtool, libx11-dev, compiz-dev, protobuf-dev, libxslt-dev,
+        mesa-dev]
+
+prepare:
+  rules: mkdir -p m4
+
+make:
+  rules:
+    ./autogen.sh \
+      $CONFIGURE_ARGS &&
+    fix libtool &&
+    make &&
+    make install
+
+pkgs:
+- pkg : main
+  deps: [libxml2, libx11]
+  provide: compiz-libcompizconfig
+  conf: /etc/compizconfig/config
+  tags: compiz
+
+- pkg : dev
+  deps: [std, compiz-dev]
