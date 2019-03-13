@@ -1,0 +1,21 @@
+name      : ccsm
+version   : 0.8.14
+category  : x-window
+summary   : Compiz Config Settings Manager
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://gitlab.com/compiz/ccsm
+
+src:
+- url:  https://gitlab.com/compiz/<n>/-/archive/v<v>/<n>-v<v>.tar.bz2
+
+bdeps: [python, intltool]
+
+make:
+  rules: python -B ./setup.py install --prefix=/usr --with-gtk=3.0 --root=$install
+
+pkgs:
+- pkg : main
+  deps: [python, python-pygobject, compiz, libcompizconfig, compizconfig-python,
+         gtk-girepository]
+  #provide: compiz-ccsm
