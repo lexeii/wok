@@ -1,0 +1,35 @@
+name      : brasero
+version   : 3.12.2
+category  : utilities
+summary   : Burn CD/DVD for the GNOME3 desktop
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://wiki.gnome.org/Apps/Brasero
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [glib-dev, itstool, libxml2-tools, gstreamer1-dev, gst1-plugins-base-dev,
+        libxml2-dev, libsm-dev, libice-dev, gtk3-dev, libnotify-dev,
+        libcanberra-dev, intltool, libburn-dev, libisofs-dev,
+        gobject-introspection-dev]
+
+make:
+  type: gnu
+  args:
+  - --disable-caches
+  - --disable-gtk-doc-html
+  - --disable-nautilus
+  - --disable-gtk-doc
+  - --disable-search
+  - --disable-playlist
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg : main
+  deps: [libcairo, gdk-pixbuf, glib, gst1-plugins-base, gstreamer1, gtk3,
+         libburn, libcanberra-gtk3, libisofs, libnotify, libxml2, pango]
+- pkg : dev
+  deps: [main, glib-dev, gtk3-dev]
