@@ -1,0 +1,32 @@
+name      : aisleriot
+version   : 3.22.7
+category  : games
+summary   : A collection of patience games
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://wiki.gnome.org/Apps/Aisleriot
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [pysolfc, glib-dev, librsvg-dev, desktop-file-utils-extra, intltool,
+        guile-dev, gtk3-dev, libcanberra-dev, gconf-dev, itstool, gmp-dev]
+
+make:
+  type: gnu
+  args:
+  - --disable-static
+  - --disable-debug
+  - --with-pysol-card-theme-path=/usr/share/PySolFC
+
+post:
+  rules: rm -r $install/usr/share/help/
+
+pkgs:
+- pkg : main
+  deps: [atk, libcairo, gconf, gdk-pixbuf, glib, gtk3, guile, libcanberra,
+         libcanberra-gtk3, librsvg]
+  suggested: [pysolfc-cardsets, pysolfc-cardsets-extra]
+  desc: |
+    AisleRiot is a collection of over 80 card games programmed in GNOME's
+    scripting language, Scheme.
