@@ -1,0 +1,28 @@
+name      : iagno
+version   : 3.28.0
+category  : games
+summary   : Dominate the board in a classic version of Reversi
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://wiki.gnome.org/Apps/Iagno
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [vala, glib-dev, gtk3-dev, librsvg-dev, libcanberra-dev, gettext-dev,
+        itstool]
+
+make:
+  type: gnu
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg : main
+  deps: [libcairo, gdk-pixbuf, glib, gtk3, libcanberra, libcanberra-gtk3, librsvg]
+  desc: |
+    Iagno is a boardgame played on an 8X8 grid with 64 pieces, dark on one side
+    and light on the other. When a piece is captured it is turned over to join
+    the capturing player's forces; the winner is the player with the most pieces
+    of their color at the end of the game.

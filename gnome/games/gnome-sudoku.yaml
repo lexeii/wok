@@ -1,0 +1,28 @@
+name      : gnome-sudoku
+version   : 3.30.0
+category  : games
+summary   : Test your logic skills in this number grid puzzle
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://wiki.gnome.org/Apps/Sudoku
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [meson, ninja, vala, libgee-dev, gtk3-dev, json-glib-dev, qqwing-dev,
+        gettext-dev, itstool]
+
+make:
+  type: meson
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg : main
+  deps: [libcairo, glib, gtk3, json-glib, libgee, pango, qqwing]
+  desc: |
+    GNOME Sudoku is a logic-based number-placement puzzle in which a 9×9 square
+    must be filled with the correct digits. The unique puzzles can be played on
+    screen or printed. If you do not have time to finish a game, you can resume
+    it any time.

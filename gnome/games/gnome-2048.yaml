@@ -1,0 +1,27 @@
+name      : gnome-2048
+version   : 3.30.0
+category  : games
+summary   : Obtain the 2048 tile
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://wiki.gnome.org/Apps/2048
+
+src:
+- url://gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [vala, glib-dev, gtk3-dev, clutter-dev, clutter-gtk-dev, libgee-dev,
+        libgnome-games-support-dev, desktop-file-utils-extra, intltool, itstool]
+
+make:
+  type: gnu
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg : main
+  deps: [libcairo, clutter, clutter-gtk, glib, gtk3, libgee,
+         libgnome-games-support, pango]
+  desc: |
+    GNOME 2048 is a clone of Gabriele Cirulli's 2048, a puzzle game based on
+    Veewo Studios' 1024.

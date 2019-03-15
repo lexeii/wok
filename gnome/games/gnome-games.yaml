@@ -1,0 +1,23 @@
+name      : gnome-games
+version   : 3.29.1
+category  : games
+summary   : Simple game launcher for GNOME
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://wiki.gnome.org/Apps/Games
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [intltool, vala, glib-dev, grilo-dev, gtk3-dev, libmanette-dev,
+        librsvg-dev, libsoup-dev, libxml2-dev, retro-gtk-dev, sqlite3-dev,
+        tracker-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [libcairo, gdk-pixbuf, glib, grilo, gtk3, libmanette, librsvg, libsoup,
+         libsqlite3, libxml2, retro-gtk, tracker]
+- pkg : dev

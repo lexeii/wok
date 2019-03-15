@@ -1,0 +1,28 @@
+name      : gnome-mines
+version   : 3.30.1.1
+category  : games
+summary   : Clear hidden mines from a minefield
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://wiki.gnome.org/Apps/Mines
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [meson, ninja, vala, libgee-dev, gtk3-dev, librsvg-dev,
+        libgnome-games-support-dev, gettext-dev, itstool]
+
+make:
+  type: meson
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg : main
+  deps: [glib, gtk3, libgnome-games-support]
+  desc: |
+    Mines is a clone of the game Minesweeper. The aim is to locate all the mines
+    that are hidden under tiles on a rectangular board. You will need to use a
+    combination of logic and luck to find all the mines without triggering an
+    explosion.

@@ -1,0 +1,29 @@
+name      : gnome-robots
+version   : 3.22.3
+category  : games
+summary   : Avoid the robots and make them crash into each other
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://wiki.gnome.org/Apps/Robots
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [glib-dev, gtk3-dev, librsvg-dev, libcanberra-dev,
+        libgnome-games-support-dev, intltool, itstool]
+
+make:
+  type: gnu
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg : main
+  deps: [libcairo, gdk-pixbuf, glib, gtk3, libcanberra, libcanberra-gtk3,
+         libgnome-games-support, librsvg]
+  desc: |
+    Robots is based on the UNIX command-line game of the same name. The aim of
+    the game is to destroy all the robots by getting them to crash into each
+    other or into junk heaps from previous collisions, without them crashing
+    into you.

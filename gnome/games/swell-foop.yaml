@@ -1,0 +1,28 @@
+name      : swell-foop
+version   : 3.28.0
+category  : games
+summary   : Clear the screen by removing groups of colored and shaped tiles
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://wiki.gnome.org/Apps/Swell%20Foop
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [vala, glib-dev, gtk3-dev, clutter-dev, clutter-gtk-dev, gettext-dev,
+        itstool]
+
+make:
+  type: gnu
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg : main
+  deps: [clutter, clutter-gtk, gdk-pixbuf, glib, gtk3]
+  desc: |
+    Swell Foop is a puzzle game, of which the objective is to clear the window
+    of as many pieces as possible by clicking on groups of the same colored
+    pieces. That group will vanish and the pieces on top will fall until there
+    are none left or no more color groups.

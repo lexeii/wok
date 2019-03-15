@@ -1,0 +1,29 @@
+name      : gnome-tetravex
+version   : 3.22.0
+category  : games
+summary   : Complete the puzzle by matching numbered tiles
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://wiki.gnome.org/Apps/Tetravex
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [vala, glib-dev, gtk3-dev, intltool, itstool]
+
+make:
+  type: gnu
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg : main
+  deps: [libcairo, glib, gtk3]
+  desc: |
+    GNOME Tetravex is a simple puzzle game which scope is to move the various
+    pieces from one side of the board to the other side, so that the same
+    numbers depicted on the pieces are touching each other.
+
+    The game is timed, and these times are used as the score for the game. You
+    have to move all the pieces in the least time possible.

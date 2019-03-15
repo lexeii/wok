@@ -1,0 +1,27 @@
+name      : tali
+version   : 3.22.0
+category  : games
+summary   : Beat the odds in a poker-style dice game
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://wiki.gnome.org/Apps/Tali
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [glib-dev, gtk3-dev, librsvg-dev, intltool, itstool]
+
+make:
+  type: gnu
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg : main
+  deps: [atk, gdk-pixbuf, glib, gtk3, pango]
+  desc: |
+    Tali is like Yahtzee for GNOME or like poker with dice. The player rolls
+    dice to try to make the best possible combinations, like 4 of a kind, small
+    straight, and full house. The player is allowed 3 rolls per turn and can
+    hold certain dice with each roll.

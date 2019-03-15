@@ -1,0 +1,27 @@
+name      : four-in-a-row
+version   : 3.28.0
+category  : games
+summary   : Make lines of the same color to win
+maintainer: al.bobylev@gmail.com
+license   : [GPL2, GPL3]
+home      : https://wiki.gnome.org/Apps/Four-in-a-row
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [vala, glib-dev, gtk3-dev, librsvg-dev, libcanberra-dev, gettext-dev,
+        itstool]
+
+make:
+  type: gnu
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg : main
+  deps: [libcairo, gdk-pixbuf, glib, gtk3, libcanberra, libcanberra-gtk3]
+  desc: |
+    Four-in-a-row is a strategy game for GNOME. The aim of the game is to stack
+    four of your marbles in a horizontal, vertical or diagonal line while
+    stopping your opponent from doing the same with their marbles.

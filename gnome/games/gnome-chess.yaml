@@ -1,0 +1,35 @@
+name      : gnome-chess
+version   : 3.30.0
+category  : games
+summary   : Play the classic two-player boardgame of chess
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://wiki.gnome.org/Apps/Chess
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [meson, ninja, vala, gtk3-dev, librsvg-dev, gettext-dev, itstool]
+
+prepare:
+  rules: |
+    # help files on the next languages are failed to build for the some reason...
+    sed -i '/^cs$/d; /^de$/d; /^da$/d; /^es$/d; /^el$/d; /^fr$/d; /^gl$/d;
+    /^pl$/d; /^ko$/d; /^pt_BR$/d; /^sv$/d' help/LINGUAS
+
+make:
+  type: meson
+
+post:
+  rules: |
+    find $install -type f -perm 664 -exec chmod 644 '{}' \;
+    fix symlinks
+
+pkgs:
+- pkg : main
+  deps: [libcairo, glib, gtk3, librsvg]
+  desc: |
+    GNOME Chess is a game for playing the classic board game of chess, in which
+    two players simulate a battle by capturing the opponents pieces and
+    ultimately the king. It can be played in 2D or 3D mode, full screen or in a
+    window.

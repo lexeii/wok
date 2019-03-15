@@ -1,0 +1,32 @@
+name      : lightsoff
+version   : 3.30.0
+category  : games
+summary   : Turn off all the lights
+maintainer: al.bobylev@gmail.com
+license   : GPL
+home      : https://wiki.gnome.org/Apps/Lightsoff
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [meson, ninja, vala, gtk3-dev, clutter-dev, clutter-gtk-dev, librsvg-dev,
+        gettext-dev, itstool]
+
+prepare:
+  rules: |
+    mv data/icons/hicolor/symbolic/apps/lightsoff-symbolic \
+       data/icons/hicolor/symbolic/apps/lightsoff-symbolic.svg
+
+make:
+  type: meson
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg : main
+  deps: [clutter, clutter-gtk, gdk-pixbuf, glib, gtk3, librsvg]
+  desc: |
+    Lights Off is a puzzle played on an 5X5 grid with the aim to turn off all
+    the lights. Each click on a tile toggles the state of the clicked tile and
+    its non-diagonal neighbors.

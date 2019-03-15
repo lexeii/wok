@@ -1,0 +1,37 @@
+name      : gnome-taquin
+version   : 3.30.0
+category  : games
+summary   : Move tiles so that they reach their places
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://wiki.gnome.org/Apps/Taquin
+
+src:
+- url: gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [vala, glib-dev, gtk3-dev, librsvg-dev, libcanberra-dev, intltool,
+        itstool]
+
+make:
+  type: gnu
+
+post:
+  rules: |
+    fix symlinks
+
+    # 'cats' theme moved to a separate package due to a big size,
+    # make remaining 'numbers' theme the default one
+    sed -i "s|<default>'cats'|<default>'numbers'|" \
+      $install/usr/share/glib-2.0/schemas/org.gnome.taquin.gschema.xml
+
+pkgs:
+- pkg : -cats
+  copy: cats/
+  deps: main
+  note: cats theme
+
+- pkg : main
+  deps: [libcairo, gdk-pixbuf, glib, gtk3, libcanberra-gtk3]
+  desc: |
+    Taquin is a sliding-block puzzle game. It includes the traditional 15-Puzzle
+    invented in the early 1880s, and the more recent 16-Puzzle variant.

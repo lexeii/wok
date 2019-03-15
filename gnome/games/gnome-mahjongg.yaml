@@ -1,0 +1,32 @@
+name      : gnome-mahjongg
+version   : 3.22.0
+category  : games
+summary   : Disassemble a pile of tiles by removing matching pairs
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://wiki.gnome.org/Apps/Mahjongg
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [vala, glib-dev, gtk3-dev, librsvg-dev, intltool, itstool]
+
+prepare:
+  rules: |
+    # In order to shrink its size, patch svg icon to fix compressor errors like:
+    # Error: valid FuncIRI(#linearGradient10640) with fallback value is not supported.
+    sed -i 's|) rgb(0, 0, 0)|)|g' data/icons/hicolor/scalable/gnome-mahjongg.svg
+    # Then size shrinks 23690 -> 4705
+
+make:
+  type: gnu
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg : main
+  deps: [libcairo, gdk-pixbuf, glib, gtk3, librsvg]
+  desc: |
+    Mahjongg is a simple pattern recognition game. You score points by matching
+    identical tiles.

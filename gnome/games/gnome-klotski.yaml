@@ -1,0 +1,26 @@
+name      : gnome-klotski
+version   : 3.22.3
+category  : games
+summary   : Slide blocks to solve the puzzle
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://wiki.gnome.org/Apps/Klotski
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [vala, glib-dev, libgee-dev, gtk3-dev, libgnome-games-support-dev,
+        librsvg-dev, intltool, itstool]
+
+make:
+  type: gnu
+
+post:
+  rules: fix symlinks
+
+pkgs:
+- pkg : main
+  deps: [libcairo, glib, gtk3, libgee, libgnome-games-support, librsvg]
+  desc: |
+    Klotski is a puzzle game of which the objective is to get the patterned
+    block to the marker, which is done by moving the blocks in its way.
