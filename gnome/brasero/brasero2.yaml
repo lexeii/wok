@@ -1,0 +1,38 @@
+origin    : brasero
+name      : brasero2
+version   : 2.32.1
+category  : utilities
+summary   : Burn CD/DVD for the GNOME2 desktop
+maintainer: devl547@gmail.com
+license   : GPL2
+home      : https://wiki.gnome.org/Apps/Brasero
+repology  : brasero
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.bz2
+
+bdeps: [glib-dev, gnome-doc-utils, gstreamer0-dev, gst0-plugins-base-dev,
+        libunique-dev, gconf-dev, libsm-dev, gtk2-dev, libcanberra-dev,
+        libburn-dev, libisofs-dev, gobject-introspection-dev, intltool,
+        libice-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -lICE
+  args:
+  - --disable-scrollkeeper
+  - --disable-caches
+  - --disable-gtk-doc-html
+  - --disable-nautilus
+  - --disable-gtk-doc
+  - --disable-search
+  - --disable-playlist
+
+pkgs:
+- pkg : main
+  deps: [libcairo, gdk-pixbuf, glib, gst0-plugins-base, gstreamer0, gtk2,
+         libburn, libcanberra-gtk2, libisofs, libunique, libxml2, pango, libice,
+         libsm]
+- pkg : dev
+  deps: [main, glib-dev, gtk2-dev]
