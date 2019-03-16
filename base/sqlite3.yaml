@@ -1,0 +1,91 @@
+name      : sqlite3
+version   : 3.24.0
+subversion: 3240000 # X.Y.Z -> XYYZZ00
+category  : database
+summary   : Small SQL database engine
+maintainer: devel@slitaz.org
+license   : PublicDomain
+home      : https://www.sqlite.org/index.html
+
+src:
+- url:  https://www.sqlite.org/2018/sqlite-src-<s>.zip
+  # integrity check: https://www.sqlite.org/download.html
+  sha1: fb558c49ee21a837713c4f1e7e413309aabdd9c7
+- url:  https://gist.github.com/esperlu/943776/raw/dd87f4088f6d5ec7563478f7a28a37ba02cf26e2/mysql2sqlite.sh
+
+bdeps: [tcl-dev, readline-dev, zlib-dev]
+
+make:
+  type: gnu
+  env:
+  - CFLAGS: |
+      $CFLAGS \
+      -DSQLITE_ENABLE_COLUMN_METADATA=1 \
+      -DSQLITE_ENABLE_UNLOCK_NOTIFY \
+      -DSQLITE_ENABLE_DBSTAT_VTAB=1 \
+      -DSQLITE_ENABLE_FTS3_TOKENIZER=1 \
+      -DSQLITE_SECURE_DELETE \
+      -DSQLITE_MAX_VARIABLE_NUMBER=250000 \
+      -DSQLITE_MAX_EXPR_DEPTH=10000
+  - CPPFLAGS: $CFLAGS
+
+  args:
+  - --disable-static
+  - --disable-amalgamation
+  - --enable-fts3
+  - --enable-fts4
+  - --enable-fts5
+  - --enable-rtree
+  - --enable-json1
+  - TCLLIBDIR=/usr/lib/sqlite$VERSION
+  jobs: 1
+  makeargs: all showdb showjournal showstat4 showwal sqldiff sqlite3_analyzer
+  destdir: keep
+
+post:
+  rules: |
+    # recompiling lemon
+    [ -f $src/lemon ] && rm $src/lemon
+    cp $src/tool/lemon.c .
+    sed -i 's|lempar.c|/usr/share/lemon/lempar.c|' lemon.c
+    echo -n "Compiling lemon..."
+    gcc -o lemon lemon.c
+    status
+    install -Dm644 $src/lempar.c $install/usr/share/lemon/lempar.c
+
+    install -m755 showdb showjournal showstat4 showwal sqldiff lemon \
+      sqlite3_analyzer $SRC/mysql2sqlite.sh $install/usr/bin/
+  man: [sqlite3.1, autoconf/tea/doc/sqlite3.n]
+  doc: doc/*
+
+pkgs:
+- pkg : lemon
+  copy: [lemon, lempar.c]
+  deps: ' '
+  cat : system-tools
+  note: the LEMON Parser Generator
+
+- pkg : -analyzer
+  copy: sqlite3_analyzer
+  deps: tcl
+  cat : database
+  note: analysing database files
+
+- pkg : main
+  copy: [bin/, '@rm']
+  deps: [readline, zlib,   libsqlite3]
+
+- pkg : lib
+  copy: libsqlite3.so*
+  deps: ' '
+  cat : database
+  note: library
+
+- pkg : libsqlite3-tcl
+  copy: [libtclsqlite3.so, pkgIndex.tcl]
+  deps: [lib,   tcl]
+  cat : database
+  note: TCL library
+
+- pkg : dev
+  deps: [main, lib, libsqlite3-tcl, lemon, -analyzer]
