@@ -1,0 +1,24 @@
+origin    : actionview
+name      : ruby-actionview
+version   : 5.2.1
+category  : ruby
+summary   : Rendering framework putting the V in MVC (part of Rails)
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:actionview
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-activesupport, ruby-builder, ruby-erubi,
+         ruby-rails-dom-testing, ruby-rails-html-sanitizer]

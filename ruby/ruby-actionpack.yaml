@@ -1,0 +1,24 @@
+origin    : actionpack
+name      : ruby-actionpack
+version   : 5.2.1
+category  : ruby
+summary   : Web-flow and rendering framework putting the VC in MVC (part of Rails)
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:actionpack
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-actionview, ruby-activesupport, ruby-rack, ruby-rack-test,
+         ruby-rails-dom-testing, ruby-rails-html-sanitizer]

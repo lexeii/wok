@@ -1,0 +1,23 @@
+origin    : activejob
+name      : ruby-activejob
+version   : 5.2.1
+category  : ruby
+summary   : Job framework with pluggable queues
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:activejob
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-activesupport, ruby-globalid]

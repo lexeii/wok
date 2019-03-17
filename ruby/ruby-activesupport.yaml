@@ -1,0 +1,23 @@
+origin    : activesupport
+name      : ruby-activesupport
+version   : 5.2.1
+category  : ruby
+summary   : A toolkit of support libraries and Ruby core extensions extracted from the Rails framework
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:activesupport
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-concurrent-ruby, ruby-i18n, ruby-minitest, ruby-tzinfo]

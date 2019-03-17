@@ -1,0 +1,23 @@
+origin    : activestorage
+name      : ruby-activestorage
+version   : 5.2.1
+category  : ruby
+summary   : Local and cloud file storage framework
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:activestorage
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: ['@ruby', app/, config/, db/]
+  deps: [ruby, ruby-actionpack, ruby-activerecord, ruby-marcel]

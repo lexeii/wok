@@ -1,0 +1,25 @@
+origin    : activeadmin
+name      : ruby-activeadmin
+version   : 1.3.1
+category  : ruby
+summary   : Administration framework for Ruby on Rails
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:activeadmin
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: ['@ruby', app/, config/, features/, spec/, vendor/]
+  deps: [ruby, ruby-arbre, ruby-coffee-rails, ruby-formtastic,
+         ruby-formtastic_i18n, ruby-inherited_resources, ruby-jquery-rails,
+         ruby-kaminari, ruby-railties, ruby-ransack, ruby-sass, ruby-sprockets]

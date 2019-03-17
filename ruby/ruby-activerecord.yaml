@@ -1,0 +1,23 @@
+origin    : activerecord
+name      : ruby-activerecord
+version   : 5.2.1
+category  : ruby
+summary   : Object-relational mapper framework (part of Rails)
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:activerecord
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-activemodel, ruby-activesupport, ruby-arel]

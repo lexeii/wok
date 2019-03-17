@@ -1,0 +1,23 @@
+origin    : activemodel-serializers-xml
+name      : ruby-activemodel-serializers-xml
+version   : 1.0.2
+category  : ruby
+summary   : XML serialization for Active Model objects and Active Record models
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:activemodel-serializers-xml
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-activemodel, ruby-activesupport, ruby-builder]

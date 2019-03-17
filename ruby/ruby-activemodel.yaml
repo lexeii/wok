@@ -1,0 +1,23 @@
+origin    : activemodel
+name      : ruby-activemodel
+version   : 5.2.1
+category  : ruby
+summary   : Toolkit for building modeling frameworks
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:activemodel
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-activesupport]

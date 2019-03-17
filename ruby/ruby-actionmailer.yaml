@@ -1,0 +1,24 @@
+origin    : actionmailer
+name      : ruby-actionmailer
+version   : 5.2.1
+category  : ruby
+summary   : Email composition, delivery, and receiving framework (part of Rails)
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:actionmailer
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-actionpack, ruby-actionview, ruby-activejob, ruby-mail,
+         ruby-rails-dom-testing]
