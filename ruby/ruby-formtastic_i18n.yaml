@@ -1,0 +1,23 @@
+origin    : formtastic_i18n
+name      : ruby-formtastic_i18n
+version   : 0.6.0
+category  : ruby
+summary   : I18n translation for the formtastic gem
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:formtastic-i18n
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: ['@ruby', config/]
+  deps: ruby

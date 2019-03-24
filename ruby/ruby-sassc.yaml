@@ -1,0 +1,27 @@
+origin    : sassc
+name      : ruby-sassc
+version   : 2.0.0
+category  : ruby
+summary   : Use libsass with Ruby
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:sassc
+
+src:
+- url:    https://rubygems.org/downloads/<o>-<v>.gem
+  sha256: b619a0bf48d030e257cfba87c00c04c0eefe6c386bb7b81ee9088423b2e78877
+
+bdeps: ruby-dev
+
+#cookopts: force-arch # arch-specific paths for gem.build_complete
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-ffi, ruby-rake]
+- pkg : dev
+  copy: '@ruby-dev'

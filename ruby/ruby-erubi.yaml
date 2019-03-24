@@ -1,0 +1,23 @@
+origin    : erubi
+name      : ruby-erubi
+version   : 1.7.1
+category  : ruby
+summary   : Small ERB implementation
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:erubi
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

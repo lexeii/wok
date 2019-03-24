@@ -1,0 +1,22 @@
+origin    : bigdecimal
+name      : ruby-bigdecimal
+version   : 1.3.5
+category  : ruby
+summary   : Arbitrary-precision decimal floating-point number class
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:bigdecimal
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

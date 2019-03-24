@@ -1,0 +1,23 @@
+origin    : sprockets
+name      : ruby-sprockets
+version   : 3.7.2
+category  : ruby
+summary   : Rack-based asset packaging system
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:sprockets
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-concurrent-ruby, ruby-rack]

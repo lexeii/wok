@@ -1,0 +1,23 @@
+origin    : execjs
+name      : ruby-execjs
+version   : 2.7.0
+category  : ruby
+summary   : Run JavaScript code from Ruby
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:execjs
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

@@ -1,0 +1,23 @@
+origin    : daemon_controller
+name      : ruby-daemon_controller
+version   : 1.2.0
+category  : ruby
+summary   : Daemon management capabilities
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:daemon-controller
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

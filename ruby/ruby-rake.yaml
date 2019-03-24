@@ -1,0 +1,23 @@
+origin    : rake
+name      : ruby-rake
+version   : 12.3.1
+category  : ruby
+summary   : Make-like program implemented in Ruby
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:rake
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: ['@ruby', exe/]
+  deps: ruby

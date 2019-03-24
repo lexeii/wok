@@ -1,0 +1,25 @@
+origin    : power_assert
+name      : ruby-power_assert
+version   : 1.1.3
+category  : ruby
+summary   : Power Assert for Ruby
+maintainer: al.bobylev@gmail.com
+license   : BSD
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:power-assert
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+post: chmod -R g-w $install
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

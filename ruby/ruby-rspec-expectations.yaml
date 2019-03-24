@@ -1,0 +1,23 @@
+origin    : rspec-expectations
+name      : ruby-rspec-expectations
+version   : 3.8.2
+category  : ruby
+summary   : Express expected outcomes of a code example
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:rspec-expectations
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-diff-lcs, ruby-rspec-support]

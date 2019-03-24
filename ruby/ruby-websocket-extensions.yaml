@@ -1,0 +1,23 @@
+origin    : websocket-extensions
+name      : ruby-websocket-extensions
+version   : 0.1.3
+category  : ruby
+summary   : Generic extension manager for WebSocket connections
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:websocket-extensions
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

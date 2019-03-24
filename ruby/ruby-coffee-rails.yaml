@@ -1,0 +1,23 @@
+origin    : coffee-rails
+name      : ruby-coffee-rails
+version   : 4.2.2
+category  : ruby
+summary   : CoffeeScript adapter for the Rails asset pipeline
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:coffee-rails
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-coffee-script, ruby-railties]

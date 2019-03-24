@@ -1,0 +1,23 @@
+origin    : webrick
+name      : ruby-webrick
+version   : 1.4.2
+category  : ruby
+summary   : HTTP server toolkit
+maintainer: al.bobylev@gmail.com
+license   : BSD
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:webrick
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

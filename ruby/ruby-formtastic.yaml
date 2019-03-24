@@ -1,0 +1,23 @@
+origin    : formtastic
+name      : ruby-formtastic
+version   : 3.1.5
+category  : ruby
+summary   : A Rails form builder plugin/gem
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:formtastic
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: ['@ruby', app/]
+  deps: [ruby, ruby-actionpack]

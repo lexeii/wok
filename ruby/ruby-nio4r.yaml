@@ -1,0 +1,26 @@
+origin    : nio4r
+name      : ruby-nio4r
+version   : 2.3.1
+category  : ruby
+summary   : New IO for Ruby
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:nio4r
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+#cookopts: force-arch # arch-specific paths for gem.build_complete
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-bundler, ruby-rake]
+- pkg : dev
+  copy: '@ruby-dev'

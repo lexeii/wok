@@ -1,0 +1,23 @@
+origin    : globalid
+name      : ruby-globalid
+version   : 0.4.1
+category  : ruby
+summary   : 'Refer to any model with a URI: gid://app/class/id'
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:globalid
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-activesupport]

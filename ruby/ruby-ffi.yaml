@@ -1,0 +1,30 @@
+origin    : ffi
+name      : ruby-ffi
+version   : 1.9.25
+category  : ruby
+summary   : Ruby FFI library
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:ffi
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: [ruby-dev, symlinks]
+
+#cookopts: force-arch # arch-specific paths
+
+make:
+  type: ruby
+
+post: |
+  chmod -R g-w $install &&
+  symlinks -cr $install # fix symlink contain /home/slitaz/wok/... in the target
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby
+- pkg : dev
+  copy: '@ruby-dev'

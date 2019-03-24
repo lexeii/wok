@@ -1,0 +1,37 @@
+origin    : passenger
+name      : ruby-passenger
+version   : 5.3.4
+category  : network
+summary   : Modern web server and application server for Ruby
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:passenger
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: ['@ruby', resources/]
+  deps: [ruby, ruby-rack]
+
+files:
+- name: passenger.conf
+  content: |
+    LoadModule passenger_module /usr/lib/apache2/modules/mod_passenger.so
+
+    <IfModule mod_passenger.c>
+       PassengerRoot /usr/lib/ruby/1.8/phusion_passenger
+       PassengerRuby /usr/bin/ruby
+       PassengerUserSwitching off
+       PassengerDefaultUser www
+       PassengerUseGlobalQueue on
+       PassengerRestartDir /var/run/passenger
+    </IfModule>

@@ -1,0 +1,27 @@
+origin    : gio2
+name      : ruby-gio2
+version   : 3.2.9
+category  : ruby
+summary   : Ruby binding to a VFS API and useful APIs for desktop applications
+maintainer: al.bobylev@gmail.com
+license   : LGPL2.1
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:gio2
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: [ruby-dev, ruby-glib2-dev, ruby-gobject-introspection-dev]
+
+#cookopts: force-arch # arch-specific paths for gem.build_complete
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-glib2, ruby-gobject-introspection, glib]
+- pkg : dev
+  copy: '@ruby-dev'
+  deps: [main, glib-dev, ruby-gobject-introspection-dev]

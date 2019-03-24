@@ -1,0 +1,28 @@
+origin    : json
+name      : ruby-json
+version   : 2.1.0
+category  : ruby
+summary   : JSON implementation as a Ruby extension in C
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:json
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+#cookopts: force-arch # arch-specific paths for gem.build_complete
+
+make:
+  type: ruby
+
+post: chmod -R g-w $install
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby
+- pkg : dev
+  copy: '@ruby-dev'

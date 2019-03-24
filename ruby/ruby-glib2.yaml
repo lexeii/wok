@@ -1,0 +1,27 @@
+origin    : glib2
+name      : ruby-glib2
+version   : 3.2.9
+category  : ruby
+summary   : Base features for GLib2 based bindings and many useful utility features
+maintainer: al.bobylev@gmail.com
+license   : LGPL2.1
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:glib2
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: [ruby-dev, ruby-pkg-config, ruby-native-package-installer, glib-dev]
+
+#cookopts: force-arch # arch-specific paths for gem.build_complete
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-native-package-installer, ruby-pkg-config, glib]
+- pkg : dev
+  copy: '@ruby-dev'
+  deps: [main, glib-dev]

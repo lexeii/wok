@@ -1,0 +1,23 @@
+origin    : rspec-mocks
+name      : ruby-rspec-mocks
+version   : 3.8.0
+category  : ruby
+summary   : RSpec's 'test double' framework
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:rspec-mocks
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-diff-lcs, ruby-rspec-support]

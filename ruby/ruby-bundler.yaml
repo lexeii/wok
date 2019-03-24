@@ -1,0 +1,23 @@
+origin    : bundler
+name      : ruby-bundler
+version   : 1.16.4
+category  : ruby
+summary   : Ruby application dependencies manager
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:bundler
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: ['@ruby', exe/]
+  deps: ruby

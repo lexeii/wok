@@ -1,0 +1,27 @@
+origin    : gobject-introspection
+name      : ruby-gobject-introspection
+version   : 3.2.9
+category  : ruby
+summary   : Bindings of GObject Introspection and a loader module
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:gobject-introspection
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: [ruby-dev, ruby-glib2-dev, gobject-introspection-dev]
+
+#cookopts: force-arch # arch-specific paths for gem.build_complete, different .h
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-glib2, glib, gobject-introspection]
+- pkg : dev
+  copy: '@ruby-dev'
+  deps: [main, gobject-introspection-dev]

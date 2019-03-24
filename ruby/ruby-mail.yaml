@@ -1,0 +1,23 @@
+origin    : mail
+name      : ruby-mail
+version   : 2.7.0
+category  : ruby
+summary   : Making, sending and reading emails
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:mail
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-mini_mime]

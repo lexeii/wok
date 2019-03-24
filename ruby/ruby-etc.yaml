@@ -1,0 +1,26 @@
+origin    : etc
+name      : ruby-etc
+version   : 1.0.1
+category  : ruby
+summary   : Access to information typically stored in UNIX /etc directory
+maintainer: al.bobylev@gmail.com
+license   : BSD
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:etc
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+#cookopts: force-arch # arch-specific paths for gem.build_complete
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby
+- pkg : dev
+  copy: '@ruby-dev'

@@ -1,0 +1,23 @@
+origin    : rdoc
+name      : ruby-rdoc
+version   : 6.0.4
+category  : ruby
+summary   : Produce HTML and command-line documentation
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:rdoc
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: ['@ruby', exe/]
+  deps: ruby

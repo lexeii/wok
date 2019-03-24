@@ -1,0 +1,25 @@
+origin    : fiddle
+name      : ruby-fiddle
+version   : 1.0.0
+category  : ruby
+summary   : A libffi wrapper for Ruby
+maintainer: al.bobylev@gmail.com
+license   : BSD
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:fiddle
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby
+- pkg : dev
+  copy: '@ruby-dev'

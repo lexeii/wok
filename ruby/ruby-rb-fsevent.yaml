@@ -1,0 +1,28 @@
+origin    : rb-fsevent
+name      : ruby-rb-fsevent
+version   : 0.10.3
+category  : ruby
+summary   : Very simple & usable FSEvents API
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:rb-fsevent
+
+src:
+- url:    https://rubygems.org/downloads/<o>-<v>.gem
+  sha256: a8f78186feb55bb98579b5e0f8dd925ececfde1b5c2496e5e932997ff999a1d2
+
+bdeps: ruby-dev
+
+make:
+  # FIXME: hmm... look at the binary file, is it gem OSX-based only?..
+  # dependency chain: activeadmin -> sass -> sass-listen -> rb-fsevent
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby
+- pkg : dev
+  copy: '@ruby-dev'

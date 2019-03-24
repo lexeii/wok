@@ -1,0 +1,23 @@
+origin    : kaminari-activerecord
+name      : ruby-kaminari-activerecord
+version   : 1.1.1
+category  : ruby
+summary   : Kaminari Active Record adapter
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:kaminari-activerecord
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-activerecord, ruby-kaminari-core]

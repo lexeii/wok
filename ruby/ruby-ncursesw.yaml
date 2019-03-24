@@ -1,0 +1,28 @@
+origin    : ncursesw
+name      : ruby-ncursesw
+version   : 1.4.10
+category  : ruby
+summary   : Ruby extension for the ncurses C library
+maintainer: paul@slitaz.org
+license   : LGPL2.1
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:ncursesw
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: [ruby-dev, ncurses-dev]
+
+#cookopts: force-arch # arch-specific paths for gem.build_complete
+
+make:
+  type: ruby
+  # FIXME: many *.{h,c,o} files inside gem base folder; move to lib / ext ?
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ncurses, ncurses-libform, ncurses-libmenu, ncurses-libpanel]
+- pkg : dev
+  copy: ['@ruby-dev', '*.h']
+  deps: [main, ncurses-dev]

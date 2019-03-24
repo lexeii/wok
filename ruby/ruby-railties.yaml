@@ -1,0 +1,24 @@
+origin    : railties
+name      : ruby-railties
+version   : 5.2.1
+category  : ruby
+summary   : Tools for creating, working with, and running Rails applications
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:railties
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: ['@ruby', exe/]
+  deps: [ruby, ruby-actionpack, ruby-activesupport, ruby-method_source,
+         ruby-rake, ruby-thor]

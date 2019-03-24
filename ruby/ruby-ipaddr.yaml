@@ -1,0 +1,23 @@
+origin    : ipaddr
+name      : ruby-ipaddr
+version   : 1.2.0
+category  : ruby
+summary   : Manipulate an IP address in Ruby
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:ipaddr
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

@@ -1,0 +1,27 @@
+origin    : cairo-gobject
+name      : ruby-cairo-gobject
+version   : 3.2.9
+category  : ruby
+summary   : Ruby binding of cairo-gobject
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:cairo-gobject
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: [ruby-dev, ruby-glib2-dev, ruby-cairo-dev]
+
+#cookopts: force-arch # arch-specific paths for gem.build_complete
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-cairo, ruby-glib2, libcairo]
+- pkg : dev
+  copy: '@ruby-dev'
+  deps: [main, cairo-dev]

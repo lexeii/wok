@@ -1,0 +1,23 @@
+origin    : sass-listen
+name      : ruby-sass-listen
+version   : 4.0.0
+category  : ruby
+summary   : Fork of guard/listen
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:sass-listen
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-rb-fsevent, ruby-rb-inotify]

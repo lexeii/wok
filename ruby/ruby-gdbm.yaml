@@ -1,0 +1,22 @@
+origin    : gdbm
+name      : ruby-gdbm
+version   : 2.0.0
+category  : ruby
+summary   : Ruby extension for GNU dbm
+maintainer: al.bobylev@gmail.com
+license   : BSD
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:gdbm
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: [ruby-dev, gdbm-dev]
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, libgdbm]

@@ -1,0 +1,23 @@
+origin    : did_you_mean
+name      : ruby-did_you_mean
+version   : 1.2.1
+category  : ruby
+summary   : "'Did you mean?' experience in Ruby"
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:did-you-mean
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

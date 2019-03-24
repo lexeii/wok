@@ -1,0 +1,27 @@
+origin    : openssl
+name      : ruby-openssl
+version   : 2.1.1
+category  : ruby
+summary   : SSL, TLS and general purpose cryptography
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:openssl
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: [ruby-dev, openssl-dev]
+
+#cookopts: force-arch # arch-specific paths for gem.build_complete
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, openssl]
+- pkg : dev
+  copy: '@ruby-dev'
+  deps: [main, openssl-dev]

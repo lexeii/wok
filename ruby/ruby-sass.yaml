@@ -1,0 +1,40 @@
+origin    : sass
+name      : ruby-sass
+version   : 3.7.2
+category  : ruby
+summary   : CSS extension
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:sass
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+# FIXME
+make: |
+  gem install \
+    --no-document \
+    --ignore-dependencies \
+    --no-user-install \
+    --build-root $install \
+    $src/$TARBALL || return 1
+
+  # Keep some files from being moved to docdir by `fix gem`:
+  t=$(mktemp -d)
+  find $install/usr/lib/ruby/gems/*/gems/<o>-<v>/ \
+    \( -name 'REVISION' -o -name 'VERSION*' \) -exec mv '{}' $t \;
+
+  fix gem
+
+  # Return files back:
+  mv $t/* $install/usr/lib/ruby/gems/*/gems/<o>-<v>/
+  rm -r $t
+
+pkgs:
+- pkg : main
+  copy: ['@ruby', REVISION, VERSION*]
+  deps: [ruby, ruby-stdlib, ruby-sass-listen]

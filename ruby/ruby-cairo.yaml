@@ -1,0 +1,27 @@
+origin    : cairo
+name      : ruby-cairo
+version   : 1.15.14
+category  : ruby
+summary   : Ruby bindings for cairo
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:cairo
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: [ruby-dev, ruby-pkg-config, ruby-native-package-installer, cairo-dev]
+
+#cookopts: force-arch # arch-specific paths for gem.build_complete
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-native-package-installer, ruby-pkg-config, libcairo, freetype]
+- pkg : dev
+  copy: '@ruby-dev'
+  deps: [main, cairo-dev]

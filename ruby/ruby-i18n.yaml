@@ -1,0 +1,23 @@
+origin    : i18n
+name      : ruby-i18n
+version   : 1.1.0
+category  : ruby
+summary   : New wave Internationalization support for Ruby
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:i18n
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-concurrent-ruby]

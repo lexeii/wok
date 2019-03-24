@@ -1,0 +1,23 @@
+origin    : concurrent-ruby
+name      : ruby-concurrent-ruby
+version   : 1.0.5
+category  : ruby
+summary   : Modern concurrency tools for Ruby
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:concurrent-ruby
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

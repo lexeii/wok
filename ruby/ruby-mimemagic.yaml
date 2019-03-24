@@ -1,0 +1,25 @@
+origin    : mimemagic
+name      : ruby-mimemagic
+version   : 0.3.2
+category  : ruby
+summary   : Fast MIME detection
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:mimemagic
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+#cookopts: !zip
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-bacon, ruby-rake]

@@ -1,0 +1,24 @@
+origin    : gdk_pixbuf2
+name      : ruby-gdk_pixbuf2
+version   : 3.2.9
+category  : ruby
+summary   : Ruby binding of GdkPixbuf-2.x
+maintainer: al.bobylev@gmail.com
+license   : LGPL2.1
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:gdk-pixbuf2
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: [ruby-dev, ruby-pkg-config, ruby-native-package-installer,
+        gdk-pixbuf-dev]
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-gio2]

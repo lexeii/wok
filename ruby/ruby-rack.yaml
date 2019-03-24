@@ -1,0 +1,25 @@
+origin    : rack
+name      : ruby-rack
+version   : 2.0.5
+category  : ruby
+summary   : Modular Ruby webserver interface
+maintainer: devel@slitaz.org
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:rack
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+#cookopts: !pngz # error with weird test file
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

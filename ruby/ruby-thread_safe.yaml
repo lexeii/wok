@@ -1,0 +1,23 @@
+origin    : thread_safe
+name      : ruby-thread_safe
+version   : 0.3.6
+category  : ruby
+summary   : Thread-safe collections and utilities for Ruby
+maintainer: al.bobylev@gmail.com
+license   : Apache2
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:thread-safe
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

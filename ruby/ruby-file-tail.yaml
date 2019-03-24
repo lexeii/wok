@@ -1,0 +1,23 @@
+origin    : file-tail
+name      : ruby-file-tail
+version   : 1.2.0
+category  : ruby
+summary   : Library to tail files in Ruby
+maintainer: devel@slitaz.org
+license   : Apache2
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:file-tail
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-tins]

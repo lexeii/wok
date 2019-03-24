@@ -1,0 +1,23 @@
+origin    : rails-dom-testing
+name      : ruby-rails-dom-testing
+version   : 2.0.3
+category  : ruby
+summary   : Dom and Selector assertions for Rails applications
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:rails-dom-testing
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-activesupport, ruby-nokogiri]

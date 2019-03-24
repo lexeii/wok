@@ -1,0 +1,23 @@
+origin    : rails-html-sanitizer
+name      : ruby-rails-html-sanitizer
+version   : 1.0.4
+category  : ruby
+summary   : Sanitize HTML fragments in Rails applications
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:rails-html-sanitizer
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-loofah]

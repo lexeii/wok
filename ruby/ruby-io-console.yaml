@@ -1,0 +1,22 @@
+origin    : io-console
+name      : ruby-io-console
+version   : 0.4.6
+category  : ruby
+summary   : Console interface
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:io-console
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

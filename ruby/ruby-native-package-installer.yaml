@@ -1,0 +1,23 @@
+origin    : native-package-installer
+name      : ruby-native-package-installer
+version   : 1.0.6
+category  : ruby
+summary   : Helps to install native packages on 'gem install'
+maintainer: al.bobylev@gmail.com
+license   : LGPL3
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:native-package-installer
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

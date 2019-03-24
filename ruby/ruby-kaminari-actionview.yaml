@@ -1,0 +1,23 @@
+origin    : kaminari-actionview
+name      : ruby-kaminari-actionview
+version   : 1.1.1
+category  : ruby
+summary   : Kaminari Action View adapter
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:kaminari-actionview
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-actionview, ruby-kaminari-core]

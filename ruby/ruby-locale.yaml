@@ -1,0 +1,23 @@
+origin    : locale
+name      : ruby-locale
+version   : 2.1.2
+category  : ruby
+summary   : Pure Ruby library which provides basic APIs for localization
+maintainer: al.bobylev@gmail.com
+license   : LGPL3
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:locale
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

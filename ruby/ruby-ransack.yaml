@@ -1,0 +1,24 @@
+origin    : ransack
+name      : ruby-ransack
+version   : 2.1.0
+category  : ruby
+summary   : Object-based searching for Active Record and Mongoid
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:ransack
+
+src:
+- url:    https://rubygems.org/downloads/<o>-<v>.gem
+  sha256: 19b81aab0d5a04c165a07b06aaca16b86895c851e021e978b47fb344da101273
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-actionpack, ruby-activerecord, ruby-activesupport, ruby-i18n]

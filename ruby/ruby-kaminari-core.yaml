@@ -1,0 +1,23 @@
+origin    : kaminari-core
+name      : ruby-kaminari-core
+version   : 1.1.1
+category  : ruby
+summary   : Kaminari's core pagination library
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:kaminari-core
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: ['@ruby', app/, config/]
+  deps: ruby

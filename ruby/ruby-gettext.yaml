@@ -1,0 +1,25 @@
+origin    : gettext
+name      : ruby-gettext
+version   : 3.2.9
+category  : ruby
+summary   : GNU gettext-like program for Ruby
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:gettext
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+post: find $install -type f -perm 664 -exec chmod 644 '{}' \;
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby-locale, ruby-text]

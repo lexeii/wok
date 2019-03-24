@@ -1,0 +1,23 @@
+origin    : jquery-rails
+name      : ruby-jquery-rails
+version   : 4.3.3
+category  : ruby
+summary   : Use jQuery with Rails 4+
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:jquery-rails
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: ['@ruby', vendor/]
+  deps: [ruby, ruby-rails-dom-testing, ruby-railties, ruby-thor]

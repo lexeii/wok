@@ -1,0 +1,23 @@
+origin    : rb-inotify
+name      : ruby-rb-inotify
+version   : 0.9.10
+category  : ruby
+summary   : A Ruby wrapper for Linux inotify, using FFI
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:rb-inotify
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-ffi]

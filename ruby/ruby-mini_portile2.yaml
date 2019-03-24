@@ -1,0 +1,25 @@
+origin    : mini_portile2
+name      : ruby-mini_portile2
+version   : 2.3.0
+category  : ruby
+summary   : Simplistic port-like solution for developers
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:mini-portile
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+#cookopts: !gz # error with weird test file
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

@@ -1,0 +1,28 @@
+origin    : pango
+name      : ruby-pango
+version   : 3.2.9
+category  : ruby
+summary   : Ruby binding of pango-1.x
+maintainer: al.bobylev@gmail.com
+license   : LGPL2.1
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:pango
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: [ruby-dev, ruby-glib2-dev, ruby-cairo-dev, pango-dev,
+        ruby-gobject-introspection-dev]
+
+#cookopts: force-arch # arch-specific paths for gem.build_complete
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-cairo-gobject, ruby-gobject-introspection, glib, pango]
+- pkg : dev
+  copy: '@ruby-dev'
+  deps: [main, pango-dev]

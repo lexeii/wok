@@ -1,0 +1,23 @@
+origin    : csv
+name      : ruby-csv
+version   : 3.0.0
+category  : ruby
+summary   : CSV reading and writing
+maintainer: al.bobylev@gmail.com
+license   : BSD
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:csv
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

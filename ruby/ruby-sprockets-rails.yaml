@@ -1,0 +1,23 @@
+origin    : sprockets-rails
+name      : ruby-sprockets-rails
+version   : 3.2.1
+category  : ruby
+summary   : Sprockets Rails integration
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:sprockets-rails
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-actionpack, ruby-activesupport, ruby-sprockets]

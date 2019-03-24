@@ -1,0 +1,25 @@
+origin    : tins
+name      : ruby-tins
+version   : 1.20.2
+category  : ruby
+summary   : All the stuff that isn't good/big enough for a real library
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:tins
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+post: chmod -R g-w $install
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

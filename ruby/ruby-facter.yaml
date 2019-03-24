@@ -1,0 +1,23 @@
+origin    : facter
+name      : ruby-facter
+version   : 2.5.1
+category  : ruby
+summary   : System inventory tool
+maintainer: devel@slitaz.org
+license   : Apache
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:facter
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: ['@ruby', etc/, spec/]
+  deps: ruby

@@ -1,0 +1,22 @@
+origin    : dbm
+name      : ruby-dbm
+version   : 1.0.0
+category  : ruby
+summary   : Wrapper for the UNIX-style Database Manager Library
+maintainer: al.bobylev@gmail.com
+license   : BSD
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:dbm
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: [ruby-dev, gdbm-dev, db-dev]
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, libdb]

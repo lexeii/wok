@@ -1,0 +1,23 @@
+origin    : inherited_resources
+name      : ruby-inherited_resources
+version   : 1.9.0
+category  : ruby
+summary   : Make your controllers inherit all restful actions
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:inherited-resources
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-actionpack, ruby-has_scope, ruby-railties, ruby-responders]

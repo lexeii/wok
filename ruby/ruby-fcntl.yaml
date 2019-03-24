@@ -1,0 +1,22 @@
+origin    : fcntl
+name      : ruby-fcntl
+version   : 1.0.0
+category  : ruby
+summary   : Loads constants defined in the OS fcntl.h C header file
+maintainer: al.bobylev@gmail.com
+license   : BSD
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:fcntl
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby

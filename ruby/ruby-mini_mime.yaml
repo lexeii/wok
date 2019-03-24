@@ -1,0 +1,25 @@
+origin    : mini_mime
+name      : ruby-mini_mime
+version   : 1.0.1
+category  : ruby
+summary   : Lightweight MIME type lookup toy
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:mini-mime
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+post: chmod -R g-w $install
+
+pkgs:
+- pkg: main
+  copy: '@ruby'
+  deps: ruby

@@ -1,0 +1,26 @@
+origin    : sdbm
+name      : ruby-sdbm
+version   : 1.0.0
+category  : ruby
+summary   : Simple file-based key-value store with String keys and values
+maintainer: al.bobylev@gmail.com
+license   : BSD
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:sdbm
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+#cookopts: force-arch # arch-specific paths for gem.build_complete
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: ruby
+- pkg : dev
+  copy: '@ruby-dev'

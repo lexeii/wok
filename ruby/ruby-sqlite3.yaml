@@ -1,0 +1,26 @@
+origin    : sqlite3
+name      : ruby-sqlite3
+version   : 1.3.13
+category  : ruby
+summary   : Ruby interface for the SQLite database engine
+maintainer: devel@slitaz.org
+license   : BSD
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:sqlite3
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: [ruby-dev, sqlite3-dev]
+
+#cookopts: force-arch # arch-specific paths for gem.build_complete
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, libsqlite3]
+- pkg : dev
+  copy: '@ruby-dev'

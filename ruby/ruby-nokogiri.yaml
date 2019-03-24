@@ -1,0 +1,30 @@
+origin    : nokogiri
+name      : ruby-nokogiri
+version   : 1.8.4
+category  : ruby
+summary   : HTML, XML, SAX, and Reader parser
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+repology  : ruby:nokogiri
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: [ruby-dev, ruby-mini_portile2, ruby-pkg-config, zlib-dev, libxml2-dev,
+        libxslt-dev]
+
+#cookopts: force-arch # arch-specific paths for gem.build_complete
+
+make:
+  type: ruby
+  args: -- --use-system-libraries
+
+post: chmod -R g-w $install
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-mini_portile2, libruby, libxml2, libxslt]
+- pkg : dev
+  copy: '@ruby-dev'

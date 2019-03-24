@@ -1,0 +1,23 @@
+origin    : atk
+name      : ruby-atk
+version   : 3.2.9
+category  : ruby
+summary   : Ruby binding of ATK-1.0.x
+maintainer: al.bobylev@gmail.com
+license   : LGPL2.1
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:atk
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: [ruby-dev, ruby-pkg-config, ruby-native-package-installer, atk-dev]
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-glib2]

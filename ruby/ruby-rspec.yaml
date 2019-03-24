@@ -1,0 +1,23 @@
+origin    : rspec
+name      : ruby-rspec
+version   : 3.8.0
+category  : ruby
+summary   : BDD for Ruby
+maintainer: al.bobylev@gmail.com
+license   : MIT
+home      : https://rubygems.org/gems/<o>
+target    : noarch
+repology  : ruby:rspec
+
+src:
+- url:  https://rubygems.org/downloads/<o>-<v>.gem
+
+bdeps: ruby-dev
+
+make:
+  type: ruby
+
+pkgs:
+- pkg : main
+  copy: '@ruby'
+  deps: [ruby, ruby-rspec-core, ruby-rspec-expectations, ruby-rspec-mocks]
