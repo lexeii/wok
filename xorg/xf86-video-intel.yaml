@@ -20,8 +20,7 @@ bdeps: [util-macros, eudev-dev, libx11-dev, libxcomposite-dev, libxdamage-dev,
 
 prepare:
   patches:
-  # https://git.alpinelinux.org/cgit/aports/tree/main/xf86-video-intel
-  - name: xf86-video-intel-git.patch
+  - name: git.patch # https://git.alpinelinux.org/cgit/aports/tree/main/xf86-video-intel
   rules: autoreconf -vif
 
 make:
@@ -35,11 +34,10 @@ make:
   - --disable-selective-werror
   - --with-default-dri=3
 
-post:
-  rules: chmod o-x $install/usr/libexec/xf86-video-intel-backlight-helper
+post: chmod o-x $install/usr/libexec/xf86-video-intel-backlight-helper
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [eudev, libdrm, libdrm-intel, libx11, libxscrnsaver, libxcursor,
          libxdamage, libxext, libxfixes, libxinerama, libxrandr, libxrender,
          libxtst, libxv, libxvmc, libxcb, libxshmfence, pixman, xcb-util]
@@ -49,5 +47,5 @@ pkgs:
     mode: 4754
 
 files:
-- name: xf86-video-intel-git.patch
+- name: git.patch
   link: xf86-video-intel-git.patch

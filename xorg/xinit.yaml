@@ -26,10 +26,9 @@ post:
   file:
   - from: xserverrc
     to  : /etc/X11/app-defaults/xserverrc
-    mode: 644
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libx11,   openssl, xauth]
   tags: Xorg
 

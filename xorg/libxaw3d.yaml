@@ -17,8 +17,8 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libx11, libxext, libxmu, libxt]
   tags: Xorg
-- pkg:  dev
+- pkg : dev
   deps: [main, libx11-dev, libxext-dev, libxmu-dev, libxt-dev, xorgproto]

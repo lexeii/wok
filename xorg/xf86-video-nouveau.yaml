@@ -23,11 +23,10 @@ make:
 post:
   file:
   - from: nvidia.conf
-    to:   /etc/X11/xorg.conf.d/nvidia.conf
-    mode: 644
+    to  : /etc/X11/xorg.conf.d/nvidia.conf
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [eudev, libdrm, libdrm-nouveau]
   tags: [Xorg, display]
 

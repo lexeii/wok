@@ -14,19 +14,18 @@ bdeps: [mate-common, libx11-dev, libxscrnsaver-dev, gtk3-dev, dbus-glib-dev,
         mate-desktop-dev, mate-menus-dev, xmlto, libxext-dev, mesa-dev,
         libmatekbd-dev, libnotify-dev, expat-dev, libxshmfence-dev]
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libcairo, dbus, dbus-glib, gdk-pixbuf, glib, gtk3, libmatekbd,
          libnotify, libxklavier, mate-desktop, mate-menus, mesa, pango, libx11,
          libxscrnsaver, libxext, libxxf86vm]
   tags: MATE
 
-- pkg:  dev
+- pkg : dev

@@ -16,8 +16,7 @@ make:
   type: gnu
   args: --disable-debug
 
-post:
-  rules: find $install -name '*.so' -exec chmod 755 '{}' \; # 644
+post: find $install -name '*.so' -exec chmod 755 '{}' \; # 644
 
 pkgs:
 - pkg : main

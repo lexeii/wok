@@ -16,17 +16,15 @@ bdeps: [automake, gtk-doc, libtool, gettext-dev, shared-mime-info,
 
 # WARNING: custom actions support isn't ready yet (as for git20170110 version)
 
-prepare:
-  rules: |
-    # hardcoded to use automake-1.11 ... 1.15, but we have automake-1.16 only
-    sed -i 's|1\.15|1.16|' autogen.sh
-    ./autogen.sh
+prepare: |
+  # hardcoded to use automake-1.11 ... 1.15, but we have automake-1.16 only
+  sed -i 's|1\.15|1.16|' autogen.sh
+  ./autogen.sh
 
 make:
   type: gnu
 
-post:
-  rules: rmdir --parents --ignore-fail-on-non-empty $install/usr/include/libsmfm-gtk/
+post: rmdir --parents --ignore-fail-on-non-empty $install/usr/include/libsmfm-gtk/
 
 pkgs:
 - pkg : main

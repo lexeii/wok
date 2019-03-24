@@ -15,16 +15,13 @@ bdeps: automake
 prepare:
   patches:
   - name: fix-coloring.patch # for SliTaz cookutils
+  rules: NOCONFIGURE=1 ./autogen.sh
 
 make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    make &&
-    make install
+  type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   copy: ['@std', '@dev']
   deps: [automake, libtool, gettext-dev, intltool]
   tags: MATE

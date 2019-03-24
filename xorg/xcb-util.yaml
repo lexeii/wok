@@ -18,7 +18,7 @@ make:
   args: --disable-static
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: libxcb
   tags: Xorg
   description: |
@@ -29,5 +29,5 @@ pkgs:
     client-side code which is not strictly part of the X protocol but which have
     traditionally been provided by Xlib.
 
-- pkg:  dev
+- pkg : dev
   deps: [main, libxcb-dev]

@@ -13,5 +13,5 @@ make:
   type: gnu
 
 pkgs:
-- pkg: main
-- pkg: dev
+- pkg : main
+- pkg : dev

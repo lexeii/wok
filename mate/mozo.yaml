@@ -12,14 +12,13 @@ src:
 
 bdeps: [mate-common, mate-menus-dev, python-pygobject-dev]
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  make &&
+  make install
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [python,   mate-menus, gtk3-dev, python-pygobject]
   tags: MATE

@@ -18,16 +18,15 @@ make:
   type: gnu
   args: --disable-static
 
-post:
-  # strip whitespace - reduce size
-  rules: find $install -name Compose -exec sed -i 's|\t| |g; s|  *| |g; /^$/d' '{}' \+
+# strip whitespace - reduce size
+post: find $install -name Compose -exec sed -i 's|\t| |g; s|  *| |g; /^$/d' '{}' \+
 
 pkgs:
-- pkg:  main
+- pkg : main
   copy: ["*.so*", XErrorDB, Xcms.txt, compose.dir, locale.alias, locale.dir,
          C/, en_US.UTF-8/] # split -> locale-* packages
   deps: libxcb
   tags: Xorg
 
-- pkg:  dev
+- pkg : dev
   deps: [main, xorgproto, libxcb-dev]

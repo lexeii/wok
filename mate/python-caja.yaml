@@ -17,19 +17,18 @@ prepare:
   patches:
   - name: pc.patch
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [caja, glib, gtk3, python]
   tags: MATE
-- pkg:  dev
+- pkg : dev
 
 files:
 - name: pc.patch

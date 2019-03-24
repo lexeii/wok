@@ -17,7 +17,7 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libx11, libxext, libxmu, libxt, libxkbfile]
   tags: Xorg
   conf: /etc/X11/app-defaults/Clock-color

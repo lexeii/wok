@@ -22,8 +22,7 @@ make:
   - --disable-gtk-doc
   - --with-perl-options='INSTALLDIRS=vendor'
 
-post:
-  rules: find $install -type f -exec chmod u+w '{}' \; # 444->644, 555->755
+post: find $install -type f -exec chmod u+w '{}' \; # 444->644, 555->755
 
 pkgs:
 - pkg : dev

@@ -18,7 +18,7 @@ make:
   args: --disable-static
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: zlib
   tags: Xorg
-- pkg:  dev
+- pkg : dev

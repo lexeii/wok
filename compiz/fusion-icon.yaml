@@ -13,13 +13,12 @@ src:
 bdeps: python
 
 make:
-  rules: python -B setup.py install --root=$install
+  type: python2
 
-post:
-  rules: |
-    chmod g-w \
-      $install/usr/share/icons/hicolor/scalable/apps/fusion-icon.svg \
-      $install/usr/share/metainfo/fusion-icon.appdata.xml # 664 -> 644
+post: |
+  chmod g-w \
+    $install/usr/share/icons/hicolor/scalable/apps/fusion-icon.svg \
+    $install/usr/share/metainfo/fusion-icon.appdata.xml # 664 -> 644
 
 pkgs:
 - pkg : main

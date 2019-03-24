@@ -14,22 +14,21 @@ bdeps: [mate-common, gtk3-dev, dbus-glib-dev, dconf-dev, mate-desktop-dev,
         libnotify-dev, libxxf86misc-dev, libmatekbd-dev, libcanberra-dev,
         libmatemixer-dev, nss-dev, polkit-dev, pulseaudio-dev]
 
-make:
-  rules: |
-    ./autogen.sh \
-      --enable-pulse \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    --enable-pulse \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libcairo, dbus, dbus-glib, dconf, fontconfig, gdk-pixbuf, glib, gtk3,
          libcanberra-gtk3, libmatekbd, libmatemixer, libnotify, libxklavier,
          mate-desktop, nspr, nss, polkit, pulseaudio, libx11, libxi,
          libxxf86misc]
   tags: MATE
 
-- pkg:  dev
+- pkg : dev
   deps: [main, dbus-dev, dbus-glib-dev, glib-dev]

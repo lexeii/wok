@@ -13,21 +13,18 @@ src:
 
 bdeps: [util-macros, xorgproto, libxmu-dev, libxxf86misc-dev, libxfontcache-dev]
 
-prepare:
-  rules: touch /root/missing /missing
+prepare: touch /root/missing /missing
 
 make:
   type: gnu
 
 post:
-  desktop:
-  - from: xset.desktop
-  cmd:
-  - from: xset-screensaver.sh
-  rules: chown -R 0:0 $install
+  desktop: xset.desktop
+  cmd    : xset-screensaver.sh
+  rules  : chown -R 0:0 $install
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libx11, libxext, libxfontcache, libxmu, libxxf86misc]
   tags: Xorg
   suggested: yad

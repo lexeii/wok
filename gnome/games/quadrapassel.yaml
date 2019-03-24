@@ -15,8 +15,7 @@ bdeps: [vala, glib-dev, gtk3-dev, librsvg-dev, libcanberra-dev, clutter-dev,
 make:
   type: gnu
 
-post:
-  rules: fix symlinks
+post: fix symlinks # FIXME
 
 pkgs:
 - pkg : main

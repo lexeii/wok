@@ -17,6 +17,6 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [freetype, libfontenc, zlib]
   tags: [Xorg, fonts]

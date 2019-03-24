@@ -12,18 +12,17 @@ src:
 
 bdeps: [alsa-lib-dev, gtk2-dev, fltk-dev, autoconf, automake, gtk3-dev]
 
-make:
-  rules: |
-    for i in *; do
-      case $i in
-        Makefile|gitcompile|qlo10k1) continue;;
-        seq) cd $src/seq/sbiload;;
-        *)   cd $src/$i;;
-      esac
-      ./configure $CONFIGURE_ARGS &&
-      make &&
-      make install
-    done
+make: |
+  for i in *; do
+    case $i in
+      Makefile|gitcompile|qlo10k1) continue;;
+      seq) cd $src/seq/sbiload;;
+      *)   cd $src/$i;;
+    esac
+    ./configure $CONFIGURE_ARGS &&
+    make &&
+    make install
+  done
 
 post:
   desktop:

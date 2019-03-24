@@ -16,7 +16,7 @@ bdeps: perl-xml-parser
 
 make:
   type: perl
-  args: -y # cook_perl "-y"
+  args: -y
 
 pkgs:
 - pkg : main

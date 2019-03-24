@@ -13,15 +13,14 @@ src:
 bdeps: [mate-common, gtk3-dev, libx11-dev, mate-panel-dev,
         libindicator-gtk3-dev]
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [atk, glib, gtk3, libindicator-gtk3, mate-panel, libx11]
   tags: MATE

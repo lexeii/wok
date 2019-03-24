@@ -16,9 +16,9 @@ bdeps: [perl-dev, libx11-dev, freetype-dev, libxft-dev, fontconfig-dev,
 
 #cookopts: force-arch # arch-specific paths for .h
 
-prepare:
+prepare: |
   # The Xlib header is wrong...
-  rules: sed -i 's/XKeycodeToKeysym\(.*\)unsigned int/XKeycodeToKeysym\1KeyCode/' pTk/Xlib.h
+  sed -i 's/XKeycodeToKeysym\(.*\)unsigned int/XKeycodeToKeysym\1KeyCode/' pTk/Xlib.h
 
 make:
   type: perl

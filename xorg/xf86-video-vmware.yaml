@@ -22,6 +22,6 @@ make:
     LDFLAGS: $LDFLAGS -Wl,-z,lazy
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [eudev, libdrm, mesa-libxatracker]
   tags: [Xorg, display]

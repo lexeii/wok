@@ -21,9 +21,9 @@ make:
   - --disable-xaw6
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libx11, libxext, libxmu, libxpm, libxt]
   tags: Xorg
-- pkg:  dev
+- pkg : dev
   deps: [main, libx11-dev, libxext-dev, libxmu-dev, libxpm-dev, libxt-dev,
          xorgproto]

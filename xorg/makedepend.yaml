@@ -16,6 +16,6 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: xorgproto
   tags: Xorg

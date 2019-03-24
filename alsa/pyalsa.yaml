@@ -11,11 +11,11 @@ src:
 
 bdeps: [python-dev, alsa-lib-dev]
 
-make:
-  rules: |
-    python -B setup.py build &&
-    python -B setup.py install --root=$install
+# FIXME: use 'type: python2'?
+make: |
+  python -B setup.py build &&
+  python -B setup.py install --root=$install
 
 pkgs:
-- pkg: main
+- pkg : main
   deps: [alsa-lib, python]

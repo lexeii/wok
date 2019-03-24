@@ -13,18 +13,17 @@ src:
 bdeps: [mate-common, yelp-tools-dev, gtk3-dev, mate-panel-dev, dbus-glib-dev,
         libatasmart-dev, libnotify-dev, lm-sensors-dev, libxslt-dev, itstool]
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libcairo, dbus-glib, gdk-pixbuf, glib, gtk3, libatasmart, libnotify,
          lm-sensors, mate-panel]
   tags: MATE
 
-- pkg:  dev
+- pkg : dev

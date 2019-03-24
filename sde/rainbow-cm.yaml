@@ -13,8 +13,7 @@ src:
 
 bdeps: [automake, gettext-dev, intltool, gtk2-dev]
 
-prepare:
-  rules: ./autogen.sh
+prepare: ./autogen.sh
 
 make:
   type: gnu

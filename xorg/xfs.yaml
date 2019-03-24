@@ -12,14 +12,13 @@ src:
 
 bdeps: [util-macros, font-util-dev, xorgproto, libxfont2-dev, xtrans]
 
-prepare:
-  rules: touch /root/missing /missing
+prepare: touch /root/missing /missing
 
 make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: libxfont2
   conf: /etc/X11/fs/config
   tags: Xorg

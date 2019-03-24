@@ -20,10 +20,10 @@ make:
   args: --with-systemd-unit-dir=no
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [eudev, libx11, libxau, libxdmcp, libxext, libxi, libxinerama,
          libxrandr, libxrender, libxcb]
   tags: Xorg
 
-- pkg:  dev
+- pkg : dev
   deps: [main, xorg-server-dev]

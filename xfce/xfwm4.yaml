@@ -15,7 +15,7 @@ bdeps: [intltool, libx11-dev, libice-dev, libsm-dev, libxext-dev, gtk2-dev,
 
 make:
   type: gnu
-  rules: --disable-debug
+  args: --disable-debug
 
 pkgs:
 - pkg : -themes

@@ -27,7 +27,6 @@ cookopts: !perlz force-arch
 bdeps: [zlib-dev, bzip2-dev, less, gdbm-dev]
 
 make:
-  type: custom
   env:
   - BUILD_ZLIB: False
   - BUILD_BZIP2: 0
@@ -43,20 +42,19 @@ make:
     make &&
     make install
 
-post:
-  rules: find $install -type f -exec chmod u+w '{}' \; # 444->644, 555->755
+post: find $install -type f -exec chmod u+w '{}' \; # 444->644, 555->755
 
 pkgs:
-- pkg:  -core
+- pkg : -core
   copy: [perl, perl<v>, libperl.so] # NOTE <v> here!!!
   deps: glibc-base
   note: minimal interpreter
   pre_install: rm -f "$1/usr/bin/perl" # Remove perl link to microperl if any.
 
-- pkg:  main
+- pkg : main
   copy: ['@std', '@rm']
   deps: [libbzip2, libgdbm, zlib, perl-core]
   provide: microperl
   tags: LFS
 
-- pkg:  dev
+- pkg : dev

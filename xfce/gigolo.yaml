@@ -11,12 +11,11 @@ src:
 
 bdeps: [xfce4-dev-tools, gtk2-dev, libx11-dev]
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  make &&
+  make install
 
 pkgs:
 - pkg : main

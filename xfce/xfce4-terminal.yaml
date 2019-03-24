@@ -12,9 +12,8 @@ src:
 bdeps: [intltool, libx11-dev, libice-dev, gtk2-dev, vte-gtk2-dev,
         libxfce4ui-dev, libsm-dev, startup-notification-dev, xcb-util-dev]
 
-prepare:
-  # warning: internationalized messages should not contain the '\r' escape sequence
-  rules: sed -i 's|\\r||g' po/hr.po po/sv.po
+# warning: internationalized messages should not contain the '\r' escape sequence
+prepare: sed -i 's|\\r||g' po/hr.po po/sv.po
 
 make:
   type: gnu

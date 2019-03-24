@@ -19,7 +19,7 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [eudev, libevdev, mtdev]
   tags: Xorg
-- pkg:  dev
+- pkg : dev

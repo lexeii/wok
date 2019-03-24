@@ -17,5 +17,5 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   tags: Xorg

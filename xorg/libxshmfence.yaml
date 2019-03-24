@@ -18,6 +18,6 @@ make:
   args: --disable-static
 
 pkgs:
-- pkg:  main
+- pkg : main
   tags: Xorg
-- pkg:  dev
+- pkg : dev

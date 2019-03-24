@@ -14,10 +14,10 @@ bdeps: [intltool, dbus-glib, dbus-dev, dbus-glib-dev, gdk-pixbuf-dev, curl-dev,
         gst1-plugins-base-dev, libgsf-dev, poppler-dev, libopenraw-dev,
         lcms2-dev]
 
-prepare:
+prepare: |
   # openraw v.0.0.9 - libopenraw-gnome-1.0.pc;
   # openraw v.0.1.2 - libopenraw-gnome-0.1.pc (current, latest)
-  rules: sed -i 's|libopenraw-gnome-1\.0|libopenraw-gnome-0.1|g' configure
+  sed -i 's|libopenraw-gnome-1\.0|libopenraw-gnome-0.1|g' configure
 
 make:
   type: gnu

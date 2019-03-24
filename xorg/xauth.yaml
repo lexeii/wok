@@ -17,6 +17,6 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libx11, libxau, libxext, libxmu]
   tags: Xorg

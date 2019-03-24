@@ -16,23 +16,21 @@ prepare:
   patches:
   - name: render-sizes.patch
 
-make:
-  rules: |
-    ./autogen.sh \
-      --enable-icon-mapping \
-      $CONFIGURE_ARGS &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    --enable-icon-mapping \
+    $CONFIGURE_ARGS &&
+  make &&
+  make install
 
-post:
-  rules: rm -r $install/usr/share/locale # remove empty folder structure
+post: rm -r $install/usr/share/locale # remove empty folder structure
 
 pkgs:
-- pkg:  main
+- pkg : main
   copy: mate/
   tags: MATE
 
-- pkg:  -menta
+- pkg : -menta
   copy: menta/
   deps: main
   note: Menta theme

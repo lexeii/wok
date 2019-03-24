@@ -20,49 +20,48 @@ make:
   - --enable-comix
   - --disable-static
 
-post:
-  rules: fix symlinks
+post: fix symlinks # FIXME
 
 pkgs:
-- pkg:  -caja
+- pkg : -caja
   copy: caja/extensions-2.0/*.so
   note: Caja extension
   deps: [main, caja, glib, gtk3]
 
-- pkg:  -comics
+- pkg : -comics
   copy: [comicsdocument.atril-backend, libcomicsdocument.so]
   note: comix book backend
   deps: [main, gdk-pixbuf, glib, gtk3]
 
-- pkg:  -djvu
+- pkg : -djvu
   copy: [djvudocument.atril-backend, libdjvudocument.so]
   note: DjVu backend
   deps: [main, libcairo, djvulibre, gdk-pixbuf, glib, gtk3]
 
-- pkg:  -epub
+- pkg : -epub
   copy: [epubdocument.atril-backend, libepubdocument.so]
   note: ePub backend
   deps: main
 
-- pkg:  -pdf
+- pkg : -pdf
   copy: [pdfdocument.atril-backend, libpdfdocument.so]
   note: PDF backend
   deps: [main, libcairo, gdk-pixbuf, glib, gtk3, libxml2, pango, libpoppler]
 
-- pkg:  -psd
+- pkg : -psd
   copy: [psdocument.atril-backend, libpsdocument.so]
   note: PSD backend
   deps: [main, libcairo, glib, libspectre]
 
-- pkg:  -tiff
+- pkg : -tiff
   copy: [tiffdocument.atril-backend, libtiffdocument.so]
   note: TIFF backend
   deps: [main, libcairo, gdk-pixbuf, glib, libtiff]
 
-- pkg:  main
+- pkg : main
   deps: [atk, libcairo, gdk-pixbuf, glib, gtk3, libsecret, libxml2, pango,
          libice, libsm, zlib]
   tags: [MATE, PDF, DjVu]
 
-- pkg:  dev
+- pkg : dev
   deps: [-caja, -comics, -djvu, -epub, -pdf, -psd, -tiff, glib-dev, gtk3-dev]

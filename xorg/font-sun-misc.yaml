@@ -19,7 +19,7 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   tags: [Xorg, font]
   post_install: chroot "$1/" fc-cache -r /usr/share/fonts/X11/misc
   post_remove:  chroot "$1/" fc-cache -r

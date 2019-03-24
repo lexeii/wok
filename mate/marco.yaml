@@ -14,21 +14,20 @@ bdeps: [mate-common, yelp-tools-dev, gtk3-dev, startup-notification-dev,
         libxcursor-dev, libgtop-dev, libcanberra-dev, zenity, itstool,
         xcb-util-dev]
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [atk, libcairo, gdk-pixbuf, glib, gtk3, libcanberra, libcanberra-gtk3,
          libgtop, pango, startup-notification, libx11, libxcomposite,
          libxcursor, libxdamage, libxext, libxfixes, libxinerama, libxrandr,
          libxrender]
   tags: MATE
 
-- pkg:  dev
+- pkg : dev
   deps: [main, gtk3-dev]

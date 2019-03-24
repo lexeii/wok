@@ -18,20 +18,19 @@ prepare:
   - name: xfmedia-dbus-0.6-support.patch
   - name: xfmedia-empty-prev-next-fix.patch
   - name: xfmedia-exo-0.6.patch
+  rules: sed -i 's/return xine_trick_mode.*/return 0;/' src/xfmedia-xine.c
 
-make:
-  rules: |
-    export LDFLAGS="$LDFLAGS -lXext -lm -lgmodule-2.0"
-    sed -i 's/return xine_trick_mode.*/return 0;/' src/xfmedia-xine.c
+make: |
+  export LDFLAGS="$LDFLAGS -lXext -lm -lgmodule-2.0"
 
-    ./configure \
-      --enable-exo \
-      --disable-startup-notification \
-      $CONFIGURE_ARGS || return 1
-    sed -i 's/define HAVE_XSCREENSAVER_EXTENSION .*/undef HAVE_XSCREENSAVER_EXTENSION/' config.h
-    fix libtool &&
-    make &&
-    make install
+  ./configure \
+    --enable-exo \
+    --disable-startup-notification \
+    $CONFIGURE_ARGS || return 1
+  sed -i 's/define HAVE_XSCREENSAVER_EXTENSION .*/undef HAVE_XSCREENSAVER_EXTENSION/' config.h
+  fix libtool &&
+  make &&
+  make install
 
 pkgs:
 - pkg : main

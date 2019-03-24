@@ -17,7 +17,7 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libx11, libxaw, libxt]
   tags: Xorg
   conf:

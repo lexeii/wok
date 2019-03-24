@@ -12,8 +12,7 @@ src:
 bdeps: [intltool, libx11-dev, libxfce4util-dev, libxfce4ui-dev, libwnck2-dev,
         polkit-dev, upower-dev, iceauth, libsm-dev]
 
-prepare:
-  rules: touch libtoolT
+prepare: touch libtoolT
 
 make:
   type: gnu

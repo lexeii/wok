@@ -19,8 +19,7 @@ make:
   - --disable-debug
   - --with-pysol-card-theme-path=/usr/share/PySolFC
 
-post:
-  rules: rm -r $install/usr/share/help/
+post: rm -r $install/usr/share/help/
 
 pkgs:
 - pkg : main

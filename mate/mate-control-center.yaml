@@ -16,20 +16,18 @@ bdeps: [mate-common, yelp-tools, itstool, libx11-dev, libxscrnsaver-dev,
         mate-settings-daemon-dev, libappindicator-gtk3-dev, desktop-file-utils,
         libxcursor-dev, libmatekbd-dev, libxklavier-dev]
 
-make:
-  rules: |
-    ./autogen.sh \
-      --disable-update-mimedb \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    --disable-update-mimedb \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
-post:
-  rules: rm $install/usr/share/applications/mimeinfo.cache
+post: rm $install/usr/share/applications/mimeinfo.cache
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [atk, libcairo, dbus-glib, dconf, fontconfig, freetype, gdk-pixbuf,
          glib, gtk3, libappindicator-gtk3, libcanberra, libcanberra-gtk3,
          libmatekbd, librsvg, libxklavier, libxml2, marco, mate-desktop,
@@ -44,6 +42,6 @@ pkgs:
     open individual panels by clicking on them. It also has a search entry to find
     panels by searching keywords.
 
-- pkg:  dev
+- pkg : dev
   deps: [main, glib-dev, gtk3-dev, librsvg-dev, mate-desktop-dev,
          mate-menus-dev]

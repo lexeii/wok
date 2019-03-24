@@ -11,19 +11,17 @@ src:
 
 bdeps: [meson, ninja, vala, gtk3-dev, librsvg-dev, gettext-dev, itstool]
 
-prepare:
-  rules: |
-    # help files on the next languages are failed to build for the some reason...
-    sed -i '/^cs$/d; /^de$/d; /^da$/d; /^es$/d; /^el$/d; /^fr$/d; /^gl$/d;
-    /^pl$/d; /^ko$/d; /^pt_BR$/d; /^sv$/d' help/LINGUAS
+prepare: |
+  # help files on the next languages are failed to build for the some reason...
+  sed -i '/^cs$/d; /^de$/d; /^da$/d; /^es$/d; /^el$/d; /^fr$/d; /^gl$/d;
+  /^pl$/d; /^ko$/d; /^pt_BR$/d; /^sv$/d' help/LINGUAS
 
 make:
   type: meson
 
-post:
-  rules: |
-    find $install -type f -perm 664 -exec chmod 644 '{}' \;
-    fix symlinks
+post: |
+  find $install -type f -perm 664 -exec chmod 644 '{}' \;
+  fix symlinks # FIXME
 
 pkgs:
 - pkg : main

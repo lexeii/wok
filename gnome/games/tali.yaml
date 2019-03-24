@@ -14,8 +14,7 @@ bdeps: [glib-dev, gtk3-dev, librsvg-dev, intltool, itstool]
 make:
   type: gnu
 
-post:
-  rules: fix symlinks
+post: fix symlinks # FIXME
 
 pkgs:
 - pkg : main

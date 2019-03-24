@@ -12,16 +12,15 @@ src:
 
 bdeps: [mate-common, gobject-introspection-dev, gtk3-dev, libxklavier-dev]
 
-make:
-  rules: |
-    ./autogen.sh $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libcairo, gdk-pixbuf, glib, gtk3, libxklavier, pango, libx11]
   tags: MATE
-- pkg:  dev
+- pkg : dev
   deps: [libmatekbd, glib-dev, gtk3-dev, libxklavier-dev]

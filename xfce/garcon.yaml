@@ -18,8 +18,7 @@ make:
   - --disable-debug
   - --disable-gtk-doc
 
-post:
-  rules: find $install -type f -name '*.so*' -exec chmod 755 '{}' \; # 644->755
+post: find $install -type f -name '*.so*' -exec chmod 755 '{}' \; # 644->755
 
 pkgs:
 - pkg : main

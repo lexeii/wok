@@ -16,7 +16,7 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   copy: ['@std', '@dev']
   deps: [libx11, libxaw, libxmu, libxt]
   conf:

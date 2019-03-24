@@ -15,7 +15,7 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [caja, glib, gtk3]
   tags: MATE
-- pkg:  dev
+- pkg : dev

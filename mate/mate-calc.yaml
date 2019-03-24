@@ -12,14 +12,13 @@ src:
 
 bdeps: [mate-common, yelp-tools-dev, gtk3-dev, itstool]
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  make &&
+  make install
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [atk, libcairo, gdk-pixbuf, glib, gtk3, libxml2, pango]
   tags: MATE

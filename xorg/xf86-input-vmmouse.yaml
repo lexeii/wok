@@ -22,6 +22,6 @@ make:
   - --with-udev-rules-dir=/lib/udev/rules.d
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [xorg-server, eudev]
   tags: Xorg

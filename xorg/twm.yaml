@@ -13,14 +13,13 @@ src:
 
 bdeps: [util-macros, libx11-dev, libxext-dev, libxt-dev, libxmu-dev]
 
-prepare:
-  rules: sed -i '/^rcdir =/s,^\(rcdir = \).*,\1/etc/X11/app-defaults,' src/Makefile.in
+prepare: sed -i '/^rcdir =/s,^\(rcdir = \).*,\1/etc/X11/app-defaults,' src/Makefile.in
 
 make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libice, libsm, libx11, libxext, libxmu, libxt]
   conf: /etc/X11/app-defaults/system.twmrc
   tags: Xorg

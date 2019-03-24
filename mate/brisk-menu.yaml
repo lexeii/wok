@@ -20,7 +20,7 @@ make:
   type: meson
 
 pkgs:
-- pkg:  main
+- pkg : main
   copy: ['@std', '*.mo']
   deps: [glib, gtk3, mate-menus, mate-panel, libx11]
   tags: [MATE, Solus, menu, GUI]

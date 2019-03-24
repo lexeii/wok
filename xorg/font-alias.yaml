@@ -18,6 +18,6 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   tags: Xorg
   provide: xorg-font-alias

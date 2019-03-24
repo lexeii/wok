@@ -18,7 +18,7 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   tags: Xorg
   description: |
     This is a default set of cursor themes for use with libXcursor, originally

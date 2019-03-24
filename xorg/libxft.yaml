@@ -19,8 +19,8 @@ make:
   args: --disable-static
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [fontconfig, freetype, libx11, libxrender]
   tags: Xorg
-- pkg:  dev
+- pkg : dev
   deps: [main, fontconfig-dev, freetype-dev, libxrender-dev, xorgproto]

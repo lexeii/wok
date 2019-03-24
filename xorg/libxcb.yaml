@@ -13,8 +13,7 @@ src:
 
 bdeps: [libxslt-dev, xcb-proto, libxau-dev, libxdmcp-dev]
 
-prepare:
-  rules: sed -i 's|pthread-stubs||' configure
+prepare: sed -i 's|pthread-stubs||' configure
 
 make:
   type: gnu
@@ -23,11 +22,10 @@ make:
   - --enable-xinput
   - --enable-xprint
 
-post:
-  rules: chown -R 0:0 $install
+post: chown -R 0:0 $install
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libxau, libxdmcp]
   tags: Xorg
   description: |
@@ -35,5 +33,5 @@ pkgs:
     a small footprint, latency hiding, direct access to the protocol, improved
     threading support, and extensibility.
 
-- pkg:  dev
+- pkg : dev
   deps: [main, libxau-dev, libxdmcp-dev]

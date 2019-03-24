@@ -17,8 +17,7 @@ bdeps: perl
 make:
   type: perl
 
-post:
-  rules: find $install -type f -exec dos2unix '{}' \;
+post: find $install -type f -exec dos2unix '{}' \;
 
 pkgs:
 - pkg : main

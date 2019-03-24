@@ -27,7 +27,7 @@ make:
       -DSQLITE_SECURE_DELETE \
       -DSQLITE_MAX_VARIABLE_NUMBER=250000 \
       -DSQLITE_MAX_EXPR_DEPTH=10000
-  - CPPFLAGS: $CFLAGS
+  - CPPFLAGS: $CFLAGS # FIXME? Default CPPFLAGS is different from default CFLAGS; now they are the same
 
   args:
   - --disable-static

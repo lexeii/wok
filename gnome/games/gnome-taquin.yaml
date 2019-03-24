@@ -15,14 +15,13 @@ bdeps: [vala, glib-dev, gtk3-dev, librsvg-dev, libcanberra-dev, intltool,
 make:
   type: gnu
 
-post:
-  rules: |
-    fix symlinks
+post: |
+  fix symlinks # FIXME
 
-    # 'cats' theme moved to a separate package due to a big size,
-    # make remaining 'numbers' theme the default one
-    sed -i "s|<default>'cats'|<default>'numbers'|" \
-      $install/usr/share/glib-2.0/schemas/org.gnome.taquin.gschema.xml
+  # 'cats' theme moved to a separate package due to a big size,
+  # make remaining 'numbers' theme the default one
+  sed -i "s|<default>'cats'|<default>'numbers'|" \
+    $install/usr/share/glib-2.0/schemas/org.gnome.taquin.gschema.xml
 
 pkgs:
 - pkg : -cats

@@ -16,8 +16,7 @@ make:
   type: gnu
 
 post:
-  desktop:
-  - from: xfce4-volumed.desktop
+  desktop: xfce4-volumed.desktop
 
 pkgs:
 - pkg : main

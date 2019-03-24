@@ -20,7 +20,7 @@ make:
   args: --disable-all-encodings
 
 pkgs:
-- pkg:  -base
+- pkg : -base
   copy: 6x13.pcf.gz
   note: minimal set
   deps: ""
@@ -28,7 +28,7 @@ pkgs:
   post_remove:  chroot "$1/" fc-cache -r
   provide: xorg-base-fonts
 
-- pkg:  main
+- pkg : main
   deps: -base
   tags: [Xorg, font]
   post_install: chroot "$1/" fc-cache -r /usr/share/fonts/X11/misc

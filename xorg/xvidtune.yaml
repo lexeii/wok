@@ -17,7 +17,7 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libx11, libxaw, libxmu, libxt, libxxf86vm]
   conf: /etc/X11/app-defaults/Xvidtune
   tags: Xorg

@@ -14,13 +14,11 @@ src:
 
 bdeps: [perl, perl-module-build]
 
-make:
-  rules: |
-    perl Build.PL &&
-    ./Build --destdir $install install
+make: |
+  perl Build.PL &&
+  ./Build --destdir $install install
 
-post:
-  rules: chmod -R u+w $install
+post: chmod -R u+w $install
 
 pkgs:
 - pkg : main

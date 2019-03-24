@@ -19,10 +19,9 @@ bdeps: [automake, gettext-dev, intltool, libtool, gtk2-dev, glib-dev,
 
 #cookopts: !menus
 
-prepare:
-  rules: |
-    sed -i 's|lxsession-logout|tazbox logout|' src/defaultapplications.c
-    ./autogen.sh
+prepare: |
+  sed -i 's|lxsession-logout|tazbox logout|' src/defaultapplications.c
+  ./autogen.sh
 
 make:
   type: gnu

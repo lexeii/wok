@@ -19,15 +19,15 @@ make:
   args: --disable-static
 
 pkgs:
-- pkg:  main
+- pkg : main
   copy: '*.so*'
   deps: libx11
   tags: Xorg
 
-- pkg:  -util
+- pkg : -util
   copy: bin/
   deps: [main, libx11, libxext, libxt]
   note: utilities
 
-- pkg:  dev
+- pkg : dev
   deps: [main, -util, libx11-dev]

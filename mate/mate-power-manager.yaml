@@ -13,19 +13,17 @@ src:
 bdeps: [mate-common, yelp-tools-dev, itstool, libcanberra-dev, dbus-glib-dev,
         libnotify-dev, upower-dev, libgnome-keyring3-dev, mate-panel-dev]
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
-post:
-  rules: fix symlinks
+post: fix symlinks # FIXME
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libcairo, dbus, dbus-glib, gdk-pixbuf, glib, gtk3, libcanberra,
          libcanberra-gtk3, libgnome-keyring3, libnotify, mate-panel, pango,
          upower, libx11, libxext, libxrandr]

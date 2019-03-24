@@ -13,16 +13,15 @@ src:
 bdeps: [mate-common, gtk3-dev, libwnck3-dev, libxtst-dev, libfakekey-dev,
         mate-panel-dev]
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [atk, libcairo, gdk-pixbuf, glib, gtk3, libfakekey, libwnck3,
          mate-panel, pango, libx11]
   tags: MATE

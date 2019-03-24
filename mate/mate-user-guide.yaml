@@ -17,34 +17,33 @@ bdeps: [mate-common, yelp-tools, itstool, glib-dev, libxml2-tools]
 make:
   type: gnu
 
-post:
-  rules: fix symlinks
+post: fix symlinks # FIXME
 
 pkgs:
-- pkg:  main
+- pkg : main
   copy: ['@std', help/C/]
   tags: MATE
-- pkg:  -de
+- pkg : -de
   copy: help/de/
   note: German
   deps: main
-- pkg:  -es
+- pkg : -es
   copy: help/es/
   note: Spanish
   deps: main
-- pkg:  -fr
+- pkg : -fr
   copy: help/fr/
   note: French
   deps: main
-- pkg:  -it
+- pkg : -it
   copy: help/it/
   note: Italian
   deps: main
-- pkg:  -pt_BR
+- pkg : -pt_BR
   copy: help/pt_BR/
   note: Brazilian Portuguese
   deps: main
-- pkg:  -ru
+- pkg : -ru
   copy: help/ru/
   note: Russian
   deps: main

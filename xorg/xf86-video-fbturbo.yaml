@@ -15,8 +15,7 @@ src:
 
 bdeps: [util-macros, xorg-server-dev, automake, autoconf, libtool]
 
-prepare:
-  rules: autoreconf -vi
+prepare: autoreconf -vi
 
 make:
   type: gnu
@@ -24,6 +23,6 @@ make:
     LDFLAGS: $LDFLAGS -Wl,-z,lazy
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: xorg-server
   tags: [Xorg, display]

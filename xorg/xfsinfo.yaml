@@ -12,13 +12,12 @@ src:
 
 bdeps: [util-macros, xorgproto, libfs-dev]
 
-prepare:
-  rules: touch /root/missing
+prepare: touch /root/missing
 
 make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: libfs
   tags: Xorg

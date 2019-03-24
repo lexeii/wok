@@ -19,17 +19,15 @@ bdeps: [automake, gettext-dev, libtool, intltool, libx11-dev, libxcomposite-dev,
         fuse2-dev, cairo-dev, librsvg-dev, libxrender-dev, gtk3-dev,
         libwnck3-dev, marco-dev]
 
-make:
-  rules: |
-    ./autogen.sh \
-      --disable-static \
-      --enable-menu-entries \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install || return 1
+prepare: NOCONFIGURE=1 ./autogen.sh
 
-    # sed 's|bash|sh|' -i $install/usr/bin/compiz-decorator
+make:
+  type: gnu
+  args:
+  - --disable-static
+  - --enable-menu-entries
+
+#post: sed 's|bash|sh|' -i $install/usr/bin/compiz-decorator
 
 pkgs:
 - pkg : std

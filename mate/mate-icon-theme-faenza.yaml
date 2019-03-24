@@ -17,30 +17,28 @@ prepare:
   - name: fix-cp.patch
   - name: limit-sizes.patch
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  make &&
+  make install
 
-post:
-  rules: |
-    find $install -type d \( -name 32 -o -name 64 -o -name 96 \) -exec rm -r '{}' \; 2>/dev/null
-    :
+post: |
+  find $install -type d \( -name 32 -o -name 64 -o -name 96 \) -exec rm -r '{}' \; 2>/dev/null
+  :
 
 pkgs:
-- pkg:  main
+- pkg : main
   copy: matefaenza/
   deps: mate-icon-theme
   tags: MATE
 
-- pkg:  mate-icon-theme-faenzadark
+- pkg : mate-icon-theme-faenzadark
   copy: matefaenzadark/
   deps: main
   note: dark theme
 
-- pkg:  mate-icon-theme-faenzagray
+- pkg : mate-icon-theme-faenzagray
   copy: matefaenzagray/
   deps: [mate-icon-theme-faenzadark, mate-icon-theme-faenza]
   note: gray theme

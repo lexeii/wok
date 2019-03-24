@@ -24,7 +24,7 @@ bdeps: [patch, util-macros, pixman-dev, eudev-dev, dbus-dev, libxshmfence-dev,
 cookopts: skip-log-errors
 
 make:
-  type: custom
+  sets: light
   rules: |
     case $SET in
       '') SET_ARGS="
@@ -80,17 +80,17 @@ make:
     # chmod 4711 $install/usr/bin/Xnest
     # chmod 4711 $install/usr/bin/Xvfb
 
-testsuite: readelf -h $install/usr/bin/Xorg
+test: readelf -h $install/usr/bin/Xorg
 
 pkgs:
-- pkg:  -xdmx
+- pkg : -xdmx
   copy: Xdmx
   note: DMX X server
   deps: [libgcrypt, libx11, libxau, libxdmcp, libxext, libxfixes, libxfont2,
          libxi, libxmu, libxrender, pixman]
   post_install: install -dm1777 "$1/tmp/.ICE-unix" "$1/tmp/.X11-unix"
 
-- pkg:  -xephyr
+- pkg : -xephyr
   copy: Xephyr
   note: Xephyr X server
   deps: [eudev, libepoxy, libgcrypt, mesa, libx11, libxau, libxdmcp, libxfont2,
@@ -98,29 +98,29 @@ pkgs:
          xcb-util-keysyms, xcb-util-renderutil, xcb-util-wm]
   post_install: install -dm1777 "$1/tmp/.ICE-unix" "$1/tmp/.X11-unix"
 
-- pkg:  -xnest
+- pkg : -xnest
   copy: Xnest
   note: Xnest X server
   deps: [libgcrypt, libx11, libxau, libxdmcp, libxext, libxfont2, pixman]
   post_install: install -dm1777 "$1/tmp/.ICE-unix" "$1/tmp/.X11-unix"
 
-- pkg:  -xvfb
+- pkg : -xvfb
   copy: Xvfb
   note: Xvfb X server
   deps: [libgcrypt, mesa, libxau, libxdmcp, libxfont2, pixman]
   post_install: install -dm1777 "$1/tmp/.ICE-unix" "$1/tmp/.X11-unix"
 
-- pkg:  -module-glamor
+- pkg : -module-glamor
   copy: [libglamoregl.so, libglx.so]
   note: Glamor DIX (Device Independent X) module
   deps: [libepoxy, mesa, mesa-libgbm]
 
-- pkg:  dev
+- pkg : dev
   copy: ["@dev", protocol.txt]
   deps: [main, -xdmx, -xephyr, -xnest, -xvfb, -module-glamor,
          mesa-dev, xorgproto, libpciaccess-dev, pixman-dev]
 
-- pkg:  main
+- pkg : main
   copy: ["@std", var/log/, xorg.conf.d/, "@rm"]
   note: core X server
   deps: [eudev, libdrm, libgcrypt, libx11, libxau, libxaw, libxdmcp, libxfont2,
@@ -145,8 +145,8 @@ pkgs:
     xorg.conf.d | /etc/X11/xorg.conf.d | /usr/share/X11/xorg.conf.d
     modules     | /usr/lib/X11/modules | /usr/lib/xorg/modules
 
-- pkg:  -light
-  set:  light
+- pkg : -light
+  set : light
   copy: "@std"
   note: light version without DRI, GL, and friends
   deps: [libgcrypt, libxau, libxdmcp, libxfont2, libpciaccess, libxshmfence,

@@ -13,8 +13,7 @@ src:
 
 bdeps: [automake, libtool, glib-dev, gtk2-dev, gdk-pixbuf-dev, libsde-utils-dev]
 
-prepare:
-  rules: ./autogen.sh
+prepare: ./autogen.sh
 
 make:
   type: gnu

@@ -12,9 +12,9 @@ src:
 bdeps: [gtk2-dev, libxfce4util-dev, xfconf-dev, startup-notification-dev,
         libglade-dev, xcb-util-dev, intltool, util-linux-uuid-dev]
 
-prepare:
+prepare: |
   # xfce_setenv is removed in libxfce4util 4.11.0
-  rules: sed -i 's/xfce_setenv/g_setenv/' libxfcegui4/xfce-exec.c
+  sed -i 's/xfce_setenv/g_setenv/' libxfcegui4/xfce-exec.c
 
 make:
   type: gnu

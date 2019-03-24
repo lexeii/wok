@@ -15,8 +15,7 @@ bdeps: [glib-dev, gettext-dev, itstool, libxml2-tools, gtk3-dev, cairo-dev,
 make:
   type: gnu
 
-post:
-  rules: fix symlinks
+post: fix symlinks # FIXME
 
 pkgs:
 - pkg : main

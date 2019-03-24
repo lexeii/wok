@@ -24,10 +24,9 @@ post:
   file:
   - from: xcompmgr.desktop
     to  : /etc/xdg/autostart/xcompmgr.desktop
-    mode: 644
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libx11, libxcomposite, libxdamage, libxext, libxfixes, libxrender]
   tags: Xorg
 

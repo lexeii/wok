@@ -19,7 +19,7 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libevdev, libx11, libxi, libxtst]
   tags: Xorg
-- pkg:  dev
+- pkg : dev

@@ -19,6 +19,6 @@ make:
     LDFLAGS: $LDFLAGS -Wl,-z,lazy
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: xorg-server # We can use xorg-server-light with evdev and vesa driver.
   tags: [Xorg, display]

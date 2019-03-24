@@ -19,7 +19,7 @@ prepare:
 
 make:
   type: perl
-  args: PANELS MENUS FORMS # cook_perl "PANELS MENUS FORMS"
+  args: PANELS MENUS FORMS
 
 pkgs:
 - pkg : main

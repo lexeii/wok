@@ -18,17 +18,14 @@ bdeps: [perl, perl-capture-tiny, perl-file-sharedir, perl-file-which,
 
 # TODO: rebuild if sdl-config in sdl-dev changed
 
-prepare:
-  rules: sed -i '/^GetOptions/d' Build.PL # Workaround bug with --with-sdl-config
+prepare: sed -i '/^GetOptions/d' Build.PL # Workaround bug with --with-sdl-config
 
-make:
-  rules: |
-    perl Build.PL --with-sdl-config &&
-    perl Build &&
-    perl Build install installdirs=vendor destdir=$install
+make: |
+  perl Build.PL --with-sdl-config &&
+  perl Build &&
+  perl Build install installdirs=vendor destdir=$install
 
-post:
-  rules: chmod -R u+w $install
+post: chmod -R u+w $install
 
 pkgs:
 - pkg : main

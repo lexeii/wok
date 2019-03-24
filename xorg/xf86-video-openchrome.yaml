@@ -19,6 +19,6 @@ make:
     LDFLAGS: $LDFLAGS -Wl,-z,lazy
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [xorg-server, eudev, libdrm, libx11, libxext, libxv, libxvmc]
   tags: [Xorg, display]

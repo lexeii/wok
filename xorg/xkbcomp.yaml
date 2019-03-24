@@ -17,8 +17,8 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libx11, libxkbfile]
   tags: Xorg
-- pkg:  dev
+- pkg : dev
   deps: [main, libx11-dev, libxkbfile-dev, xorgproto]

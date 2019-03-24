@@ -13,13 +13,12 @@ src:
 
 bdeps: [util-macros, libxmu-dev, libx11-dev, xorgproto]
 
-prepare:
-  rules: touch /root/missing /missing
+prepare: touch /root/missing /missing
 
 make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libx11, libxmu]
   tags: Xorg

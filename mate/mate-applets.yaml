@@ -20,140 +20,138 @@ prepare:
   patches:
   - name: locales.patch
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
-post:
-  rules: fix symlinks
+post: fix symlinks # FIXME
 
 pkgs:
-- pkg:  -accessx-status
+- pkg : -accessx-status
   copy: [accessx-status*, '*AccessxStatus*', '*accessx-status*/mate-*',
          apps/mate-ax-applet.png]
   deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
          libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
          util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
          libxdmcp, libxext, libxrender, libxcb, pixman, zlib, libice, libsm]
-  cat:  x-window
+  cat : x-window
   note: Keyboard Accessibility Monitor
 
-- pkg:  -battstat
+- pkg : -battstat
   copy: ['*battstat*', '*Battstat*']
   deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
          libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
          util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
          libxdmcp, libxext, libxrender, libxcb, pixman, zlib, libnotify, upower]
-  cat:  x-window
+  cat : x-window
   note: Battery Charge Monitor
 
-- pkg:  -charpick
+- pkg : -charpick
   copy: ['*charpick*', '*Charpick*']
   deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
          libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
          util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
          libxdmcp, libxext, libxrender, libxcb, pixman, zlib, gucharmap3]
-  cat:  x-window
+  cat : x-window
   note: Character Palette
 
-- pkg:  -command
+- pkg : -command
   copy: ['*command*', '*Command*']
   deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
          libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
          util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
          libxdmcp, libxext, libxrender, libxcb, pixman, zlib]
-  cat:  x-window
+  cat : x-window
   note: Command Factory
 
-- pkg:  -cpufreq
+- pkg : -cpufreq
   copy: ['*cpufreq*', '*CPUFreq*', mate-cpu-frequency-*]
   deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
          libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
          util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
          libxdmcp, libxext, libxrender, libxcb, pixman, zlib, dbus, dbus-glib,
          polkit]
-  cat:  x-window
+  cat : x-window
   note: CPU Frequency Scaling Monitor
 
-- pkg:  -drivemount
+- pkg : -drivemount
   copy: ['*drivemount*', '*DriveMount*']
   deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
          libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
          util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
          libxdmcp, libxext, libxrender, libxcb, pixman, zlib]
-  cat:  x-window
+  cat : x-window
   note: Disk Mounter
 
-- pkg:  -geyes
+- pkg : -geyes
   copy: ['*geyes*', '*Geyes*', mate-eyes-applet.*]
   deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
          libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
          util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
          libxdmcp, libxext, libxrender, libxcb, pixman, zlib]
-  cat:  x-window
+  cat : x-window
   note: Geyes
 
-- pkg:  -multiload
+- pkg : -multiload
   copy: ['*multiload*', '*MultiLoad*']
   deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
          libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
          util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
          libxdmcp, libxext, libxrender, libxcb, pixman, zlib, libgtop]
-  cat:  x-window
+  cat : x-window
   note: System Monitor
 
-- pkg:  -netspeed
+- pkg : -netspeed
   copy: ['*netspeed*', '*Netspeed*']
   deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
          libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
          util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
          libxdmcp, libxext, libxrender, libxcb, pixman, zlib, libgtop]
-  cat:  x-window
+  cat : x-window
   note: Netspeed Applet
 
-- pkg:  -stickynotes
+- pkg : -stickynotes
   copy: ['*stickynotes*', '*StickyNotes*', mate-sticky-notes-*]
   deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
          libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
          util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
          libxdmcp, libxext, libxrender, libxcb, pixman, zlib, gtksourceview3,
          libwnck3, startup-notification, xcb-util]
-  cat:  x-window
+  cat : x-window
   note: Sticky Notes
 
-- pkg:  -timer
+- pkg : -timer
   copy: ['*timer*', '*Timer*']
   deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
          libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
          util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
          libxdmcp, libxext, libxrender, libxcb, pixman, zlib, libnotify]
-  cat:  x-window
+  cat : x-window
   note: Sticky Notes
 
-- pkg:  -trash
+- pkg : -trash
   copy: ['*trash*', '*Trash*']
   deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
          libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
          util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
          libxdmcp, libxext, libxrender, libxcb, pixman, zlib]
-  cat:  x-window
+  cat : x-window
   note: Panel Trash
 
-- pkg:  -weather
+- pkg : -weather
   copy: ['*weather*', '*Weather*']
   deps: [atk, libbzip2, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk3,
          libffi, libharfbuzz, liblzma, libpng, libxml2, mate-panel, pango, pcre,
          util-linux-blkid, util-linux-mount, util-linux-uuid, libx11, libxau,
          libxdmcp, libxext, libxrender, libxcb, pixman, zlib, dbus, dbus-glib,
          libmateweather, libnotify, libsoup, libsqlite3]
-  cat:  x-window
+  cat : x-window
   note: Panel Trash
 
-- pkg:  main
+- pkg : main
   deps: [-accessx-status, -battstat, -charpick, -command, -cpufreq, -drivemount,
          -geyes, -multiload, -netspeed, -stickynotes, -timer, -trash, -weather]
   tags: MATE

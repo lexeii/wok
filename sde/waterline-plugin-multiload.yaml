@@ -16,8 +16,7 @@ bdeps: [automake, glib-dev, gtk2-dev, libtool, intltool, libgtop-dev
 
 # cookopts: skip-log-errors
 
-prepare:
-  rules: ./autogen.sh
+prepare: ./autogen.sh
 
 make:
   type: gnu

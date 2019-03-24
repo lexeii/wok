@@ -15,19 +15,18 @@ src:
 bdeps: [autoconf, automake, libtool, gtk2-dev, dbus-dev, dbus-glib-dev,
         libcanberra-dev, libwnck2-dev, libnotify-dev, intltool]
 
-prepare:
-  rules: |
-    sed -i '/^MATE_/d' configure.ac # build standalone without MATE
-    sed -i '/^OnlyShowIn/d' src/capplet/mate-notification-properties.desktop.in
+prepare: |
+  sed -i '/^MATE_/d' configure.ac # build standalone without MATE
+  sed -i '/^OnlyShowIn/d' src/capplet/mate-notification-properties.desktop.in
 
-    mkdir macros; autoreconf -fi
-    intltoolize;  autoreconf
+  mkdir macros; autoreconf -fi
+  intltoolize;  autoreconf
 
 make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   copy: ['@std', '@ico'] # only 16 and 48 icons
   deps: [atk, libcairo, dbus, dbus-glib, gdk-pixbuf, glib, gtk2,
          libcanberra-gtk2, libnotify, libwnck2, libx11]

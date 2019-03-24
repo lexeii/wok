@@ -11,18 +11,16 @@ src:
 
 bdeps: [vala, glib-dev, gtk3-dev, librsvg-dev, intltool, itstool]
 
-prepare:
-  rules: |
-    # In order to shrink its size, patch svg icon to fix compressor errors like:
-    # Error: valid FuncIRI(#linearGradient10640) with fallback value is not supported.
-    sed -i 's|) rgb(0, 0, 0)|)|g' data/icons/hicolor/scalable/gnome-mahjongg.svg
-    # Then size shrinks 23690 -> 4705
+prepare: |
+  # In order to shrink its size, patch svg icon to fix compressor errors like:
+  # Error: valid FuncIRI(#linearGradient10640) with fallback value is not supported.
+  sed -i 's|) rgb(0, 0, 0)|)|g' data/icons/hicolor/scalable/gnome-mahjongg.svg
+  # Then size shrinks 23690 -> 4705
 
 make:
   type: gnu
 
-post:
-  rules: fix symlinks
+post: fix symlinks # FIXME
 
 pkgs:
 - pkg : main

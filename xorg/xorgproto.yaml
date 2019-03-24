@@ -22,9 +22,9 @@ make:
     # evieproto, fontcacheproto, lg3dproto, printproto, xcalibrateproto, xf86rushproto
 
 post:
-  docs: ['../[^m]*.txt', ../PM_spec]
+  doc: ['../[^m]*.txt', ../PM_spec]
 
 pkgs:
-- pkg:  main
+- pkg : main
   copy: '@dev'
   tags: Xorg

@@ -14,20 +14,19 @@ bdeps: [mate-common, gtk-doc, gobject-introspection-dev, dconf-dev,
         startup-notification-dev, libx11-dev, libxrandr-dev, gdk-pixbuf-dev,
         gtk3-dev, xcb-util-dev]
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
 pkgs:
-- pkg:  main
+- pkg : main
   copy: ['@std', '@ico'] # only 16 and 48 icons
   deps: [atk, libcairo, dconf, gdk-pixbuf, glib, gtk3, pango,
          startup-notification, libx11, libxrandr]
   tags: MATE
 
-- pkg:  dev
+- pkg : dev
   deps: [main, dconf-dev, gtk3-dev, startup-notification-dev]

@@ -13,16 +13,15 @@ src:
 bdeps: [mate-common, gtk3-dev, dbus-glib-dev, libxtst-dev, xmlto, libxslt-dev,
         libwrap-dev, docbook-xsl, libsm-dev, xtrans]
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
 pkgs:
-- pkg:  main
+- pkg : main
   copy: ['@std', '@ico'] # only 16 and 48 icons
   deps: [libcairo, dbus, dbus-glib, gdk-pixbuf, glib, gtk3, libice, libsm,
          libx11, libxau, libxext, libxrender, libxtst]

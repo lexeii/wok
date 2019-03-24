@@ -15,8 +15,7 @@ bdeps: [vala, glib-dev, libgee-dev, gtk3-dev, libgnome-games-support-dev,
 make:
   type: gnu
 
-post:
-  rules: fix symlinks
+post: fix symlinks # FIXME
 
 pkgs:
 - pkg : main

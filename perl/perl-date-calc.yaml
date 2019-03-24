@@ -16,7 +16,7 @@ bdeps: [perl-bit-vector, perl-carp-clan]
 
 make:
   type: perl
-  args: UNINST=1 # cook_perl "" "" "UNINST=1"
+  makeargs: UNINST=1
 
 pkgs:
 - pkg : main

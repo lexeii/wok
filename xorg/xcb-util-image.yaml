@@ -18,8 +18,8 @@ make:
   args: --disable-static
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libxcb, xcb-util]
   tags: Xorg
-- pkg:  dev
+- pkg : dev
   deps: [main, libxcb-dev]

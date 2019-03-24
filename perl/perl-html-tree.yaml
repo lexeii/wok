@@ -16,15 +16,12 @@ src:
 bdeps: [perl-html-parser, perl-html-tagset, perl-module-build, perl-test-fatal,
         perl-html-formatter, perl-libwww-perl]
 
-make:
-  type: custom
-  rules: |
-    perl Build.PL &&
-    ./Build &&
-    ./Build install --destdir $install
+make: |
+  perl Build.PL &&
+  ./Build &&
+  ./Build install --destdir $install
 
-post:
-  rules: chmod -R u+w $install
+post: chmod -R u+w $install
 
 pkgs:
 - pkg : main

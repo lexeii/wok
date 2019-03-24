@@ -13,13 +13,12 @@ src:
 
 bdeps: [util-macros, libxcb-dev]
 
-prepare:
-  rules: touch /root/missing /missing
+prepare: touch /root/missing /missing
 
 make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: libxcb
   tags: Xorg

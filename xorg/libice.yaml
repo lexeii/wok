@@ -14,8 +14,7 @@ src:
 
 bdeps: [xorgproto, xtrans]
 
-prepare:
-  rules: touch /root/missing /missing
+prepare: touch /root/missing /missing
 
 make:
   type: gnu
@@ -24,7 +23,7 @@ make:
   - ICE_LIBS=-lpthread # fixes a change in glibc which breaks pulseaudio at runtime
 
 pkgs:
-- pkg:  main
+- pkg : main
   tags: Xorg
-- pkg:  dev
+- pkg : dev
   deps: [main, xorgproto]

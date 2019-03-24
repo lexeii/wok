@@ -13,7 +13,6 @@ bdeps: [libpng-dev, libjpeg-turbo-dev, libxfce4util-dev, dbus-dev,
         startup-notification-dev, xfce4-panel-dev, zlib-dev, intltool, exo-dev,
         dbus-glib-dev, util-linux-uuid-dev, hal-dev, xcb-util-dev]
 
-
 make:
   type: gnu
   args:

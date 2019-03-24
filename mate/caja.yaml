@@ -20,12 +20,12 @@ make:
   - --disable-icon-update
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [atk, libcairo, exempi, gdk-pixbuf, glib, gtk3, libexif, libnotify,
          libxml2, mate-desktop, pango, libice, libsm, libx11,   
          shared-mime-info]
   suggested: gvfs-smb
   tags: [MATE, file-manager]
 
-- pkg:  dev
+- pkg : dev
   deps: [main, glib-dev, gtk3-dev]

@@ -14,8 +14,8 @@ src:
 bdeps: [perl-appconfig, perl-dev]
 
 make:
-  # ???
-  rules: cook_perl "TT_XS_ENABLE=y TT_XS_DEFAULT=y TT_ACCEPT=y TT_QUIET=n"
+  type: perl
+  args: TT_XS_ENABLE=y TT_XS_DEFAULT=y TT_ACCEPT=y TT_QUIET=n
 
 pkgs:
 - pkg : main

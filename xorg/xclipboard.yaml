@@ -16,7 +16,7 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libx11, libxaw, libxmu, libxt]
   conf: /etc/X11/app-defaults/XClipboard
   tags: Xorg

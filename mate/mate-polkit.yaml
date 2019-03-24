@@ -12,15 +12,14 @@ src:
 
 bdeps: [mate-common, gtk-doc, gtk3-dev, polkit-dev, gobject-introspection-dev]
 
-make:
-  rules: |
-    ./configure \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./configure \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [gdk-pixbuf, glib, gtk3, polkit]
   tags: MATE

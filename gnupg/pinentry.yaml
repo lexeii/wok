@@ -26,9 +26,9 @@ make:
   - --disable-pinentry-qt
   - --enable-pinentry-fltk
 
-post:
+post: |
   # make default pinentry the pinentry-curses
-  rules: ln -sf pinentry-curses $install/usr/bin/pinentry
+  ln -sf pinentry-curses $install/usr/bin/pinentry
 
 pkgs:
 - pkg : main

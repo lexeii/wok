@@ -15,11 +15,10 @@ src:
 bdeps: [automake, libtool, gettext-dev, glib-dev, intltool, gtk2-dev,
         gdk-pixbuf-dev, libjpeg-turbo-dev, libsmfm-gtk-dev, libsmfm-core-dev]
 
-prepare:
-  rules: |
-    # hardcoded to use automake-1.11 ... 1.15, but we have automake-1.16 only
-    sed -i 's|1\.15|1.16|' autogen.sh
-    ./autogen.sh
+prepare: |
+  # hardcoded to use automake-1.11 ... 1.15, but we have automake-1.16 only
+  sed -i 's|1\.15|1.16|' autogen.sh
+  ./autogen.sh
 
 make:
   type: gnu

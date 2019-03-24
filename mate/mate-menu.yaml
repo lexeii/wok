@@ -13,10 +13,10 @@ src:
 bdeps: [python-distutils-extra, intltool, file]
 
 make:
-  rules: python -B setup.py install --root=$install
+  type: python2
 
 pkgs:
-- pkg:  main
+- pkg : main
   copy: ['@std', '*.mo']
   deps: python
   tags: [MATE, Ubuntu, menu, GUI]

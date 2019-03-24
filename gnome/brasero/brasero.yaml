@@ -24,8 +24,7 @@ make:
   - --disable-search
   - --disable-playlist
 
-post:
-  rules: fix symlinks
+post: fix symlinks # FIXME
 
 pkgs:
 - pkg : main

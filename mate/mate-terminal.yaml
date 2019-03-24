@@ -13,18 +13,16 @@ src:
 bdeps: [mate-common, yelp-tools-dev, vte-dev, gtk3-dev, dconf-dev, libx11-dev,
         itstool, libsm-dev]
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
-post:
-  rules: fix symlinks
+post: fix symlinks # FIXME
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [atk, dconf, gdk-pixbuf, glib, gtk3, pango, vte, libice, libsm, libx11]
   tags: MATE

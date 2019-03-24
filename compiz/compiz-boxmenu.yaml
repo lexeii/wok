@@ -11,10 +11,7 @@ src:
 
 bdeps: [dbus-glib-dev, gtk2-dev, libwnck2-dev]
 
-make:
-  rules: |
-    make &&
-    make install
+make: make && make install
 
 pkgs:
 - pkg : main

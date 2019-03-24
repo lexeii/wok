@@ -17,7 +17,7 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [mesa, libx11]
   suggested: nvidia
   tags: Xorg

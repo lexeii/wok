@@ -13,8 +13,7 @@ src:
 
 bdeps: [automake, libtool, libsde-utils-dev, libx11-dev]
 
-prepare:
-  rules: ./autogen.sh
+prepare: ./autogen.sh
 
 make:
   type: gnu

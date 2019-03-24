@@ -13,18 +13,16 @@ src:
 bdeps: [mate-common, yelp-tools-dev, itstool, libx11-dev, gtk3-dev,
         dbus-glib-dev, libnotify-dev, libcanberra-dev, caja-dev]
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
-post:
-  rules: fix symlinks
+post: fix symlinks # FIXME
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [caja, glib, gtk3, pango, libx11]
   tags: MATE

@@ -14,10 +14,13 @@ src:
 make:
   type: gnu
 
-post:
+post: |
   # only broken symlinks there:
   # /lib/firmware/turtlebeach/msndinit.bin -> /etc/sound/msndinit.bin
   # /lib/firmware/turtlebeach/msndperm.bin -> /etc/sound/msndperm.bin
   # /lib/firmware/turtlebeach/pndsperm.bin -> /etc/sound/pndsperm.bin
   # /lib/firmware/turtlebeach/pndspini.bin -> /etc/sound/pndspini.bin
-  rules: rm -r $install/lib/firmware/turtlebeach/
+  rm -r $install/lib/firmware/turtlebeach/
+
+pkgs:
+- pkg : main

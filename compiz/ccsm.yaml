@@ -12,7 +12,10 @@ src:
 bdeps: [python, intltool]
 
 make:
-  rules: python -B ./setup.py install --prefix=/usr --with-gtk=3.0 --root=$install
+  type: python2
+  args:
+  - --prefix=/usr
+  - --with-gtk=3.0
 
 pkgs:
 - pkg : main

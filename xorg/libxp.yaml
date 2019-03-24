@@ -18,9 +18,9 @@ make:
   args: --disable-static
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libxcb, libx11, libxau, libxdmcp, libxext]
   tags: Xorg
-- pkg:  dev
+- pkg : dev
   deps: [main, libxcb-dev, libx11-dev, libxau-dev, libxdmcp-dev, libxext-dev,
          xorgproto]

@@ -13,16 +13,15 @@ src:
 bdeps: [mate-common, gtk3-dev, libcanberra-dev, mate-desktop-dev,
         libmatemixer-dev]
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libcairo, glib, gtk3, libcanberra, libcanberra-gtk3, libmatemixer,
          libxml2, mate-desktop, pango]
   tags: MATE

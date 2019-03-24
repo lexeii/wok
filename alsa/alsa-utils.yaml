@@ -35,17 +35,17 @@ post:
   - alsamixer.desktop
 
 pkgs:
-- pkg:  -test
+- pkg : -test
   copy: [speaker-test, speaker-test/, "*.wav"]
   note: speaker test
   deps: alsa-lib
 
-- pkg:  alsa-info
+- pkg : alsa-info
   copy: alsa-info.sh
   note: gather ALSA subsystem information
   deps: [std, bash, dialog, ncurses-extra, pciutils, wget]
 
-- pkg:  main
+- pkg : main
   deps: [alsa-lib, ncurses, ncurses-libform, ncurses-libmenu, ncurses-libpanel]
   conf: /var/lib/alsa/asound.state
   overrides:

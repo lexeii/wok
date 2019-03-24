@@ -12,23 +12,22 @@ src:
 
 bdeps: [mate-common, gtk-doc, pulseaudio-dev, alsa-lib-dev]
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
 pkgs:
-- pkg:  -pulse
+- pkg : -pulse
   copy: libmatemixer-pulse.so
   deps: [glib, pulseaudio, pulseaudio-glib,   main]
   note: PulseAudio module
   tags: MATE
 
-- pkg:  main
+- pkg : main
   deps: [alsa-lib, glib]
 
-- pkg:  dev
+- pkg : dev
   deps: [main, -pulse, glib-dev]

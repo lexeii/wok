@@ -12,31 +12,27 @@ src:
 bdeps: [automake, gettext-dev, libtool, intltool, libxrender-dev, libxi-dev,
         gtk3-dev, libwnck3-dev, compiz-dev, cairo-dev, pango-dev]
 
+prepare: NOCONFIGURE=1 ./autogen.sh
+
 make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+  type: gnu
 
-post:
-  rules: |
-    # save original emerald theme as 'default':
-    mkdir -p $install/usr/share/emerald/themes/default/
-    cd       $install/usr/share/emerald/themes/default/
-    for i in $(ls ../../theme/*.png); do
-      ln -s $i $(basename $i)
-    done
-    mv $install/usr/share/emerald/theme/theme.ini \
-       $install/usr/share/emerald/themes/default/theme.ini
+post: |
+  # save original emerald theme as 'default':
+  mkdir -p $install/usr/share/emerald/themes/default/
+  cd       $install/usr/share/emerald/themes/default/
+  for i in $(ls ../../theme/*.png); do
+    ln -s $i $(basename $i)
+  done
+  mv $install/usr/share/emerald/theme/theme.ini \
+     $install/usr/share/emerald/themes/default/theme.ini
 
-    # make SliTaz theme
-    ln -sf ../theme     $install/usr/share/emerald/themes/SliTaz
-    cp $stuff/theme.ini $install/usr/share/emerald/themes/SliTaz/
+  # make SliTaz theme
+  ln -sf ../theme     $install/usr/share/emerald/themes/SliTaz
+  cp $stuff/theme.ini $install/usr/share/emerald/themes/SliTaz/
 
-    # custom SliTaz config
-    cp -f $stuff/settings.ini $install/usr/share/emerald/
+  # custom SliTaz config
+  cp -f $stuff/settings.ini $install/usr/share/emerald/
 
 pkgs:
 - pkg : main

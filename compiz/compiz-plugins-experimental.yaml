@@ -13,13 +13,11 @@ bdeps: [automake, gettext-dev, libtool, intltool, compiz-dev, compiz-bcop-dev,
         cairo-dev, compiz-plugins-main-dev, compiz-plugins-extra-dev,
         libxscrnsaver-dev, glew-dev, curl-dev, mesa-dev]
 
+prepare: NOCONFIGURE=1 ./autogen.sh
+
 make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+  type: gnu
+  args: --disable-static
 
 pkgs:
 - pkg : main

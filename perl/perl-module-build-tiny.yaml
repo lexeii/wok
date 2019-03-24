@@ -14,14 +14,12 @@ src:
 
 bdeps: [perl-extutils-config, perl-extutils-helpers, perl-extutils-installpaths]
 
-make:
-  rules: |
-    perl Build.PL &&
-    ./Build &&
-    ./Build install --destdir $install
+make: |
+  perl Build.PL &&
+  ./Build &&
+  ./Build install --destdir $install
 
-post:
-  rules: chmod -R u+w $install
+post: chmod -R u+w $install
 
 pkgs:
 - pkg : main

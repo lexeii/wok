@@ -12,18 +12,15 @@ src:
 
 bdeps: automake
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    make &&
-    make install
+prepare: NOCONFIGURE=1 ./autogen.sh
 
-post:
-  rules: |
-    chmod 755 \
-      $install/usr/share/emerald/themes/Mavericks/dark/ \
-      $install/usr/share/emerald/themes/Mu/dark/ # 644 -> 755
+make:
+  type: gnu
+
+post: |
+  chmod 755 \
+    $install/usr/share/emerald/themes/Mavericks/dark/ \
+    $install/usr/share/emerald/themes/Mu/dark/ # 644 -> 755
 
 pkgs:
 - pkg : main

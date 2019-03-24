@@ -21,8 +21,8 @@ make:
   - --with-appdefaultdir=/etc/X11/app-defaults
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libice, libsm, libx11]
   tags: Xorg
-- pkg:  dev
+- pkg : dev
   deps: [main, libice-dev, libsm-dev, libx11-dev, xorgproto]

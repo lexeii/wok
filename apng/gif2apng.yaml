@@ -11,8 +11,7 @@ src:
 
 bdeps: zlib-dev
 
-make:
-  rules: make
+make: make
 
 post:
   cmd: gif2apng

@@ -15,8 +15,7 @@ bdeps: [meson, ninja, vala, libgee-dev, gtk3-dev, librsvg-dev,
 make:
   type: meson
 
-post:
-  rules: fix symlinks
+post: fix symlinks # FIXME
 
 pkgs:
 - pkg : main

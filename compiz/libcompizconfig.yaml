@@ -12,16 +12,12 @@ src:
 bdeps: [automake, libtool, libx11-dev, compiz-dev, protobuf-dev, libxslt-dev,
         mesa-dev]
 
-prepare:
-  rules: mkdir -p m4
+prepare: |
+  mkdir -p m4
+  NOCONFIGURE=1 ./autogen.sh
 
 make:
-  rules:
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+  type: gnu
 
 pkgs:
 - pkg : main

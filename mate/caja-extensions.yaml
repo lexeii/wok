@@ -13,17 +13,16 @@ src:
 bdeps: [mate-common, gtk-doc, caja-dev, mate-desktop-dev, dbus-glib-dev,
         glib-dev, gupnp-dev]
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [caja, dbus-glib, gdk-pixbuf, glib, gtk3, gupnp, mate-desktop]
   tags: MATE
-- pkg:  dev
+- pkg : dev
   deps: [main, glib-dev, gtk3-dev]

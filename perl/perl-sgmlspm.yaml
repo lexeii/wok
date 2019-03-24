@@ -15,14 +15,12 @@ src:
 
 bdeps: perl
 
-prepare:
-  rules: chmod 644 MYMETA.yml
+prepare: chmod 644 MYMETA.yml
 
 make:
   type: perl
 
-post:
-  rules: ln -sv sgmlspl.pl $install/usr/bin/sgmlspl
+post: ln -sv sgmlspl.pl $install/usr/bin/sgmlspl
 
 pkgs:
 - pkg : main

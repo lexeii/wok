@@ -21,6 +21,6 @@ make:
   - --with-xkb-rules-symlink=xorg
 
 pkgs:
-- pkg:  main
+- pkg : main
   tags: Xorg
-- pkg:  dev
+- pkg : dev

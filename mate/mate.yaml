@@ -10,7 +10,7 @@ home      : https://github.com/mate-desktop
 # Next unstable releases (1.21.x) released in parallel with stable updates (1.20.x)
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [caja, marco, mate-backgrounds, mate-control-center, mate-desktop,
          mate-icon-theme, mate-menus, mate-notification-daemon, mate-panel,
          mate-polkit, mate-session-manager, mate-settings-daemon, mate-themes,
@@ -18,7 +18,7 @@ pkgs:
   suggested: mate-extra
   tags: MATE
 
-- pkg:  -extra
+- pkg : -extra
   deps: [atril, caja-extensions, engrampa, eom, mate-applets, mate-calc,
          mate-icon-theme-faenza, mate-media, mate-netbook, mate-power-manager,
          mate-screensaver, mate-sensors-applet, mate-system-monitor,

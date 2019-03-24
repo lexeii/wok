@@ -12,13 +12,10 @@ src:
 bdeps: [automake, gettext-dev, libtool, intltool, compiz-dev, compiz-bcop-dev,
         cairo-dev, pango-dev, glu-dev, mesa-dev, libjpeg-turbo-dev]
 
+prepare: NOCONFIGURE=1 ./autogen.sh
+
 make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+  type: gnu
 
 pkgs:
 - pkg : main

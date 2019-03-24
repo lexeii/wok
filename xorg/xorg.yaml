@@ -9,7 +9,7 @@ target    : noarch
 repology  : '-'
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [xauth, font-misc-misc-base, libice, libpciaccess, libsm, libx11,
          libxau, libxcomposite, libxcursor, libxdamage, libxdmcp, libxext,
          libxfixes, libxfont, libxft, libxi, libxinerama, libxkbfile, libxmu,
@@ -18,7 +18,7 @@ pkgs:
   note: meta-package to install all Xorg modules
   tags: Xorg
 
-- pkg:  dev
+- pkg : dev
   deps: [libxdmcp-dev, libxau-dev, libx11-dev, libxext-dev, libxrender-dev,
          libxrandr-dev, libxfixes-dev, libfontenc-dev, libxfont-dev,
          libxft-dev, libxcomposite-dev, libxkbfile-dev, libice-dev, libsm-dev,
@@ -26,6 +26,6 @@ pkgs:
          libxtst-dev, libxcursor-dev, libxdamage-dev, libxi-dev]
   note: meta-package to install all Xorg dev packages
 
-- pkg:  -dev-proto
+- pkg : -dev-proto
   deps: [xorgproto, util-macros]
   note: meta-package to install all Xorg protocols

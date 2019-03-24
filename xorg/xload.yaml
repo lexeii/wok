@@ -12,18 +12,16 @@ src:
 
 bdeps: [util-macros, libxaw-dev, gettext-dev]
 
-prepare:
-  rules: touch /root/missing /missing
+prepare: touch /root/missing /missing
 
 make:
   type: gnu
 
 post:
-  desktop:
-  - from: xload.desktop
+  desktop: xload.desktop
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libx11, libxaw, libxmu, libxt]
   tags: Xorg
   conf: /etc/X11/app-defaults/XLoad

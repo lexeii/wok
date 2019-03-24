@@ -15,23 +15,21 @@ bdeps: [mate-common, yelp-tools-dev, gtk-doc, itstool,
         libjpeg-turbo-dev, dbus-glib-dev, librsvg-dev, gtk3-dev,
         mate-desktop-dev, gdk-pixbuf-dev, shared-mime-info-dev, libpeas-dev]
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
-post:
-  rules: fix symlinks
+post: fix symlinks # FIXME
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [atk, libcairo, dbus-glib, exempi, gdk-pixbuf, glib,
          gobject-introspection, gtk3, liblcms2, libexif, libjpeg-turbo, libpeas,
          libpeas-gtk, librsvg, libxml2, mate-desktop, libx11, zlib]
   tags: MATE
 
-- pkg:  dev
+- pkg : dev
   deps: [main, glib-dev, gtk3-dev]

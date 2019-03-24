@@ -17,8 +17,8 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: xorg-server # implicit
   tags: Xorg
-- pkg:  dev
+- pkg : dev
   deps: [main, xorg-server-dev] # implicit

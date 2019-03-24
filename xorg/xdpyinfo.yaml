@@ -19,7 +19,7 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [libx11, libxcomposite, libxext, libxi, libxinerama, libxrender,
          libxtst, libxxf86dga, libxxf86misc, libxxf86vm, libdmx, libxcb]
   tags: [Xorg, display]

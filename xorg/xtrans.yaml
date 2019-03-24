@@ -16,7 +16,7 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   copy: '@dev'
   deps: xorgproto
   tags: Xorg

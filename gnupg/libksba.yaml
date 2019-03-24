@@ -30,5 +30,5 @@ pkgs:
     KSBA provides these subsystems: ASN.1 Parser, BER Decoder, BER Encoder,
     Certificate Handling and CMS Handling.
 
-- pkg    : dev
-  depends: [main, libgpg-error-dev]
+- pkg : dev
+  deps: [main, libgpg-error-dev]

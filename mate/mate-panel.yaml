@@ -14,24 +14,22 @@ bdeps: [mate-common, gtk-doc, yelp-tools-dev, gobject-introspection-dev,
         libice-dev, libsm-dev, gtk3-dev, mate-desktop-dev, mate-menus-dev,
         dbus-glib-dev, libwnck3-dev, librsvg-dev, libmateweather-dev, itstool]
 
-make:
-  rules: |
-    ./autogen.sh \
-      --with-in-process-applets=all \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    --with-in-process-applets=all \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
-post:
-  rules: fix symlinks
+post: fix symlinks # FIXME
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [atk, libcairo, dbus-glib, gdk-pixbuf, glib, gtk3, libmateweather,
          librsvg, libwnck3, mate-desktop, mate-menus, pango, libice, libsm,
          libx11, libxrandr]
   tags: MATE
 
-- pkg:  dev
+- pkg : dev
   deps: [main, glib-dev, gtk3-dev]

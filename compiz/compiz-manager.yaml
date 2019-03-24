@@ -15,8 +15,7 @@ prepare:
   - name: compiz-manager.patch
 
 post:
-  cmd:
-  - compiz-manager
+  cmd: compiz-manager
 
 pkgs:
 - pkg : main

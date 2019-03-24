@@ -14,8 +14,7 @@ src:
 bdeps: [automake, libtool, glib-dev, gtk2-dev, jansson-dev, libsde-utils-dev,
         libsde-utils-gtk-dev]
 
-prepare:
-  rules: ./autogen.sh
+prepare: ./autogen.sh
 
 make:
   type: gnu

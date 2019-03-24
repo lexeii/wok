@@ -12,34 +12,33 @@ src:
 
 bdeps: [mate-common, gtk-doc, gtk3-dev, libsoup-dev, tzdata]
 
-make:
-  rules: |
-    ./autogen.sh \
-      --enable-locations-compression \
-      $CONFIGURE_ARGS &&
-    fix libtool &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    --enable-locations-compression \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  make &&
+  make install
 
 pkgs:
-- pkg:  -misc-icons
+- pkg : -misc-icons
   copy: [22x22/, 24x24/, 32x32/, scalable/]
-  cat:  customization
+  cat : customization
   note: big icons
   deps: main
 
-- pkg:  -misc-locales
+- pkg : -misc-locales
   copy: [Locations.*.xml.gz, '@rm=Locations.de.xml.gz', '@rm=Locations.es.xml.gz',
          '@rm=Locations.fr.xml.gz', '@rm=Locations.pt_BR.xml.gz',
          '@rm=Locations.ru.xml.gz']
-  cat:  localization
+  cat : localization
   note: different locales
   deps: main
 
-- pkg:  main
+- pkg : main
   deps: [gdk-pixbuf, glib, gtk3, libsoup, libxml2]
   tags: MATE
 
-- pkg:  dev
+- pkg : dev
   deps: [main, -misc-icons, -misc-locales, gdk-pixbuf-dev, glib-dev, gtk3-dev,
          libsoup-dev, libxml2-dev]

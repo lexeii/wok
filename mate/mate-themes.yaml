@@ -12,17 +12,15 @@ src:
 
 bdeps: [mate-common, gtk2-dev]
 
-make:
-  rules: |
-    ./autogen.sh \
-      $CONFIGURE_ARGS &&
-    make &&
-    make install
+make: |
+  ./autogen.sh \
+    $CONFIGURE_ARGS &&
+  make &&
+  make install
 
-post:
-  rules: rm -r $install/usr/share/locale/ # remove empty folder structure
+post: rm -r $install/usr/share/locale/ # remove empty folder structure
 
 pkgs:
-- pkg:  main
+- pkg : main
   suggested: [gtk2-engine-murrine, gtk3]
   tags: MATE

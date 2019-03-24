@@ -17,6 +17,6 @@ make:
   type: gnu
 
 pkgs:
-- pkg:  main
+- pkg : main
   deps: [fontconfig, freetype, libx11, libxaw, libxft, libxmu, libxrender, libxt]
   tags: Xorg
