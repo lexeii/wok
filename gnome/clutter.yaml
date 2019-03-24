@@ -1,0 +1,30 @@
+name      : clutter
+version   : 1.26.2
+category  : x-window
+summary   : Animated graphical user interfaces library
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://developer.gnome.org/clutter/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/clutter.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [glib-dev, cogl-dev, atk-dev, json-glib-dev, gobject-introspection-dev,
+        gettext-dev, pango-dev]
+
+make:
+  type: gnu
+  args:
+  - --enable-introspection
+  - --enable-egl-backend
+
+post: ln -s clutter-1.0.pc $install/usr/lib/pkgconfig/clutter.pc
+
+pkgs:
+- pkg : main
+  deps: [atk, libcairo, cogl, fontconfig, glib, json-glib, pango, libx11,
+         libxcomposite, libxdamage]
+- pkg : dev
+  deps: [main, atk-dev, cairo-dev, cogl-dev, glib-dev, json-glib-dev, pango-dev,
+         libx11-dev, libxcomposite-dev, libxdamage-dev, libxext-dev]

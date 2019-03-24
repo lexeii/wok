@@ -1,0 +1,26 @@
+name      : libart_lgpl
+version   : 2.3.21
+category  : x-window
+summary   : A library for high-performance 2D graphics
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.levien.com/libart/
+repology  : libart-lgpl
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+make:
+  type: gnu
+  args: --disable-static
+  destdir: keep
+
+pkgs:
+- pkg : main
+  desc: |
+    This is the LGPL'd component of libart. All functions needed for running the
+    Gnome canvas, and for printing support, will be going in here. The GPL'd
+    component will be getting various enhanced functions for specific
+    applications.
+
+- pkg : dev

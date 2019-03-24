@@ -1,0 +1,29 @@
+name      : json-glib
+version   : 1.4.4
+category  : development
+summary   : JSON parser for GLib
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://wiki.gnome.org/Projects/JsonGlib
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/general/json-glib.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+  sha1: d9b6d58c0a5b45aa86fbf0da31c65c19254edf96
+
+bdeps: [meson, ninja, glib-dev, gobject-introspection-dev, gettext-dev, libxslt,
+        docbook-xsl]
+
+make:
+  type: meson
+  args: -Dman=true
+
+post: sed -i -r 's|^ +||' $install/usr/share/man/man1/*.1
+
+pkgs:
+- pkg : dev
+  copy: ['@dev', installed-tests/] # move tests to dev package
+  deps: [main, glib-dev]
+- pkg : main
+  deps: glib
+  tags: javascript

@@ -1,0 +1,23 @@
+origin    : libIDL
+name      : libidl
+version   : 0.8.14
+category  : development
+summary   : IDL Compiling Library
+maintainer: devel@slitaz.org
+license   : LGPL2
+home      : https://github.com/GNOME/libIDL
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.bz2
+
+bdeps: [bison, flex, glib-dev]
+
+make:
+  type: gnu
+  args: --cache-file=config.cache
+
+pkgs:
+- pkg : main
+  deps: glib
+- pkg : dev
+  deps: [main, glib-dev]

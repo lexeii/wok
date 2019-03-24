@@ -1,0 +1,28 @@
+name      : gobject-introspection
+version   : 1.58.2
+category  : development
+summary   : Introspection system for GObject-based libraries
+maintainer: devel@slitaz.org
+license   : [LGPL2, MIT]
+home      : https://wiki.gnome.org/Projects/GObjectIntrospection
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/general/gobject-introspection.html
+
+src:
+- url: gnome://<n>/<V>/<n>-<v>.tar.xz
+
+cookopts: force-arch # different .gir
+
+bdeps: [glib-dev, cairo-dev, gtk-doc, python-dev, util-linux-mount-dev,
+        openssl-dev, libffi-dev]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg : main
+  copy: ['@std', '*.typelib']
+  deps: [glib, libffi, python]
+- pkg : dev
+  copy: ['@std', '@dev', '@rm']
+  deps: [main, glib-dev, libffi-dev]

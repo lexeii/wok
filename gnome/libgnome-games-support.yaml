@@ -1,0 +1,21 @@
+name      : libgnome-games-support
+version   : 1.4.2
+category  : games
+summary   : Code shared between GNOME games
+maintainer: al.bobylev@gmail.com
+license   : [GPL3, LGPL3]
+home      : https://gitlab.gnome.org/GNOME/libgnome-games-support
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [vala, libgee-dev, gtk3-dev, gettext-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [glib, gtk3, libgee]
+- pkg : dev
+  deps: [main, glib-dev, gtk3-dev, libgee-dev]

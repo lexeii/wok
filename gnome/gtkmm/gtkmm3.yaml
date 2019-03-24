@@ -1,0 +1,30 @@
+origin    : gtkmm
+name      : gtkmm3
+version   : 3.22.1
+category  : x-window
+summary   : C++ Interfaces for GTK+3 and GNOME
+maintainer: al.bobylev@gmail.com
+license   : LGPL2.1
+home      : https://www.gtkmm.org/en/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/gtkmm3.html
+
+src:
+- url: gnome://<o>/<V>/<o>-<v>.tar.xz
+
+bdeps: [gtk3-dev, glibmm-dev, pangomm-dev, cairomm-dev, glibmm-dev, atkmm-dev]
+
+prepare: sed -i "/^libdocdir =/ s|\$(book_name)|gtkmm-$VERSION|" docs/Makefile.in
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [atkmm, cairomm, gdk-pixbuf, glib, glibmm, gtk3, libgiomm, libsigc++,
+         pangomm]
+  provide: gtk3mm
+
+- pkg : dev
+  deps: [main, atkmm-dev, cairomm-dev, gdk-pixbuf-dev, glibmm-dev, gtk3-dev,
+         pangomm-dev]
+  provide: gtk3mm-dev

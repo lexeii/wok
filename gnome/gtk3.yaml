@@ -1,0 +1,129 @@
+origin    : gtk+
+name      : gtk3
+version   : 3.24.2
+category  : x-window
+summary   : GNOME Toolkit 3
+maintainer: al.bobylev@gmail.com
+license   : LGPL2
+home      : https://www.gtk.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/gtk3.html
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.xz
+  sha1: 3c1d2c716cd17ac85554b130f92c22dadb4e04ad
+
+bdeps: [gettext-dev, wayland-protocols-dev, wayland-dev, glib-dev, atk-dev, 
+        pango-dev, cairo-dev, gdk-pixbuf-dev, libxinerama-dev, libxi-dev
+        libxrandr-dev, libxcomposite-dev, libxdamage-dev, libxkbcommon-dev,
+        mesa-dev, libepoxy-dev, at-spi2-atk-dev, iso-codes-dev, cups-dev,
+        rest-dev, json-glib-dev, gobject-introspection-dev, colord-dev,
+        gtk-doc, libxslt]
+
+# skip-log-errors: Failed to open file ?./gdk.gresource.xml?: No such file or directory
+# force-arch: different .pc
+#cookopts: ['!menus', skip-log-errors, force-arch]
+
+prepare:
+  patches:
+  - name: gtk-3.24.2-typo.patch
+
+make:
+  type: gnu
+  args:
+  - --disable-debug
+  - --enable-xkb
+  - --enable-xinerama
+  - --enable-xrandr
+  - --enable-xfixes
+  - --enable-xcomposite
+  - --enable-xdamage
+  - --enable-x11-backend
+  - --enable-broadway-backend
+  - --enable-wayland-backend
+  - --enable-introspection
+  - --enable-colord
+  - --enable-man
+  - --with-x
+
+post:
+  file:
+  - from: settings.ini
+    to  : /etc/gtk-3.0/
+  rules: find $install -name '*.desktop' | xargs sed -i '/NoDisplay/d'
+
+pkgs:
+- pkg : -demo
+  copy: [gtk3-demo, gtk3-demo-application, gtk3-demo.desktop, 'gtk3-demo*.png',
+         '*Demo*', '*exampleapp*']
+  cat : development
+  note: example code and demo
+  deps: [main, libcairo, gdk-pixbuf, glib, libepoxy, libharfbuzz, pango]
+
+- pkg : -widget-factory
+  copy: [gtk3-widget-factory, gtk3-widget-factory.desktop,
+         'gtk3-widget-factory*.png']
+  cat : development
+  note: widget factory
+  deps: [main, atk, libcairo, gdk-pixbuf, glib]
+
+- pkg : -icon-browser
+  copy: [gtk3-icon-browser, gtk3-icon-browser.desktop]
+  cat : development
+  note: icon browser
+  deps: [main, glib]
+
+- pkg : -broadwayd
+  copy: broadwayd
+  note: HTML5 GTK backend
+  deps: [libcairo, glib]
+
+- pkg : dev
+  copy: ['@dev', '*.its', '*.loc', '*.rng']
+  deps: [main, at-spi2-atk-dev, atk-dev, cairo-dev, fontconfig-dev,
+         gdk-pixbuf-dev, glib-dev, libepoxy-dev, libx11-dev, libxcomposite-dev,
+         libxdamage-dev, libxext-dev, libxfixes-dev, libxi-dev, libxinerama-dev,
+         libxkbcommon-dev, libxrandr-dev, mesa-dev, pango-dev, wayland-dev,
+         wayland-protocols-dev]
+
+- pkg : main
+  copy: [etc/, bin/, themes/, '*.so*', '*.xml', '@rm']
+  deps: [at-spi2-atk, atk, colord, fontconfig, freetype, gdk-pixbuf, glib,
+         json-glib, libcairo, libcups, libepoxy, libharfbuzz, libx11,
+         libxcomposite, libxdamage, libxext, libxfixes, libxi, libxinerama,
+         libxkbcommon, libxrandr, mesa-libwayland-egl, pango, rest, wayland]
+  conf: /etc/gtk-3.0/settings.ini
+  post_install: chroot "$1/" /usr/bin/gtk-query-immodules-3.0 --update-cache
+
+files:
+- name: gtk-3.24.2-typo.patch
+  content: |
+    --- a/docs/tools/shooter.c
+    +++ b/docs/tools/shooter.c
+    @@ -170,7 +170,7 @@
+           y_orig = 0;
+         }
+     
+    -  if (x_orig + width > gdk_screen_get_width (gdk_screen_get_dfeault ()))
+    +  if (x_orig + width > gdk_screen_get_width (gdk_screen_get_default ()))
+         width = gdk_screen_width () - x_orig;
+     
+       if (y_orig + height > gdk_screen_get_height (gdk_screen_get_default ()))
+
+- name: settings.ini
+  content: |
+    [Settings]
+    gtk-theme-name = SliTaz
+    gtk-icon-theme-name = SliTaz
+    gtk-font-name = DejaVu Sans 9
+    gtk-cursor-theme-name = slitaz-polar
+    gtk-cursor-theme-size = 0
+    gtk-toolbar-style = GTK_TOOLBAR_ICONS
+    gtk-toolbar-icon-size = GTK_ICON_SIZE_SMALL_TOOLBAR
+    gtk-button-images = 1
+    gtk-menu-images = 1
+    gtk-enable-event-sounds = 1
+    gtk-enable-input-feedback-sounds = 1
+    gtk-xft-antialias = 1
+    gtk-xft-hinting = 1
+    gtk-xft-hintstyle = hintfull
+    gtk-xft-rgba = rgb

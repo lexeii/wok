@@ -1,0 +1,29 @@
+name      : gssdp
+version   : 1.0.2
+category  : network
+summary   : Resource discovery and announcement over SSDP
+maintainer: pascal.bellard@slitaz.org
+license   : GPL2
+home      : https://wiki.gnome.org/Projects/GUPnP
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [glib-dev, libsoup-dev, gtk3-dev, gobject-introspection-dev, gtk-doc,
+        vala]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : -bin
+  copy: [bin/, '*.ui']
+  note: device sniffer
+  deps: [main, glib, gtk3, libsoup]
+
+- pkg : main
+  copy: '*.so*'
+  deps: [glib, libsoup]
+
+- pkg : dev
+  deps: [main, -bin, glib-dev]

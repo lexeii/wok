@@ -1,0 +1,35 @@
+name      : libgdata
+version   : 0.17.9
+category  : network
+summary   : Access library for gdata
+maintainer: al.bobylev@gmail.com
+license   : LGPL2.1
+home      : https://wiki.gnome.org/Projects/libgdata
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+  sha1: 942a98ae334d5ac97a041519d64ea48ddc654016
+
+bdeps: [glib-dev, libxml2-dev, libsoup-dev, json-glib-dev, liboauth-dev,
+        gdk-pixbuf-dev, uhttpmock-dev, intltool, gobject-introspection-dev,
+        vala, shared-mime-info, gcr-dev, gnome-online-accounts-dev]
+
+make:
+  type: gnu
+  vars: DATADIRNAME=share
+  args: --disable-static
+
+pkgs:
+- pkg : main
+  deps: [gcr-base, glib, gnome-online-accounts, json-glib, liboauth, libsoup,
+         libxml2]
+  desc: |
+    libgdata is a GLib-based library for accessing online service APIs using the
+    GData protocol -- most notably, Google's services. It provides APIs to
+    access the common Google services, and has full asynchronous support.
+
+- pkg : dev
+  deps: [main, gcr-dev, glib-dev, gnome-online-accounts-dev, json-glib-dev,
+         liboauth-dev, libsoup-dev, libxml2-dev]
+
+- pkg : lang

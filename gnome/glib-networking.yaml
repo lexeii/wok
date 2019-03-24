@@ -1,0 +1,40 @@
+name      : glib-networking
+version   : 2.58.0
+category  : x-window
+summary   : TLS support for glib
+maintainer: devel@slitaz.org
+license   : LGPL2
+home      : https://www.gtk.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/basicnet/glib-networking.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [meson, ninja, intltool, gnutls-dev, gsettings-desktop-schemas-dev,
+        glib-dev]
+
+make:
+  type: meson
+  args:
+  - -Dlibproxy_support=false
+  - -Dpkcs11_support=true
+
+post:
+  file:
+  - from: gio.sh
+    to  : /etc/profile.d/gio.sh
+    mode: 755
+
+pkgs:
+- pkg : main
+  deps: [glib, libgnutls, libp11-kit]
+  conf: /etc/profile.d/gio.sh
+
+files:
+- name: gio.sh
+  content: |
+    # Begin gio.sh
+
+    export GIO_USE_TLS=gnutls-pkcs11
+
+    # End gio.sh

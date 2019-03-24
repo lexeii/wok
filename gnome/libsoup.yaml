@@ -1,0 +1,31 @@
+name      : libsoup
+version   : 2.62.2
+category  : network
+summary   : HTTP client/server library for GNOME
+maintainer: devel@slitaz.org
+license   : LGPL2
+home      : https://wiki.gnome.org/Projects/libsoup
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/basicnet/libsoup.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [glib-dev, libxml2-dev, sqlite3-dev, intltool, gtk-doc,
+        gobject-introspection-dev, vala, glib-networking, python3]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg : main
+  copy: libsoup-2*.so*
+  deps: [glib, libsqlite3, libxml2]
+
+- pkg : -gnome
+  copy: libsoup-gnome*.so*
+  note: GNOME specific library
+  deps: [main, glib]
+
+- pkg : dev
+  deps: [main, -gnome, glib-dev, libxml2-dev]

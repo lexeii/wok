@@ -1,0 +1,22 @@
+name      : ttf-bitstream-vera
+version   : 1.10
+category  : fonts
+summary   : The ttf bitstream vera fonts
+maintainer: devel@slitaz.org
+license   : other
+home      : https://www.gnome.org/fonts/
+repology  : fonts:bitstream-vera
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.gz
+
+make: |
+  mkdir -p $fs/usr/share/fonts/truetype/ttf-bitstream-vera
+  cp -a $src/*.ttf $fs/usr/share/fonts/truetype/ttf-bitstream-vera
+  rm $fs/usr/share/fonts/truetype/ttf-bitstream-vera/VeraMoB*
+  rm $fs/usr/share/fonts/truetype/ttf-bitstream-vera/VeraMoIt*
+
+pkgs:
+- pkg : main
+  tags: font
+  post_install: chroot "$1/" /usr/bin/fc-cache

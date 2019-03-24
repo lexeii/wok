@@ -1,0 +1,42 @@
+name      : gnome-commander
+version   : 1.8.1
+category  : utilities
+summary   : Full featured, twin-panel file manager for GNOME2
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://gcmd.github.io/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [itstool, docbook-xml, glib-dev, gettext-dev, gtk2-dev, libgnome-dev,
+        libgnomeui-dev, libunique-dev, exiv2-dev, taglib-dev, chmlib-dev,
+        libgsf-dev, poppler-dev]
+
+make: |
+  ./configure \
+    --disable-static \
+    $CONFIGURE_ARGS &&
+  fix libtool &&
+  # update-mime-database is useless in DESTDIR install, and although it is
+  # disabled, install-data-hook produces non-zero return code from `make install`
+  # and cooker believe package is broken; here we remove install-data-hook call
+  sed -i '/install-data-hook$/d' data/Makefile &&
+  make &&
+  make \
+    GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
+    install
+
+post: fix symlinks # FIXME
+
+pkgs:
+- pkg : main
+  deps: [exiv2, gdk-pixbuf, glib, gnome-vfs, gtk2, libgnome, libgnomeui, libgsf,
+         libunique, pango, libpoppler, taglib]
+  desc: |
+    GNOME Commander is a free two pane file manager in the tradition of Norton
+    and Midnight Commander, it is built on the GTK-toolkit and GnomeVFS.
+    GNOME Commander aims to fulfill the demands of more advanced users who like
+    to focus on file management, their work through special applications and
+    running smart commands. This program is not aimed at users wanting the
+    weather forecast in a sidebar in their file manager...

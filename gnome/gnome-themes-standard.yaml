@@ -1,0 +1,40 @@
+name      : gnome-themes-standard
+version   : 3.22.3
+category  : customization
+summary   : Various components of the default GNOME theme
+maintainer: al.bobylev@gmail.com
+license   : LGPL2.1
+home      : https://github.com/GNOME/gnome-themes-extra
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/gnome-themes-standard.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [automake, glib-dev, intltool, gtk3-dev, librsvg-dev, gtk2-dev]
+
+prepare:
+  patches:
+  - name: icon-sizes.patch
+  rules: aclocal
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: gtk2
+
+files:
+- name: icon-sizes.patch
+  content: |
+    --- a/themes/HighContrast/icons/Makefile.am
+    +++ b/themes/HighContrast/icons/Makefile.am
+    @@ -1,7 +1,7 @@
+     themedir = $(datadir)/icons/HighContrast
+     theme_DATA = index.theme
+     
+    -render_sizes = "16x16" "22x22" "24x24" "32x32" "48x48" "256x256" "scalable"
+    +render_sizes = "16x16" "48x48" "scalable"
+     
+     THEME_DIRS=$(shell SIZES="$(render_sizes)"; for size in $$SIZES; do for dir in `find $(srcdir)/$$size/* -type d`; do printf "$$dir,"; done; done;)
+     

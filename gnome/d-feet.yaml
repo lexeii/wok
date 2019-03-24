@@ -1,0 +1,19 @@
+name      : d-feet
+version   : 0.1.15
+category  : system-tools
+summary   : Easy to use D-Bus debugger
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://wiki.gnome.org/Apps/DFeet
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [dbus-dev, python-dbus-dev, python-pygtk-dev, python-dev]
+
+make:
+  type: python2
+
+pkgs:
+- pkg : main
+  deps: [dbus, python-dbus, python-pygtk, python]

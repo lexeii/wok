@@ -1,0 +1,45 @@
+name      : rarian
+version   : 0.8.1
+category  : misc
+summary   : Documentation meta-data library, designed as a replacement for Scrollkeeper
+maintainer: devel@slitaz.org
+license   : [GPL2, LGPL2.1]
+home      : https://rarian.freedesktop.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/general/rarian.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [gfortran, libxslt-dev]
+
+prepare:
+  patches:
+  - name: user-segfault.patch # from https://www.archlinux.org/packages/extra/x86_64/rarian/
+    args: -Np0
+
+make:
+  type: gnu
+  args: --disable-static
+  destdir: keep
+
+pkgs:
+- pkg : main
+- pkg : dev
+
+files:
+- name: user-segfault.patch
+  content: |
+    --- util/rarian-sk-get-cl.cpp~	2008-07-28 19:23:28.000000000 +0200
+    +++ util/rarian-sk-get-cl.cpp	2008-07-28 19:23:28.000000000 +0200
+    @@ -160,6 +160,11 @@
+     {
+       char *filename = NULL;
+       char *user = getenv ("USERNAME");
+    +
+    +  if (user == NULL) {
+    +    user = getenv ("USER");
+    +  }
+    +
+       char *basepath = NULL;
+       int i=0;
+       int last = 0;

@@ -1,0 +1,22 @@
+name      : rest
+version   : 0.8.1
+category  : network
+summary   : Helper library for RESTful services
+maintainer: al.bobylev@gmail.com
+license   : LGPL2.1
+home      : https://wiki.gnome.org/Projects/Librest
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [glib-dev, libsoup-dev, gobject-introspection-dev]
+
+make:
+  type: gnu
+  args: --with-ca-certificates=/etc/ssl/
+
+pkgs:
+- pkg : main
+  deps: [glib, libsoup, libsoup-gnome, libxml2]
+- pkg : dev
+  deps: [main, glib-dev, libsoup-dev, libxml2-dev]

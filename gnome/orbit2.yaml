@@ -1,0 +1,25 @@
+origin    : ORBit2
+name      : orbit2
+version   : 2.14.19
+category  : development
+summary   : A CORBA 2.4-compliant Object Request Broker (ORB) - deprecated
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://projects-old.gnome.org/ORBit2/
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.bz2
+
+bdeps: [glib-dev, dbus-dev, dbus-glib-dev, libidl-dev]
+
+prepare: sed -i 's/-DG_DISABLE_DEPRECATED//' linc2/src/Makefile*
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : dev
+  copy: ['@dev', '*.idl']
+  deps: [main, glib-dev, libidl-dev]
+- pkg : main
+  deps: [glib, libidl,   dbus, dbus-glib]

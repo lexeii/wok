@@ -1,0 +1,25 @@
+name      : tracker
+version   : 2.0.3
+category  : gnome
+summary   : Desktop-neutral user information store, search tool and indexer
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://wiki.gnome.org/Projects/Tracker
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [zlib-dev, glib-dev, gobject-introspection-dev, sqlite3-dev, libsoup-dev,
+        libxml2-dev, json-glib-dev, vala, intltool, upower-dev,
+        libunistring-dev, network-manager-dev, python3]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg : main
+  deps: [glib, json-glib, libsoup, libsqlite3, libunistring, libxml2,
+         util-linux-uuid]
+- pkg : dev
+  deps: [main, glib-dev]

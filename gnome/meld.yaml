@@ -1,0 +1,21 @@
+name      : meld
+version   : 1.6.0
+category  : development
+summary   : Visual diff and merge tool for GNOME
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : http://meldmerge.org/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [python-pygtk-dev, rarian-dev, gnome-doc-utils, intltool,
+        util-linux-getopt]
+
+make: |
+  make prefix=/usr &&
+  make prefix=/usr DESTDIR=$install install
+
+pkgs:
+- pkg : main
+  deps: [python-pygtk, rarian]

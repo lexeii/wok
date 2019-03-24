@@ -1,0 +1,40 @@
+name      : ptlib
+version   : 2.10.11
+category  : network
+summary   : Portable Tools Library for UNIX and Windows
+maintainer: pascal.bellard@slitaz.org
+license   : MPL
+home      : https://www.ekiga.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/general/ptlib.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [flex, openssl-dev, cyrus-sasl-dev, zlib-dev, alsa-lib-dev, expat-dev]
+
+prepare:
+  patches:
+  - name: ptlib-2.10.11-openssl-1.1.0-1.patch # LFS
+  - name: ptlib-2.10.11-bison_fixes-2.patch   # LFS
+  rules: |
+    sed -i "s/sbin\.Right(1) == '\\\\0')/strlen(sbin\.Right(1)) == 0)/" \
+      src/ptclib/podbc.cxx
+    sed -i '/\/ioctl.h/a#include <sys/uio.h>' src/ptlib/unix/channel.cxx
+
+make:
+  type: gnu
+  args: --disable-odbc
+  destdir: keep
+
+post: chmod 755 $install/usr/lib/libpt.so.$VERSION
+
+pkgs:
+- pkg : main
+  deps: [alsa-lib, expat, libsasl, openssl]
+- pkg : dev
+
+files:
+- name: ptlib-2.10.11-openssl-1.1.0-1.patch
+  link: ptlib-2.10.11-openssl-1.1.0-1.patch
+- name: ptlib-2.10.11-bison_fixes-2.patch
+  link: ptlib-2.10.11-bison_fixes-2.patch

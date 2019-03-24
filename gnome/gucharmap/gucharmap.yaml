@@ -1,0 +1,42 @@
+name      : gucharmap
+version   : 3.0.1
+category  : utilities
+summary   : GNOME Character Map, GTK+2
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://wiki.gnome.org/action/show/Apps/Gucharmap
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [itstool, libxml2-tools, glib-dev, gtk2-dev, intltool]
+
+make:
+  type: gnu
+  args:
+  - --disable-maintainer-mode
+  - --disable-gconf
+  - --disable-schemas-install
+  - --disable-scrollkeeper
+  - --with-gtk=2.0
+
+pkgs:
+- pkg : main
+  deps: [gtk2, libxdamage]
+  desc: |
+    The Character Map application allows you to insert special characters into a
+    document or a text field. Character Map provides accented characters,
+    mathematical symbols, special symbols, and punctuation marks. Use Character
+    Map to access characters that are not available on your keyboard.
+
+    Character Map displays all the characters are available in all of the
+    language scripts on your system, using the Unicode character set. Unicode is
+    a character set standard with the goal to include all of the characters that
+    are used in all of the written languages in the world.
+
+- pkg : dev
+  deps: main
+
+- pkg : lang
+  copy: locale/
+  deps: main

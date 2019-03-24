@@ -1,0 +1,29 @@
+origin    : zenity
+name      : zenity+webkit2
+version   : 3.28.1
+category  : x-window
+summary   : Display GTK+3 dialogs (with web engine WebKit2GTK)
+maintainer: al.bobylev@gmail.com
+license   : LGPL2
+home      : https://wiki.gnome.org/Projects/Zenity
+repology  : zenity
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.xz
+
+bdeps: [gtk3-dev, glib-dev, libnotify-dev, webkit2gtk-dev, gettext-dev, itstool]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : -gnome
+  copy: help/
+  cat : gnome
+  note: GNOME integration
+
+- pkg : main
+  deps: [atk, libcairo, gdk-pixbuf, glib, gtk3, libnotify, libsoup, pango,
+         webkit2gtk, libx11]
+  provide: webkit2gtk:zenity
+  tags: dialogs

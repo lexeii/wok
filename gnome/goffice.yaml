@@ -1,0 +1,28 @@
+name      : goffice
+version   : 0.10.32
+category  : libs
+summary   : Document-centric objects and utilities
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://developer.gnome.org/goffice/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [cairo-dev, gtk3-dev, libgsf-dev, librsvg-dev, libxslt-dev, gtk-doc,
+        intltool]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [atk, libcairo, gdk-pixbuf, glib, gtk3, libgsf, librsvg, libxml2,
+         libxslt, pango]
+  desc: |
+    GOffice is a library of document-centric objects and utilities building on
+    top of GLib and Gtk+ and used by software such as Gnumeric.
+
+- pkg : dev
+  deps: [main, cairo-dev, glib-dev, gtk3-dev, libgsf-dev, librsvg-dev,
+         libxml2-dev, libxslt-dev, pango-dev]

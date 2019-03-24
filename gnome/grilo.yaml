@@ -1,0 +1,23 @@
+name      : grilo
+version   : 0.3.6
+category  : gnome
+summary   : Framework that provides access to various sources of multimedia content
+maintainer: al.bobylev@gmail.com
+license   : LGPL2.1
+home      : https://wiki.gnome.org/Projects/Grilo
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [glib-dev, libxml2-dev, gobject-introspection-dev, vala, intltool,
+        gtk3-dev, liboauth-dev, libsoup-dev, totem-pl-parser-dev]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg : main
+  deps: [glib, gtk3, liboauth, libsoup, totem-pl-parser]
+- pkg : dev
+  deps: [main, glib-dev, libxml2-dev]

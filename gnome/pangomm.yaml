@@ -1,0 +1,25 @@
+name      : pangomm
+version   : 2.42.0
+category  : x-window
+summary   : Pango binding for GTKmm
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://developer.gnome.org/pangomm/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/pangomm.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+  sha1: 6d85e5600389c7ee04cc08b6a826832cd360e944
+
+bdeps: [glibmm-dev, cairomm-dev, pango-dev]
+
+prepare: sed -i "/^libdocdir =/ s|\$(book_name)|pangomm-$VERSION|" docs/Makefile.in
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [cairomm, glib, glibmm, libsigc++, pango]
+- pkg : dev
+  deps: [main, cairomm-dev, glibmm-dev, pango-dev]

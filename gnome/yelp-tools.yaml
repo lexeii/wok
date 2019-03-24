@@ -1,0 +1,24 @@
+name      : yelp-tools
+version   : 3.28.0
+category  : utilities
+license   : GPL2
+summary   : Tools to create documentation
+maintainer: yuripourre@gmail.com
+home      : https://wiki.gnome.org/Apps/Yelp/Tools
+target    : noarch
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [yelp-xsl-dev, libxml2-tools]
+
+make:
+  type: gnu
+
+post:
+  doc: [README, NEWS]
+
+pkgs:
+- pkg : main
+  deps: libxslt
+- pkg : dev

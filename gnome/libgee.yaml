@@ -1,0 +1,21 @@
+name      : libgee
+version   : 0.20.1
+category  : x-window
+summary   : GObject collection library
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://wiki.gnome.org/Projects/Libgee
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [glib-dev, gobject-introspection-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: glib
+- pkg : dev
+  deps: [main, glib-dev]

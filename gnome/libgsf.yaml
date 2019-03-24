@@ -1,0 +1,26 @@
+name      : libgsf
+version   : 1.14.42
+category  : libs
+summary   : GNOME Structured File Library
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://developer.gnome.org/gsf/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/general/libgsf.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [intltool, gtk-doc, glib-dev, libxml2-dev, zlib-dev, bzip2-dev,
+        gdk-pixbuf-dev, gobject-introspection-dev]
+
+make:
+  type: gnu
+  args:
+  - --disable-static
+  - --enable-introspection
+
+pkgs:
+- pkg : main
+  deps: [libbzip2, gdk-pixbuf, glib, libxml2, zlib]
+- pkg : dev
+  deps: [main, glib-dev, libxml2-dev]

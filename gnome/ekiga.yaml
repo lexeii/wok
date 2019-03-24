@@ -1,0 +1,31 @@
+name      : ekiga
+version   : 4.0.1
+category  : network
+summary   : SIP and H.323 compatible VoIP telephony and video conferencing
+maintainer: pascal.bellard@slitaz.org
+license   : GPL2
+home      : https://www.ekiga.org/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [intltool, gtk2-dev, gnome-icon-theme, boost-dev, boost-signals,
+        gconf-dev, libnotify-dev, libxv-dev, dbus-dev, dbus-glib-dev, ptlib-dev,
+        opal-dev]
+
+#cookopts: skip-log-errors
+
+make:
+  type: gnu
+  args:
+  - --disable-eds
+  - --disable-ldap
+  - --disable-gdu
+  - --disable-scrollkeeper
+
+pkgs:
+- pkg : main
+  copy: ['@std', '@ico']
+  deps: [atk, boost-signals, dbus-glib, gconf, gdk-pixbuf, glib, gtk2,
+         libnotify, libxml2, opal, pango, ptlib, libx11, libxext, libxv]
+  tags: telephony

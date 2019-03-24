@@ -1,0 +1,24 @@
+name      : yelp-xsl
+version   : 3.28.0
+category  : utilities
+summary   : XSL stylesheets that are used by the Yelp
+maintainer: yuripourre@gmail.com
+license   : [GPL2, LGPL2.1, MIT]
+homw      : https://wiki.gnome.org/Apps/Yelp
+target    : noarch
+
+src:
+- url: gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [libxslt-dev, itstool, intltool]
+
+make:
+  type: gnu
+
+post:
+  doc: [README, NEWS]
+
+pkgs:
+- pkg : main
+  deps: [libxslt, itstool, intltool]
+- pkg : dev

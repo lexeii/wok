@@ -1,0 +1,29 @@
+name      : metacity
+version   : 2.30.3
+category  : x-window
+summary   : Window manager
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://blogs.gnome.org/metacity/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [gsettings-desktop-schemas, glib-dev, gtk2-dev, libxcomposite-dev,
+        libxdamage-dev, zenity-gtk2, libxinerama-dev, libxrandr-dev,
+        libxcursor-dev, libcanberra-dev, libltdl, libvorbis-dev, libogg-dev,
+        libtool, gnome-doc-utils, gconf-dev, util-linux-uuid-dev, intltool]
+
+make:
+  type: gnu
+  args:
+  - --disable-verbose-mode
+  - --disable-sm
+  - --disable-scrollkeeper
+  destdir: keep
+
+pkgs:
+- pkg : main
+  deps: [gsettings-desktop-schemas, glib, gtk2, libxcomposite, libxdamage,
+         zenity-gtk2, libxinerama, libxrandr, libxcursor, libcanberra, libltdl,
+         libvorbis, libogg, gconf]

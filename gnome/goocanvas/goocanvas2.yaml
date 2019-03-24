@@ -1,0 +1,23 @@
+origin    : goocanvas
+name      : goocanvas2
+version   : 2.0.4
+category  : x-window
+summary   : Cairo canvas widget for GTK+3
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://wiki.gnome.org/Projects/GooCanvas
+repology  : goocanvas
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.xz
+
+bdeps: [gtk3-dev, gettext-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [atk, libcairo, gdk-pixbuf, glib, gtk3, pango]
+- pkg : dev
+  deps: [main, cairo-dev, gtk3-dev]

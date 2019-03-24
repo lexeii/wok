@@ -1,0 +1,258 @@
+name      : gvfs
+version   : 1.36.2
+category  : system-tools
+summary   : Userspace virtual filesystem
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://wiki.gnome.org/Projects/gvfs
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/gnome/gvfs.html
+
+# gvfs-1.38.1 require polkit >= 0.114 while
+#  - original polkit gets fatter and fatter using mozjs
+#  - polkit-no-script is stuck on 0.113
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+  sha1: fb5fe05f0661da8c88f5fa41014bcd526ad39993
+
+bdeps: [meson, ninja, shared-mime-info, libxslt, glib-dev, gtk-doc, dbus-dev,
+        gcr-dev, gettext-dev, polkit-dev, libcap-dev, libgphoto2-dev,
+        libarchive-dev, libsoup-dev, libcdio-paranoia-dev, libmtp-dev,
+        fuse2-dev, udisks2-dev, gtk3-dev, libbluray-dev, libgudev-dev,
+        libsecret-dev, libxml2-dev, openssh, samba-dev, dbus-glib-dev,
+        libnfs-dev, libgdata-dev, gnome-online-accounts-dev]
+
+cookopts: skip-log-errors
+
+prepare:
+  patches:
+  - name: gvfs-allow-dropbear-ssh.patch  # SliTaz patch
+  - name: gvfs-archive-integration.patch # http://bugzilla.gnome.org/show_bug.cgi?id=567235
+  rules: sed -i.orig 's|dependendencies|dependencies|' meson.build # typo
+
+make:
+  type: meson
+  args:
+  - -Dsystemduserunitdir=no
+  - -Dtmpfilesdir=no
+  - -Dadmin=true
+  - -Dafc=false
+  - -Dafp=true
+  - -Darchive=true
+  - -Dcdda=true
+  - -Ddnssd=false
+  - -Dgdu=false
+  - -Dgoa=true
+  - -Dgoogle=true
+  - -Dgphoto2=true
+  - -Dhttp=true
+  - -Dmtp=true
+  - -Dnfs=true
+  - -Dsmb=true
+  - -Dudisks2=true
+  - -Dbluray=true
+  - -Dfuse=true
+  - -Dgcr=true
+  - -Dgcrypt=true
+  - -Dgudev=true
+  - -Dkeyring=true
+  - -Dlogind=false
+  - -Dlibusb=true
+  - -Ddeprecated_programs=true
+  - -Dman=true
+  jobs: 1
+
+pkgs:
+- pkg : -admin
+  copy: [gvfsd-admin, admin.mount]
+  note: admin backend
+  deps: [main, glib, polkit]
+
+- pkg : -afp
+  copy: [gvfsd-afp, afp.mount, gvfsd-afp-browse, afp-browse.mount]
+  note: Apple Filing Protocol support - afp:///
+  deps: [main, glib, libgcrypt]
+
+- pkg : -archive
+  copy: [gvfsd-archive, archive.mount]
+  note: archive support - archive:///
+  deps: [main, glib, libarchive]
+
+- pkg : -cdda
+  copy: [gvfsd-cdda, cdda.mount]
+  note: CDDA support
+  deps: [main, glib, libcdio, libcdio-paranoia, libgudev]
+
+- pkg : -fuse
+  copy: gvfsd-fuse
+  note: FUSE support
+  deps: [main, fuse2, glib]
+
+- pkg : -goa
+  copy: [gvfs-goa-volume-monitor, '*.GoaVolumeMonitor.service', goa.monitor]
+  note: GOA support
+  deps: [glib, gnome-online-accounts,   main]
+
+- pkg : -google
+  copy: [gvfsd-google, google.mount]
+  note: Google support
+  deps: [main, glib, gnome-online-accounts, libgdata]
+
+- pkg : -gphoto2
+  copy: [gvfsd-gphoto2, gphoto2.mount, gvfs-gphoto2-volume-monitor,
+         '*.GPhoto2VolumeMonitor.service', gphoto2.monitor]
+  note: Gphoto2 support
+  deps: [main, glib, libgphoto2, libgudev]
+
+- pkg : -gtk
+  copy: [gvfsd-recent, recent.mount]
+  note: recent files support (GTK+3) - recent:///
+  deps: [main, glib] # + gtk3 ?
+
+- pkg : -http
+  copy: [gvfsd-dav, dav.mount, gvfsd-http, http.mount]
+  note: HTTP/WebDAV support
+  deps: [main, glib, libsoup, libxml2]
+
+- pkg : -libmtp
+  copy: [gvfsd-mtp, mtp.mount, gvfs-mtp-volume-monitor,
+         '*.MTPVolumeMonitor.service', mtp.monitor]
+  note: MTP support
+  deps: [main, glib, libgudev, libmtp, libusb]
+
+- pkg : -nfs
+  copy: [gvfsd-nfs, nfs.mount]
+  note: NFS support - nfs:///
+  deps: [main, glib, libnfs]
+
+- pkg : -smb
+  copy: [gvfsd-smb, smb.mount, gvfsd-smb-browse, smb-browse.mount,
+         gvfs-smb.convert, '*.smb.gschema.xml']
+  note: Samba support - smb:///
+  deps: [main, glib, samba]
+
+- pkg : -udisks2
+  copy: [gvfs-udisks2-volume-monitor, '*.UDisks2VolumeMonitor.service',
+         udisks2.monitor]
+  note: Udisks2 volume monitor
+  deps: [glib, libbluray, libgudev, libsecret, udisks2,   main]
+
+- pkg : main
+  deps: [gcr-base, glib, libgudev, libsecret,   dbus, eudev]
+  suggested: [-afp, -archive, -cdda, -fuse, -gphoto2, -http, -libmtp, -obexftp,
+              -smb, -udisks2]
+  post_remove: chroot "$1/" /usr/bin/glib-compile-schemas /usr/share/glib-2.0/schemas
+  desc: |
+    # Virtual filesystem implementation for GIO
+
+    GVfs is a userspace virtual filesystem designed to work with the I/O
+    abstraction of GIO (a library availible in GLib >= 2.15.1). It installs
+    several modules that are automatically used by applications using the APIs
+    of libgio. There is also FUSE support that allows applications not using
+    GIO to access the GVfs filesystems.
+
+    The GVfs model differs from e.g. GnomeVFS in that filesystems must be
+    mounted before they are used. There is a master daemon (gvfsd) that handles
+    coordinating mounts, and then each mount is (typically) in its own daemon
+    process (although mounts can share daemon process).
+
+    GVfs comes with a set of backends, including trash support, SFTP, SMB, HTTP,
+    DAV, and others.
+
+    GVfs also contains modules for GIO that implement volume monitors and the
+    GNOME URI scheme handler configuration.
+
+    There is a set of command line programs starting with "gvfs-" that lets you
+    run commands (like `cat`, `ls`, `stat`, etc) on files in the GVfs mounts.
+
+    command | description
+    --------|------------
+    `gvfs-cat` | concatenates the given files and prints them to the standard output
+    `gvfs-copy` | copies a file from one URI location to another
+    `gvfs-info` | shows information about the given locations
+    `gvfs-less` | executes less using the VFS as the input preprocesor, so less can access any resource accessible by any of the Gvfs backends
+    `gvfs-ls` | lists information about the given locations
+    `gvfs-mime` | is used to query information about applications that are registered to handle a mime-type, or set the default handler for a mime-type
+    `gvfs-mkdir` | creates a directory specified by an URI
+    `gvfs-monitor-dir` | prints information about file creation, deletion, file content and attribute changes and mount and unmount operations inside the specified directories
+    `gvfs-monitor-file` | prints information about creation, deletion, content and attribute changes and mount and unmount operations affecting the monitored files
+    `gvfs-mount` | provides commandline access to various aspects of GIOs mounting functionality
+    `gvfs-move` | moves a file from one URI location to another
+    `gvfs-open` | opens files with the default application that is registered to handle files of that type
+    `gvfs-rename` | changes the name of a file or directory
+    `gvfs-rm` | removes a file
+    `gvfs-save` | reads from the standard input and saves the data to the given location
+    `gvfs-set-attribute` | allows to set a file attribute on a file
+    `gvfs-trash` | sends files or directories to the "Trashcan"
+    `gvfs-tree` | lists the contents of the given directories recursively, in a tree-like format
+
+- pkg : dev
+
+files:
+- name: gvfs-allow-dropbear-ssh.patch
+  content: |
+    --- a/daemon/gvfsbackendsftp.c
+    +++ b/daemon/gvfsbackendsftp.c
+    @@ -253,7 +253,8 @@
+           if (ssh_stderr == NULL)
+      res = SFTP_VENDOR_INVALID;
+           else if ((strstr (ssh_stderr, "OpenSSH") != NULL) ||
+    -        (strstr (ssh_stderr, "Sun_SSH") != NULL))
+    +        (strstr (ssh_stderr, "Sun_SSH") != NULL) ||
+    +        (strstr (ssh_stderr, "Dropbear") != NULL))
+      res = SFTP_VENDOR_OPENSSH;
+           else if (strstr (ssh_stderr, "SSH Secure Shell") != NULL)
+      res = SFTP_VENDOR_SSH;
+
+- name: gvfs-archive-integration.patch
+  content: |
+    diff -up gvfs-1.29.90/Makefile.am.archive-integration gvfs-1.29.90/Makefile.am
+    --- gvfs-1.29.90/Makefile.am.archive-integration  2016-08-11 14:01:26.000000000 +0200
+    +++ gvfs-1.29.90/Makefile.am  2016-08-13 12:19:21.313402711 +0200
+    @@ -1,5 +1,20 @@
+     NULL =
+     
+    +desktop_in_files = mount-archive.desktop.in
+    +
+    +mount-archive.desktop.in: mount-archive.desktop.in.in
+    + sed -e "s|\@libexecdir\@|$(libexecdir)|" $< > $@
+    +
+    +desktopdir       = $(datadir)/applications
+    +if HAVE_ARCHIVE
+    +desktop_DATA     = $(desktop_in_files:.desktop.in=.desktop)
+    +
+    +$(desktop_DATA): %.desktop: %.desktop.in
+    + $(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
+    +else
+    +desktop_DATA     =
+    +endif
+    +
+     SUBDIRS = \
+      common \
+      metadata \
+    @@ -24,6 +39,8 @@ EXTRA_DIST = \
+      gvfs.doap   \
+      README.commits    \
+      MAINTAINERS   \
+    + mount-archive.desktop.in.in \
+    + $(desktop_in_files) \
+      m4      \
+      gettext/its/polkit.loc  \
+      gettext/its/polkit.its  \
+    diff -up gvfs-1.29.90/mount-archive.desktop.in.in.archive-integration gvfs-1.29.90/mount-archive.desktop.in.in
+    --- gvfs-1.29.90/mount-archive.desktop.in.in.archive-integration  2016-08-13 12:19:21.313402711 +0200
+    +++ gvfs-1.29.90/mount-archive.desktop.in.in  2016-08-13 12:19:21.313402711 +0200
+    @@ -0,0 +1,13 @@
+    +[Desktop Entry]
+    +Name=Archive Mounter
+    +Exec=@libexecdir@/gvfsd-archive file=%u
+    +X-Gnome-Vfs-System=gio
+    +MimeType=application/x-cd-image;application/x-bzip-compressed-tar;application/x-compressed-tar;application/x-tar;application/x-cpio;application/x-zip;application/zip;application/x-lzma-compressed-tar;application/x-xz-compressed-tar;
+    +Terminal=false
+    +StartupNotify=false
+    +Type=Application
+    +NoDisplay=true
+    +X-GNOME-Bugzilla-Bugzilla=GNOME
+    +X-GNOME-Bugzilla-Product=gvfs
+    +X-GNOME-Bugzilla-Component=archive-backend
+    +X-GNOME-Bugzilla-Version=@VERSION@

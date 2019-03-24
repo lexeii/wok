@@ -1,0 +1,26 @@
+name      : libglade
+version   : 2.6.4
+category  : x-window
+summary   : The Glade libs
+maintainer: devel@slitaz.org
+license   : LGPL2
+home      : https://developer.gnome.org/libglade/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: gtk2-dev
+
+prepare: |
+  sed -i '/DG_DISABLE_DEPRECATED/d' glade/Makefile.in || return 1
+  mkdir po; touch po/POTFILES.in
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg : main
+  deps: [atk, gdk-pixbuf, glib, gtk2, libxml2, pango]
+- pkg : dev
+  deps: [main, gtk2-dev, libxml2-dev]

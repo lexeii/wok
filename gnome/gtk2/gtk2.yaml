@@ -1,0 +1,93 @@
+origin    : gtk+
+name      : gtk2
+version   : 2.24.32
+category  : x-window
+summary   : The GIMP Toolkit
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.gtk.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/gtk2.html
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.xz
+  sha1: c885ade62b06854590822c8eb906daf7dd15d90a
+
+cookopts: force-arch !menus # different .pc
+
+bdeps: [glib-dev, atk-dev, pango-dev, cairo-dev, gdk-pixbuf-dev, cups-dev,
+        gobject-introspection-dev, gtk-doc, gettext-dev, libxinerama-dev,
+        shared-mime-info-dev]
+
+#prepare:
+#  patches:
+#  - name: undo_link_icons.patch
+
+make:
+  type: gnu
+  args: --enable-debug=no
+
+post:
+  rules: |
+    mkdir -p $install/usr/lib/gdk-pixbuf-2.0/2.10.0/
+    touch    $install/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
+    ln -s ../../usr/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache \
+      $install/etc/gtk-2.0/gdk-pixbuf.loaders
+  desktop: gtk2-demo.desktop
+
+pkgs:
+- pkg : -demo
+  copy: [gtk-demo, demo/, '*.desktop']
+  cat : development
+  note: example code and demo
+  deps: [main, gdk-pixbuf, glib, libcairo, pango]
+
+- pkg : main
+  deps: [atk, fontconfig, gdk-pixbuf, glib, libcairo, libcups, libx11, libxext,
+         libxinerama, libxrender, pango]
+  conf: /etc/gtk-2.0/im-multipress.conf
+  post_install: chroot "$1/" /usr/bin/gtk-query-immodules-2.0 --update-cache
+
+- pkg : dev
+  deps: [main, atk-dev, cairo-dev, gdk-pixbuf-dev, glib-dev, pango-dev]
+
+files:
+- name: undo_link_icons.patch
+  content: |
+    --- a/gtk/Makefile.am
+    +++ b/gtk/Makefile.am
+    @@ -1409,34 +1409,7 @@
+        done;               \
+        chmod -R u+w stock-icons;         \
+             fi &&                \
+    - for i in 16 24; do            \
+    -    (cd stock-icons/$$i            \
+    -    && $(RM) document-save.png           \
+    -    && $(LN_S) media-floppy.png document-save.png    \
+    -    && $(RM) folder-remote.png           \
+    -    && $(LN_S) folder.png folder-remote.png      \
+    -    && $(RM) go-first-rtl.png          \
+    -    && $(LN_S) go-last-ltr.png go-first-rtl.png      \
+    -    && $(RM) go-last-rtl.png           \
+    -    && $(LN_S) go-first-ltr.png go-last-rtl.png      \
+    -    && $(RM) go-next-rtl.png           \
+    -    && $(LN_S) go-previous-ltr.png go-next-rtl.png     \
+    -    && $(RM) go-previous-rtl.png         \
+    -    && $(LN_S) go-next-ltr.png go-previous-rtl.png     \
+    -    && $(RM) media-seek-backward-rtl.png       \
+    -    && $(LN_S) media-seek-forward-ltr.png media-seek-backward-rtl.png \
+    -    && $(RM) media-seek-forward-rtl.png        \
+    -    && $(LN_S) media-seek-backward-ltr.png media-seek-forward-rtl.png \
+    -    && $(RM) media-skip-backward-rtl.png       \
+    -    && $(LN_S) media-skip-forward-ltr.png media-skip-backward-rtl.png \
+    -    && $(RM) media-skip-forward-rtl.png        \
+    -    && $(LN_S) media-skip-backward-ltr.png media-skip-forward-rtl.png \
+    -    && $(RM) user-desktop.png          \
+    -    && $(LN_S) folder.png user-desktop.png       \
+    -    && $(RM) user-home.png           \
+    -    && $(LN_S) folder.png user-home.png        \
+    - ) done                \
+    - && touch stamp-icons
+    + touch stamp-icons
+     
+     if CROSS_COMPILING
+     gtk_update_icon_cache_program = $(GTK_UPDATE_ICON_CACHE)

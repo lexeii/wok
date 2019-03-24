@@ -1,0 +1,21 @@
+name      : goocanvas
+version   : 1.0.0
+category  : x-window
+summary   : Cairo canvas widget for GTK+2
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://wiki.gnome.org/Projects/GooCanvas
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [gtk2-dev, gettext-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [atk, libcairo, gdk-pixbuf, glib, gtk2, pango]
+- pkg : dev
+  deps: [main, cairo-dev, gtk2-dev]

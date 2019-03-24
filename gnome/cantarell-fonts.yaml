@@ -1,0 +1,38 @@
+name      : cantarell-fonts
+version   : 0.111
+category  : fonts
+summary   : Sans serif font family designed for on-screen readability
+maintainer: al.bobylev@gmail.com
+license   : SIL_OFL
+home      : https://wiki.gnome.org/Projects/CantarellFonts
+target    : noarch
+repology  : fonts:cantarell
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [meson, ninja, gettext-dev, itstool, appstream-glib-dev]
+
+make:
+  type: meson
+
+post:
+  docs: [COPYING, NEWS, README.md]
+
+pkgs:
+- pkg : main
+  deps: fontconfig
+  tags: font
+  desc: |
+    The Cantarell font family is designed as a contemporary Humanist sans serif
+    and is particularly designed for on-screen reading on mobile devices at
+    small sizes, such as phones and tablets.
+
+    This is the open font officially chosen by default for the GNOME 3 desktop
+    and for Fedora branding materials.
+
+    Regular and bold weights are provided for now. Italics are planned.
+
+    Each font file currently contains 391 glyphs, and fully support the
+    following writing systems: Basic Latin, Western European, Catalan, Baltic,
+    Turkish, Central European, Dutch and Afrikaans.

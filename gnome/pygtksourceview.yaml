@@ -1,0 +1,26 @@
+name      : pygtksourceview
+version   : 2.10.1
+category  : misc
+summary   : Python bindings for GtkSourceView
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://wiki.gnome.org/Projects/GtkSourceView
+icon      : python
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [python-dev, python-pygtk-dev, gtksourceview-dev, python-pygobject2-dev,
+        libxml2-dev]
+
+make:
+  type: gnu
+  env:
+    CFLAGS: $CFLAGS $(pkg-config --cflags pygtk-2.0 gtksourceview-2.0)
+  args: --disable-docs
+
+pkgs:
+- pkg : main
+  deps: [gdk-pixbuf, glib, gtk2, gtksourceview,   python, python-pygtk,
+         python-pygobject2]
+- pkg : dev

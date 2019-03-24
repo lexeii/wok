@@ -1,0 +1,21 @@
+name      : liboobs
+version   : 2.32.0
+category  : system-tools
+summary   : Object Oriented Backends System
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://developer.gnome.org/liboobs/stable/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.gz
+
+bdeps: [dbus-glib-dev, glib-dev, system-tools-backends-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [dbus, dbus-glib, glib]
+- pkg : dev
+  deps: [main, dbus-dev, glib-dev]

@@ -1,0 +1,46 @@
+origin    : notification-daemon
+name      : notification-daemon-gtk2
+version   : 0.5.0 # latest version with gtk2 is 0.5.0 (2010-06-28)
+category  : x-window
+summary   : Notification daemon for libnotify/notify-send under GTK2
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : http://www.galago-project.org/news/index.php
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.bz2
+
+bdeps: [intltool, gtk2-dev, dbus-dev, dbus-glib-dev, libcanberra-dev, gconf-dev,
+        libwnck2-dev, libnotify-dev]
+
+prepare:
+  patches:
+  - name: nd050.patch
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -lgmodule-2.0
+
+pkgs:
+- pkg : main
+  copy: ['@std', '@ico'] # only 16 and 48 icons
+  deps: [gconf, atk, libcairo, dbus, dbus-glib, gdk-pixbuf, glib, gtk2,
+         libcanberra-gtk2, libnotify, libwnck2, libx11]
+- pkg : dev
+
+files:
+- name: nd050.patch
+  content: |
+    --- a/src/capplet/notification-properties.c
+    +++ b/src/capplet/notification-properties.c
+    @@ -402,8 +402,7 @@
+     
+             dialog->preview = notify_notification_new (_("Notification Test"),
+                                                        _("Just a test"),
+    -                                                   "gnome-util",
+    -                                                   NULL);
+    +                                                   "gnome-util");
+     
+             if (!notify_notification_show (dialog->preview, &error)) {
+                     char *message;

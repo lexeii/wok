@@ -1,0 +1,24 @@
+name      : libmanette
+version   : 0.2.1
+categoty  : libs
+summary   : Simple GObject game controller library
+maintainer: al.bobylev@gmail.com
+license   : LGPL2.1
+home      : https://gitlab.gnome.org/aplazas/libmanette
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+cookopts: force-arch # different .gir
+
+bdeps: [meson, ninja, glib-dev, libgudev-dev, libevdev-dev,
+        gobject-introspection-dev, vala, libxml2-tools]
+
+make:
+  type: meson
+
+pkgs:
+- pkg : main
+  deps: [glib, libevdev, libgudev]
+- pkg : dev
+  deps: [main, glib-dev]

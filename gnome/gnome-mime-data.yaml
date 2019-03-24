@@ -1,0 +1,23 @@
+name      : gnome-mime-data
+version   : 2.18.0
+category  : x-window
+summary   : The GNOME MIME Data file types
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.gnome.org/
+target    : noarch
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [perl-xml-parser, gettext-dev]
+
+make:
+  type: gnu
+  args: --sysconfdir=/etc/gnome
+  destdir: keep
+
+pkgs:
+- pkg : main
+  deps: perl-xml-parser
+- pkg : dev

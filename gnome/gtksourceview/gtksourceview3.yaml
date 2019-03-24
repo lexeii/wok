@@ -1,0 +1,26 @@
+origin    : gtksourceview
+name      : gtksourceview3
+version   : 3.24.3
+category  : x-window
+summary   : Extends GTK+3 framework for multiline text editing
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://wiki.gnome.org/Projects/GtkSourceView
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/gtksourceview.html
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.xz
+
+cookopts: force-arch # different .vapi
+
+bdeps: [glib-dev, itstool, gtk3-dev, libxml2-dev, gettext-dev, gtk-doc, vala,
+        gobject-introspection-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [atk, libcairo, gdk-pixbuf, glib, gtk3, libxml2, pango]
+- pkg : dev
+  deps: [main, glib-dev, gtk3-dev, libxml2-dev]

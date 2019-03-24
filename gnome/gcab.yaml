@@ -1,0 +1,27 @@
+name      : gcab
+version   : 1.1
+category  : utilities
+summary   : GObject library to create cabinet files
+maintainer: al.bobylev@gmail.com
+license   : LGPL2.1
+home      : https://wiki.gnome.org/msitools
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [meson, ninja, git, glib-dev, gobject-introspection-dev, vala,
+        gettext-dev, intltool]
+
+prepare: fix utf-8 # FIXME
+
+make:
+  type: meson
+  env:
+    LC_ALL: en_US.UTF-8
+  args: -D docs=false
+
+pkgs:
+- pkg : main
+  deps: [glib, zlib]
+- pkg : dev
+  deps: [main, glib-dev]

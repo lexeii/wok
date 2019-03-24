@@ -1,0 +1,86 @@
+name      : libgnome
+version   : 2.32.1
+category  : x-window
+summary   : GNOME Library
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.gnome.org/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [automake, libtool, gettext-dev, gconf-dev, intltool, gnome-vfs-dev,
+        libbonobo-dev, libcanberra-dev, popt-dev, libgcrypt-dev]
+
+prepare:
+  patches:
+  # from https://aur.archlinux.org/packages/libgnome/
+  - name: 05_glib-2.54-ftbfs.patch
+  - name: 0001-Don-t-use-G_DISABLE_DEPRECATED.patch
+  rules: autoreconf -fi
+
+make:
+  type: gnu
+  args:
+  - --sysconfdir=/etc/gnome
+  - --localstatedir=/var/lib
+
+post: |
+  mkdir -p $install/usr/share/images
+  ln -s ../pixmaps/backgrounds/gnome/background-default.jpg \
+    $install/usr/share/images/gnome-default.jpg
+
+pkgs:
+- pkg : main
+  deps: [gconf, glib, gnome-vfs, libbonobo, libcanberra, orbit2, popt]
+- pkg : dev
+  deps: [main, gconf-dev, glib-dev, gnome-vfs-dev, libbonobo-dev,
+         libcanberra-dev, orbit2-dev, popt-dev]
+
+files:
+- name: 05_glib-2.54-ftbfs.patch
+  content: |
+    Description: Fix FTBFS with glib 2.54
+     glib-mkenums now expects input files to be UTF-8,
+     fix the encoding of libgnome/gnome-config.h
+    Author: Adrian Bunk <bunk@debian.org>
+
+    --- libgnome-2.32.1.orig/libgnome/gnome-config.h
+    +++ libgnome-2.32.1/libgnome/gnome-config.h
+    @@ -270,7 +270,7 @@ void gnome_config_clean_key_ (const char
+     #define gnome_config_private_clean_key(path) \
+      (gnome_config_clean_key_((path),TRUE))
+     
+    -/* returns the true filename of the config file */
+    +/* returns the true filename of the config file */
+     #define gnome_config_get_real_path(path) \
+      (g_build_filename (gnome_user_dir_get(),(path),NULL))
+     #define gnome_config_private_get_real_path(path) \
+
+- name: 0001-Don-t-use-G_DISABLE_DEPRECATED.patch
+  content: |
+    From 64a0443e26a50745c8fdc02eddf60985a977275f Mon Sep 17 00:00:00 2001
+    From: Colin Walters <walters@verbum.org>
+    Date: Thu, 2 May 2013 17:58:00 -0400
+    Subject: [PATCH] Don't use G_DISABLE_DEPRECATED
+
+    Because really, no one cares about this code, we're not going to
+    stay on the GLib treadmill.
+    ---
+     libgnome/Makefile.am |    1 -
+     1 files changed, 0 insertions(+), 1 deletions(-)
+
+    diff --git a/libgnome/Makefile.am b/libgnome/Makefile.am
+    index 9c8cd3e..aa01f6c 100644
+    --- a/libgnome/Makefile.am
+    +++ b/libgnome/Makefile.am
+    @@ -17,7 +17,6 @@ INCLUDES = \
+      -I$(srcdir)/..            \
+      $(WARN_CFLAGS)            \
+      $(LIBGNOME_CFLAGS)          \
+    - -DG_DISABLE_DEPRECATED          \
+      -DLIBGNOME_PREFIX=\""$(prefix)"\"     \
+      -DLIBGNOME_LIBDIR=\""$(libdir)"\"     \
+      -DLIBGNOME_DATADIR=\""$(datadir)"\"     \
+    -- 
+    1.7.1

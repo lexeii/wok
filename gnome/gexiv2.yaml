@@ -1,0 +1,21 @@
+name      : gexiv2
+version   : 0.10.8
+category  : libs
+summary   : GObject wrapper around the Exiv2 photo metadata library
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://wiki.gnome.org/Projects/gexiv2
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [glib-dev, exiv2-dev, gobject-introspection-dev, vala]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [exiv2, glib]
+- pkg : dev
+  deps: [main, exiv2-dev, glib-dev]

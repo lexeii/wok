@@ -1,0 +1,28 @@
+name      : gtk-engines
+version   : 2.20.2
+category  : customization
+summary   : Standard GTK+2 theme engines
+maintainer: psychomaniak@xakep.ru
+license   : GPL2
+home      : http://linuxfromscratch.org/blfs/view/svn/x/gtk-engines.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [file, gtk2-dev, intltool]
+
+make:
+  type: gnu
+
+post: sed -i '/xml:lang=/d' $install/usr/share/gtk-engines/*.xml
+
+pkgs:
+- pkg : gtk-clearlooks
+  copy: [libclearlooks.so, Clearlooks/, clearlooks.xml]
+  note: default gtk-engine, with ajustable colors
+  deps: gtk2
+
+- pkg : main
+  deps: [gtk2, libxdamage]
+
+- pkg : dev

@@ -1,0 +1,34 @@
+name      : gcr
+version   : 3.28.1
+category  : security
+summary   : Displaying certificates and accessing key stores
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://developer.gnome.org/gcr/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/gnome/gcr.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+  sha1: 947ca5958d20f9d648e82210f056ff5ed63d9ccc
+
+bdeps: [intltool, gtk-doc, gobject-introspection-dev, gtk3-dev, vala,
+        p11-kit-dev, libgcrypt-dev]
+
+prepare: sed -i -r 's:"(/desktop):"/org/gnome\1:' schema/*.xml
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : -base
+  copy: [libgcr-base-3.so.*, libgck-1.so.*]
+  deps: [glib, libgcrypt, libp11-kit]
+  note: base files
+
+- pkg : dev
+  copy: ['@dev', '*.so']
+  deps: [main, -base, glib-dev, gtk3-dev, p11-kit-dev]
+
+- pkg : main
+  copy: ['@std', '@rm', '*.mo', '@ico']
+  deps: [-base, gdk-pixbuf, glib, gtk3, libcairo, libgcrypt, pango]

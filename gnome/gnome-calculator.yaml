@@ -1,0 +1,22 @@
+name      : gnome-calculator
+version   : 3.30.1
+category  : utilities
+summary   : Calculator with financial, logical and scientific modes
+maintainer: yuripourre@gmail.com
+license   : GPL3
+home      : https://wiki.gnome.org/Apps/Calculator
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [meson, ninja, vala, gtk3-dev, gtksourceview3-dev, libsoup-dev,
+        gettext-dev, mpfr-dev, gmp-dev, mpc-library-dev, itstool, yelp-xsl]
+
+make:
+  type: meson
+
+post: fix symlinks # FIXME
+
+pkgs:
+- pkg : main
+  deps: [atk, glib, gtk3, gtksourceview3, libsoup, libxml2, mpc-library, mpfr]

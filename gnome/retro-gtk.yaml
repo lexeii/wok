@@ -1,0 +1,25 @@
+name      : retro-gtk
+version   : 0.14.0
+category  : gnome
+summary   : Toolkit to write GTK+3 based Libretro frontends
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://gitlab.gnome.org/GNOME/retro-gtk
+
+src:
+- url: gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [meson, ninja, libepoxy-dev, glib-dev, gtk3-dev, pulseaudio-dev,
+        gobject-introspection-dev, vala]
+
+# switch to 'type: meson'?
+make: |
+  meson-wrapper build &&
+  ninja -C build &&
+  DESTDIR=$install ninja -C build install
+
+pkgs:
+- pkg : main
+  deps: [libcairo, gdk-pixbuf, glib, gtk3, libepoxy, pulseaudio]
+- pkg : dev
+  deps: [main, glib-dev]

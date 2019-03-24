@@ -1,0 +1,30 @@
+name      : gtk-doc
+version   : 1.29
+category  : development
+summary   : Generate API documentation from comments added to C code
+maintainer: pascal.bellard@slitaz.org
+license   : GPL3
+home      : https://www.gtk.org/gtk-doc/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/general/gtk-doc.html
+target    : noarch
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+  sha1: c3dc579d84221c43ce2b0b5f523c46b13525416b
+
+bdeps: [docbook-xml, docbook-xsl, libxslt, python3, perl, itstool, gettext-dev]
+
+make:
+  type: gnu
+  # Remove arch-specific prefix from pkg-config filename by defining
+  # PKG_CONFIG variable to make this package really "noarch".
+  # Files affected:
+  #  - /usr/bin/gtkdoc-depscan
+  #  - /usr/share/gtk-doc/python/gtkdoc/config.py
+  vars: PKG_CONFIG=/usr/bin/pkg-config
+
+pkgs:
+- pkg : main
+  copy: ['@std', '@dev', gtk-doc/]
+  deps: [docbook-xsl, python3-six]
+  post_install: mkdir -p "$1/usr/share/gtk-doc/html"

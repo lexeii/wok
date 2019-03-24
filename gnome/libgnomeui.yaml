@@ -1,0 +1,53 @@
+name      : libgnomeui
+version   : 2.24.5
+category  : x-window
+summary   : GUI parts of what was previously gnome-libs
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.gnome.org/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.gz
+
+bdeps: [libgnome-dev, libgnomecanvas-dev, gnome-keyring, libgnome-keyring-dev,
+        libbonoboui-dev, util-linux-uuid-dev, libgcrypt-dev, dbus-glib-dev,
+        esound-dev, audiofile-dev, libglade-dev, intltool, libice-dev,
+        libsm-dev]
+
+prepare:
+  patches:
+  - name: 03_glib-2.54-ftbfs.patch # from https://aur.archlinux.org/packages/libgnomeui/
+
+make:
+  type: gnu
+  args: --libexecdir=/usr/lib/libgnomeui
+
+pkgs:
+- pkg : main
+  deps: [gconf, atk, gdk-pixbuf, glib, gnome-vfs, gtk2, libart_lgpl,
+         libbonoboui, libglade, libgnome, libgnome-keyring, libgnomecanvas,
+         pango, libice, libsm]
+- pkg : dev
+  deps: [main, gconf-dev, gdk-pixbuf-dev, gnome-vfs-dev, gtk2-dev,
+         libart_lgpl-dev, libbonoboui-dev, libgnome-dev, libgnome-keyring-dev,
+         libgnomecanvas-dev, libice-dev, libsm-dev]
+
+files:
+- name: 03_glib-2.54-ftbfs.patch
+  content: |
+    Description: Fix FTBFS with glib 2.54
+     glib-mkenums now expects input files to be UTF-8,
+     fix the encoding of libgnomeui/gnome-scores.h
+    Author: Adrian Bunk <bunk@debian.org>
+
+    --- libgnomeui-2.24.5.orig/libgnomeui/gnome-scores.h
+    +++ libgnomeui-2.24.5/libgnomeui/gnome-scores.h
+    @@ -27,7 +27,7 @@
+      * "High Scores" Widget 
+      *
+      * AUTHOR: 
+    - * Horacio J. Peña <horape@compendium.com.ar>
+    + * Horacio J. PeÃ±a <horape@compendium.com.ar>
+      *
+      * This is free software (under the terms of the GNU LGPL)
+      *

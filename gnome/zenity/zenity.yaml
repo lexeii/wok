@@ -1,0 +1,27 @@
+name      : zenity
+version   : 3.28.1
+category  : x-window
+summary   : Display GTK+3 dialogs
+maintainer: al.bobylev@gmail.com
+license   : LGPL2
+home      : https://wiki.gnome.org/Projects/Zenity
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [gtk3-dev, glib-dev, libnotify-dev, gettext-dev, itstool]
+
+make:
+  type: gnu
+
+post: fix symlinks # FIXME
+
+pkgs:
+- pkg : -gnome
+  copy: help/
+  cat : gnome
+  note: GNOME integration
+
+- pkg : main
+  deps: [atk, libcairo, gdk-pixbuf, glib, gtk3, libnotify, pango, libx11]
+  tags: dialogs

@@ -1,0 +1,21 @@
+name      : libxml++
+version   : 3.0.1
+category  : system-tools
+summary   : C++ wrapper for the libxml XML parser library
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : http://libxmlplusplus.sourceforge.net/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [libxml2-dev, glibmm-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [glibmm, libxml2]
+- pkg : dev
+  deps: [main, glibmm-dev, libxml2-dev]

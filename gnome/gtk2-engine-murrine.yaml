@@ -1,0 +1,29 @@
+origin    : murrine
+name      : gtk2-engine-murrine
+version   : 0.98.2
+category  : customization
+summary   : GTK2 engine to make your desktop look like a murrina
+maintainer: devel@slitaz.org
+license   : LGPL3
+#home      : http://www.cimitan.com/murrine
+home      : https://ubuntuforums.org/showthread.php?t=239378
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.xz
+
+bdeps: [gtk2-dev, libxml2-dev, intltool]
+
+make:
+  type: gnu
+  args:
+  - --disable-static
+  - --enable-animation
+
+pkgs:
+- pkg : main
+  deps: gtk2
+  tags: gtk2
+  desc: |
+    Murrine is an Italian word meaning the glass artworks done by Venicians
+    glass blowers. Murrine Engine is a Gtk2 engine that will make your desktop
+    look like a beautiful Murrina (which is the italian singular of Murrine).

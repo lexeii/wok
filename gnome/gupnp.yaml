@@ -1,0 +1,22 @@
+name      : gupnp
+version   : 1.0.3
+category  : network
+summary   : Framework for creating UPnP devices and control points
+maintainer: pascal.bellard@slitaz.org
+license   : LGPL2
+home      : https://wiki.gnome.org/Projects/GUPnP
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [util-linux-uuid-dev, glib-dev, gssdp-dev, libsoup-dev, libxml2-dev,
+        gobject-introspection-dev, gtk-doc, vala]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [glib, gssdp, libsoup, libxml2, util-linux-uuid]
+- pkg : dev
+  deps: [main, gssdp-dev, libsoup-dev, libxml2-dev, util-linux-uuid-dev]

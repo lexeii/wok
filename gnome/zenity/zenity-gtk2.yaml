@@ -1,0 +1,26 @@
+origin    : zenity
+name      : zenity-gtk2
+version   : 2.32.1 # GTK+2 was deprecated in newer versions of zenity
+category  : development
+summary   : GUI dialogs
+maintainer: allan316@gmail.com
+license   : LGPL2
+home      : https://wiki.gnome.org/Projects/Zenity
+repology  : zenity
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.bz2
+
+bdeps: [gnome-doc-utils, intltool, gtk2-dev] # + libnotify-dev -> crash on build. FIXME
+
+make:
+  type: gnu
+  args: --disable-scrollkeeper
+
+post: rm -r $fs/usr/share/gnome/ $fs/usr/share/omf/ # GNOME stuff. Just remove it
+
+pkgs:
+- pkg : main
+  deps: [atk, libcairo, fontconfig, freetype, gdk-pixbuf, glib, gtk2, pango,
+         libx11]
+  tags: [dialogs, GUI]

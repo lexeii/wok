@@ -1,0 +1,33 @@
+name      : seed
+version   : 3.8.1
+category  : system-tools
+summary   : GObject JavaScriptCore bridge
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://wiki.gnome.org/Projects/Seed
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [gettext-dev, libtool, webkitgtk-dev, intltool,
+        gobject-introspection-dev, gnome-js-common, readline-dev, dbus-dev,
+        dbus-glib-dev, mpfr-dev]
+
+make:
+  type: gnu
+  args: --with-webkit=1.0
+
+pkgs:
+- pkg : main
+  deps: [atk, libcairo, dbus, dbus-glib, fontconfig, freetype, gdk-pixbuf,
+         glib, gmp, gobject-introspection, gtk2, libffi, libsqlite3, webkitgtk,
+         libxml2, mpfr, ncurses, pango, readline]
+
+- pkg : dev
+  deps: [main, atk-dev, bzip2-dev, cairo-dev, dbus-dev, dbus-glib-dev,
+         fontconfig-dev, freetype-dev, gdk-pixbuf-dev, glib-dev, gmp-dev,
+         gobject-introspection-dev, gtk2-dev, harfbuzz-dev, icu-dev, libffi-dev,
+         libpng-dev, webkitgtk-dev, libxml2-dev, mpfr-dev, pango-dev, pcre-dev,
+         readline-dev, sqlite3-dev, util-linux-blkid-dev, util-linux-mount-dev,
+         util-linux-uuid-dev, libx11-dev, libxau-dev, libxdmcp-dev, libxext-dev,
+         libxrender-dev, libxcb-dev, pixman-dev, xz-dev, zlib-dev]

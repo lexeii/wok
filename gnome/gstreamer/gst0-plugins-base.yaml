@@ -1,0 +1,119 @@
+origin    : gst-plugins-base
+name      : gst0-plugins-base
+version   : 0.10.36
+category  : multimedia
+summary   : GStreamer-0.10 Base Plugins
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://gstreamer.freedesktop.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/7.6/multimedia/gst-plugins-base.html
+repology  : gstreamer0plugins:base
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.xz
+
+bdeps: [gstreamer0-dev, pango-dev, alsa-lib-dev, libogg-dev, libtheora-dev,
+        libtheora-enc, libvorbis-dev, eudev-dev, libxv-dev, libxvmc-dev,
+        util-linux-uuid-dev, cdparanoia-dev, orc-dev, gobject-introspection-dev,
+        xorg-dev, gettext-dev]
+
+prepare:
+  patches:
+  - name: gst-plugins-base-0.10.36-gcc_4_9_0_i686-1.patch
+  - name: fix-comments.patch
+
+make:
+  type: gnu
+  args:
+  - --enable-experimental
+  - --disable-static
+  - --disable-debug
+  - --disable-gnome_vfs
+  - --with-package-name="GStreamer-0.10 Base Plugins"
+  - --with-package-origin="http://www.slitaz.org/"
+
+pkgs:
+- pkg : main
+  deps: [alsa-lib, libcairo, cdparanoia, glib, gstreamer0, libogg,
+         libtheora-enc, libvorbis, libxml2, orc, pango, libx11, libxext, libxv,
+         zlib]
+- pkg : dev
+  deps: [main, glib-dev, gstreamer0-dev]
+
+files:
+- name: gst-plugins-base-0.10.36-gcc_4_9_0_i686-1.patch
+  content: |
+    Submitted By: Ken Moffat <ken at linuxfromscratch dot org>
+    Date: 2014-05-26
+    Initial Package Version: 0.10.36
+    Upstream Status: Not offered, this is a workaround for gcc-4.9.0.
+    Origin: Fernando, based on
+     https://github.com/HandBrake/HandBrake/blob/master/contrib/lame/P00-darwin-xmmintrin.patch
+    Description: Works around inlining failure on i686 with gcc-4.9.0.
+    Rediffed to apply without fuzz and massive offset which caused
+    configure.orig to get generated.
+
+    Do Not Apply to x86_64.
+
+    Note: there seems to still be a problem somewhere in the gst-0.10 audio
+    on i686, I can get working video, but no audio.
+
+    diff -Naur a/configure b/configure
+    --- a/configure 2012-02-20 23:33:09.000000000 +0000
+    +++ b/configure 2014-05-24 21:53:29.510695504 +0100
+    @@ -21876,18 +21876,6 @@
+     done
+     
+     
+    -for ac_header in xmmintrin.h emmintrin.h
+    -do :
+    -  as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`
+    -ac_fn_c_check_header_mongrel "$LINENO" "$ac_header" "$as_ac_Header" "$ac_includes_default"
+    -if eval test \"x\$"$as_ac_Header"\" = x"yes"; then :
+    -  cat >>confdefs.h <<_ACEOF
+    -#define `$as_echo "HAVE_$ac_header" | $as_tr_cpp` 1
+    -_ACEOF
+    -
+    -fi
+    -
+    -done
+     
+     
+     # ------ AX CREATE STDINT H -------------------------------------
+
+- name: fix-comments.patch
+  content: |
+    Fix errors like:
+    /usr/bin/glib-mkenums: gstrtspdefs.h:234: Failed to parse `  /*< protected >*/ '
+
+    --- a/gst-libs/gst/rtsp/gstrtspdefs.h
+    +++ b/gst-libs/gst/rtsp/gstrtspdefs.h
+    @@ -231,7 +231,7 @@
+      * Enumeration of rtsp header fields.
+      */
+     typedef enum {
+    -  /*< protected >*/
+    +  /* < protected > */
+       GST_RTSP_HDR_INVALID,
+     
+       /*
+    @@ -345,7 +345,7 @@
+      * Enumeration of rtsp status codes.
+      */
+     typedef enum {
+    -  /*< protected >*/
+    +  /* < protected > */
+       GST_RTSP_STS_INVALID                              = 0,
+       GST_RTSP_STS_CONTINUE                             = 100,
+       GST_RTSP_STS_OK                                   = 200,
+    --- a/gst-libs/gst/audio/multichannel.h
+    +++ b/gst-libs/gst/audio/multichannel.h
+    @@ -77,7 +77,7 @@
+        * are defined or all positions are undefined, but can't mix'n'match  */
+       GST_AUDIO_CHANNEL_POSITION_NONE,
+     
+    -  /*< private >*/
+    +  /* < private > */
+       /* don't use - counter */
+       GST_AUDIO_CHANNEL_POSITION_NUM
+     } GstAudioChannelPosition;

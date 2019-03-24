@@ -1,0 +1,19 @@
+name      : notification-daemon
+version   : 3.20.0
+category  : x-window
+summary   : Notification daemon for libnotify/notify-send
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : http://www.galago-project.org/news/index.php
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [gettext-dev, gtk3-dev, glib-dev, libx11-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [atk, libcairo, gdk-pixbuf, glib, gtk3, pango, libx11]

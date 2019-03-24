@@ -1,0 +1,59 @@
+origin    : gst-plugins-good
+name      : gst0-plugins-good
+version   : 0.10.31
+category  : multimedia
+summary   : GStreamer-0.10 Good Plugins
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://gstreamer.freedesktop.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/7.6/multimedia/gst-plugins-good.html
+repology  : gstreamer0plugins:good
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.xz
+
+bdeps: [gettext-dev, gconf-dev, gtk-doc, python, glib-dev, orc-dev,
+        gstreamer0-dev, gst0-plugins-base-dev, gtk2-dev, libgudev-dev,
+        v4l-utils-dev, libxfixes-dev, libxdamage-dev, aalib-dev, flac-dev,
+        gdk-pixbuf-dev, jack2-dev, libcaca-dev, libdv-dev, libraw1394-dev,
+        libiec61883-dev, libavc1394-dev, libshout-dev, libsoup-dev, speex-dev,
+        taglib-dev, wavpack-dev, libjpeg-turbo-dev, xorgproto, libxv-dev]
+
+prepare: |
+  sed -i "/input:/d" sys/v4l2/gstv4l2bufferpool.c
+  sed -i "/case V4L2_CID_HCENTER/d; /case V4L2_CID_VCENTER/d" \
+    sys/v4l2/v4l2_calls.c
+
+make: |
+  ./configure \
+    --with-package-name="GStreamer-0.10 Good Plugins" \
+    --with-package-origin="http://www.slitaz.org/" \
+    --enable-experimental \
+    --disable-static \
+    --disable-debug \
+    --disable-hal \
+    --disable-esd \
+    --disable-oss \
+    --disable-oss4 \
+    $CONFIGURE_ARGS &&
+  sed -i 's|/usr/local/|/usr/|' $src/sys/v4l2/Makefile &&
+  make $MAKEFLAGS &&
+  make install &&
+  make -C docs/plugins install-data
+
+pkgs:
+- pkg : -extra
+  copy: ['*deinterlace.so', '*dv.so', '*jack.so', '*rtp.so', '*rtpmanager.so',
+         '*rtsp.so', '*shout2.so', '*souphttpsrc.so', '*taglib.so',
+         '*video4linux2.so', '*wavpack.so']
+  note: extra plugins
+  deps: [glib, gst0-plugins-base, gstreamer0, jack2, libdv, libgudev, libshout,
+         libsoup, libsoup-gnome, libxml2, orc, taglib, v4l-utils, wavpack,
+         libx11, libxext, libxv]
+
+- pkg : main
+  deps: [gconf, aalib, libbzip2, libcairo, flac, gdk-pixbuf, glib,
+         gst0-plugins-base, gstreamer0, libavc1394, libcaca, libiec61883,
+         libjpeg-turbo, libpng, libraw1394, libxml2, ncurses, orc, speex,
+         libx11, libxdamage, libxext, libxfixes, zlib]
+  suggested: -extra

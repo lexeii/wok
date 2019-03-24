@@ -1,0 +1,29 @@
+name      : totem-pl-parser
+version   : 3.26.0
+category  : gnome
+summary   : Totem playlist parser
+maintainer: al.bobylev@gmail.com
+license   : LGPL2.1
+home      : https://developer.gnome.org/totem-pl-parser/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/gnome/totem-pl-parser.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [meson, ninja, glib-dev, libxml2-dev, libsoup-dev, gmime3-dev,
+        libquvi-dev, libarchive-dev, libgcrypt-dev, gobject-introspection-dev,
+        gettext-dev]
+
+# switch to 'type: meson'?
+make: |
+  meson-wrapper build --default-library shared &&
+  ninja -C build &&
+  DESTDIR=$install ninja -C build install
+
+post: chmod -R g-w $install # 664 -> 644
+
+pkgs:
+- pkg : main
+  deps: [glib, gmime3, libarchive, libgcrypt, libquvi, libxml2]
+- pkg : dev
+  deps: [main, glib-dev, gmime3-dev, libarchive-dev, libgcrypt-dev, libxml2-dev]

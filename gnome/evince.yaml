@@ -1,0 +1,92 @@
+name      : evince
+version   : 2.32.0
+category  : office
+summary   : Document viewer for GNOME
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://wiki.gnome.org/Apps/Evince
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [gnome-doc-utils, docbook-xml, libxml2-dev, gnome-icon-theme, gtk2-dev,
+        intltool, lcms-dev, util-linux-uuid-dev, poppler-dev, tiff-dev,
+        dbus-glib-dev, xorg-dev, lcms2-dev]
+
+make:
+  type: gnu
+  env:
+    LDFLAGS: $LDFLAGS -lICE
+  args:
+  - --prefix=/usr
+  - --libexecdir=/usr/lib/evince
+  - --disable-nautilus
+  - --disable-scrollkeeper
+  - --disable-comics
+  - --without-gconf
+  - --without-keyring
+  - --disable-schemas-install
+  - --disable-gtk-doc-html
+  - --disable-help --with-help-formats=none
+  jobs: 1
+  destdir: keep
+
+post:
+  desktop: evince.desktop
+
+pkgs:
+- pkg : main
+  deps: [liblcms, libpoppler, libtiff, dbus-glib, glib, util-linux-uuid]
+  tags: [viewer, pdf, tiff, ps, postscript, dvi]
+  desc: |
+    Evince is a document viewer for multiple document formats. The goal of
+    evince is to replace the multiple document viewers that exist on the GNOME
+    Desktop with a single simple application.
+
+- pkg : dev
+
+files:
+- name: evince.desktop
+  content: |
+    [Desktop Entry]
+    Type=Application
+    Name=Document Viewer
+    Name[cs]=Prohlížeč dokumentů
+    Name[da]=Dokumentfremviser
+    Name[de]=Dokumentenbetrachter
+    Name[el]=Εφαρμογή προβολής εγγράφων
+    Name[es]=Visor de documentos
+    Name[fr]=Visionneur de documents
+    Name[hu]=Dokumentummegjelenítő
+    Name[id]=Penampil Dokumen
+    Name[it]=Visualizzatore documenti
+    Name[pt]=Visualizador de Documento
+    Name[pt_BR]=Visualizador de Documentos
+    Name[ru]=Просмотр документов
+    Name[sl]=Pregledovalnik dokumentov
+    Name[sv]=Dokumentvisare
+    Name[zh_CN]=文档查看器
+    Name[zh_TW]=文件檢視器
+    Comment=View multi-page documents
+    Comment[cs]=Zobrazovat dokumenty po více stránkách
+    Comment[da]=Vis dokumenter med flere sider
+    Comment[de]=Mehrseitige Dokumente anzeigen
+    Comment[el]=Προβολή εγγράφων πολλαπλών σελίδων
+    Comment[es]=Vea documentos multipágina
+    Comment[fr]=Afficher des documents multipages
+    Comment[hu]=Többoldalas dokumentumok megjelenítése
+    Comment[id]=Melihat dokumen multihalaman
+    Comment[it]=Visualizza documenti multi-pagina
+    Comment[pt]=Visualizar documentos multi-páginas
+    Comment[pt_BR]=Visualize documentos de múltiplas páginas
+    Comment[ru]=Просмотр многостраничных документов
+    Comment[sl]=Poglejte večstranske dokumente
+    Comment[sv]=Visa dokument med flera sidor
+    Comment[zh_CN]=查看多页文档
+    Comment[zh_TW]=顯示多頁文件
+    Exec=evince %U
+    Icon=evince
+    StartupNotify=true
+    Terminal=false
+    Categories=Office;Viewer;
+    MimeType=application/pdf;application/x-bzpdf;application/x-gzpdf;image/tiff;

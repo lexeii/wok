@@ -1,0 +1,31 @@
+name      : glade3
+version   : 3.8.6
+category  : development
+summary   : A user interface designer for GTK+2
+maintainer: devel@slitaz.org
+license   : [GPL2, LGPL2]
+home      : https://glade.gnome.org/
+repology  : glade
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [intltool, gtk-doc, gtk2-dev, python-pygtk-dev, python-dev, itstool]
+
+make:
+  type: gnu
+
+post: fix symlinks # FIXME
+
+pkgs:
+- pkg : -python
+  copy: libgladepython.so
+  deps: [main, glib, python]
+  cat : python
+  note: Python bindings
+
+- pkg : main
+  deps: [libcairo, gdk-pixbuf, glib, gtk2, libxml2, pango]
+
+- pkg : dev
+  deps: [main, -python, gtk2-dev, libxml2-dev]

@@ -1,0 +1,45 @@
+name      : librsvg
+version   : 2.44.10
+category  : graphics
+summary   : Rendering SVG
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://wiki.gnome.org/Projects/LibRsvg
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/general/librsvg.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+  sha1: cd407c6d121d4f61677dd6896a4b3eb713c1011d
+
+bdeps: [glib-dev, gdk-pixbuf-dev, libxml2-dev, pango-dev, libcroco-dev, gtk-doc,
+        gobject-introspection-dev, vala, gtk3-dev, rust]
+
+make:
+  type: gnu
+  args:
+  - --enable-vala
+  - --disable-static
+
+pkgs:
+- pkg : main
+  copy: '*.so*'
+  deps: [libcairo, fontconfig, gdk-pixbuf, glib, libcroco, libxml2, pango]
+  note: library
+  post_install: |
+    [ -n "$cookmode" ] && return 0
+    action 'Updating gdk pixbuf loaders cache file...'
+    chroot "$1/" /usr/bin/gdk-pixbuf-query-loaders --update-cache
+    status
+
+- pkg : rsvg-convert
+  copy: rsvg-convert
+  deps: [main, libcairo, glib]
+  note: converter
+
+- pkg : rsvg-view
+  copy: 'rsvg-view*'
+  deps: [main, libcairo, glib, gtk3]
+  note: viewer
+
+- pkg : dev
+  deps: [main, rsvg-convert, rsvg-view, cairo-dev, gdk-pixbuf-dev, glib-dev]

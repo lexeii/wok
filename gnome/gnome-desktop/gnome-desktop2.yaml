@@ -1,0 +1,32 @@
+origin    : gnome-desktop
+name      : gnome-desktop2
+version   : 2.32.1
+category  : x-window
+summary   : GNOME2 Desktop
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.gnome.org/
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.bz2
+
+bdeps: [intltool, startup-notification-dev, libx11-dev, libxrandr-dev,
+        gdk-pixbuf-dev, gtk2-dev, glib-dev, gconf-dev, gnome-doc-utils,
+        rarian-dev]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg : -about
+  copy: [gnome-about, gnome-about.desktop, gnome-about/]
+  note: about GNOME
+  deps: [main, python-pygtk, python-pygobject2, python-pycairo]
+
+- pkg : main
+  deps: [libcairo, gconf, gdk-pixbuf, glib, gtk2, startup-notification, libx11,
+         libxrandr]
+
+- pkg : dev
+  deps: [main, gtk2-dev, startup-notification-dev]

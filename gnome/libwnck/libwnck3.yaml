@@ -1,0 +1,36 @@
+origin    : libwnck
+name      : libwnck3
+version   : 3.24.1
+category  : x-window
+summary   : Window Navigator Construction Kit (GTK+3)
+maintainer: al.bobylev@gmail.com
+license   : LGPL2
+home      : https://developer.gnome.org/libwnck/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/gnome/libwnck.html
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.xz
+
+bdeps: [gettext-dev, startup-notification-dev, libx11-dev, gtk3-dev,
+        libxres-dev, gtk-doc, xcb-util-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [atk, libcairo, gdk-pixbuf, glib, gtk3, pango, startup-notification,
+         libx11, libxrender, libxres]
+  desc: |
+    libwnck is Window Navigator Construction Kit, i.e. a library to use for
+    writing pagers and taskslists and stuff.
+
+    libwnck is not supported in the devel platform, which means OS vendors won't
+    guarantee the API/ABI long-term, but authors of open source apps should feel
+    free to use libwnck as users can always recompile against a new version. The
+    API/ABI has historically changed very little: libwnck authors are not
+    changing it gratuitously or without soname increments.
+
+- pkg : dev
+  deps: [main, cairo-dev, glib-dev, gtk3-dev, pango-dev,
+         startup-notification-dev, libx11-dev, libxres-dev]

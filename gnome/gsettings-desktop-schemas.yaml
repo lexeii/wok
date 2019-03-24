@@ -1,0 +1,25 @@
+name      : gsettings-desktop-schemas
+version   : 3.28.1
+category  : gnome
+summary   : Collection of GSettings schemas
+maintainer: al.bobylev@gmail.com
+license   : LGPL2.1
+home      : https://gitlab.gnome.org/GNOME/gsettings-desktop-schemas
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/gnome/gsettings-desktop-schemas.html
+target    : noarch
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [glib-dev, gobject-introspection-dev, intltool]
+
+prepare: sed -i -r 's:"(/system):"/org/gnome\1:g' schemas/*.in
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [glib, dconf]
+- pkg : dev
+  deps: [main, glib-dev]

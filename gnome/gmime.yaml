@@ -1,0 +1,29 @@
+name      : gmime
+version   : 2.6.23
+category  : development
+summary   : Parsing messages using MIME
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : http://spruce.sourceforge.net/gmime/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/general/gmime.html
+repology  : gmime2
+
+src:
+- url: gnome://<n>/<V>/<n>-<v>.tar.xz
+
+cookopts: skip-log-errors force-arch # different .pc
+
+bdeps: [gtk-doc, zlib-dev, glib-dev, gpgme-dev, gobject-introspection-dev,
+        vala, libgpg-error-dev]
+
+make:
+  type: gnu
+  args:
+  - --disable-static
+  - --enable-smime
+
+pkgs:
+- pkg : main
+  deps: [glib, gpgme, zlib]
+- pkg : dev
+  deps: [main, glib-dev, gpgme-dev, libassuan-dev, libgpg-error-dev, zlib-dev]

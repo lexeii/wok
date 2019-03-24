@@ -1,0 +1,28 @@
+origin    : libwnck
+name      : libwnck2
+version   : 2.31.0
+category  : x-window
+summary   : Window Navigator Construction Kit
+maintainer: devel@slitaz.org
+license   : LGPL2
+home      : https://developer.gnome.org/libwnck/
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.xz
+
+bdeps: [intltool, startup-notification-dev, libx11-dev, gtk2-dev,
+        gobject-introspection-dev, xcb-util-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [atk, libcairo, gdk-pixbuf, glib, gtk2, pango, startup-notification,
+         libx11]
+  provide: libwnck
+
+- pkg : dev
+  deps: [main, cairo-dev, glib-dev, gtk2-dev, pango-dev,
+         startup-notification-dev, libx11-dev]
+  provide: libwnck-dev

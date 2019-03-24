@@ -1,0 +1,23 @@
+name      : gnome-menus
+version   : 2.30.2
+category  : x-window
+summary   : GNOME menu libs and tools (without desktop files)
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.gnome.org/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.gz
+
+bdeps: [intltool, python-dev, glib-dev]
+
+make:
+  type: gnu
+  destdir: keep
+
+pkgs:
+- pkg : main
+  deps: glib
+  suggested: [python, gamin]
+- pkg : dev
+  deps: [main, python-dev]

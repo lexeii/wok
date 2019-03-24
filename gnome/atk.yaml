@@ -1,0 +1,29 @@
+name      : atk
+version   : 2.30.0
+category  : x-window
+summary   : Accessibility toolkit
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://developer.gnome.org/atk/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/atk.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+  sha1: 08a1c0e5173b992fd8b59cd7c40c3ae0cf0dc4f3
+
+bdeps: [meson, ninja, glib-dev, gobject-introspection-dev, gettext-dev]
+
+make:
+  type: meson
+
+pkgs:
+- pkg : main
+  deps: glib
+  tags: accessibility
+  desc: |
+    The accessibility tool kit contains the atk library. This is useful for
+    allowing accessibility solutions to be available for all gtk+-2 and gtk+-3
+    applications.
+
+- pkg : dev
+  deps: [main, glib-dev]

@@ -1,0 +1,44 @@
+name      : pango
+version   : 1.42.4
+category  : x-window
+summary   : Layout and rendering of internationalized text
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.pango.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/pango.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+  sha1: 240942b1307eaa3819e6e534596271c57cd75457
+
+bdeps: [harfbuzz-dev, libxft-dev, cairo-dev, gobject-introspection-dev, meson,
+        ninja, fribidi-dev]
+
+make:
+  type: meson
+
+post: |
+  rm -rf \
+    $install/usr/lib/installed-tests \
+    $install/usr/share/installed-tests
+
+pkgs:
+- pkg : main
+  deps: [libcairo, fontconfig, freetype, fribidi, glib, libharfbuzz, libx11,
+         libxft, libxrender]
+  desc: |
+    Pango is a library for layout and rendering of text, with an emphasis on
+    internationalization. Pango can be used anywhere that text layout is needed.
+    However, most of the work on Pango-1.0 was done using the GTK+ widget
+    toolkit as a test platform. Pango forms the core of text and font handling
+    for GTK+-2.0.
+
+- pkg : -typelib
+  copy: '*.typelib'
+  deps: main
+  cat : development
+  note: typelib files
+
+- pkg : dev
+  deps: [main, -typelib, cairo-dev, fontconfig-dev, freetype-dev, fribidi-dev,
+         glib-dev, harfbuzz-dev, libxft-dev]

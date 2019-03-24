@@ -1,0 +1,31 @@
+origin    : GConf
+name      : gconf
+version   : 3.2.6
+category  : utilities
+summary   : A configuration database system
+maintainer: devel@slitaz.org
+license   : LGPL2
+home      : https://projects-old.gnome.org/gconf/
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.xz
+
+cookopts: force-arch # different .gir
+
+bdeps: [glib-dev, libxml2-dev, dbus-dev, dbus-glib-dev, orbit2-dev, intltool,
+        gobject-introspection-dev]
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg : main
+  deps: [dbus, dbus-glib, glib, libxml2, orbit2]
+  desc: |
+    GConf is a system for storing application preferences. It is intended for
+    user preferences; not configuration of something like Apache, or arbitrary
+    data storage.
+
+- pkg : dev
+  deps: [main, glib-dev, orbit2-dev]

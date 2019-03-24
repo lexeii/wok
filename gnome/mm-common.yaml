@@ -1,0 +1,17 @@
+name      : mm-common
+version   : 0.9.4
+category  : development
+summary   : Common build files of the C++ bindings
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://gtkmm.org/en/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+make:
+  type: gnu
+  args: --prefix=/usr
+
+pkgs:
+- pkg : main

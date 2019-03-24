@@ -1,0 +1,31 @@
+name      : dia
+version   : 0.97.3
+category  : office
+summary   : GTK+ based diagram creation program
+maintainer: pascal.bellard@slitaz.org
+license   : GPL2
+home      : https://wiki.gnome.org/Apps/Dia
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [gtk2-dev, libxml2-dev, freetype-dev, intltool, fontconfig-dev, glib-dev,
+        atk-dev, pango-dev, python-pyxml, zlib-dev, libxslt, libart_lgpl-dev,
+        python-pygtk, file, libxslt-dev, expat-dev, python-dev, docbook-xsl,
+        docbook-xml, cairo-dev, pango-dev, librsvg-dev]
+
+make:
+  type: gnu
+  args:
+  - --with-python
+  - --with-cairo
+  - --disable-gnome
+  destdir: keep
+  # between configure and make:
+  # sed -i 's# data doc tests installer# data tests installer#' Makefile &&
+
+pkgs:
+- pkg : main
+  deps: [gtk2, libxml2, freetype, fontconfig, glib, atk, pango, zlib,
+         libart_lgpl, libxslt, popt, libxdamage, librsvg]
+  tags: [office, diagram, creator, editor, visio]

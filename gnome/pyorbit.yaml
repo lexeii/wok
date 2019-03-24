@@ -1,0 +1,22 @@
+name      : pyorbit
+version   : 2.24.0
+category  : system-tools
+summary   : Python binding to GNOME ORBit
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://www.gnome.org/
+icon      : python
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [python-dev, orbit2-dev]
+
+make:
+  type: gnu
+  destdir: keep
+
+pkgs:
+- pkg : main
+  copy: ['@std', '@dev']
+  deps: [python, orbit2]

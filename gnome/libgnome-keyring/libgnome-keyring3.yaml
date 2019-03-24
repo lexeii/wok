@@ -1,0 +1,24 @@
+origin    : libgnome-keyring
+name      : libgnome-keyring3
+version   : 3.12.0
+category  : x-window
+summary   : A library that keep password and other secrets for users
+maintainer: al.bobylev@gmail.com
+license   : LGPL2
+home      : https://wiki.gnome.org/Projects/GnomeKeyring
+repology  : libgnome-keyring
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.xz
+
+bdeps: [intltool, gtk-doc, gobject-introspection-dev, vala, dbus-dev,
+        libgcrypt-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [dbus, glib, libgcrypt]
+- pkg : dev
+  deps: [main, glib-dev]

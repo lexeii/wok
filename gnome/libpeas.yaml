@@ -1,0 +1,38 @@
+name      : libpeas
+version   : 1.22.0
+category  : libs
+summary   : GObject Plugin System
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://wiki.gnome.org/Projects/Libpeas
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/gnome/libpeas.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [intltool, gobject-introspection-dev, gtk3-dev, python-dev,
+        python-pygobject-dev, gtk-doc]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  copy: libpeas-1.0.so*
+  deps: [glib, gobject-introspection]
+
+- pkg : -gtk
+  copy: libpeas-gtk-1.0.so*
+  deps: [main, glib, gobject-introspection, gtk3]
+
+- pkg : -python
+  copy: libpythonloader.so
+  deps: [main, glib, python]
+
+- pkg : dev
+  deps: [main, -gtk, -python, -demo, glib-dev, gobject-introspection-dev,
+         gtk3-dev]
+
+- pkg : -demo
+  copy: [peas-demo, peas-demo/, hicolor/, '@rm', '@rm=*.la']
+  deps: [main, -gtk, glib, gobject-introspection, gtk3]

@@ -1,0 +1,24 @@
+name      : at-spi2-atk
+version   : 2.30.0
+category  : libdevel
+summary   : Bridges ATK to At-Spi2 D-Bus service
+maintainer: yuripourre@gmail.com
+license   : GPL3
+home      : https://developer.gnome.org/libatspi/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/at-spi2-atk.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+  sha1: 67e7f2f807a93f2d6e7bc89f0d8937568b41e963
+
+bdeps: [meson, ninja, dbus-dev, glib-dev, atk-dev, at-spi2-core-dev,
+        libxml2-dev]
+
+make:
+  type: meson
+
+pkgs:
+- pkg : main
+  deps: [at-spi2-core, atk, dbus, glib]
+- pkg : dev
+  deps: [main, at-spi2-core-dev, glib-dev]

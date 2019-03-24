@@ -1,0 +1,24 @@
+name      : at-spi2-core
+version   : 2.30.0
+category  : libdevel
+summary   : Service Provider Interface for the Assistive Technologies
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://developer.gnome.org/libatspi/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/at-spi2-core.html
+
+src:
+- url:  gnome/<n>/<V>/<n>-<v>.tar.xz
+  sha1: c8f91718ff7b9b88f32be744c88384d027d29bef
+
+bdeps: [meson, ninja, dbus-dev, glib-dev, libx11-dev, libxtst-dev,
+        gobject-introspection-dev, gettext-dev]
+
+make:
+  type: meson
+
+pkgs:
+- pkg : main
+  deps: [dbus, glib, libx11, libxtst]
+- pkg : dev
+  deps: [main, dbus-dev, glib-dev]

@@ -1,0 +1,32 @@
+name      : glibmm
+version   : 2.58.0
+category  : x-window
+summary   : C++ bindings for GLib
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://developer.gnome.org/glibmm/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/general/glibmm.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [glib-dev, libsigc++-dev]
+
+prepare: sed -i "/^libdocdir =/ s|\$(book_name)|glibmm-$VERSION|" docs/Makefile.in
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  copy: 'libglibmm*.so*'
+  deps: [glib, libsigc++]
+
+- pkg : libgiomm
+  copy: 'libgiomm*.so*'
+  deps: [main, glib, libsigc++]
+  note: GIO Framework
+
+- pkg : dev
+  copy: ['@std', '@rm', '@dev'] # perl and dev
+  deps: [main, libgiomm, glib-dev, libsigc++-dev, perl]

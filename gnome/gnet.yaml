@@ -1,0 +1,23 @@
+name      : gnet
+version   : 2.0.8
+category  : network
+summary   : Simple network library
+maintainer: devel@slitaz.org
+license   : LGPL
+home      : https://github.com/GNOME/gnet
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [glib-dev, util-linux-uuid-dev, libxt]
+
+make:
+  type: gnu
+  env: # Binutils 2.22 break many packages build without LDFLAGS set correctly.
+    LDFLAGS: $LDFLAGS -Wl,--copy-dt-needed-entries -lXt
+  destdir: keep
+
+pkgs:
+- pkg : main
+  deps: glib
+- pkg : dev

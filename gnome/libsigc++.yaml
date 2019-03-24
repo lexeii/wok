@@ -1,0 +1,22 @@
+name      : libsigc++
+version   : 2.10.1
+category  : system-tools
+summary   : Callback Framework for C++
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://developer.gnome.org/libsigc++/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/general/libsigc.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [m4, perl]
+
+prepare: sed -e "/^libdocdir =/ s/\$(book_name)/libsigc++-$VERSION/" -i docs/Makefile.in
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+- pkg : dev

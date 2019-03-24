@@ -1,0 +1,24 @@
+name      : pygoocanvas
+version   : 0.14.1
+category  : development
+summary   : GooCanvas python bindings
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://wiki.gnome.org/Projects/PyGoocanvas
+icon      : python
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [goocanvas-dev, python-dev, python-pygobject2-dev, python-pycairo-dev,
+        python-pygtk-dev]
+
+make:
+  type: gnu
+  args: --disable-docs
+  destdir: keep
+
+pkgs:
+- pkg : main
+  copy: ['@std', '@dev']
+  deps: [python, python-pygtk, goocanvas]

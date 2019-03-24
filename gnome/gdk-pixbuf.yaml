@@ -1,0 +1,34 @@
+name      : gdk-pixbuf
+version   : 2.38.0
+category  : x-window
+summary   : An image loading library for GTK+2
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.gtk.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/gdk-pixbuf.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+  sha1: 6e6bef71a1f06ecd1cd282d074ae068f89867144
+
+bdeps: [meson, ninja, glib-dev, shared-mime-info-dev, libpng-dev,
+        libjpeg-turbo-dev, tiff-dev, gobject-introspection-dev, libx11-dev,
+        gettext-dev, libxslt, docbook-xsl, libxml2-tools]
+
+make:
+  type: meson
+  args: -Dinstalled_tests=false
+
+post: touch $install/usr/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
+
+pkgs:
+- pkg : dev
+  copy: ['@dev', gdk-pixbuf-csource, libgdk_pixbuf-2.0.so,
+         libgdk_pixbuf_xlib-2.0.so]
+  deps: [main, glib-dev, shared-mime-info-dev, libx11-dev]
+  # gdk-pixbuf-csource use shared-mime-info to detect the image file format
+
+- pkg : main
+  deps: [glib, libjpeg-turbo, libpng, libtiff, libx11]
+  # Updating gdk pixbuf loaders cache file...
+  post_install: chroot "$1/" /usr/bin/gdk-pixbuf-query-loaders > /usr/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache

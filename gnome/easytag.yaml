@@ -1,0 +1,41 @@
+name      : easytag
+version   : 2.4.3
+category  : multimedia
+summary   : Utility for viewing and editing tags on sound files
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://wiki.gnome.org/Apps/EasyTAG
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [intltool, appstream-glib, glib-dev, gdk-pixbuf-dev, libxml2-tools,
+        libxslt, docbook-xml, docbook-xsl, desktop-file-utils-extra, itstool,
+        yelp-tools-dev, gtk3-dev, libogg-dev, libvorbis-dev, opus-dev,
+        opusfile-dev, speex-dev, flac-dev, libid3tag-dev, id3lib-dev,
+        taglib-dev, wavpack-dev]
+
+make:
+  type: gnu
+  args:
+  - --enable-mp3
+  - --enable-id3v23
+  - --enable-ogg
+  - --enable-opus
+  - --enable-speex
+  - --enable-flac
+  - --enable-mp4
+  - --enable-wavpack
+
+post: fix symlinks # FIXME
+
+pkgs:
+- pkg : main
+  deps: [flac, gdk-pixbuf, glib, gtk3, id3lib, libid3tag, libogg, libvorbis,
+         opus, opusfile, speex, taglib, wavpack]
+  tags: audio
+  desc: |
+    EasyTAG is a utility for viewing and editing tags for MP3, MP2, FLAC, Ogg
+    Vorbis, Speex, MP4/AAC, MusePack, Monkey's Audio and WavPack files. Its
+    simple and nice GTK2 interface makes tagging easier under GNU/Linux or
+    Windows.

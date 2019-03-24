@@ -1,0 +1,24 @@
+name      : gtkmm
+version   : 2.24.5
+category  : x-window
+summary   : C++ interface for the popular GUI library GTK+
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://www.gtkmm.org/en/
+repology  : gtkmm2
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [doxygen, gtk2-dev, atkmm-dev, glibmm-dev, cairomm-dev, libsigc++-dev,
+        pangomm-dev, glibmm-dev, mm-common]
+
+make:
+  type: gnu
+  args: --disable-documentation
+
+pkgs:
+- pkg : main
+  deps: [gtk2, atkmm, glibmm, cairomm, libsigc++, libxdamage, libgiomm, pangomm]
+- pkg : dev
+  deps: [main, gtk2-dev, atkmm-dev, glibmm-dev, glibmm-dev, pangomm-dev]

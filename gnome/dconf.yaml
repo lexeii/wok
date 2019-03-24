@@ -1,0 +1,28 @@
+name      : dconf
+version   : 0.30.1
+category  : system-tools
+summary   : A low-level configuration system
+maintainer: al.bobylev@gmail.com
+license   : LGPL2.1
+home      : https://wiki.gnome.org/Projects/dconf
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/gnome/dconf.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [meson, ninja, vala, libxslt-dev, gtk-doc, dbus-dev]
+
+make:
+  type: meson
+  args: -Dbash_completion=false
+
+pkgs:
+- pkg : main
+  deps: [glib,   dbus]
+  desc: |
+    dconf is a low-level configuration system. Its main purpose is to provide a
+    backend to GSettings API in Glib for storing and retrieving application
+    settings.
+
+- pkg : dev
+  deps: [main, glib-dev]

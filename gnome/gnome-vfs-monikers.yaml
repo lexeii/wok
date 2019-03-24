@@ -1,0 +1,28 @@
+name      : gnome-vfs-monikers
+version   : 2.15.3
+category  : x-window
+summary   : GNOME Bonobo monikers
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.gnome.org/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [gnome-vfs-dev, libbonobo-dev, glib-dev, orbit2-dev, dbus-glib-dev,
+        perl-xml-parser, libxml2-dev, gnutls-dev, libgcrypt-dev]
+
+make:
+  type: gnu
+  destdir: keep
+  vars:
+    CFLAGS: |
+      -I/usr/include/libbonobo-2.0 -I/usr/include/glib-2.0 \
+      -I/usr/lib/glib-2.0/include  -I/usr/include/bonobo-activation-2.0 \
+      -I/usr/include/orbit-2.0     -I/usr/include/gnome-vfs-2.0
+
+pkgs:
+- pkg : main
+  deps: [gnome-vfs, libbonobo]
+- pkg : dev
+  deps: [main, gnome-vfs, libbonobo]

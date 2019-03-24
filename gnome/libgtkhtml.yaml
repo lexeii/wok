@@ -1,0 +1,25 @@
+name      : libgtkhtml
+version   : 2.11.1
+category  : x-window
+summary   : A GTK-based HTML rendering/editing library
+maintainer: devel@slitaz.org
+license   : LGPL2
+home      : http://freshmeat.sourceforge.net/projects/libgtkhtml/
+repology  : gtkhtml2
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [libxml2-dev, gtk2-dev, libxdamage-dev, expat-dev]
+
+make:
+  type: gnu
+  destdir: keep
+
+pkgs:
+- pkg : main
+  deps: [glibc-base, glib, expat, libxml2, zlib, gtk2, libcairo, atk,
+         fontconfig, freetype, pango, pixman, libpng, libx11, libxau,
+         libxcomposite, libxcursor, libxdamage, libxdmcp, libxext, libxfixes,
+         libxinerama, libxrender]
+- pkg : dev

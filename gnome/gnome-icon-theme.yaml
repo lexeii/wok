@@ -1,0 +1,21 @@
+name      : gnome-icon-theme
+version   : 3.12.0
+category  : customization
+summary   : Default GNOME icon theme
+maintainer: devel@slitaz.org
+license   : LGPL3
+home      : https://www.gnome.org/
+target    : noarch
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [icon-naming-utils, intltool, gtk2]
+
+make:
+  type: gnu
+  args: --prefix=/usr
+  destdir: keep
+
+pkgs:
+- pkg : main

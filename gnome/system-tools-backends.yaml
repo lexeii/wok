@@ -1,0 +1,22 @@
+name      : system-tools-backends
+version   : 2.10.2
+category  : system-tools
+summary   : GNOME System Tools backends
+maintainer: al.bobylev@gmail.com
+license   : GPL3
+home      : https://system-tools-backends.freedesktop.org/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+#cookopts: force-arch # different 'Makefile's
+
+bdeps: [dbus-dev, polkit-dev, dbus-glib-dev, glib-dev, intltool, perl-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [dbus, dbus-glib, glib, perl, polkit]
+- pkg : dev

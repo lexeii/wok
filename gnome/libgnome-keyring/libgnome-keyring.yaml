@@ -1,0 +1,24 @@
+name      : libgnome-keyring
+version   : 2.32.0
+category  : x-window
+summary   : Keep password and other secrets for users
+maintainer: devel@slitaz.org
+license   : LGPL2
+home      : https://www.gnome.org/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.gz
+
+bdeps: [libgcrypt-dev, dbus-dev, glib-dev, intltool]
+
+make:
+  type: gnu
+  args:
+  - --libexecdir=/usr/lib/libgnome-keyring
+  - --sysconfdir=/etc/gnome
+
+pkgs:
+- pkg : main
+  deps: [dbus, glib, libgcrypt]
+- pkg : dev
+  deps: [main, glib-dev]

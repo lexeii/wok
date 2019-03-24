@@ -1,0 +1,23 @@
+name      : libglademm
+version   : 2.6.7
+category  : system-tools
+summary   : A C++ wrapper for libglade
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://www.gtkmm.org/en/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [gtkmm-dev, libglade-dev, cairomm-dev, libxml2-dev, glibmm-dev]
+
+prepare: sed -i 's|gtkmm/main|gtkmm|' examples/variablesmap/main.cc
+
+make:
+  type: gnu
+  destdir: keep
+
+pkgs:
+- pkg : main
+  deps: [gtkmm, libglade, glibmm]
+- pkg : dev

@@ -1,0 +1,24 @@
+name      : libgnomecanvas
+version   : 2.30.3
+category  : x-window
+summary   : GNOME canvas library
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.gnome.org/
+
+src:
+- url: gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [gtk2-dev, libglade-dev, libart_lgpl-dev, libxcursor-dev, intltool]
+
+make:
+  type: gnu
+  args:
+  - --with-html-dir=/usr/share/doc
+  - --enable-glade
+
+pkgs:
+- pkg : main
+  deps: [atk, gdk-pixbuf, glib, gtk2, libart_lgpl, libglade, pango]
+- pkg : dev
+  deps: [main, gtk2-dev, libart_lgpl-dev, pango-dev]

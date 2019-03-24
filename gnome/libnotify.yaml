@@ -1,0 +1,120 @@
+name      : libnotify
+version   : 0.7.7
+category  : utilities
+summary   : Notification library
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://developer.gnome.org/libnotify/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/libnotify.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+  sha1: 4cdf482737df504ac37f5489940b5c7ea5e18d57
+
+bdeps: [gdk-pixbuf-dev, glib-dev, gtk2-dev, gobject-introspection-dev, gtk-doc,
+        xmlto]
+
+prepare:
+  patches:
+  - name: print-and-replace-id-v3.patch
+  - name: libnotify-gtk2.patch
+
+make:
+  type: gnu
+  args: --disable-static
+
+pkgs:
+- pkg : main
+  deps: [gdk-pixbuf, glib]
+  desc: |
+    libnotify implements a standard for a desktop notifications service, through
+    which applications can generate passive popups to notify the user in an
+    asynchronous manner of events.
+
+    Example use cases include:
+
+      * Messages from chat programs
+      * Scheduled alarm
+      * Completed file transfer
+      * New mail notification
+      * Low disk space/battery warnings
+
+- pkg : dev
+  deps: [main, gdk-pixbuf-dev, glib-dev]
+
+files:
+- name: print-and-replace-id-v3.patch
+  content: |
+    https://bugs.launchpad.net/ubuntu/+source/libnotify/+bug/257135/comments/10
+    https://launchpadlibrarian.net/105791133/print-and-replace-id-v3.patch
+
+    Index: libnotify-0.7.5/tools/notify-send.c
+    ===================================================================
+    --- libnotify-0.7.5.orig/tools/notify-send.c  2011-10-14 11:24:15.000000000 +1300
+    +++ libnotify-0.7.5/tools/notify-send.c 2012-05-22 22:15:43.370979671 +1200
+    @@ -130,6 +130,8 @@
+             static char        *icons = NULL;
+             static char       **n_text = NULL;
+             static char       **hints = NULL;
+    +        static gboolean     print_id = FALSE;
+    +        static gint         replace_id = 0;
+             static gboolean     do_version = FALSE;
+             static gboolean     hint_error = FALSE;
+             static glong        expire_timeout = NOTIFY_EXPIRES_DEFAULT;
+    @@ -159,6 +161,10 @@
+                      N_
+                      ("Specifies basic extra data to pass. Valid types are int, double, string and byte."),
+                      N_("TYPE:NAME:VALUE")},
+    +                {"print-id", 'p', 0, G_OPTION_ARG_NONE, &print_id,
+    +                 N_ ("Print the notification ID."), NULL},
+    +                {"replace-id", 'r', 0, G_OPTION_ARG_INT, &replace_id,
+    +                 N_ ("The ID of the notification to replace."), N_("REPLACE_ID")},
+                     {"version", 'v', 0, G_OPTION_ARG_NONE, &do_version,
+                      N_("Version of the package."),
+                      NULL},
+    @@ -233,6 +239,9 @@
+     
+             g_free (body);
+     
+    +        if (replace_id)
+    +                g_object_set (notify, "id", replace_id, NULL);
+    +
+             /* Set hints */
+             if (hints != NULL) {
+                     gint            i = 0;
+    @@ -272,6 +281,12 @@
+             if (!hint_error)
+                     notify_notification_show (notify, NULL);
+     
+    +        if (print_id) {
+    +                gint id;
+    +                g_object_get (notify, "id", &id, NULL);
+    +                g_printf ("%d\n", id);
+    +        }
+    +
+             g_object_unref (G_OBJECT (notify));
+     
+             notify_uninit ();
+
+- name: libnotify-gtk2.patch
+  content: |
+    --- a/configure
+    +++ b/configure
+    @@ -11732,7 +11732,7 @@
+     
+     
+     
+    -REQ_GTK_VERSION=2.90
+    +REQ_GTK_VERSION=2.24
+     REQ_GLIB_VERSION=2.26.0
+     
+     pkg_modules="gdk-pixbuf-2.0 glib-2.0 >= $REQ_GLIB_VERSION gio-2.0 >= $REQ_GLIB_VERSION"
+    @@ -11949,7 +11949,7 @@
+     
+     fi
+     
+    -tests_modules="gtk+-3.0 >= $REQ_GTK_VERSION"
+    +tests_modules="gtk+-2.0 >= $REQ_GTK_VERSION"
+     # Check whether --enable-tests was given.
+     if test "${enable_tests+set}" = set; then :
+       enableval=$enable_tests;

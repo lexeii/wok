@@ -1,0 +1,23 @@
+name      : clutter-gtk
+version   : 1.8.4
+category  : x-window
+summary   : GTK+ libraries for Clutter
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://blogs.gnome.org/clutter/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/clutter-gtk.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [clutter-dev, gtk3-dev, gettext-dev, gobject-introspection-dev]
+
+make:
+  type: gnu
+  destdir: keep
+
+pkgs:
+- pkg : main
+  deps: [libcairo, clutter, cogl, gdk-pixbuf, glib, gtk3]
+- pkg : dev
+  deps: [main, clutter-dev, gtk3-dev]

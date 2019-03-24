@@ -1,0 +1,58 @@
+name      : cogl
+version   : 1.22.2
+category  : x-window
+summary   : Object oriented GL/GLES abstraction/utility layer
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://developer.gnome.org/cogl/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/cogl.html
+
+src:
+- src:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [glib-dev, mesa-dev, libxcomposite-dev, libxrandr-dev, gdk-pixbuf-dev,
+        gettext-dev, cairo-dev, pango-dev, gobject-introspection-dev, 
+        libxshmfence-dev, expat-dev]
+
+prepare:
+  patches:
+  - name: cogl.patch
+  rules: sed -i 's/^#if COGL/#ifdef COGL/' cogl/winsys/cogl-winsys-egl.c
+
+make:
+  type: gnu
+  args:
+  - --enable-gles1
+  - --enable-gles2
+  # next line for GNOME Wayland support (this added mesa-libwayland-egl to DEPENDS):
+  - --enable-kms-egl-platform --enable-wayland-egl-platform --enable-wayland-egl-server
+  - --enable-xlib-egl-platform # default option
+
+# remove /usr/share/cogl/examples-data/crate.jpg with folder: no examples anyway
+post: rm -r $install/usr/share/cogl
+
+pkgs:
+- pkg : main
+  deps: [libcairo, gdk-pixbuf, glib, libdrm, mesa-libegl, mesa-libgbm,
+         mesa-libwayland-egl, pango, wayland, libx11, libxdamage, libxext,
+         libxfixes, libxrandr]
+- pkg : dev
+  deps: [main, cairo-dev, gdk-pixbuf-dev, glib-dev, libdrm-dev, mesa-dev,
+         wayland-dev, libx11-dev, libxcomposite-dev, libxdamage-dev,
+         libxext-dev, libxfixes-dev, libxrandr-dev]
+
+files:
+- name: cogl.patch
+  content: |
+    Fix typo.
+
+    --- a/cogl-pango/cogl-pango-2.0-experimental.pc.in
+    +++ b/cogl-pango/cogl-pango-2.0-experimental.pc.in
+    @@ -8,6 +8,6 @@
+     Name: Cogl
+     Description: An object oriented GL/GLES Abstraction/Utility Layer
+     Version: @COGL_1_VERSION@
+    -Libs: -L${libdir} -lcoglpango
+    +Libs: -L${libdir} -lcogl-pango
+     Cflags: -I${includedir}/cogl
+     Requires: ${requires}

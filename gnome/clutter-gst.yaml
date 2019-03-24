@@ -1,0 +1,25 @@
+name      : clutter-gst
+version   : 3.0.26
+category  : x-window
+summary   : Integration library for using GStreamer with Clutter
+maintainer: al.bobylev@gmail.com
+license   : LGPL2.1
+home      : https://developer.gnome.org/clutter-gst/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/clutter-gst.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [clutter-dev, cogl-dev, glib-dev, gstreamer1-dev, gst1-plugins-base-dev,
+        libgudev-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [clutter, cogl, gdk-pixbuf, glib, gst1-plugins-base, gstreamer1,
+         libgudev, libx11]
+- pkg : dev
+  deps: [main, clutter-dev, cogl-dev, glib-dev, gst1-plugins-base-dev,
+         gstreamer1-dev]

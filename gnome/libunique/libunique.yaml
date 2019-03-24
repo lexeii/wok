@@ -1,0 +1,37 @@
+name      : libunique
+version   : 1.1.6
+category  : development
+summary   : Library for writing single instance application
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://wiki.gnome.org/Attic/LibUnique
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/general/libunique.html
+repology  : unique
+
+src:
+- url: gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [patch, automake, glib-dev, gettext-dev, libtool, gtk2-dev, libice-dev,
+        gobject-introspection-dev, gtk-doc]
+
+prepare:
+  patches:
+  - name: libunique-1.1.6-upstream_fixes-1.patch
+  rules: autoreconf -fi
+
+make:
+  type: gnu
+  args:
+  - --disable-dbus
+  - --disable-static
+  - --disable-debug
+
+pkgs:
+- pkg : main
+  deps: [glib, gtk2, libx11]
+- pkg : dev
+  deps: [main, gtk2-dev]
+
+files:
+- name: libunique-1.1.6-upstream_fixes-1.patch
+  link: libunique-1.1.6-upstream_fixes-1.patch

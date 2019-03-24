@@ -1,0 +1,21 @@
+name      : dconf-editor
+version   : 3.30.2
+category  : system-tools
+summary   : A low-level configuration system (graphical editor)
+maintainer: al.bobylev@gmail.com
+license   : LGPL2.1
+home      : https://wiki.gnome.org/Projects/dconf
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/gnome/dconf.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [meson, ninja, vala, libxml2-tools, dconf-dev, gtk3-dev, gettext-dev]
+
+make:
+  type: meson
+
+pkgs:
+- pkg : main
+  copy: ['@std', '@ico'] # only 16 and 48 icons
+  deps: [dconf, glib, gtk3,   dbus]

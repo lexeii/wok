@@ -1,0 +1,29 @@
+name      : gnome-keyring
+version   : 2.32.1
+category  : x-window
+summary   : A program that keep password and other secrets for users
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.gnome.org/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.gz
+
+bdeps: [libgcrypt-dev, libtasn1-dev, python-dev, dbus-dev, intltool, gtk2-dev]
+
+prepare: |
+  sed -e 's|<glib.h>|&\n#include <libtasn1.h>|' \
+      -e 's|const struct static_struct_asn|const ASN1_ARRAY_TYPE|' \
+      -i egg/egg-asn1x.h
+
+make:
+  type: gnu
+  args:
+  - --libexecdir=/usr/lib/gnome-keyring
+  - --sysconfdir=/etc/gnome
+  - --disable-pam
+
+pkgs:
+- pkg : main
+  deps: [libgcrypt, libtasn1, python, dbus, gtk2]
+- pkg : dev

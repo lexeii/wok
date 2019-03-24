@@ -1,0 +1,26 @@
+origin    : gnome-keyring
+name      : gnome-keyring3
+version   : 3.20.1
+category  : x-window
+summary   : A program that keep password and other secrets for users
+maintainer: al.bobylev@gmail.com
+license   : [GPL2, LGPL2.1]
+home      : https://wiki.gnome.org/Projects/GnomeKeyring
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/gnome/gnome-keyring.html
+repology  : gnome-keyring
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.xz
+
+bdeps: [shared-mime-info, intltool, gcr-dev, libcap-ng-dev, libxslt gtk-doc,
+        libgcrypt-dev]
+
+prepare: sed -i -r 's:"(/desktop):"/org/gnome\1:' schema/*.xml
+
+make:
+  type: gnu
+  args: --disable-pam
+
+pkgs:
+- pkg : main
+  deps: [gcr-base, glib, libcap-ng, libgcrypt]

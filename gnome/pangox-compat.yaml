@@ -1,0 +1,21 @@
+name      : pangox-compat
+version   : 0.0.2
+category  : x-window
+summary   : X Window System font support for Pango
+maintainer: yuripourre@gmail.com
+license   : LGPL2
+home      : https://www.gnome.org/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [pango-dev, glib-dev, libx11-dev]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [glib, pango, libx11]
+- pkg : dev
+  deps: [main, pango-dev, libx11-dev]

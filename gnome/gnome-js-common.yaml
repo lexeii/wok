@@ -1,0 +1,20 @@
+name      : gnome-js-common
+version   : 0.1.2
+category  : system-tools
+summary   : Gnome JS common files
+maintainer: devel@slitaz.org
+license   : GPL3
+home      : https://www.gnome.org/
+target    : noarch
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: intltool
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  copy: ['@std', '@dev']

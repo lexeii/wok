@@ -1,0 +1,22 @@
+name      : libgtop
+version   : 2.38.0
+category  : x-window
+summary   : Portable System Access Library
+maintainer: pascal.bellard@slitaz.org
+license   : GPL2
+home      : https://developer.gnome.org/libgtop/stable/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/gnome/libgtop.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [glib-dev, intltool, libx11-dev, libxau-dev, gtk-doc]
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [glib, libxau]
+- pkg : dev
+  deps: [main, glib-dev]

@@ -1,0 +1,35 @@
+name      : gtk-vnc
+version   : 0.5.4
+category  : x-window
+summary   : VNC viewer widget for GTK
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://wiki.gnome.org/Projects/gtk-vnc
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [gnutls-dev, libgpg-error-dev, gtk2-dev, cyrus-sasl, cyrus-sasl-dev,
+        intltool, python-pygtk-dev, python-pygobject2-dev, libffi-dev,
+        python-dev, libgcrypt-dev, zlib-dev, expat-dev, libtasn1-dev,
+        perl-text-csv, libffi, expat, pulseaudio-dev, util-linux-uuid-dev,
+        json-c-dev, libsndfile-dev, flac-dev, libvorbis-dev, dbus-dev]
+
+make:
+  type: gnu
+  jobs: 1
+
+pkgs:
+- pkg : -python
+  copy: python2.7/
+  cat : development
+  note: Python bindings
+  deps: [main, python]
+
+- pkg : main
+  deps: [gnutls, libgpg-error, gtk2, python-pygtk, cyrus-sasl, libtasn1,
+         pulseaudio, util-linux-uuid, json-c, libsndfile, flac, libvorbis]
+  suggested: gtk-vnc-python
+  tags: [vnc, remote-desktop]
+
+- pkg : dev

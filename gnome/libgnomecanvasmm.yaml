@@ -1,0 +1,31 @@
+name      : libgnomecanvasmm
+version   : 2.26.0
+category  : x-window
+summary   : A C++ wrapper for libgnomecanvas
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://www.gtkmm.org/en/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [gfortran, gtkmm-dev, libgnomecanvas-dev]
+
+prepare: |
+  sed -i 's|.*glibmm/propertyproxy.h|#include <gtkmm.h>\n&|' \
+    libgnomecanvas/libgnomecanvasmm/properties.h
+  sed -i 's|gtkmm/main|gtkmm|' \
+    demos/canvas.cc \
+    libgnomecanvas/libgnomecanvasmm/init.cc \
+    examples/canvas_affine/canvas_affine.cc \
+    examples/canvas_events/canvas_events.cc
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [atkmm, gdk-pixbuf, glib, glibmm, gtkmm, libart_lgpl, libgnomecanvas,
+         libsigc++, pangomm]
+- pkg : dev
+  deps: [main, gtkmm-dev, libgnomecanvas-dev]

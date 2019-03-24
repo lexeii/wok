@@ -1,0 +1,30 @@
+name      : atkmm
+version   : 2.28.0
+category  : x-window
+summary   : C++ interface for the ATK accessibility toolkit library
+maintainer: devel@slitaz.org
+license   : LGPL2.1
+home      : https://developer.gnome.org/atkmm/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/atkmm.html
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+  sha1: a01d1c2ab97777f1e087d723744cb6951d5c9488
+
+bdeps: [atk-dev, glibmm-dev]
+
+prepare: sed -i "/^libdocdir =/ s|\$(book_name)|atkmm-$VERSION|" doc/Makefile.in
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  deps: [atk, glib, glibmm, libsigc++]
+  desc: |
+    atkmm is the official C++ interface for the ATK accessibility toolkit
+    library. It may be used, for instance, by user interfaces implemented with
+    gtkmm.
+
+- pkg : dev
+  deps: [main, atk-dev, glibmm-dev]

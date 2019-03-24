@@ -1,0 +1,32 @@
+name      : gnumeric
+version   : 1.12.32
+category  : office
+summary   : Office Spreadsheet application
+maintainer: devel@slitaz.org
+license   : GPL
+home      : http://www.gnumeric.org/
+
+src:
+- url: gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [gtk-doc, bison, goffice-dev, gtk3-dev, intltool, gettext-dev, xorg-dev,
+        zlib-dev]
+
+make:
+  type: gnu
+  args:
+  - --without-perl
+  - --without-python
+  - --without-gda
+
+post: find $install/usr/share/pixmaps -name '*.ico' -delete
+
+pkgs:
+- pkg : main
+  deps: [atk, libcairo, gdk-pixbuf, glib, goffice, gtk3, libgsf, libxml2, pango,
+         zlib, dconf]
+  desc: |
+    The goal of Gnumeric is to be the best possible spreadsheet. It is not an
+    attempt to clone existing applications. However, Gnumeric can read files
+    saved with other spreadsheets and we offer a customizable feel that attempts
+    to minimize the costs of transition.

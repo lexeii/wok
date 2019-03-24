@@ -1,0 +1,24 @@
+name      : libgnomeprintui
+version   : 2.18.6
+category  : x-window
+summary   : GNOME print user interface library
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.gnome.org/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.bz2
+
+bdeps: [gnome-icon-theme, flex, libgnomeprint-dev, libxinerama-dev,
+        libxrandr-dev, libxcursor-dev, libxcomposite-dev, libxdamage-dev,
+        libgnomecanvas-dev, libart_lgpl-dev, intltool]
+
+make:
+  type: gnu
+  args: --with-html-dir=/usr/share/doc
+
+pkgs:
+- pkg : main
+  deps: [atk, gdk-pixbuf, glib, gtk2, libart_lgpl, libgnomecanvas, libgnomeprint]
+- pkg : dev
+  deps: [main, libgnomecanvas-dev, libgnomeprint-dev]

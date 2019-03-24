@@ -1,0 +1,33 @@
+name      : gnome-online-accounts
+version   : 3.30.1
+category  : network
+summary   : Client for GNOME web services
+maintainer: al.bobylev@gmail.com
+license   : GPL2
+home      : https://wiki.gnome.org/Projects/GnomeOnlineAccounts
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+  sha1: 211d5130f30ea9c90064c21b4b0f2de3b3e107d2
+
+bdeps: [glib-dev, libxslt, gobject-introspection-dev, vala, gtk3-dev,
+        webkit2gtk-dev, json-glib-dev, rest-dev, libsecret-dev, krb5-dev,
+        gettext-dev, docbook-xsl]
+
+cookopts: skip-log-errors
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main
+  copy: ['@std', '@ico']
+  deps: [glib, gtk3, json-glib, libsecret, libsoup, libxml2, rest, webkit2gtk]
+  desc: |
+    GOA (GNOME Online Accounts) service provides a centralized place for
+    managing online accounts (Google, etc.) for the GNOME desktop.
+
+- pkg : dev
+  deps: [main, glib-dev, gtk3-dev]
+
+- pkg : lang

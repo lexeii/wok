@@ -1,0 +1,23 @@
+name      : gnome-doc-utils
+version   : 0.20.10
+category  : development
+summary   : Documentation utilities for GNOME
+maintainer: devel@slitaz.org
+license   : [GPL2, LGPL2.1]
+home      : https://www.gnome.org/
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+bdeps: [libxml2-dev, libxslt-dev, rarian-dev, libxml2-python, intltool]
+
+make:
+  type: gnu
+  args: --disable-scrollkeeper
+  jobs: 1
+  destdir: keep
+
+pkgs:
+- pkg : main
+  copy: ['@std', '@dev']
+  deps: [libxml2, libxslt, python, libxml2-python, rarian, docbook-xml]

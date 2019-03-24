@@ -1,0 +1,18 @@
+name      : adwaita-icon-theme
+version   : 3.30.1
+category  : customization
+summary   : A collection of icons used at the basis for GNOME themes
+maintainer: al.bobylev@gmail.com
+license   : [LGPL3, CC-BY-SA-3]
+home      : https://github.com/GNOME/adwaita-icon-theme
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/x/adwaita-icon-theme.html
+target    : noarch
+
+src:
+- url:  gnome://<n>/<V>/<n>-<v>.tar.xz
+
+make:
+  type: gnu
+
+pkgs:
+- pkg : main

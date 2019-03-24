@@ -1,0 +1,105 @@
+origin    : vte
+name      : vte-gtk2
+version   : 0.28.2 # last gtk2-based series is 0.28; last version is 0.28.2 (2011-08-28)
+category  : utilities
+summary   : Terminal capabilities for GTK+ widgets
+maintainer: devel@slitaz.org
+license   : GPL2
+home      : https://www.gnome.org/
+lfs       : http://www.linuxfromscratch.org/blfs/view/svn/gnome/vte.html # (for gtk3 version)
+
+src:
+- url:  gnome://<o>/<V>/<o>-<v>.tar.xz
+
+bdeps: [intltool, gtk2-dev, python-dev, gobject-introspection-dev,
+        python-pygtk-dev]
+
+prepare:
+  patches:
+  - name: AltKey.patch
+
+make:
+  type: gnu
+  args:
+  - --disable-static
+  - --enable-introspection
+  jobs: 1
+
+#post: |
+#  # add 'Home' and 'End' keys
+#  sed -i '9i\ \ \ \ :kh=\\E[H:@7=\\E[F:\\' $install/usr/share/vte/termcap-0.0/xterm
+
+pkgs:
+- pkg : -terminal
+  copy: bin/
+  cat : development
+  note: X Terminal
+  deps: [main, glib, gtk2, pango]
+
+- pkg : -python
+  copy: [vtemodule.so, vte.defs]
+  cat : development
+  note: Python bindings
+  deps: [main, gdk-pixbuf, glib, gtk2, pango,   python]
+  provide: python-vte
+
+- pkg : main
+  deps: [atk, libcairo, gdk-pixbuf, glib, gtk2, ncurses, pango, libx11]
+
+- pkg : dev
+  deps: [main, -terminal, -python, cairo-dev, glib-dev, gtk2-dev, pango-dev,
+         libx11-dev]
+
+files:
+- name: AltKey.patch
+  content: |
+    From a9d6a34708f846952f423d078397352858f7b1a4 Mon Sep 17 00:00:00 2001
+    From: Christian Persch <chpe@gnome.org>
+    Date: Sat, 12 May 2012 18:48:05 +0200
+    Subject: [PATCH] keymap: Treat ALT as META
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=663779
+    ---
+     src/vte.c |   23 ++++++++++++++---------
+     1 files changed, 14 insertions(+), 9 deletions(-)
+
+    diff --git a/src/vte.c b/src/vte.c
+    index dd27e9a..0657921 100644
+    --- a/src/vte.c
+    +++ b/src/vte.c
+    @@ -5170,19 +5170,24 @@ static void
+     vte_terminal_read_modifiers (VteTerminal *terminal,
+     			     GdkEvent *event)
+     {
+    +        GdkKeymap *keymap;
+     	GdkModifierType modifiers;
+     
+     	/* Read the modifiers. */
+    -	if (gdk_event_get_state((GdkEvent*)event, &modifiers)) {
+    -		GdkKeymap *keymap;
+    -#if GTK_CHECK_VERSION (2, 90, 8)
+    -                keymap = gdk_keymap_get_for_display(gdk_window_get_display(((GdkEventAny*)event)->window));
+    -#else
+    -                keymap = gdk_keymap_get_for_display(gdk_drawable_get_display(((GdkEventAny*)event)->window));
+    +	if (!gdk_event_get_state((GdkEvent*)event, &modifiers))
+    +                return;
+    +
+    +        keymap = gdk_keymap_get_for_display(gdk_window_get_display(((GdkEventAny*)event)->window));
+    +
+    +        gdk_keymap_add_virtual_modifiers (keymap, &modifiers);
+    +
+    +#if 1
+    +        /* HACK! Treat ALT as META; see bug #663779. */
+    +        if (modifiers & GDK_MOD1_MASK)
+    +                modifiers |= VTE_META_MASK;
+     #endif
+    -                gdk_keymap_add_virtual_modifiers (keymap, &modifiers);
+    -		terminal->pvt->modifiers = modifiers;
+    -	}
+    +
+    +        terminal->pvt->modifiers = modifiers;
+     }
+     
+     /* Read and handle a keypress event. */
+    -- 
+    1.7.5.1.217.g4e3aa.dirty
